@@ -371,7 +371,7 @@ UploadResponse response = visualInspection.Upload(filenames, isGood, isTraining)
 
 ```json
 {
-    "errors: {
+    "errors": {
         "detail": null,
         "source": {
             "pointer": "http://127.0.0.1:3001/api/v1/upload"
@@ -432,12 +432,11 @@ ItemResponse response = visualInspection.GetItem(itemId);
                         "x_min": 2064,
                         "y_max": 1722,
                         "y_min": 1702
-                    },
-                    ...
-                ]
+                    }
+                ],
                 "content_type": "image/jpeg",
                 "defect_counted": 70,
-                "exif_metadata": {...},
+                "exif_metadata": {},
                 "file_size": 1524794,
                 "height": 3024,
                 "image_id": 1805,
