@@ -1,9 +1,21 @@
-﻿Visual Inspection Api for C#
+Visual Inspection Api for C#
 ===
 Visual Inspection Api wrapper for C#. This wrapper provides simple to use method calls for easy integration to your C# based applications. 
 Supports .Net Framework 4.6.1 and .Net Core 2.0
 
 [TOC]
+- [Installation](#installation)
+- [Usage](#usage)
+  * [1. Initialization](#1-initialization)
+  * [2. Authorize](#2-authorize)
+  * [3. Get Items](#3-get-items)
+  * [4. Get Algorithms](#4-get-algorithms)
+  * [5. Get Models](#5-get-models)
+  * [6. Train](#6-train)
+  * [7. Add Item](#7-add-item)
+  * [8. Get Specific Item](#8-get-specific-item)
+  * [9. Predict](#9-predict)
+- [Generic Error](#generic-error)
 
 ## Installation
 To install this package on your project, use this command in Package Manager Console.
@@ -44,9 +56,9 @@ AccessTokenResponse response = visualInspection.Authorize(YourClientId, YourClie
 
 ```json
 {
-    data: {
-        access_token: "GeneratedAccessToken",
-        expires: 2592000
+    "data": {
+        "access_token": "GeneratedAccessToken",
+        "expires": 2592000
     }
 }
 ```
@@ -57,13 +69,13 @@ AccessTokenResponse response = visualInspection.Authorize(YourClientId, YourClie
 
 ```json
 {
-    errors: {
-        detail: null,
-        source: {
-            pointer: http://127.0.0.1:3001/api/auth/token
+    "errors": {
+        "detail": null,
+        "source": {
+            "pointer": "http://127.0.0.1:3001/api/auth/token"
         },
-        status: 404,
-        title: "Cannot find client information"
+        "status": 404,
+        "title": "Cannot find client information"
     }
 }
 ```
@@ -72,13 +84,13 @@ AccessTokenResponse response = visualInspection.Authorize(YourClientId, YourClie
 
 ```json
 {
-    errors: {
-        detail: null,
-        source: {
-            pointer: http://127.0.0.1:3001/api/auth/token
+    "errors": {
+        "detail": null,
+        "source": {
+            "pointer": "http://127.0.0.1:3001/api/auth/token"
         },
-        status: 400,
-        title: "Client id and secret mismatch"
+        "status": 400,
+        "title": "Client id and secret mismatch"
     }
 }
 ```
@@ -102,41 +114,41 @@ ItemsResponse response = visualInspection.GetItems();
 
 ```json
 {
-    data: {
-        archived: [],
-        predict: [],
-        summary: {
-            adjusted: 0,
-            analysed: 0,
-            archived_defects: 0,
-            assessment: "Bad Product",
-            confirmed: 0,
-            defects_detected: 0,
-            detection_accuracy: 0,
-            items_archived: 0,
-            items_for_review: 0,
-            title: "Context #1",
-            training: {
-                defect: 0,
-                good: 1
+    "data": {
+        "archived": [],
+        "predict": [],
+        "summary": {
+            "adjusted": 0,
+            "analysed": 0,
+            "archived_defects": 0,
+            "assessment": "Bad Product",
+            "confirmed": 0,
+            "defects_detected": 0,
+            "detection_accuracy": 0,
+            "items_archived": 0,
+            "items_for_review": 0,
+            "title": "Context #1",
+            "training": {
+                "defect": 0,
+                "good": 1
             }
         },
-        training: [
+        "training": [
             {
-            assessment: null,
-            confirmed_assessment: true,
-            date: "Mon, 10 Jun 2019 08:22:02 GMT",
-            default_image: https://hacarus-saas-data.s3.amazonaws.com/raw/b21d29f794e781e12f466a1fcc1bf1a1596e5320,
-            description: null,
-            detected_objects: 0,
-            finished_date: null,
-            good: true,
-            is_training_data: true,
-            item_id: "T1-22-01",
-            label: "Job id is T1-22-01",
-            override_assessment: true,
-            status: "pending",
-            thumbnail_image: https://hacarus-saas-data.s3.amazonaws.com/thumbnail/b21d29f794e781e12f466a1fcc1bf1a1596e5320
+            "assessment": null,
+            "confirmed_assessment": true,
+            "date": "Mon, 10 Jun 2019 08:22:02 GMT",
+            "default_image": "https://hacarus-saas-data.s3.amazonaws.com/raw/b21d29f794e781e12f466a1fcc1bf1a1596e5320",
+            "description": null,
+            "detected_objects": 0,
+            "finished_date": null,
+            "good": true,
+            "is_training_data": true,
+            "item_id": "T1-22-01",
+            "label": "Job id is T1-22-01",
+            "override_assessment": true,
+            "status": "pending",
+            "thumbnail_image": "https://hacarus-saas-data.s3.amazonaws.com/thumbnail/b21d29f794e781e12f466a1fcc1bf1a1596e5320"
             }
         ]
     }
@@ -155,28 +167,28 @@ AlgorithmResponse response = visualInspection.GetAlgorithms();
 
 ```json
 {
-    data: [
+    "data": [
         {
-            algorithm_id: "one-class-svm",
-            name: "Patch One Class SVM",
-            parameters: [
+            "algorithm_id": "one-class-svm",
+            "name": "Patch One Class SVM",
+            "parameters": [
                 {
-                    algorithm_parameter_id: 252,
-                    created_at: "2019-06-06T23:29:17Z",
-                    data_type: "float",
-                    model_parameter: true,
-                    name: "nu_max",
-                    updated_at: "2019-06-07T00:10:09Z",
-                    value: "0.1"
+                    "algorithm_parameter_id": 252,
+                    "created_at": "2019-06-06T23:29:17Z",
+                    "data_type": "float",
+                    "model_parameter": true,
+                    "name": "nu_max",
+                    "updated_at": "2019-06-07T00:10:09Z",
+                    "value": "0.1"
                 },
                 {
-                    algorithm_parameter_id: 249,
-                    created_at: "2019-06-06T23:29:17Z",
-                    data_type: "tuple",
-                    model_parameter: true,
-                    name: "patch_size",
-                    updated_at: "2019-06-06T23:30:20Z",
-                    value: "[4, 4]"
+                    "algorithm_parameter_id": 249,
+                    "created_at": "2019-06-06T23:29:17Z",
+                    "data_type": "tuple",
+                    "model_parameter": true,
+                    "name": "patch_size",
+                    "updated_at": "2019-06-06T23:30:20Z",
+                    "value": "[4, 4]"
                 }
             ]
         }
@@ -191,13 +203,13 @@ AlgorithmResponse response = visualInspection.GetAlgorithms();
 
 ```json
 {
-    errors: {
-        detail: null,
-        source: {
-            pointer: http://127.0.0.1:3001/api/v1/algorithms
+    "errors": {
+        "detail": null,
+        "source": {
+            "pointer": "http://127.0.0.1:3001/api/v1/algorithms"
         },
-        status: 404,
-        title: "No algorithms found"
+        "status": 404,
+        "title": "No algorithms found"
     }
 }
 ```
@@ -218,16 +230,16 @@ ModelsResponse response = visualInspection.GetModels();
 
 ```json
 {
-    data: [
+    "data": [
         {
-            active: true,
-            algorithm_id: "one-class-svm",
-            context_default: false,
-            created_at: "2019-06-10T08:28:16Z",
-            model_id: 269,
-            name: "Test-20190610-01",
-            status: "active",
-            version: "model-2019061008:28:16"
+            "active": true,
+            "algorithm_id": "one-class-svm",
+            "context_default": false,
+            "created_at": "2019-06-10T08:28:16Z",
+            "model_id": 269,
+            "name": "Test-20190610-01",
+            "status": "active",
+            "version": "model-2019061008:28:16"
         }
     ]
 }
@@ -237,15 +249,15 @@ ModelsResponse response = visualInspection.GetModels();
 
 - `404 NotFound`: No available model, create model by using `Train` method
 
-```jsonld
+```json
 {
-    errors: {
-        detail: null,
-        source: {
-            pointer: http://127.0.0.1:3001/api/v1/models
+    "errors": {
+        "detail": null,
+        "source": {
+            "pointer": "http://127.0.0.1:3001/api/v1/models"
         },
-        status: 404,
-        title: "Cannot find any model"
+        "status": 404,
+        "title": "Cannot find any model"
     }
 }
 ```
@@ -277,17 +289,17 @@ ModelRootObject reponse = visualInspection.Train(algorithmId, modelName, itemIds
 
 ```json
 {
-    data: {
-        active: false,
-        algorithm_id: "one-class-svm",
-        context_default: false,
-        context_id: 1000,
-        created_at: "2019-06-11T01:26:08Z",
-        model_id: 270,
-        name: "6/11/19 10:26:07 AM",
-        status: "creating",
-        updated_at: "2019-06-11T10:26:07Z",
-        version: "model-2019061101:26:07"
+    "data": {
+        "active": false,
+        "algorithm_id": "one-class-svm",
+        "context_default": false,
+        "context_id": 1000,
+        "created_at": "2019-06-11T01:26:08Z",
+        "model_id": 270,
+        "name": "6/11/19 10:26:07 AM",
+        "status": "creating",
+        "updated_at": "2019-06-11T10:26:07Z",
+        "version": "model-2019061101:26:07"
     }
 }
 ```
@@ -298,13 +310,13 @@ ModelRootObject reponse = visualInspection.Train(algorithmId, modelName, itemIds
 
 ```json
 {
-    errors: {
-        detail: null,
-        source: {
-            pointer: http://127.0.0.1:3001/api/v1/train
+    "errors": {
+        "detail": null,
+        "source": {
+            "pointer": "http://127.0.0.1:3001/api/v1/train"
         },
-        status: 403,
-        title: "You do not have access to one or more item ids provided"
+        "status": 403,
+        "title": "You do not have access to one or more item ids provided"
     }
 }
 ``` 
@@ -328,8 +340,8 @@ UploadResponse response = visualInspection.Upload(filenames, isGood, isTraining)
 
 ```json
 {
-    data: {
-        item_ids: [
+    "data": {
+        "item_ids": [
             "IMG6760_U"
         ]
     }
@@ -342,15 +354,15 @@ UploadResponse response = visualInspection.Upload(filenames, isGood, isTraining)
 
 ```json
 {
-    errors: {
-        detail: [
+    "errors": {
+        "detail": [
             "Invalid filename 2019-05-24 at 3.27.11 PM.png"
         ],
-        source: {
-            pointer: http://127.0.0.1:3001/api/v1/upload
+        "source": {
+            "pointer": "http://127.0.0.1:3001/api/v1/upload"
         },
-        status: 400,
-        title: "Invalid Request"
+        "status": 400,
+        "title": "Invalid Request"
     }
 }
 ```
@@ -359,13 +371,13 @@ UploadResponse response = visualInspection.Upload(filenames, isGood, isTraining)
 
 ```json
 {
-    errors: {
-        detail: null,
-        source: {
-            pointer: "http://127.0.0.1:3001/api/v1/upload"
+    "errors: {
+        "detail": null,
+        "source": {
+            "pointer": "http://127.0.0.1:3001/api/v1/upload"
         },
-        status: "No images to upload",
-        title: 400
+        "status": "No images to upload",
+        "title": 400
     }
 }
 ```
@@ -390,64 +402,64 @@ ItemResponse response = visualInspection.GetItem(itemId);
 
 ```json
 {
-    data: {
-        computed_assessment: {
-            assessment_result: "[PatchOneClassSVMDetector] Defected product",
-            detected_objects: 2,
-            detection_accuracy: 100,
-            good: false
+    "data": {
+        "computed_assessment": {
+            "assessment_result": "[PatchOneClassSVMDetector] Defected product",
+            "detected_objects": 2,
+            "detection_accuracy": 100,
+            "good": false
         },
-        confirmed_assessment: true,
-        images: [
+        "confirmed_assessment": true,
+        "images": [
             {
-                annotations: [
+                "annotations": [
                     {
-                        annotation_id: 8269,
-                        created_at: "2019-06-11T05:47:00Z",
-                        image_id: 1805,
-                        notes: null,
-                        x_max: 620,
-                        x_min: 606,
-                        y_max: 2322,
-                        y_min: 2284
+                        "annotation_id": 8269,
+                        "created_at": "2019-06-11T05:47:00Z",
+                        "image_id": 1805,
+                        "notes": null,
+                        "x_max": 620,
+                        "x_min": 606,
+                        "y_max": 2322,
+                        "y_min": 2284
                     },
                     {
-                        annotation_id: 8270,
-                        created_at: "2019-06-11T05:47:00Z",
-                        image_id: 1805,
-                        notes: null,
-                        x_max: 2082,
-                        x_min: 2064,
-                        y_max: 1722,
-                        y_min: 1702
+                        "annotation_id": 8270,
+                        "created_at": "2019-06-11T05:47:00Z",
+                        "image_id": 1805,
+                        "notes": null,
+                        "x_max": 2082,
+                        "x_min": 2064,
+                        "y_max": 1722,
+                        "y_min": 1702
                     },
                     ...
                 ]
-                content_type: "image/jpeg",
-                defect_counted: 70,
-                exif_metadata: {...},
-                file_size: 1524794,
-                height: 3024,
-                image_id: 1805,
-                is_raw_uploaded: true,
-                position: null,
-                processed: true,
-                raw_url: https://hacarus-saas-data.s3.amazonaws.com/raw/d9b6b9709b29d4deb30be4e981031f09823120c7,
-                url: https://hacarus-saas-data.s3.amazonaws.com/processed/d9b6b9709b29d4deb30be4e981031f09823120c7,
-                width: 4032
+                "content_type": "image/jpeg",
+                "defect_counted": 70,
+                "exif_metadata": {...},
+                "file_size": 1524794,
+                "height": 3024,
+                "image_id": 1805,
+                "is_raw_uploaded": true,
+                "position": null,
+                "processed": true,
+                "raw_url": "https://hacarus-saas-data.s3.amazonaws.com/raw/d9b6b9709b29d4deb30be4e981031f09823120c7",
+                "url": "https://hacarus-saas-data.s3.amazonaws.com/processed/d9b6b9709b29d4deb30be4e981031f09823120c7",
+                "width": 4032
             }
         ],
-        is_training_data: false,
-        item_id: "IMG6760_U",
-        label: "Job id is IMG6760_U",
-        manual_assessment: {
-            assessment_result: null,
-            detected_objects: null,
-            detection_accuracy: null,
-            good: null,
-            override_assessment: false
+        "is_training_data": false,
+        "item_id": "IMG6760_U",
+        "label": "Job id is IMG6760_U",
+        "manual_assessment": {
+            "assessment_result": null,
+            "detected_objects": null,
+            "detection_accuracy": null,
+            "good": null,
+            "override_assessment": false
         },
-        status: "done"
+        "status": "done"
     }
 }
 ```
@@ -458,13 +470,13 @@ ItemResponse response = visualInspection.GetItem(itemId);
 
 ```json
 {
-    errors: {
-        detail: null,
-        source: {
-            pointer: "http://127.0.0.1:3001/api/v1/item/sdsd"
+    "errors": {
+        "detail": null,
+        "source": {
+            "pointer": "http://127.0.0.1:3001/api/v1/item/sdsd"
         },
-        status: 404,
-        title: "No match for item_id!"
+        "status": 404,
+        "title": "No match for item_id!"
     }
 }
 ```
@@ -473,13 +485,13 @@ ItemResponse response = visualInspection.GetItem(itemId);
 
 ```json
 {
-    errors: {
-        detail: null,
-        source: {
-            pointer: "http://127.0.0.1:3001/api/v1/item/sdsd"
+    "errors": {
+        "detail": null,
+        "source": {
+            "pointer": "http://127.0.0.1:3001/api/v1/item/sdsd"
         },
-        status: 404,
-        title: "No permission to view item!"
+        "status": 404,
+        "title": "No permission to view item!"
     }
 }
 ```
@@ -498,11 +510,11 @@ PredictResponse response = visualInspection.Serve(itemIds, modelId);
 ##### Sample Response
 ```json
 {
-    data: {
-        item_ids: [
+    "data": {
+        "item_ids": [
             "IMG6760_U"
         ],
-        model_version: "model-2019061101:26:07"
+        "model_version": "model-2019061101:26:07"
     }    
 }
 ```
@@ -513,13 +525,13 @@ PredictResponse response = visualInspection.Serve(itemIds, modelId);
 
 ```json
 {
-    errors: {
-        detail: null,
-        source: {
-            pointer: "http://127.0.0.1:3001/api/v1/serve"
+    "errors": {
+        "detail": null,
+        "source": {
+            "pointer": "http://127.0.0.1:3001/api/v1/serve"
         },
-        status: 404,
-        title: "Cannot find items"
+        "status": 404,
+        "title": "Cannot find items"
     }
 }
 ```
@@ -528,13 +540,13 @@ PredictResponse response = visualInspection.Serve(itemIds, modelId);
 
 ```json
 {
-    errors: {
-        detail: null,
-        source: {
-            pointer: "http://127.0.0.1:3001/api/v1/serve"
+    "errors": {
+        "detail": null,
+        "source": {
+            "pointer": "http://127.0.0.1:3001/api/v1/serve"
         },
-        status: 404,
-        title: "There is no available model"
+        "status": 404,
+        "title": "There is no available model"
     }
 }
 ```
@@ -544,13 +556,13 @@ PredictResponse response = visualInspection.Serve(itemIds, modelId);
 
 ```json
 {
-    errors: {
-        detail: null,
-        source: {
+    "errors": {
+        "detail": null,
+        "source": {
             "pointer": "http://127.0.0.1:3001/api/v1/algorithms"
         },
-        status: 401,
-        title: "No permission to access this resource"
+        "status": 401,
+        "title": "No permission to access this resource"
     }
 }
 ```
