@@ -3,7 +3,6 @@ Visual Inspection Api for C#
 Visual Inspection Api wrapper for C#. This wrapper provides simple to use method calls for easy integration to your C# based applications. 
 Supports .Net Framework 4.6.1 and .Net Core 2.0
 
-[TOC]
 - [Installation](#installation)
 - [Usage](#usage)
   * [1. Initialization](#1-initialization)
