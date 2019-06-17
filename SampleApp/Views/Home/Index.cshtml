@@ -1,0 +1,414 @@
+﻿@{
+    ViewData["Title"] = "Visual Inspection - SDK Demo";
+}
+<h2>@ViewData["Title"]</h2>
+<div class="row" id="page-container">
+    <div class="col-lg-6 col-md-8 col-xs-12" id="request-samples">
+        <div class="panel panel-default">
+            <div class="panel-heading" data-toggle="collapse" data-target="#signin-form">Sign in</div>
+            <div class="panel-body @(ViewBag.BearerAvailable ? " collapse" : "" )" id="signin-form">
+                <form method="post" action="@Url.Action( "Login", "Home" )">
+                    <div class="form-group">
+                        <label for="clientId">Client ID</label>
+                        <input type="text" name="clientId" id="clientId"
+                               class="form-control" value="837bde13b6762e8b22f22dd8fdbf89c1" />
+                    </div>
+                    <div class="form-group">
+                        <label for="clientSecret">Client Secret</label>
+                        <input type="text" name="clientSecret" id="clientSecret"
+                               class="form-control" value="895621cd10defeef881716ed0d372c7220010292fbfcb289" />
+                    </div>
+                    <button type="submit" name="loginClient" class="pull-right btn btn-primary">Get access token</button>
+                </form>
+            </div>
+        </div>
+        @if (ViewBag.BearerAvailable)
+        {
+        <div class="panel panel-default">
+            <div class="panel-heading" data-toggle="collapse" data-target="#getitems-form">Get Items</div>
+            <div class="panel-body @(ViewBag.Active != "getItems" ? " collapse" : "" )" id="getitems-form">
+                <div class="request-item">
+                    Endpoint:
+                    <div class="endpoint-container">
+                        <span class="method">GET</span>
+                        <span class="endpoint">/api/v1/items</span>
+                    </div>
+                </div>
+                <div class="request-item">
+                    Headers:
+                    <pre>
+Authorization:Token [[token]]
+Content-Type:application/json</pre>
+                </div>
+                <div class="request-item">
+                    C#:
+                    <pre><code class="cs csharp">ItemRootObject predictResponse = sdd.GetItem(itemId);</code></pre>
+                </div>
+                <form asp-controller="Home" asp-action="GetItems" method="post">
+                    <button type="submit" name="getItems" class="btn btn-primary">Try it!</button>
+                </form>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" data-toggle="collapse" data-target="#getalgorithms-form">Get Algorithms</div>
+            <div class="panel-body @(ViewBag.Active != "getAlgorithms" ? " collapse" : "" )" id="getalgorithms-form">
+                <div class="request-item">
+                    Endpoint:
+                    <div class="endpoint-container">
+                        <span class="method">GET</span>
+                        <span class="endpoint">/api/v1/algorithms</span>
+                    </div>
+                </div>
+                <div class="request-item">
+                    Headers:
+                    <pre>
+Authorization:Token [[token]]
+Content-Type:application/json</pre>
+                </div>
+                <div class="request-item">
+                    C#:
+                    <pre><code class="cs csharp">AlgorithmRootObject reponse = sdd.GetAlgorithms();</code></pre>
+                </div>
+                <form asp-controller="Home" asp-action="GetAlgorithms" method="post">
+                    <button type="submit" name="getAlgorithms" class="btn btn-primary">Try it!</button>
+                </form>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" data-toggle="collapse" data-target="#getmodels-form">Get Models</div>
+            <div class="panel-body @(ViewBag.Active != "getModels" ? " collapse" : "" )" id="getmodels-form">
+                <div class="request-item">
+                    Endpoint:
+                    <div class="endpoint-container">
+                        <span class="method">GET</span>
+                        <span class="endpoint">/api/v1/models</span>
+                    </div>
+                </div>
+                <div class="request-item">
+                    Headers:
+                    <pre>
+Authorization:Token [[token]]
+Content-Type:application/json</pre>
+                </div>
+                <div class="request-item">
+                    C#:
+                    <pre><code class="cs csharp">ModelsRootObject reponse = sdd.GetModels();</code></pre>
+                </div>
+                <form asp-controller="Home" asp-action="GetModels" method="post">
+                    <button type="submit" name="getModels" class="btn btn-primary">Try it!</button>
+                </form>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" data-toggle="collapse" data-target="#train-form">Train</div>
+            <div class="panel-body @(ViewBag.Active != "train" ? " collapse" : "" )" id="train-form">
+                <div class="request-item">
+                    Endpoint:
+                    <div class="endpoint-container">
+                        <span class="method">POST</span>
+                        <span class="endpoint">/api/v1/train</span>
+                    </div>
+                </div>
+                <div class="request-item">
+                    Headers:
+                    <pre>
+Authorization:Token [[token]]
+Content-Type:application/json</pre>
+                </div>
+                <div class="request-item">
+                    Body:
+                    <div class="json-container">
+                        <div class="json">
+                            {
+                            "algorithm_id": "hacarus-dictionary-learning",
+                            "name" : "12345",
+                            "item_ids": ["NG-06-01"]
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="request-item">
+                    C#:
+                    <pre><code class="cs csharp">
+var algorithmId = "hacarus-dictionary-learning";
+var modelName = "some name";
+var itemIds = new string[] { "item_id" };
+AlgorithmParameter algorithmParameter = new AlgorithmParameter();
+algorithmParameter.algorithm_parameter_id = 221;
+algorithmParameter.value = "50";
+
+ModelRootObject reponse = sdd.Train(algorithmId, modelName, itemIds, algorithmParameter);</code></pre>
+                </div>
+                <form asp-controller="Home" asp-action="Train" method="post">
+                    <div class="form-group">
+                        <label for="algorithmId">Algorithm</label>
+                        <select id="algorithmId" name="algorithmId" class="form-control">
+                            @foreach (HacarusVisualInspectionApi.Models.Algorithm algo in ViewBag.Algorithms)
+                            {
+                            <option value="@algo.algorithm_id">@algo.name</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="algorithmName">Name</label>
+                        <input type="text" name="name" id="algorithmName"
+                               class="form-control" value="" placeholder="Model Name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="itemIds">Item IDs</label>
+                        <select id="itemIds" name="itemIds" class="form-control" multiple>
+                            @foreach (HacarusVisualInspectionApi.Models.Item item in ViewBag.TrainingItems)
+                            {
+                                <option value="@item.item_id"> @item.item_id </option>
+                            }
+                        </select>
+                    </div>
+                    <button type="submit" name="train" class="btn btn-primary">Try it!</button>
+                </form>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" data-toggle="collapse" data-target="#additem-form">Add Item</div>
+            <div class="panel-body @(ViewBag.Active != "upload" ? " collapse" : "" )" id="additem-form">
+                <div class="request-item">
+                    Endpoint:
+                    <div class="endpoint-container">
+                        <span class="method">POST</span>
+                        <span class="endpoint">/api/v1/upload</span>
+                    </div>
+                </div>
+                <div class="request-item">
+                    Headers:
+                    <pre>
+Authorization:Token [[token]]
+Content-Type:application/x-www-form-urlencoded</pre>
+                </div>
+                <div class="request-item">
+                    Body:
+                    <div class="json-container">
+                        <div class="json">
+                            {
+                            "training": "true",
+                            "good": "true"
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="request-item">
+                    C#:
+                    <pre><code class="cs csharp">List<ImageModel> filenames = new List<ImageModel>();
+foreach (var file in files) {
+    if (file.Length > 0) {
+        var path = Path.Combine(uploads, file.FileName);
+        var fileStream = new FileStream(path, FileMode.Create)
+        using (fileStream) {
+            await file.CopyToAsync(fileStream);
+            var image = new ImageModel();
+            var fileName = file.FileName;
+            image.filename = Path.Combine(uploads, fileName);
+            image.contentType = file.ContentType;
+            filenames.Add(image);
+        }
+    }
+}
+UploadRootObject uploadResponse = sdd.Upload(filenames);</code></pre>
+                </div>
+                <form asp-controller="Home" asp-action="Upload" method="post"  enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label>Training Image</label><br />
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="training" value="true"> Use for training
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Label</label><br/>
+                        <label class="radio-inline">
+                            <input type="radio" name="good" id="inlineRadio1" value="true"> Good
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="good" id="inlineRadio2" value="false"> Defect
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="good" id="inlineRadio3" value=""> Unlabled
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Images</label><br/>
+                        <input type="file" name="files" multiple />
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" data-toggle="collapse" data-target="#getitem-form">Get Specific Item</div>
+            <div class="panel-body @(ViewBag.Active != "getItem" ? " collapse" : "" )" id="getitem-form">
+                <div class="request-item">
+                    Endpoint:
+                    <div class="endpoint-container">
+                        <span class="method">GET</span>
+                        <span class="endpoint">/api/v1/item/:itemId</span>
+                    </div>
+                </div>
+                <div class="request-item">
+                    Headers:
+                    <pre>
+Authorization:Token [[token]]
+Content-Type:application/json</pre>
+                </div>
+                <div class="request-item">
+                    C#:
+                    <pre><code class="cs csharp">ItemRootObject predictResponse = sdd.GetItem(itemId);</code></pre>
+                </div>
+                <form asp-controller="Home" asp-action="GetItem" method="post">
+                    <div class="form-group">
+                        <label for="itemId">Item ID</label>
+                        <select id="itemId" name="itemId" class="form-control">
+                            @foreach (HacarusVisualInspectionApi.Models.Item item in ViewBag.TrainingItems)
+                            {
+                            <option value="@item.item_id">@item.item_id</option>
+                            }
+                            @foreach (HacarusVisualInspectionApi.Models.Item item in ViewBag.PredictItems)
+                            {
+                            <option value="@item.item_id">@item.item_id</option>
+                            }
+                        </select>
+                    </div>
+                    <button type="submit" name="getItem" class="btn btn-primary">Try it!</button>
+                </form>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" data-toggle="collapse" data-target="#predict-form">Predict</div>
+            <div class="panel-body @(ViewBag.Active != "predict" ? " collapse" : "" )" id="predict-form">
+                <div class="request-item">
+                    Endpoint:
+                    <div class="endpoint-container">
+                        <span class="method">POST</span>
+                        <span class="endpoint">/api/v1/serve</span>
+                    </div>
+                </div>
+                <div class="request-item">
+                    Headers:
+                    <pre>
+Authorization:Token [[token]]
+Content-Type:application/json</pre>
+                </div>
+                <div class="request-item">
+                    Body:
+                    <div class="json-container">
+                        <div class="json">
+                            {
+                                "item_ids" : ["NG-06-01"],
+                                "model_id" : "model_id"
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="request-item">
+                    C#:
+                    <pre><code class="cs csharp">PredictRootObject predictResponse = sdd.Serve(new string[] { itemIdServe }, modelId);</code></pre>
+                </div>
+                <form asp-controller="Home" asp-action="Serve" method="post">
+                    <div class="form-group">
+                        <label for="itemIdServe">Item ID</label>
+                        <select id="itemIdServe" name="itemIdServe" class="form-control">
+                            @foreach (HacarusVisualInspectionApi.Models.Item item in ViewBag.PredictItems)
+                            {
+                            <option value="@item.item_id">@item.item_id</option>
+                            }
+                        </select>
+                        <label for="modelIdServe">Model</label>
+                        <select id="modelIdServe" name="modelIdServe" class="form-control">
+                            @foreach (HacarusVisualInspectionApi.Models.ModelData item in ViewBag.Models)
+                            {
+                            <option value="@item.model_id">@item.name</option>
+                            }
+                        </select>
+                    </div>
+                    <button type="submit" name="serve" class="btn btn-primary">Try it!</button>
+                </form>
+            </div>
+        </div>
+        }
+    </div>
+    <div class="col-lg-6 col-md-4 col-xs-12" id="json-return">
+        <pre class="hide hidden">@ViewData["Message"]</pre>
+        <div class="json-container">
+            <div>
+                @ViewData["HttpResponse"]
+            </div>
+            </div>
+            <div class="json-container">
+
+                <div class="json">
+                    @ViewData["StringMessage"]
+                </div>
+            </div>
+        </div>
+    </div>
+@section Scripts {
+<script>$(document).ready(function() {
+        hljs.initHighlightingOnLoad();
+
+        $("input[type=file]").fileinput();
+        $('.json').each(function(i, e) {
+            $(e).jsonViewer(JSON.parse($(e).text()));
+        });
+});</script>
+}
+
+@section Styles {
+<style>
+    #page-container {
+        position: relative;
+        height: calc(100vh - 250px);
+    }
+
+    #json-return, #request-samples {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+    }
+
+    #json-return {
+        right: 0;
+    }
+
+    #request-samples {
+        left: 0;
+        overflow: auto;
+    }
+
+    .json-container {
+        display: block;
+        padding: 9.5px;
+        margin: 0 0 10px;
+        font-size: 13px;
+        line-height: 1.42857143;
+        color: #333333;
+        word-break: break-all;
+        word-wrap: break-word;
+        background-color: #f5f5f5;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        max-height: 100%;
+        overflow-y: auto;
+    }
+
+    .endpoint-container {
+        padding: 10px;
+        background: #e1e1e1;
+        border-left: 3px solid #000000;
+    }
+
+        .endpoint-container .method {
+            padding: 3px 10px;
+            background: #ffffff;
+            margin-right: 10px;
+        }
+
+    .request-item {
+        margin-bottom: 10px;
+    }
+</style>
+}
