@@ -11,12 +11,12 @@
                     <div class="form-group">
                         <label for="clientId">Client ID</label>
                         <input type="text" name="clientId" id="clientId"
-                               class="form-control" value="" />
+                               class="form-control" value="837bde13b6762e8b22f22dd8fdbf89c1" />
                     </div>
                     <div class="form-group">
                         <label for="clientSecret">Client Secret</label>
                         <input type="text" name="clientSecret" id="clientSecret"
-                               class="form-control" value="" />
+                               class="form-control" value="895621cd10defeef881716ed0d372c7220010292fbfcb289" />
                     </div>
                     <button type="submit" name="loginClient" class="pull-right btn btn-primary">Get access token</button>
                 </form>
@@ -24,6 +24,61 @@
         </div>
         @if (ViewBag.BearerAvailable)
         {
+        <div class="panel panel-default">
+            <div class="panel-heading" data-toggle="collapse" data-target="#activatelicense-form">Activate License</div>
+            <div class="panel-body @(ViewBag.Active != "activateLicense" ? " collapse" : "" )" id="activatelicense-form">
+                <div class="request-item">
+                    Endpoint:
+                    <div class="endpoint-container">
+                        <span class="method">POST</span>
+                        <span class="endpoint">/api/auth/license</span>
+                    </div>
+                </div>
+                <div class="request-item">
+                    Headers:
+                    <pre>
+Authorization:Token [[token]]
+Content-Type:application/x-www-form-urlencoded</pre>
+                </div>
+                <div class="request-item">
+                    Body:
+                    <div class="json-container">
+                        <div class="json">
+                            {
+                            "customer_id": "customer_id"
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="request-item">
+                    C#:
+                    <pre><code class="cs csharp">
+if (file.Length > 0)
+    {
+        using (var fileStream = new FileStream(Path.Combine(uploads, file.FileName), FileMode.Create)){
+            await file.CopyToAsync(fileStream);
+            var image = new FileModel();
+            image.filename = Path.Combine(uploads, file.FileName);
+            image.contentType = file.ContentType;
+
+            LicenseResponse response = hacarusVisualInspection.ActivateLicense(customerId, licenseFile);
+        }
+}
+</code></pre>
+                </div>
+                <form asp-controller="Home" asp-action="ActivateLicense" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="customerId">Customer ID</label>
+                        <input type="text" name="customerId" id="customerId"
+                               class="form-control" value="test_client" />
+                    </div>
+                    <div class="form-group">
+                        <label>License File</label><br />
+                        <input type="file" name="licenseFile" />
+                    </div>
+                </form>
+            </div>
+        </div>
         <div class="panel panel-default">
             <div class="panel-heading" data-toggle="collapse" data-target="#getitems-form">Get Items</div>
             <div class="panel-body @(ViewBag.Active != "getItems" ? " collapse" : "" )" id="getitems-form">
@@ -213,7 +268,7 @@ foreach (var file in files) {
 }
 UploadRootObject uploadResponse = sdd.Upload(filenames);</code></pre>
                 </div>
-                <form asp-controller="Home" asp-action="Upload" method="post"  enctype="multipart/form-data">
+                <form asp-controller="Home" asp-action="Upload" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label>Training Image</label><br />
                         <label class="checkbox-inline">
