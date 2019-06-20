@@ -63,8 +63,6 @@ namespace HacarusVisualInspectionSDK
             request.AddHeader("Content-Type", "multipart/form-data");
             request.AddFile("license", licenseFile.filename, licenseFile.filename);
             request.AddParameter("customer_id", costumerId);
-            //X509Certificate2 certificate = new X509Certificate2(licenseFile.filename);
-            //this.Client.ClientCertificates = new X509CertificateCollection() { certificate };
             var response = this.Client.Post(request);
             LicenseResponse responseObject = JsonConvert.DeserializeObject<LicenseResponse>(response.Content);
             responseObject.httpResponse = response;

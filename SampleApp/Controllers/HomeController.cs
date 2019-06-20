@@ -53,21 +53,23 @@ namespace SampleApp.Controllers
             {
                 Directory.CreateDirectory(uploads);
             }
+            var file = new FileModel();
             if (licenseFile.Length > 0)
             {
                 using (var fileStream = new FileStream(Path.Combine(uploads, licenseFile.FileName), FileMode.Create))
                 {
                     await licenseFile.CopyToAsync(fileStream);
-                    var file = new FileModel();
                     file.filename = Path.Combine(uploads, licenseFile.FileName);
                     file.contentType = licenseFile.ContentType;
-                    ViewData["HttpResponse"] = file.contentType + " " + file.filename;
-                    LicenseResponse response = hacarusVisualInspection.ActivateLicense(file, customerId);
-
-                    //ViewData["HttpResponse"] = "Status code: " + response.httpResponse.Request.Parameters.ToString() + " " + response.httpResponse.StatusCode;
-                    ViewData["StringMessage"] = hacarusVisualInspection.StringMessage;
                 }
+
+                LicenseResponse response = hacarusVisualInspection.ActivateLicense(file, customerId);
+
+                ViewData["HttpResponse"] = "Status code: " + response.httpResponse.Request.Parameters.ToString() + " " + response.httpResponse.StatusCode;
+                ViewData["StringMessage"] = hacarusVisualInspection.StringMessage;
+
             }
+
 
             ViewBag.BearerAvailable = !string.IsNullOrEmpty(bearer);
             ViewBag.Active = "activateLicense";

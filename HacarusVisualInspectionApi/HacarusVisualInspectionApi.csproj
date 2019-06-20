@@ -3,10 +3,11 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
     <PackageId>HacarusVisualInspectionApi</PackageId>
-    <PackageVersion>1.0.0-beta</PackageVersion>
+    <PackageVersion>1.0.1.0-alpha</PackageVersion>
     <Description>C# wrapper for Hacarus Visual Inspection Api</Description>
     <Owners>Hacarus Inc.</Owners>
     <Summary>Hacarus Visual Inspection Api Wrapper for C#</Summary>
+    <PackOnBuild>true</PackOnBuild>
   </PropertyGroup>
   
   <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
