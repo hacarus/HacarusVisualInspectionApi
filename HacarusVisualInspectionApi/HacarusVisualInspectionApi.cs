@@ -27,9 +27,16 @@ namespace HacarusVisualInspectionApi
             }
         }
 
-        public void SetClient(RestClient client)
+        public RestClient Client
         {
-            APIService.Instance.Client = client;
+            get
+            {
+                return APIService.Instance.Client;
+            }
+            set
+            {
+                APIService.Instance.Client = value;
+            }
         }
 
         public HacarusVisualInspection(string serverUrl = "https://sdd-api.hacarus.com/api")
@@ -48,6 +55,15 @@ namespace HacarusVisualInspectionApi
 
             return response;
         }
+
+        public LicenseResponse ActivateLicense(FileModel licenseFile, string customerId)
+        {
+            var response = APIService.Instance.ActivateLicense(licenseFile, customerId);
+            this.StringMessage = response.httpResponse.Content;
+
+            return response;
+        }
+
 
         public ItemsResponse GetItems()
         {
@@ -81,7 +97,7 @@ namespace HacarusVisualInspectionApi
             return response;
         }
 
-        public UploadResponse Upload(List<ImageModel> files, bool? isGood, bool isTraining)
+        public UploadResponse Upload(List<FileModel> files, bool? isGood, bool isTraining)
         {
             var response = APIService.Instance.Upload(files, isGood, isTraining);
             this.StringMessage = response.httpResponse.Content;

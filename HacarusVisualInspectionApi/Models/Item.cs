@@ -23,7 +23,6 @@ namespace HacarusVisualInspectionApi.Models
         public string thumbnail_image { get; set; }
     }
 
-
     public class TrainingCount
     {
         public int defect { get; set; }

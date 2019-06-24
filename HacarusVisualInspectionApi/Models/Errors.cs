@@ -10,7 +10,6 @@ namespace HacarusVisualInspectionApi.Models
 
     public class Errors
     {
-        //public string detail { get; set; }
         public Source source { get; set; }
         public int status { get; set; }
         public string title { get; set; }

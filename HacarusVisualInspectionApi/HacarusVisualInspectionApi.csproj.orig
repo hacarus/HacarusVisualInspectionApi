@@ -3,7 +3,11 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
     <PackageId>HacarusVisualInspectionApi</PackageId>
+<<<<<<< HEAD
+    <PackageVersion>1.0.22-alpha</PackageVersion>
+=======
     <PackageVersion>1.0.1-beta</PackageVersion>
+>>>>>>> 6ce10fcd7700ddee3f44342c662867a9ba18aa56
     <Description>C# wrapper for Hacarus Visual Inspection Api</Description>
     <Owners>Hacarus Inc.</Owners>
     <Summary>Hacarus Visual Inspection Api Wrapper for C#</Summary>

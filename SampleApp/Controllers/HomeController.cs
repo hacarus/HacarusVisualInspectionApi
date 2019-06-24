@@ -44,6 +44,40 @@ namespace SampleApp.Controllers
         }
 
         [HttpPost]
+        public async Task<IActionResult> ActivateLicense(
+            string customerId, IFormFile licenseFile
+        )
+        {
+            var uploads = Path.Combine(_environment.WebRootPath, "uploads");
+            if (!Directory.Exists(uploads))
+            {
+                Directory.CreateDirectory(uploads);
+            }
+            var file = new FileModel();
+            if (licenseFile.Length > 0)
+            {
+                using (var fileStream = new FileStream(Path.Combine(uploads, licenseFile.FileName), FileMode.Create))
+                {
+                    await licenseFile.CopyToAsync(fileStream);
+                    file.filename = Path.Combine(uploads, licenseFile.FileName);
+                    file.contentType = licenseFile.ContentType;
+                }
+
+                LicenseResponse response = hacarusVisualInspection.ActivateLicense(file, customerId);
+
+                ViewData["HttpResponse"] = "Status code: " + response.httpResponse.StatusCode;
+                ViewData["StringMessage"] = hacarusVisualInspection.StringMessage;
+
+            }
+
+
+            ViewBag.BearerAvailable = !string.IsNullOrEmpty(bearer);
+            ViewBag.Active = "activateLicense";
+
+            return Index();
+        }
+
+        [HttpPost]
         public IActionResult GetItems(
             string getItems
         )
@@ -130,9 +164,8 @@ namespace SampleApp.Controllers
                 Directory.CreateDirectory(uploads);
             }
 
-            Console.WriteLine("ENDDDD" + files.Count);
 
-            List<ImageModel> filenames = new List<ImageModel>();
+            List<FileModel> filenames = new List<FileModel>();
             foreach (var file in files)
             {
                 if (file.Length > 0)
@@ -140,7 +173,7 @@ namespace SampleApp.Controllers
                     using (var fileStream = new FileStream(Path.Combine(uploads, file.FileName), FileMode.Create))
                     {
                         await file.CopyToAsync(fileStream);
-                        var image = new ImageModel();
+                        var image = new FileModel();
                         image.filename = Path.Combine(uploads, file.FileName);
                         image.contentType = file.ContentType;
                         filenames.Add(image);
@@ -158,9 +191,6 @@ namespace SampleApp.Controllers
                 isGood = good.Equals("true");
             }
 
-
-            Console.WriteLine("isGood ? " + isGood + "|" + good);
-            Console.WriteLine("isTraining ? " + isTraining + "|" + training);
 
             UploadResponse response = hacarusVisualInspection.Upload(filenames, isGood, isTraining);
 
