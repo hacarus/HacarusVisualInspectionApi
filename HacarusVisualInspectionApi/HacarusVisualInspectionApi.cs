@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using HacarusVisualInspectionApi.Models;
-using HacarusVisualInspectionSDK;
+using RestSharp;
 
 namespace HacarusVisualInspectionApi
 {
@@ -18,12 +18,18 @@ namespace HacarusVisualInspectionApi
                 return !string.IsNullOrEmpty(APIService.Instance.AccessToken);
             }
         }
+
         public string AccessToken
         {
             get
             {
                 return APIService.Instance.AccessToken;
             }
+        }
+
+        public void SetClient(RestClient client)
+        {
+            APIService.Instance.Client = client;
         }
 
         public HacarusVisualInspection(string serverUrl = "https://sdd-api.hacarus.com/api")
