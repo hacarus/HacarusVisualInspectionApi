@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Net;
 using RestSharp;
 
 namespace HacarusVisualInspectionApi.Models
@@ -10,25 +10,14 @@ namespace HacarusVisualInspectionApi.Models
         public IRestResponse httpResponse { get; set; }
     }
 
-
     public class GenericResponse: Response
     {
         public string data { get; set; }
     }
 
-    public class ImageModel
+    public class FileModel
     {
         public string filename;
         public string contentType;
-    }
-
-    public class UploadData
-    {
-        public List<string> item_ids { get; set; }
-    }
-
-    public class UploadResponse: Response
-    {
-        public UploadData data { get; set; }
     }
 }

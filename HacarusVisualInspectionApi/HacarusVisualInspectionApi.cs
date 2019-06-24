@@ -43,6 +43,15 @@ namespace HacarusVisualInspectionApi
             return response;
         }
 
+        public LicenseResponse ActivateLicense(FileModel licenseFile, string customerId)
+        {
+            var response = APIService.Instance.ActivateLicense(licenseFile, customerId);
+            this.StringMessage = response.httpResponse.Content;
+
+            return response;
+        }
+
+
         public ItemsResponse GetItems()
         {
             var response = APIService.Instance.GetItems();
@@ -75,7 +84,7 @@ namespace HacarusVisualInspectionApi
             return response;
         }
 
-        public UploadResponse Upload(List<ImageModel> files, bool? isGood, bool isTraining)
+        public UploadResponse Upload(List<FileModel> files, bool? isGood, bool isTraining)
         {
             var response = APIService.Instance.Upload(files, isGood, isTraining);
             this.StringMessage = response.httpResponse.Content;

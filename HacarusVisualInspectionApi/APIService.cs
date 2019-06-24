@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using RestSharp;
 using HacarusVisualInspectionApi.Models;
+using System.Security.Cryptography.X509Certificates;
 
 namespace HacarusVisualInspectionSDK
 {
@@ -51,6 +52,19 @@ namespace HacarusVisualInspectionSDK
             {
                 this.AccessToken = responseObject.data.access_token;
             }
+            responseObject.httpResponse = response;
+            return responseObject;
+        }
+
+        public LicenseResponse ActivateLicense(FileModel licenseFile, string costumerId)
+        {
+            var request = new RestRequest("auth/license", Method.POST);
+            request.AlwaysMultipartFormData = true;
+            request.AddHeader("Content-Type", "multipart/form-data");
+            request.AddFile("license", licenseFile.filename, licenseFile.filename);
+            request.AddParameter("customer_id", costumerId);
+            var response = this.Client.Post(request);
+            LicenseResponse responseObject = JsonConvert.DeserializeObject<LicenseResponse>(response.Content);
             responseObject.httpResponse = response;
             return responseObject;
         }
@@ -107,7 +121,7 @@ namespace HacarusVisualInspectionSDK
             return responseObject;
         }
 
-        public UploadResponse Upload(List<ImageModel> filenames, bool? isGood, bool isTraining)
+        public UploadResponse Upload(List<FileModel> filenames, bool? isGood, bool isTraining)
         {
             var request = new RestRequest("v1/upload", Method.POST);
             request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
