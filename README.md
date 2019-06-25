@@ -164,6 +164,20 @@ UploadResponse response = visualInspection.ActivateLicense(licenseFile, customer
 }
 ```
 
+-`403 Forbidden`: License is already active
+```json
+{
+    "errors": {
+        "detail": "License already exists", 
+        "source": {
+            "pointer": "/api/auth/license"
+        }, 
+        "status": 403, 
+        "title": "Invalid license!"
+    }
+}
+```
+
 #### 4. Get Items
 
 ```csharp
