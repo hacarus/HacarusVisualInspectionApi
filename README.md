@@ -156,7 +156,7 @@ UploadResponse response = visualInspection.ActivateLicense(licenseFile, customer
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "http://yourserverurl.com/api/auth/license"
+            "pointer": "/api/auth/license"
         },
         "status": 403,
         "title": "Invalid license!"
