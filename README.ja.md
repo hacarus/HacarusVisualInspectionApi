@@ -4,9 +4,9 @@ Visual Inspection Api for C#
 
 ハカルスはメーカーとメディカル事業に向け、軽量で説明可能なAIソリューションズを提供しています。
 
-私たちのスパースモデリングに基づいた技術は、人間のようにデータを理解できる独自の機械学習手法です。スパースモデリングは軽量に設計されているため、コンピューティングパワー、クラウド環境、および少量の学習データなどの資源の制限された環境下で特に有用です。
+弊社のスパースモデリングに基づいた技術は、人間のようにデータを理解できる独自の機械学習手法です。スパースモデリングは軽量に設計されているため、コンピューティングパワー、クラウド環境、および少量の学習データなどの資源の制限された環境下で特に有用です。
 
-私たちのソリューションズは組み込みシステムでオフライン環境かクラウドで実行できます。伝統的なDLベースの手法に比べ、資源を効率的に使用し、よりよい結果を提供します。
+弊社のソリューションは組み込みシステムでオフライン環境かクラウドで実行できます。伝統的なDLベースの手法に比べ、資源を効率的に使用し、よりよい結果を提供します。
 
 ハカルスの外観検査ソリューションの詳細を参照するには、こちらのリンク、https://hacarus.com/visual-inspection/ をご覧ください。また、APIへのアクセスのリクエストはinquiry@hacarus.comまでご連絡ください。
 
@@ -157,15 +157,30 @@ UploadResponse response = visualInspection.ActivateLicense(licenseFile, customer
 
 #### 起こり得るエラー
 
-- `403 Forbidden`: Customer ID or license file is invalid  
+- `403 Forbidden`: 得意先コードまたはライセンスファイルが無効  
 ```json
 {
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "http://yourserverurl.com/api/auth/license"
+            "pointer": "/api/auth/license"
         },
         "status": 403,
+        "title": "Invalid license!"
+    }
+}
+```
+
+
+-`403 Forbidden`: ライセンスはアクティベート済み
+```json
+{
+    "errors": {
+        "detail": "License already exists", 
+        "source": {
+            "pointer": "/api/auth/license"
+        }, 
+        "status": 403, 
         "title": "Invalid license!"
     }
 }
@@ -183,7 +198,7 @@ ItemsResponse response = visualInspection.GetItems();
     - `predict`: アップロード済みのデータのうち、推論用のもの
         - 推論結果を確認するには、`good`と`status`のキーを確認してください
     - `archived`: アーカイブ済みデータ（将来実装予定の機能、現在使用されていません）
-- `override_assessment`および`confirm_assessment`はウエブサイト（UI）固有のものであり、SDKを使用している場合は無視できます。
+- `override_assessment`および`confirm_assessment`はUI（ユーザインタフェース）固有のものであり、SDKを使用している場合は無視できます。
 
 
 ##### レスポンスの一例
@@ -296,7 +311,7 @@ AlgorithmResponse response = visualInspection.GetAlgorithms();
 ModelsResponse response = visualInspection.GetModels();
 ```
 
-- データを予測するのに使用できる作成済みモデルの一覧をリストを取得します
+- データを推論するのに使用できる作成済みモデルのリストを取得します
 - モデルIDが渡されなかった場合（`Serve`メソッドを使用して）、`active`が`true`のモデルをデフォルトとして使用します。
 - `status`キーは、モデルが`active`か`failed`かを示します。 
     - `status`が `active`のモデルは正常に作成され、予測に使用できます
@@ -338,7 +353,7 @@ algorithmParameter.value = "50";
 ModelResponse reponse = visualInspection.Train(algorithmId, modelName, itemIds, new AlgorithmParameter[] { algorithmParameter });
 ```
 
-- 予測に使用するモデルを作成します
+- 推論に使用するモデルを作成します
 - モデルの学習に使用するデータIDの配列を含むオプションのパラメータを入力します
 - アルゴリズムの設定を調整するためAlgorithmParameterの配列を入力します
 - 新しく作成したモデルを確認するには、GetModels（）メソッドを使用します。
@@ -386,9 +401,10 @@ ModelResponse reponse = visualInspection.Train(algorithmId, modelName, itemIds, 
 UploadResponse response = visualInspection.Upload(filenames, isGood, isTraining);
 ```
 
-- このメソッドを使用して、学習または予測のためのデータをアップロードしてラベルを付けます
+- このメソッドを使用して、学習または推論のためのデータをアップロードしてラベルを付けます
 - データに良品または不良品としてラベルを付ける場合は、`isGood`パラメータをブール値で`true`（良品）または`false`（不良品）に設定します。それ以外の場合は、`null`（ラベルなし）を使用します。
-- データをアップロードする場合、データを予測に使用するか学習に使用するかを設定するには、`isTraining`パラメーターを使用します。 `isTraining`パラメータは必要です。
+- データをアップロードする場合、データを推論に使用するか学習に使用するかを設定するには、`isTraining`パラメーターを使用します。 isTrainingパラメータは必要です。
+
 - `filenames`パラメータを使用して`ImageModel`の配列を渡します。 `ImageModel`は`filename`と`contentType`のプロパティを持ちます。
 - アップロードしたデータを確認するには、`GetItems（）`メソッドを使用します。
 - 画像のファイル名はデータID(`item_id`)として使用します。
@@ -455,7 +471,7 @@ ItemResponse response = visualInspection.GetItem(itemId);
     - `annotations`: `Serve`メソッドが呼び出されたときに生成されるアノテーションのリストを含みます
     - `raw_url`: アップロードされたファイルのURL
     - `url`: 欠陥箇所表示ファイル（緑色のボックス）
-    - `status`: データのステータス。`pending`（未予測または予測中）または完了（predicted）のいずれか。
+    - `status`: データのステータス。`pending`（推論前または予測中）または`done`（予測済み）のいずれか。
 
 ##### レスポンスの一例
 
@@ -562,7 +578,7 @@ ItemResponse response = visualInspection.GetItem(itemId);
 PredictResponse response = visualInspection.Serve(itemIds, modelId);
 ```
 
-- データは良品か不良品があるか予測します
+- データは良品か不良品があるか推論します
 - 結果を確認するには、`GetItems()`メソッドを使用して、各データの`good`キーを確認します。
 
 ##### レスポンスの一例
@@ -594,7 +610,7 @@ PredictResponse response = visualInspection.Serve(itemIds, modelId);
 }
 ```
 
-- `400 BadRequest`: 予測に使用できるモデルがないか、使用可能なモデルのステータスがの`failed`です。 `Train`メソッドを使用し、新しいモデルを作成してください。
+- `400 BadRequest`: 推論に使用できるモデルがないか、使用可能なモデルのステータスがの`failed`です。 `Train`メソッドを使用し、新しいモデルを作成してください。
 
 
 ```json
