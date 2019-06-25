@@ -5,7 +5,8 @@ using RestSharp;
 
 namespace HacarusVisualInspectionApi.Tests
 {
-
+    public class MockGenerator
+    {
         public static RestClient MockRestClient<T>(HttpStatusCode httpStatusCode, string json)
    where T : new()
         {
@@ -20,4 +21,5 @@ namespace HacarusVisualInspectionApi.Tests
 
             return restClient.Object;
         }
+    }
 }

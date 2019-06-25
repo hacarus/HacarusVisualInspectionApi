@@ -12,3 +12,6 @@
 /Users/christinealcachupas/Projects/Hacarus/HacarusVisualInspectionApi/HacarusVisualInspectionApi.Tests/obj/Debug/netcoreapp2.1/HacarusVisualInspectionApi.Tests.AssemblyInfo.cs
 /Users/christinealcachupas/Projects/Hacarus/HacarusVisualInspectionApi/HacarusVisualInspectionApi.Tests/obj/Debug/netcoreapp2.1/HacarusVisualInspectionApi.Tests.dll
 /Users/christinealcachupas/Projects/Hacarus/HacarusVisualInspectionApi/HacarusVisualInspectionApi.Tests/obj/Debug/netcoreapp2.1/HacarusVisualInspectionApi.Tests.pdb
+/Users/christinealcachupas/Projects/Hacarus/HacarusVisualInspectionApi/HacarusVisualInspectionApi.Tests/bin/Debug/netcoreapp2.1/HacarusVisualInspectionApi.dll
+/Users/christinealcachupas/Projects/Hacarus/HacarusVisualInspectionApi/HacarusVisualInspectionApi.Tests/bin/Debug/netcoreapp2.1/HacarusVisualInspectionApi.pdb
+/Users/christinealcachupas/Projects/Hacarus/HacarusVisualInspectionApi/HacarusVisualInspectionApi.Tests/obj/Debug/netcoreapp2.1/HacarusVisualInspectionApi.Tests.csproj.CopyComplete

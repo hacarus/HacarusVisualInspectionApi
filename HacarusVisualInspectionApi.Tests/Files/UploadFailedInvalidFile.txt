@@ -1,0 +1,12 @@
+﻿{
+    "errors": {
+        "detail": [
+            "NewItem invalid.name.png"
+        ],
+        "source": {
+            "pointer": "/api/v1/upload"
+        },
+        "status": 400,
+        "title": "Invalid Request"
+    }
+}

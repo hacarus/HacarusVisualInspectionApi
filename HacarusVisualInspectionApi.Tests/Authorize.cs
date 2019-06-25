@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
@@ -16,11 +17,13 @@ namespace HacarusVisualInspectionApi.Tests
     [TestClass]
     public class Authorize
     {
+
         [TestMethod]
-        public void Authorize_Success()
+        public void Success()
         {
-            Console.WriteLine("Login_Success Start");
-            var client = MockGenerator.MockRestClient<AccessTokenResponse>(HttpStatusCode.OK, "{\"data\": {\"access_token\": \"TestAccessToken\",\"expires\": 2592000}}");
+            Console.WriteLine("Success Start");
+            var json = File.ReadAllText("../../../Files/AuthorizeSuccess.txt");
+            var client = MockGenerator.MockRestClient<AccessTokenResponse>(HttpStatusCode.OK, json);
             HacarusVisualInspection visualInspection = new HacarusVisualInspection();
             visualInspection.Client = client;
             AccessTokenResponse response = visualInspection.Authorize("ValidClientId", "ValidClientSecret");
@@ -29,17 +32,18 @@ namespace HacarusVisualInspectionApi.Tests
             Assert.IsNotNull(response.data);
             Assert.IsNull(response.errors);
             Assert.IsTrue(response.httpResponse.StatusCode.Equals(HttpStatusCode.OK));
-            Assert.IsTrue(response.data.access_token.Equals("TestAccessToken"));
+            Assert.IsTrue(response.data.access_token.Equals("GeneratedAccessToken"));
             Assert.IsTrue(response.data.expires.Equals(2592000));
-            Console.WriteLine("Login_Success End");
+            Console.WriteLine("Success End");
 
         }
 
         [TestMethod]
-        public void Authorize_Failed_ClientID()
+        public void FailedClientID()
         {
-            Console.WriteLine("Login_Failed_ClientID Start");
-            var client = MockGenerator.MockRestClient<AccessTokenResponse>(HttpStatusCode.Unauthorized, "{ \"errors\": { \"detail\": null, \"source\": { pointer: \"/api/auth/token\" }, \"status\": 401, \"title\": \"Cannot find client information\" } }");
+            Console.WriteLine("FailedClientID Start");
+            var json = File.ReadAllText("../../../Files/AuthorizeFailedClientID.txt");
+            var client = MockGenerator.MockRestClient<AccessTokenResponse>(HttpStatusCode.Unauthorized, json);
             HacarusVisualInspection visualInspection = new HacarusVisualInspection();
             visualInspection.Client = client;
             AccessTokenResponse response = visualInspection.Authorize("InvalidClientId", "ValidClientSecret");
@@ -50,15 +54,16 @@ namespace HacarusVisualInspectionApi.Tests
             Assert.IsTrue(response.httpResponse.StatusCode.Equals(HttpStatusCode.Unauthorized));
             Assert.IsTrue(response.errors.title.Equals("Cannot find client information"));
             Assert.IsTrue(response.errors.status.Equals((int)HttpStatusCode.Unauthorized));
-            Console.WriteLine("Login_Failed_ClientID End");
+            Console.WriteLine("FailedClientID End");
 
         }
 
         [TestMethod]
-        public void Authorize_Failed_ClientSecret()
+        public void FailedClientSecret()
         {
-            Console.WriteLine("Login_Failed_ClientSecret Start");
-            var client = MockGenerator.MockRestClient<AccessTokenResponse>(HttpStatusCode.Unauthorized, "{ \"errors\": { \"detail\": null, \"source\": { \"pointer\": \"/api/auth/token\" }, \"status\": 401, \"title\": \"Client id and secret mismatch\" } }");
+            Console.WriteLine("FailedClientSecret Start");
+            var json = File.ReadAllText("../../../Files/AuthorizeFailedClientSecret.txt");
+            var client = MockGenerator.MockRestClient<AccessTokenResponse>(HttpStatusCode.Unauthorized, json);
             HacarusVisualInspection visualInspection = new HacarusVisualInspection();
             visualInspection.Client = client;
             AccessTokenResponse response = visualInspection.Authorize("ValidClientId", "InvalidClientSecret");
@@ -70,8 +75,7 @@ namespace HacarusVisualInspectionApi.Tests
             Assert.IsTrue(response.errors.title.Equals("Client id and secret mismatch"));
             Assert.IsTrue(response.errors.source.pointer.Equals("/api/auth/token"));
             Assert.IsTrue(response.errors.status.Equals((int)HttpStatusCode.Unauthorized));
-            Console.WriteLine("Login_Failed_ClientSecret End");
-
+            Console.WriteLine("FailedClientSecret End");
         }
 
     }

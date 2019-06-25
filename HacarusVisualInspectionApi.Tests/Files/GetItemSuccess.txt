@@ -1,0 +1,60 @@
+﻿{
+    "data": {
+        "computed_assessment": {
+            "assessment_result": "[PatchOneClassSVMDetector] Defected product",
+            "detected_objects": 2,
+            "detection_accuracy": 100,
+            "good": false
+        },
+        "confirmed_assessment": true,
+        "images": [
+            {
+                "annotations": [
+                    {
+                        "annotation_id": 8269,
+                        "created_at": "2019-06-11T05:47:00Z",
+                        "image_id": 1805,
+                        "notes": null,
+                        "x_max": 620,
+                        "x_min": 606,
+                        "y_max": 2322,
+                        "y_min": 2284
+                    },
+                    {
+                        "annotation_id": 8270,
+                        "created_at": "2019-06-11T05:47:00Z",
+                        "image_id": 1805,
+                        "notes": null,
+                        "x_max": 2082,
+                        "x_min": 2064,
+                        "y_max": 1722,
+                        "y_min": 1702
+                    }
+                ],
+                "content_type": "image/jpeg",
+                "defect_counted": 70,
+                "exif_metadata": {},
+                "file_size": 1524794,
+                "height": 3024,
+                "image_id": 1805,
+                "is_raw_uploaded": true,
+                "position": null,
+                "processed": true,
+                "raw_url": "https://hacarus-saas-data.s3.amazonaws.com/raw/d9b6b9709b29d4deb30be4e981031f09823120c7",
+                "url": "https://hacarus-saas-data.s3.amazonaws.com/processed/d9b6b9709b29d4deb30be4e981031f09823120c7",
+                "width": 4032
+            }
+        ],
+        "is_training_data": false,
+        "item_id": "IMG6760_U",
+        "label": "Job id is IMG6760_U",
+        "manual_assessment": {
+            "assessment_result": null,
+            "detected_objects": null,
+            "detection_accuracy": null,
+            "good": null,
+            "override_assessment": false
+        },
+        "status": "done"
+    }
+}

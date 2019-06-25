@@ -8,13 +8,13 @@ namespace HacarusVisualInspectionApi.Models
     {
         public object assessment { get; set; }
         public bool confirmed_assessment { get; set; }
-        public string date { get; set; }
+        public DateTime date { get; set; }
         public string default_image { get; set; }
-        public object description { get; set; }
+        public string description { get; set; }
         public int detected_objects { get; set; }
         public int detection_accuracy { get; set; }
-        public string finished_date { get; set; }
-        public object good { get; set; }
+        public DateTime? finished_date { get; set; }
+        public bool? good { get; set; }
         public bool is_training_data { get; set; }
         public string item_id { get; set; }
         public string label { get; set; }

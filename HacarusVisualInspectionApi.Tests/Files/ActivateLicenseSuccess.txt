@@ -1,0 +1,6 @@
+﻿{
+    "data": {
+        "customer_id": "test_customer_id",
+        "status": "ok"
+    }
+}

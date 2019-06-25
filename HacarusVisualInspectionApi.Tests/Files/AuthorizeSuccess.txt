@@ -1,0 +1,6 @@
+﻿{
+    "data": {
+        "access_token": "GeneratedAccessToken",
+        "expires": 2592000
+    }
+}
