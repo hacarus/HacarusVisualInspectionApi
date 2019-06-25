@@ -89,7 +89,7 @@ AccessTokenResponse response = visualInspection.Authorize(YourClientId, YourClie
 - クライアントIDとクライアントシークレットは、リクエストに応じてHacarusから提供されます。
 
 
-##### リスポンスの一例
+##### レスポンスの一例
 
 ```json
 {
@@ -192,7 +192,7 @@ UploadResponse response = visualInspection.ActivateLicense(licenseFile, customer
 ItemsResponse response = visualInspection.GetItems();
 ```
 
-- 学習、推論、およびアーカイブ別に分類したアップロード済みアイテムの一覧をリストを取得します。
+- 学習、推論、およびアーカイブ別に分類したアップロード済みアイテムのリストを取得します。
     - `training`: 学習に使用するデータ
         - データが`true`（good）、`false`（defect）、または`null`（ラベルなし）のいずれかにラベル付けされているかをgoodというキーで知ることができます。
     - `predict`: アップロード済みのデータのうち、推論用のもの
