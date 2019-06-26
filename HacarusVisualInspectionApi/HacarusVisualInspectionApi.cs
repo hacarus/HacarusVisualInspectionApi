@@ -84,11 +84,19 @@ namespace HacarusVisualInspectionApi
             return response;
         }
 
-        public UploadResponse Upload(List<FileModel> files, bool? isGood, bool isTraining)
+        // Upload for training
+        public UploadResponse Upload(List<FileModel> files, bool isGood)
         {
-            var response = APIService.Instance.Upload(files, isGood, isTraining);
+            var response = APIService.Instance.Upload(files, isGood, true);
             this.StringMessage = response.httpResponse.Content;
+            return response;
+        }
 
+        // Upload for prediction
+        public UploadResponse Upload(List<FileModel> files)
+        {
+            var response = APIService.Instance.Upload(files, null, false);
+            this.StringMessage = response.httpResponse.Content;
             return response;
         }
 

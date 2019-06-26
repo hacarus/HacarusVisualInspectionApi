@@ -192,10 +192,17 @@ namespace SampleApp.Controllers
                 isGood = good.Equals("true");
             }
 
+            if (isTraining)
+            {
+                UploadResponse response = hacarusVisualInspection.Upload(filenames, (bool)isGood);
+                ViewData["HttpResponse"] = "Status code: " + (int)response.httpResponse.StatusCode + " " + response.httpResponse.StatusCode;
+            }
+            else
+            {
+                UploadResponse response = hacarusVisualInspection.Upload(filenames);
+                ViewData["HttpResponse"] = "Status code: " + (int)response.httpResponse.StatusCode + " " + response.httpResponse.StatusCode;
+            }                                                                                                                                                                                                                                                                                                                                                           
 
-            UploadResponse response = hacarusVisualInspection.Upload(filenames, isGood, isTraining);
-
-            ViewData["HttpResponse"] = "Status code: " + (int)response.httpResponse.StatusCode + " " + response.httpResponse.StatusCode;
             ViewData["StringMessage"] = hacarusVisualInspection.StringMessage;
             ViewBag.BearerAvailable = !string.IsNullOrEmpty(bearer);
             ViewBag.Active = "upload";
