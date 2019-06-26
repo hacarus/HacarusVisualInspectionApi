@@ -65,6 +65,7 @@ For example: A packaging box in a storage warehouse, with 6 images for each of t
 
 ```csharp
 using HacarusVisualInspectionApi;
+using HacarusVisualInspectionApi.Models;
 HacarusVisualInspection visualInspection = new HacarusVisualInspection("https://yourserverurl.com/api");
 ```
 
@@ -76,7 +77,6 @@ HacarusVisualInspection visualInspection = new HacarusVisualInspection("https://
 #### 2. Authorize
 
 ```csharp
-using HacarusVisualInspectionApi.Models;
 AccessTokenResponse response = visualInspection.Authorize(YourClientId, YourClientSecret);
 ```
 
@@ -130,8 +130,7 @@ AccessTokenResponse response = visualInspection.Authorize(YourClientId, YourClie
 #### 3. Activate License
 
 ```csharp
-using HacarusVisualInspectionApi.Models;
-UploadResponse response = hacarusVisualInspection.ActivateLicense(customerId, licenseFile);
+UploadResponse response = visualInspection.ActivateLicense(licenseFile, customerId);
 ```
 
 - Activates the license
@@ -157,9 +156,23 @@ UploadResponse response = hacarusVisualInspection.ActivateLicense(customerId, li
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "http://yourserverurl.com/api/auth/license"
+            "pointer": "/api/auth/license"
         },
         "status": 403,
+        "title": "Invalid license!"
+    }
+}
+```
+
+-`403 Forbidden`: License is already active
+```json
+{
+    "errors": {
+        "detail": "License already exists", 
+        "source": {
+            "pointer": "/api/auth/license"
+        }, 
+        "status": 403, 
         "title": "Invalid license!"
     }
 }
@@ -168,7 +181,6 @@ UploadResponse response = hacarusVisualInspection.ActivateLicense(customerId, li
 #### 4. Get Items
 
 ```csharp
-using HacarusVisualInspectionApi.Models;
 ItemsResponse response = visualInspection.GetItems();
 ```
 
@@ -229,7 +241,6 @@ ItemsResponse response = visualInspection.GetItems();
 #### 5. Get Algorithms
 
 ```csharp
-using HacarusVisualInspectionApi.Models;
 AlgorithmResponse response = visualInspection.GetAlgorithms();
 ```
 
@@ -289,7 +300,6 @@ AlgorithmResponse response = visualInspection.GetAlgorithms();
 #### 6. Get Models
 
 ```csharp
-using HacarusVisualInspectionApi.Models;
 ModelsResponse response = visualInspection.GetModels();
 ```
 
@@ -321,7 +331,6 @@ ModelsResponse response = visualInspection.GetModels();
 #### 7. Train
 
 ```csharp
-using HacarusVisualInspectionApi.Models;
 //ID of the algorithm you want to use
 var algorithmId = "hacarus-dictionary-learning";
 //Name of your model
@@ -333,7 +342,7 @@ AlgorithmParameter algorithmParameter = new AlgorithmParameter();
 algorithmParameter.algorithm_parameter_id = 221;
 algorithmParameter.value = "50";
 
-ModelRootObject reponse = visualInspection.Train(algorithmId, modelName, itemIds, new AlgorithmParameter[] { algorithmParameter });
+ModelResponse reponse = visualInspection.Train(algorithmId, modelName, itemIds, new AlgorithmParameter[] { algorithmParameter });
 ```
 
 - Creates model to use for prediction
@@ -381,7 +390,6 @@ ModelRootObject reponse = visualInspection.Train(algorithmId, modelName, itemIds
 #### 8. Add Item
 
 ```csharp
-using HacarusVisualInspectionApi.Models;
 UploadResponse response = visualInspection.Upload(filenames, isGood, isTraining);
 ```
 
@@ -443,7 +451,6 @@ UploadResponse response = visualInspection.Upload(filenames, isGood, isTraining)
 #### 9. Get Specific Item
 
 ```csharp
-using HacarusVisualInspectionApi.Models;
 //Set a specific itemId to get detailed information about the item
 ItemResponse response = visualInspection.GetItem(itemId);
 ```
@@ -557,7 +564,6 @@ ItemResponse response = visualInspection.GetItem(itemId);
 #### 10. Predict
 
 ```csharp
-using HacarusVisualInspectionApi.Models;
 //Use itemIds to pass an array of item ids you want to set for prediction
 //You may use a specific model for prediction by setting a modelId value. This is optional. IF not set, the active/default model will be used.
 PredictResponse response = visualInspection.Serve(itemIds, modelId);
