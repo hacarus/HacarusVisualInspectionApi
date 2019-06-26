@@ -61,7 +61,7 @@ namespace HacarusVisualInspectionSDK
             var request = new RestRequest("auth/license", Method.POST);
             request.AlwaysMultipartFormData = true;
             request.AddHeader("Content-Type", "multipart/form-data");
-            request.AddFile("license", licenseFile.filename, licenseFile.filename);
+            request.AddFile("license", licenseFile.FileName, licenseFile.FileName);
             request.AddParameter("customer_id", costumerId);
             var response = this.Client.Post(request);
             LicenseResponse responseObject = JsonConvert.DeserializeObject<LicenseResponse>(response.Content);
@@ -130,7 +130,7 @@ namespace HacarusVisualInspectionSDK
             var indexCounter = 0;
             foreach (var file in filenames)
             {
-                request.AddFile("files[" + indexCounter + "]", file.filename, file.contentType);
+                request.AddFile("files[" + indexCounter + "]", file.FileName, file.ContentType);
                 indexCounter = indexCounter + 1;
             }
             request.AddParameter("training", isTraining ? "true" : "false");

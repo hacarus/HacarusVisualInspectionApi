@@ -15,7 +15,7 @@ namespace SampleApp.Controllers
     public class HomeController : Controller
     {
         private IHostingEnvironment _environment;
-        HacarusVisualInspection hacarusVisualInspection = new HacarusVisualInspection();
+        HacarusVisualInspection hacarusVisualInspection = new HacarusVisualInspection("https://sdd-demo.hacarus.com/api");
         public static string bearer;
         public static string accessToken;
         public static string currentContextId;
@@ -59,8 +59,8 @@ namespace SampleApp.Controllers
                 using (var fileStream = new FileStream(Path.Combine(uploads, licenseFile.FileName), FileMode.Create))
                 {
                     await licenseFile.CopyToAsync(fileStream);
-                    file.filename = Path.Combine(uploads, licenseFile.FileName);
-                    file.contentType = licenseFile.ContentType;
+                    file.FileName = Path.Combine(uploads, licenseFile.FileName);
+                    file.ContentType = licenseFile.ContentType;
                 }
 
                 LicenseResponse response = hacarusVisualInspection.ActivateLicense(file, customerId);
@@ -173,9 +173,10 @@ namespace SampleApp.Controllers
                     using (var fileStream = new FileStream(Path.Combine(uploads, file.FileName), FileMode.Create))
                     {
                         await file.CopyToAsync(fileStream);
-                        var image = new FileModel();
-                        image.filename = Path.Combine(uploads, file.FileName);
-                        image.contentType = file.ContentType;
+                        //var image = new FileModel();
+                        //image.FileName = Path.Combine(uploads, file.FileName);
+                        //image.ContentType = file.ContentType;
+                        var image = new FileModel(Path.Combine(uploads, file.FileName), file.ContentType);
                         filenames.Add(image);
                     }
                 }
