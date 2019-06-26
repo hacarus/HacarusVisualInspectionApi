@@ -16,11 +16,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Files\" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="HacarusVisualInspectionApi">
       <HintPath>..\HacarusVisualInspectionApi\bin\Debug\netstandard2.0\HacarusVisualInspectionApi.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Files\" />
   </ItemGroup>
 </Project>
