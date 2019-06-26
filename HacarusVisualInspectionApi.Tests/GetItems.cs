@@ -86,7 +86,6 @@ namespace HacarusVisualInspectionApi.Tests
             Assert.IsTrue(response.data.training[0].default_image.Equals("https://hacarus-saas-data.s3.amazonaws.com/raw/b21d29f794e781e12f466a1fcc1bf1a1596e5320"));
             Assert.IsNull(response.data.training[0].description);
             Assert.IsTrue(response.data.training[0].detection_accuracy.Equals(0));
-            Console.WriteLine(response.data.training[0].detection_accuracy);
             Assert.IsTrue(response.data.training[0].detected_objects.Equals(0));
             Assert.IsNull(response.data.training[0].finished_date);
             Assert.IsNull(response.data.training[0].good);

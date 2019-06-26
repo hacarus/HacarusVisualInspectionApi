@@ -54,8 +54,7 @@ namespace HacarusVisualInspectionApi.Tests
             Assert.IsNull(response.data);
             Assert.IsTrue(response.httpResponse.StatusCode.Equals(HttpStatusCode.BadRequest));
             Assert.IsTrue(response.errors.title.Equals("Invalid Request"));
-            //Assert.IsTrue(response.errors.details);
-            Console.WriteLine(response.errors.details);
+            Assert.IsTrue(response.errors.details.Equals("NewItem invalid.name.png"));
             Assert.IsTrue(response.errors.source.pointer.Equals("/api/v1/upload"));
             Assert.IsTrue(response.errors.status.Equals((int)HttpStatusCode.BadRequest));
             Console.WriteLine("FailedInvalidFile End");
@@ -64,7 +63,7 @@ namespace HacarusVisualInspectionApi.Tests
         [TestMethod]
         public void FailedNoFile()
         {
-            Console.WriteLine("FailedInvalidFile Start");
+            Console.WriteLine("FailedNoFile Start");
             var Json = File.ReadAllText("../../../Files/UploadFailedNoFile.txt");
             var Client = MockGenerator.MockRestClient<UploadResponse>(HttpStatusCode.BadRequest, Json);
             HacarusVisualInspection visualInspection = new HacarusVisualInspection();
@@ -77,11 +76,10 @@ namespace HacarusVisualInspectionApi.Tests
             Assert.IsNull(response.data);
             Assert.IsTrue(response.httpResponse.StatusCode.Equals(HttpStatusCode.BadRequest));
             Assert.IsTrue(response.errors.title.Equals("No images to upload"));
-            //Assert.IsTrue(response.errors.details);
-            Console.WriteLine(response.errors.details);
+            Assert.IsNull(response.errors.details);
             Assert.IsTrue(response.errors.source.pointer.Equals("/api/v1/upload"));
             Assert.IsTrue(response.errors.status.Equals((int)HttpStatusCode.BadRequest));
-            Console.WriteLine("FailedInvalidFile End");
+            Console.WriteLine("FailedNoFile End");
         }
 
     }

@@ -33,7 +33,169 @@
                 ],
                 "content_type": "image/jpeg",
                 "defect_counted": 70,
-                "exif_metadata": {},
+                "exif_metadata": {
+                  "ApertureValue": [
+                    193685, 
+                    85136
+                  ], 
+                  "BrightnessValue": [
+                    68063, 
+                    12338
+                  ], 
+                  "ColorSpace": 1, 
+                  "ComponentsConfiguration": "\u0001\u0002\u0003\u0000", 
+                  "DateTime": "2018:11:27 11:50:31", 
+                  "DateTimeDigitized": "2018:11:27 11:50:31", 
+                  "DateTimeOriginal": "2018:11:27 11:50:31", 
+                  "ExifImageHeight": 3024, 
+                  "ExifImageWidth": 4032, 
+                  "ExifOffset": 204, 
+                  "ExifVersion": "0221", 
+                  "ExposureBiasValue": [
+                    0, 
+                    1
+                  ], 
+                  "ExposureMode": 0, 
+                  "ExposureProgram": 2, 
+                  "ExposureTime": [
+                    1, 
+                    60
+                  ], 
+                  "FNumber": [
+                    11, 
+                    5
+                  ], 
+                  "Flash": 24, 
+                  "FlashPixVersion": "0100", 
+                  "FocalLength": [
+                    83, 
+                    20
+                  ], 
+                  "FocalLengthIn35mmFilm": 29, 
+                  "GPSInfo": {
+                    "1": "N", 
+                    "12": "K", 
+                    "13": [
+                      0, 
+                      1
+                    ], 
+                    "16": "M", 
+                    "17": [
+                      256196, 
+                      4499
+                    ], 
+                    "2": [
+                      [
+                        35, 
+                        1
+                      ], 
+                      [
+                        0, 
+                        1
+                      ], 
+                      [
+                        3176, 
+                        100
+                      ]
+                    ], 
+                    "23": "M", 
+                    "24": [
+                      256196, 
+                      4499
+                    ], 
+                    "29": "2018:11:27", 
+                    "3": "E", 
+                    "31": [
+                      65, 
+                      1
+                    ], 
+                    "4": [
+                      [
+                        135, 
+                        1
+                      ], 
+                      [
+                        45, 
+                        1
+                      ], 
+                      [
+                        2395, 
+                        100
+                      ]
+                    ], 
+                    "5": "\u0000", 
+                    "6": [
+                      227022, 
+                      4489
+                    ], 
+                    "7": [
+                      [
+                        2, 
+                        1
+                      ], 
+                      [
+                        50, 
+                        1
+                      ], 
+                      [
+                        3014, 
+                        100
+                      ]
+                    ]
+                  }, 
+                  "ISOSpeedRatings": 32, 
+                  "LensMake": "Apple", 
+                  "LensModel": "iPhone 6s back camera 4.15mm f/2.2", 
+                  "LensSpecification": [
+                    [
+                      83, 
+                      20
+                    ], 
+                    [
+                      83, 
+                      20
+                    ], 
+                    [
+                      11, 
+                      5
+                    ], 
+                    [
+                      11, 
+                      5
+                    ]
+                  ], 
+                  "Make": "Apple", 
+                  "MeteringMode": 5, 
+                  "Model": "iPhone 6s", 
+                  "Orientation": 1, 
+                  "ResolutionUnit": 2, 
+                  "SceneCaptureType": 0, 
+                  "SceneType": "\u0001", 
+                  "SensingMethod": 2, 
+                  "ShutterSpeedValue": [
+                    49625, 
+                    8401
+                  ], 
+                  "Software": "12.1", 
+                  "SubjectLocation": [
+                    2015, 
+                    1511, 
+                    2217, 
+                    1330
+                  ], 
+                  "SubsecTimeDigitized": "225", 
+                  "SubsecTimeOriginal": "225", 
+                  "WhiteBalance": 0, 
+                  "XResolution": [
+                    72, 
+                    1
+                  ], 
+                  "YCbCrPositioning": 1, 
+                  "YResolution": [
+                    72, 
+                    1
+                  ]
+                }, 
                 "file_size": 1524794,
                 "height": 3024,
                 "image_id": 1805,
