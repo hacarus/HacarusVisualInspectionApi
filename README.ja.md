@@ -6,11 +6,11 @@ Visual Inspection Api for C#
 
 弊社のスパースモデリングに基づいた技術は、人間のようにデータを理解できる独自の機械学習手法です。スパースモデリングは軽量に設計されているため、コンピューティングパワー、クラウド環境、および少量の学習データなどの資源の制限された環境下で特に有用です。
 
-弊社のソリューションは組み込みシステムでオフライン環境かクラウドで実行できます。伝統的なDLベースの手法に比べ、資源を効率的に使用し、よりよい結果を提供します。
+弊社のソリューションは組み込みシステムでオフライン環境かクラウドで実行できます。伝統的なディープラーニングベースの手法に比べ、資源を効率的に使用し、よりよい結果を提供します。
 
-ハカルスの外観検査ソリューションの詳細を参照するには、こちらのリンク、https://hacarus.com/visual-inspection/ をご覧ください。また、APIへのアクセスのリクエストはinquiry@hacarus.comまでご連絡ください。
+ハカルスの外観検査ソリューションの詳細を参照するには、こちらのリンク、https://hacarus.com/ja/visual-inspection/ をご覧ください。また、APIへのアクセスのリクエストはhttps://hacarus.com/ja/contact/ までご連絡ください。
 
-この外観検査 API wrapper for C#はあなたのC#のプロジェクトに、このAPI通して外観検査モジュールを組み込むことができます。このライブラリはC# .Net Framework 4.6.1 と.Net Core 2.0.をサポートしています。
+この外観検査用 API wrapper for C#は、あなたのC#のプロジェクトに、APIを通じて外観検査モジュールを組み込むことができます。このライブラリはC# .Net Framework 4.6.1 と.Net Core 2.0.をサポートしています。
 
 
 - [インストール](#インストール)
@@ -72,11 +72,10 @@ using HacarusVisualInspectionApi.Models;
 HacarusVisualInspection visualInspection = new HacarusVisualInspection("https://yourserverurl.com/api");
 ```
 
-- ライブラリを初期化します
-- エンドポイントURLを引数として入力
-- エンドポイントが入力されていない場合、ライブラリはデフォルトのエンドポイントhttps://sdd.hacarus.com/apiを使用します。
+- ライブラリを初期化します。
+- エンドポイントURLを引数として入力。
+- エンドポイントが入力されていない場合、ライブラリはデフォルトのエンドポイント https://sdd.hacarus.com/api を使用します。
 - 個別のエンドポイントURLは、リクエストに応じてHacarusから提供されます。
-
 
 #### 2. 認証
 
@@ -84,8 +83,8 @@ HacarusVisualInspection visualInspection = new HacarusVisualInspection("https://
 AccessTokenResponse response = visualInspection.Authorize(YourClientId, YourClientSecret);
 ```
 
-- アクセストークンを生成します
-- クライアントIDとクライアントシークレットを引数として入力する
+- アクセストークンを生成します。
+- クライアントIDとクライアントシークレットを引数として入力する。
 - クライアントIDとクライアントシークレットは、リクエストに応じてHacarusから提供されます。
 
 
@@ -102,7 +101,7 @@ AccessTokenResponse response = visualInspection.Authorize(YourClientId, YourClie
 
 ##### 起こり得るエラー
 
-- `401 Unauthorized`: クライアントIDが無効です
+- `401 Unauthorized`: クライアントIDが無効です。
 
 ```json
 {
@@ -117,7 +116,7 @@ AccessTokenResponse response = visualInspection.Authorize(YourClientId, YourClie
 }
 ```
 
-- `401 Unauthorized`: クライアントシークレットが無効です
+- `401 Unauthorized`: クライアントシークレットが無効です。
 
 ```json
 {
@@ -138,7 +137,7 @@ AccessTokenResponse response = visualInspection.Authorize(YourClientId, YourClie
 UploadResponse response = visualInspection.ActivateLicense(licenseFile, customerId);
 ```
 
-- ライセンスをアクティベートします
+- ライセンスをアクティベートします。
 - ライセンスファイルとカスタマーIDを引数として入力してください。
 - ライセンスはユーザーが`Train` または `Predict`というファンクションを使用する前にアクティベートしてください。
 - ライセンスファイルを取得するには、ハカルスにご連絡ください。
@@ -157,7 +156,7 @@ UploadResponse response = visualInspection.ActivateLicense(licenseFile, customer
 
 #### 起こり得るエラー
 
-- `403 Forbidden`: 得意先コードまたはライセンスファイルが無効  
+- `403 Forbidden`: 得意先コードまたはライセンスファイルが無効。  
 ```json
 {
     "errors": {
@@ -172,7 +171,7 @@ UploadResponse response = visualInspection.ActivateLicense(licenseFile, customer
 ```
 
 
--`403 Forbidden`: ライセンスはアクティベート済み
+- `403 Forbidden`: ライセンスはアクティベート済み。
 ```json
 {
     "errors": {
@@ -196,7 +195,7 @@ ItemsResponse response = visualInspection.GetItems();
     - `training`: 学習に使用するデータ
         - データが`true`（good）、`false`（defect）、または`null`（ラベルなし）のいずれかにラベル付けされているかをgoodというキーで知ることができます。
     - `predict`: アップロード済みのデータのうち、推論用のもの
-        - 推論結果を確認するには、`good`と`status`のキーを確認してください
+        - 推論結果を確認するには、`good`と`status`のキーを確認してください。
     - `archived`: アーカイブ済みデータ（将来実装予定の機能、現在使用されていません）
 - `override_assessment`および`confirm_assessment`はUI（ユーザインタフェース）固有のものであり、SDKを使用している場合は無視できます。
 
@@ -252,7 +251,7 @@ ItemsResponse response = visualInspection.GetItems();
 AlgorithmResponse response = visualInspection.GetAlgorithms();
 ```
 
-- 学習に使用できるアルゴリズムと使用できるパラメータの一覧をリストで返します
+- 学習に使用できるアルゴリズムと使用できるパラメータの一覧をリストで返します。
 
 ##### レスポンスの一例
 
@@ -290,7 +289,7 @@ AlgorithmResponse response = visualInspection.GetAlgorithms();
 
 ##### 起こり得るエラー
 
-- `404 NotFound`: 利用可能なアルゴリズムがありません。 この問題が発生した場合はHacarusに連絡してください
+- `404 NotFound`: 利用可能なアルゴリズムがありません。 この問題が発生した場合はHacarusに連絡してください。
 
 ```json
 {
@@ -311,7 +310,7 @@ AlgorithmResponse response = visualInspection.GetAlgorithms();
 ModelsResponse response = visualInspection.GetModels();
 ```
 
-- データを推論するのに使用できる作成済みモデルのリストを取得します
+- データを推論するのに使用できる作成済みモデルのリストを取得します。
 - モデルIDが渡されなかった場合（`Serve`メソッドを使用して）、`active`が`true`のモデルをデフォルトとして使用します。
 - `status`キーは、モデルが`active`か`failed`かを示します。 
     - `status`が `active`のモデルは正常に作成され、予測に使用できます
@@ -353,9 +352,9 @@ algorithmParameter.value = "50";
 ModelResponse reponse = visualInspection.Train(algorithmId, modelName, itemIds, new AlgorithmParameter[] { algorithmParameter });
 ```
 
-- 推論に使用するモデルを作成します
-- モデルの学習に使用するデータIDの配列を含むオプションのパラメータを入力します
-- アルゴリズムの設定を調整するためAlgorithmParameterの配列を入力します
+- 推論に使用するモデルを作成します。
+- モデルの学習に使用するデータIDの配列を含むオプションのパラメータを入力します。
+- アルゴリズムの設定を調整するためAlgorithmParameterの配列を入力します。
 - 新しく作成したモデルを確認するには、GetModels（）メソッドを使用します。
     
 
@@ -401,7 +400,7 @@ ModelResponse reponse = visualInspection.Train(algorithmId, modelName, itemIds, 
 UploadResponse response = visualInspection.Upload(filenames, isGood, isTraining);
 ```
 
-- このメソッドを使用して、学習または推論のためのデータをアップロードしてラベルを付けます
+- このメソッドを使用して、学習または推論のためのデータをアップロードしてラベルを付けます。
 - データに良品または不良品としてラベルを付ける場合は、`isGood`パラメータをブール値で`true`（良品）または`false`（不良品）に設定します。それ以外の場合は、`null`（ラベルなし）を使用します。
 - データをアップロードする場合、データを推論に使用するか学習に使用するかを設定するには、`isTraining`パラメーターを使用します。 isTrainingパラメータは必要です。
 
@@ -409,7 +408,6 @@ UploadResponse response = visualInspection.Upload(filenames, isGood, isTraining)
 - アップロードしたデータを確認するには、`GetItems（）`メソッドを使用します。
 - 画像のファイル名はデータID(`item_id`)として使用します。
 - サポートされているファイル形式：`png`、`jpeg`、`tiff`
-
 
 ##### レスポンスの一例
 
@@ -425,7 +423,7 @@ UploadResponse response = visualInspection.Upload(filenames, isGood, isTraining)
 
 ##### 起こり得るエラー
 
-- `400 BadRequest`: ファイル名かファイル形の無効
+- `400 BadRequest`: ファイル名かファイル形の無効。
 
 ```json
 {
@@ -442,7 +440,7 @@ UploadResponse response = visualInspection.Upload(filenames, isGood, isTraining)
 }
 ```
 
-- `400 BadRequest`: アップロード用の画像が送信されていません
+- `400 BadRequest`: アップロード用の画像が送信されていません。
 
 ```json
 {
@@ -471,7 +469,7 @@ ItemResponse response = visualInspection.GetItem(itemId);
     - `annotations`: `Serve`メソッドが呼び出されたときに生成されるアノテーションのリストを含みます
     - `raw_url`: アップロードされたファイルのURL
     - `url`: 欠陥箇所表示ファイル（緑色のボックス）
-    - `status`: データのステータス。`pending`（推論前または予測中）または`done`（予測済み）のいずれか。
+    - `status`: データのステータス。`pending`（推論前または予測中）または`done`（予測済み）のいずれか
 
 ##### レスポンスの一例
 
@@ -578,7 +576,7 @@ ItemResponse response = visualInspection.GetItem(itemId);
 PredictResponse response = visualInspection.Serve(itemIds, modelId);
 ```
 
-- データは良品か不良品があるか推論します
+- データは良品か不良品があるか推論します。
 - 結果を確認するには、`GetItems()`メソッドを使用して、各データの`good`キーを確認します。
 
 ##### レスポンスの一例
