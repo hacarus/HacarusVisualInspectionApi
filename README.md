@@ -396,7 +396,7 @@ UploadResponse response = visualInspection.Upload(filenames, isGood, isTraining)
 - Use this method to upload and label items for training or prediction
 - If you want to label items as good or defect, set `isGood` parameter to a boolean value `true`(good) or `false`(defect), else, use `null` (unlabeled)
 - When uploading items, use `isTraining` parameter to set if item will be used for prediction or training. `isTraining` parameter is required
-- Use `filenames` parameter to pass an array of `ImageModel`. `ImageModel` have properties `filename` and `contentType`.
+- Use `filenames` parameter to pass an array of `FileModel`. `FileModel` have properties `filename` and `contentType`.
 - To check the uploaded item, use the `GetItems()` method
 - The filename of the image will be used as the `item_id` of the item
 - Supported file types: `png`, `jpeg`, `tiff`
@@ -442,8 +442,8 @@ UploadResponse response = visualInspection.Upload(filenames, isGood, isTraining)
         "source": {
             "pointer": "/api/v1/upload"
         },
-        "status": "No images to upload",
-        "title": 400
+        "status": 400,
+        "title":  "No images to upload"
     }
 }
 ```
@@ -555,7 +555,7 @@ ItemResponse response = visualInspection.GetItem(itemId);
         "source": {
             "pointer": "/api/v1/item/sdsd"
         },
-        "status": 404,
+        "status": 401,
         "title": "No permission to view item!"
     }
 }
@@ -610,7 +610,7 @@ PredictResponse response = visualInspection.Serve(itemIds, modelId);
         "source": {
             "pointer": "/api/v1/serve"
         },
-        "status": 404,
+        "status": 400,
         "title": "There is no available model"
     }
 }

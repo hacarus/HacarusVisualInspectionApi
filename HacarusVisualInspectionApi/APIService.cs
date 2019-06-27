@@ -5,7 +5,7 @@ using RestSharp;
 using HacarusVisualInspectionApi.Models;
 using System.Security.Cryptography.X509Certificates;
 
-namespace HacarusVisualInspectionSDK
+namespace HacarusVisualInspectionApi
 {
     class APIService
     {
@@ -46,7 +46,7 @@ namespace HacarusVisualInspectionSDK
             var json = JsonConvert.SerializeObject(parameters);
             request.AddJsonBody(json);
 
-            var response = this.Client.Post(request);
+            var response = this.Client.Execute(request);
             AccessTokenResponse responseObject = JsonConvert.DeserializeObject<AccessTokenResponse>(response.Content);
             if(responseObject.errors == null)
             {
@@ -63,7 +63,7 @@ namespace HacarusVisualInspectionSDK
             request.AddHeader("Content-Type", "multipart/form-data");
             request.AddFile("license", licenseFile.filename, licenseFile.filename);
             request.AddParameter("customer_id", costumerId);
-            var response = this.Client.Post(request);
+            var response = this.Client.Execute(request);
             LicenseResponse responseObject = JsonConvert.DeserializeObject<LicenseResponse>(response.Content);
             responseObject.httpResponse = response;
             return responseObject;
@@ -73,7 +73,7 @@ namespace HacarusVisualInspectionSDK
         {
             var request = new RestRequest("v1/items", Method.GET);
             request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
-            var response = this.Client.Get(request);
+            var response = this.Client.Execute(request);
             ItemsResponse responseObject = JsonConvert.DeserializeObject<ItemsResponse>(response.Content);
             responseObject.httpResponse = response;
             return responseObject;
@@ -83,7 +83,7 @@ namespace HacarusVisualInspectionSDK
         {
             var request = new RestRequest("v1/algorithms", Method.GET);
             request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
-            var response = this.Client.Get(request);
+            var response = this.Client.Execute(request);
             AlgorithmResponse responseObject = JsonConvert.DeserializeObject<AlgorithmResponse>(response.Content);
             responseObject.httpResponse = response;
             return responseObject;
@@ -94,7 +94,7 @@ namespace HacarusVisualInspectionSDK
         {
             var request = new RestRequest("v1/models", Method.GET);
             request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
-            var response = this.Client.Get(request);
+            var response = this.Client.Execute(request);
             ModelsResponse responseObject = JsonConvert.DeserializeObject<ModelsResponse>(response.Content);
             responseObject.httpResponse = response;
             return responseObject;
@@ -115,7 +115,7 @@ namespace HacarusVisualInspectionSDK
 
             var json = JsonConvert.SerializeObject(parameters);
             request.AddJsonBody(json);
-            var response = this.Client.Post(request);
+            var response = this.Client.Execute(request);
             ModelResponse responseObject = JsonConvert.DeserializeObject<ModelResponse>(response.Content);
             responseObject.httpResponse = response;
             return responseObject;
@@ -135,7 +135,7 @@ namespace HacarusVisualInspectionSDK
             }
             request.AddParameter("training", isTraining ? "true" : "false");
             request.AddParameter("good", isGood == null ? null : (isGood.Equals(true) ? "true" : "false"));
-            var response = this.Client.Post(request);
+            var response = this.Client.Execute(request);
             UploadResponse responseObject = JsonConvert.DeserializeObject<UploadResponse>(response.Content);
             responseObject.httpResponse = response;
             return responseObject;
@@ -154,7 +154,7 @@ namespace HacarusVisualInspectionSDK
 
             var json = JsonConvert.SerializeObject(predictParameters);
             request.AddJsonBody(json);
-            var predictResponse = this.Client.Post(request);
+            var predictResponse = this.Client.Execute(request);
             PredictResponse responseObject = JsonConvert.DeserializeObject<PredictResponse>(predictResponse.Content);
             responseObject.httpResponse = predictResponse;
             return responseObject;
@@ -164,7 +164,7 @@ namespace HacarusVisualInspectionSDK
         {
             var request = new RestRequest("v1/item/" + item_id, Method.GET);
             request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
-            var predictResponse = this.Client.Get(request);
+            var predictResponse = this.Client.Execute(request);
             ItemResponse responseObject = JsonConvert.DeserializeObject<ItemResponse>(predictResponse.Content);
             responseObject.httpResponse = predictResponse;
             return responseObject;

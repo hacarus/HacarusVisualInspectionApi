@@ -405,7 +405,7 @@ UploadResponse response = visualInspection.Upload(filenames, isGood, isTraining)
 - データに良品または不良品としてラベルを付ける場合は、`isGood`パラメータをブール値で`true`（良品）または`false`（不良品）に設定します。それ以外の場合は、`null`（ラベルなし）を使用します。
 - データをアップロードする場合、データを推論に使用するか学習に使用するかを設定するには、`isTraining`パラメーターを使用します。 isTrainingパラメータは必要です。
 
-- `filenames`パラメータを使用して`ImageModel`の配列を渡します。 `ImageModel`は`filename`と`contentType`のプロパティを持ちます。
+- `filenames`パラメータを使用して`FileModel`の配列を渡します。 `FileModel`は`filename`と`contentType`のプロパティを持ちます。
 - アップロードしたデータを確認するには、`GetItems（）`メソッドを使用します。
 - 画像のファイル名はデータID(`item_id`)として使用します。
 - サポートされているファイル形式：`png`、`jpeg`、`tiff`
@@ -451,8 +451,8 @@ UploadResponse response = visualInspection.Upload(filenames, isGood, isTraining)
         "source": {
             "pointer": "/api/v1/upload"
         },
-        "status": "No images to upload",
-        "title": 400
+        "status": 400,
+        "title": "No images to upload"
     }
 }
 ```
@@ -564,7 +564,7 @@ ItemResponse response = visualInspection.GetItem(itemId);
         "source": {
             "pointer": "/api/v1/item/sdsd"
         },
-        "status": 404,
+        "status": 401,
         "title": "No permission to view item!"
     }
 }
@@ -620,7 +620,7 @@ PredictResponse response = visualInspection.Serve(itemIds, modelId);
         "source": {
             "pointer": "/api/v1/serve"
         },
-        "status": 404,
+        "status": 400,
         "title": "There is no available model"
     }
 }

@@ -1,0 +1,10 @@
+﻿{
+    "errors": {
+        "detail": null,
+        "source": {
+            "pointer": "/api/v1/item/NoPermissionItemId"
+        },
+        "status": 401,
+        "title": "No permission to view item!"
+    }
+}

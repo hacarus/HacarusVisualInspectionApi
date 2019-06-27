@@ -1,0 +1,10 @@
+﻿{
+    "errors": {
+        "detail": null,
+        "source": {
+            "pointer": "/api/auth/license"
+        },
+        "status": 403,
+        "title": "Invalid license!"
+    }
+}
