@@ -22,10 +22,9 @@ namespace HacarusVisualInspectionApi.Tests
         public void Success()
         {
             Console.WriteLine("Success Start");
-            var json = File.ReadAllText("../../../Files/AuthorizeSuccess.txt");
-            var client = MockGenerator.MockRestClient<AccessTokenResponse>(HttpStatusCode.OK, json);
-            HacarusVisualInspection visualInspection = new HacarusVisualInspection();
-            visualInspection.Client = client;
+            var JSONString = File.ReadAllText("../../../Files/AuthorizeSuccess.txt");
+            var Client = MockGenerator.MockRestClient<AccessTokenResponse>(HttpStatusCode.OK, JSONString);
+            HacarusVisualInspection visualInspection = new HacarusVisualInspection(Client);
             AccessTokenResponse response = visualInspection.Authorize("ValidClientId", "ValidClientSecret");
             Assert.IsNotNull(response);
             Assert.IsNotNull(response.httpResponse);
@@ -42,10 +41,9 @@ namespace HacarusVisualInspectionApi.Tests
         public void FailedClientID()
         {
             Console.WriteLine("FailedClientID Start");
-            var json = File.ReadAllText("../../../Files/AuthorizeFailedClientID.txt");
-            var client = MockGenerator.MockRestClient<AccessTokenResponse>(HttpStatusCode.Unauthorized, json);
-            HacarusVisualInspection visualInspection = new HacarusVisualInspection();
-            visualInspection.Client = client;
+            var JSONString = File.ReadAllText("../../../Files/AuthorizeFailedClientID.txt");
+            var Client = MockGenerator.MockRestClient<AccessTokenResponse>(HttpStatusCode.Unauthorized, JSONString);
+            HacarusVisualInspection visualInspection = new HacarusVisualInspection(Client);
             AccessTokenResponse response = visualInspection.Authorize("InvalidClientId", "ValidClientSecret");
             Assert.IsNotNull(response);
             Assert.IsNotNull(response.httpResponse);
@@ -62,10 +60,9 @@ namespace HacarusVisualInspectionApi.Tests
         public void FailedClientSecret()
         {
             Console.WriteLine("FailedClientSecret Start");
-            var json = File.ReadAllText("../../../Files/AuthorizeFailedClientSecret.txt");
-            var client = MockGenerator.MockRestClient<AccessTokenResponse>(HttpStatusCode.Unauthorized, json);
-            HacarusVisualInspection visualInspection = new HacarusVisualInspection();
-            visualInspection.Client = client;
+            var JSONString = File.ReadAllText("../../../Files/AuthorizeFailedClientSecret.txt");
+            var Client = MockGenerator.MockRestClient<AccessTokenResponse>(HttpStatusCode.Unauthorized, JSONString);
+            HacarusVisualInspection visualInspection = new HacarusVisualInspection(Client);
             AccessTokenResponse response = visualInspection.Authorize("ValidClientId", "InvalidClientSecret");
             Assert.IsNotNull(response);
             Assert.IsNotNull(response.httpResponse);

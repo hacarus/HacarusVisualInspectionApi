@@ -27,21 +27,14 @@ namespace HacarusVisualInspectionApi
             }
         }
 
-        public RestClient Client
-        {
-            get
-            {
-                return APIService.Instance.Client;
-            }
-            set
-            {
-                APIService.Instance.Client = value;
-            }
-        }
-
         public HacarusVisualInspection(string serverUrl = "https://sdd-api.hacarus.com/api")
         {
             APIService.Instance.ServerUrl = serverUrl;
+        }
+
+        public HacarusVisualInspection(RestClient client)
+        {
+            APIService.Instance.Client = client;
         }
 
         public AccessTokenResponse Authorize(string clientId, string clientSecret)

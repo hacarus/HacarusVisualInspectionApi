@@ -8,7 +8,7 @@ namespace HacarusVisualInspectionApi.Tests
     public class MockGenerator
     {
         public static RestClient MockRestClient<T>(HttpStatusCode httpStatusCode, string json)
-   where T : new()
+        where T : new()
         {
             var restClient = new Mock<RestClient>();
 
