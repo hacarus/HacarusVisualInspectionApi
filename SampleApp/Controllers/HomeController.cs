@@ -14,15 +14,14 @@ namespace SampleApp.Controllers
 {
     public class HomeController : Controller
     {
-        private IHostingEnvironment _environment;
-        HacarusVisualInspection hacarusVisualInspection = new HacarusVisualInspection("https://sdd-demo.hacarus.com/api");
-        public static string bearer;
-        public static string accessToken;
-        public static string currentContextId;
+        private readonly IHostingEnvironment Environment;
+        private readonly HacarusVisualInspection VisualInspection = new HacarusVisualInspection("https://sdd-demo.hacarus.com/api");
+        public static string AccessToken;
+        public static string CurrentContextId;
 
         public HomeController(IHostingEnvironment environment)
         {
-            _environment = environment;
+            Environment = environment;
         }
 
         [HttpPost]
@@ -30,15 +29,10 @@ namespace SampleApp.Controllers
             string loginClient, string clientId, string clientSecret
         )
         {
-            AccessTokenResponse response = hacarusVisualInspection.Authorize(clientId, clientSecret);
-            if (response.errors == null)
-            {
-                bearer = response.data.access_token;
-            }
-
-            ViewData["HttpResponse"] = "Status code: " + (int)response.httpResponse.StatusCode + " " + response.httpResponse.StatusCode;
-            ViewData["StringMessage"] = hacarusVisualInspection.StringMessage;
-            ViewBag.BearerAvailable = !string.IsNullOrEmpty(bearer);
+            AccessTokenResponse Result = VisualInspection.Authorize(clientId, clientSecret);
+            ViewData["HttpResponse"] = "Status code: " + (int)Result.httpResponse.StatusCode + " " + Result.httpResponse.StatusCode;
+            ViewData["StringMessage"] = Result.httpResponse.Content;
+            ViewBag.BearerAvailable = VisualInspection.IsAuthorized;
 
             return Index();
         }
@@ -48,7 +42,7 @@ namespace SampleApp.Controllers
             string customerId, IFormFile licenseFile
         )
         {
-            var uploads = Path.Combine(_environment.WebRootPath, "uploads");
+            var uploads = Path.Combine(Environment.WebRootPath, "uploads");
             if (!Directory.Exists(uploads))
             {
                 Directory.CreateDirectory(uploads);
@@ -63,15 +57,15 @@ namespace SampleApp.Controllers
                     file.ContentType = licenseFile.ContentType;
                 }
 
-                LicenseResponse response = hacarusVisualInspection.ActivateLicense(file, customerId);
+                LicenseResponse Result = VisualInspection.ActivateLicense(file, customerId);
 
-                ViewData["HttpResponse"] = "Status code: " + response.httpResponse.StatusCode;
-                ViewData["StringMessage"] = hacarusVisualInspection.StringMessage;
+                ViewData["HttpResponse"] = "Status code: " + Result.httpResponse.StatusCode;
+                ViewData["StringMessage"] = Result.httpResponse.Content;
 
             }
 
 
-            ViewBag.BearerAvailable = !string.IsNullOrEmpty(bearer);
+            ViewBag.BearerAvailable = VisualInspection.IsAuthorized;
             ViewBag.Active = "activateLicense";
 
             return Index();
@@ -82,11 +76,11 @@ namespace SampleApp.Controllers
             string getItems
         )
         {
-            ItemsResponse response = hacarusVisualInspection.GetItems();
+            ItemsResponse Result = VisualInspection.GetItems();
 
-            ViewData["HttpResponse"] = "Status code: " + (int)response.httpResponse.StatusCode + " " + response.httpResponse.StatusCode;
-            ViewData["StringMessage"] = hacarusVisualInspection.StringMessage;
-            ViewBag.BearerAvailable = !string.IsNullOrEmpty(bearer);
+            ViewData["HttpResponse"] = "Status code: " + (int)Result.httpResponse.StatusCode + " " + Result.httpResponse.StatusCode;
+            ViewData["StringMessage"] = Result.httpResponse.Content;
+            ViewBag.BearerAvailable = VisualInspection.IsAuthorized;
             ViewBag.Active = "getItems";
 
             return Index();
@@ -97,11 +91,11 @@ namespace SampleApp.Controllers
             string getAlgorithms
         )
         {
-            AlgorithmResponse response = hacarusVisualInspection.GetAlgorithms();
+            AlgorithmResponse Result = VisualInspection.GetAlgorithms();
 
-            ViewData["HttpResponse"] = "Status code: " + (int)response.httpResponse.StatusCode + " " + response.httpResponse.StatusCode;
-            ViewData["StringMessage"] = hacarusVisualInspection.StringMessage;
-            ViewBag.BearerAvailable = !string.IsNullOrEmpty(bearer);
+            ViewData["HttpResponse"] = "Status code: " + (int)Result.httpResponse.StatusCode + " " + Result.httpResponse.StatusCode;
+            ViewData["StringMessage"] = Result.httpResponse.Content;
+            ViewBag.BearerAvailable = VisualInspection.IsAuthorized;
             ViewBag.Active = "getAlgorithms";
 
             return Index();
@@ -112,11 +106,11 @@ namespace SampleApp.Controllers
             string getAlgorithms
         )
         {
-            ModelsResponse response = hacarusVisualInspection.GetModels();
+            ModelsResponse Result = VisualInspection.GetModels();
 
-            ViewData["HttpResponse"] = "Status code: " + (int)response.httpResponse.StatusCode + " " + response.httpResponse.StatusCode;
-            ViewData["StringMessage"] = hacarusVisualInspection.StringMessage;
-            ViewBag.BearerAvailable = !string.IsNullOrEmpty(bearer);
+            ViewData["HttpResponse"] = "Status code: " + (int)Result.httpResponse.StatusCode + " " + Result.httpResponse.StatusCode;
+            ViewData["StringMessage"] = Result.httpResponse.Content;
+            ViewBag.BearerAvailable = VisualInspection.IsAuthorized;
             ViewBag.Active = "getModels";
 
             return Index();
@@ -141,13 +135,13 @@ namespace SampleApp.Controllers
                 name = DateTime.Now.ToString();
             }
 
-            ModelResponse response = hacarusVisualInspection.Train(algorithmId, name, itemIds.ToArray(), new AlgorithmParameter[] { algorithmParameter });
+            ModelResponse Result = VisualInspection.Train(algorithmId, name, itemIds.ToArray(), new AlgorithmParameter[] { algorithmParameter });
 
             Console.WriteLine("IFFFF " + itemIds.Count);
 
-            ViewData["HttpResponse"] = "Status code: " + (int)response.httpResponse.StatusCode + " " + response.httpResponse.StatusCode;
-            ViewData["StringMessage"] = hacarusVisualInspection.StringMessage;
-            ViewBag.BearerAvailable = !string.IsNullOrEmpty(bearer);
+            ViewData["HttpResponse"] = "Status code: " + (int)Result.httpResponse.StatusCode + " " + Result.httpResponse.StatusCode;
+            ViewData["StringMessage"] = Result.httpResponse.Content;
+            ViewBag.BearerAvailable = VisualInspection.IsAuthorized;
             ViewBag.Active = "train";
 
             return Index();
@@ -158,7 +152,7 @@ namespace SampleApp.Controllers
             string upload, string good, string training, ICollection<IFormFile> files
         )
         {
-            var uploads = Path.Combine(_environment.WebRootPath, "uploads");
+            var uploads = Path.Combine(Environment.WebRootPath, "uploads");
             if (!Directory.Exists(uploads))
             {
                 Directory.CreateDirectory(uploads);
@@ -194,17 +188,18 @@ namespace SampleApp.Controllers
 
             if (isTraining)
             {
-                UploadResponse response = hacarusVisualInspection.Upload(filenames, (bool)isGood);
-                ViewData["HttpResponse"] = "Status code: " + (int)response.httpResponse.StatusCode + " " + response.httpResponse.StatusCode;
+                UploadResponse Result = VisualInspection.Upload(filenames, (bool)isGood);
+                ViewData["HttpResponse"] = "Status code: " + (int)Result.httpResponse.StatusCode + " " + Result.httpResponse.StatusCode;
+                ViewData["StringMessage"] = Result.httpResponse.Content;
             }
             else
             {
-                UploadResponse response = hacarusVisualInspection.Upload(filenames);
-                ViewData["HttpResponse"] = "Status code: " + (int)response.httpResponse.StatusCode + " " + response.httpResponse.StatusCode;
+                UploadResponse Result = VisualInspection.Upload(filenames);
+                ViewData["HttpResponse"] = "Status code: " + (int)Result.httpResponse.StatusCode + " " + Result.httpResponse.StatusCode;
+                ViewData["StringMessage"] = Result.httpResponse.Content;
             }                                                                                                                                                                                                                                                                                                                                                           
 
-            ViewData["StringMessage"] = hacarusVisualInspection.StringMessage;
-            ViewBag.BearerAvailable = !string.IsNullOrEmpty(bearer);
+            ViewBag.BearerAvailable = VisualInspection.IsAuthorized;
             ViewBag.Active = "upload";
 
             return Index();
@@ -215,11 +210,11 @@ namespace SampleApp.Controllers
             string serve, string itemIdServe, int modelIdServe
         )
         {
-            PredictResponse response = hacarusVisualInspection.Serve(new string[] { itemIdServe }, modelIdServe);
+            PredictResponse Result = VisualInspection.Serve(new string[] { itemIdServe }, modelIdServe);
 
-            ViewData["HttpResponse"] = "Status code: " + (int)response.httpResponse.StatusCode + " " + response.httpResponse.StatusCode;
-            ViewData["StringMessage"] = hacarusVisualInspection.StringMessage;
-            ViewBag.BearerAvailable = !string.IsNullOrEmpty(bearer);
+            ViewData["HttpResponse"] = "Status code: " + (int)Result.httpResponse.StatusCode + " " + Result.httpResponse.StatusCode;
+            ViewData["StringMessage"] = Result.httpResponse.Content;
+            ViewBag.BearerAvailable = VisualInspection.IsAuthorized;
             ViewBag.Active = "serve";
 
             return Index();
@@ -231,11 +226,11 @@ namespace SampleApp.Controllers
             string getItem, string itemId
         )
         {
-            ItemResponse response = hacarusVisualInspection.GetItem(itemId);
+            ItemResponse Result = VisualInspection.GetItem(itemId);
 
-            ViewData["HttpResponse"] = "Status code: " + (int)response.httpResponse.StatusCode + " " + response.httpResponse.StatusCode;
-            ViewData["StringMessage"] = hacarusVisualInspection.StringMessage;
-            ViewBag.BearerAvailable = !string.IsNullOrEmpty(bearer);
+            ViewData["HttpResponse"] = "Status code: " + (int)Result.httpResponse.StatusCode + " " + Result.httpResponse.StatusCode;
+            ViewData["StringMessage"] = Result.httpResponse.Content;
+            ViewBag.BearerAvailable = VisualInspection.IsAuthorized;
             ViewBag.Active = "getItem";
 
             return Index();
@@ -243,7 +238,7 @@ namespace SampleApp.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.BearerAvailable = !string.IsNullOrEmpty(bearer);
+            ViewBag.BearerAvailable = VisualInspection.IsAuthorized;
             ViewBag.Algorithms = new List<Algorithm>();
             ViewBag.TrainingItems = new List<Item>();
             ViewBag.PredictItems = new List<Item>();
@@ -251,9 +246,9 @@ namespace SampleApp.Controllers
 
             if (ViewBag.BearerAvailable)
             {
-                var algorithmResponse = hacarusVisualInspection.GetAlgorithms();
-                var trainingResponse = hacarusVisualInspection.GetItems();
-                ModelsResponse modelsResponse = hacarusVisualInspection.GetModels();
+                var algorithmResponse = VisualInspection.GetAlgorithms();
+                var trainingResponse = VisualInspection.GetItems();
+                ModelsResponse modelsResponse = VisualInspection.GetModels();
                 Console.Write("START IFFF");
                 if (trainingResponse != null && trainingResponse.data != null)
                 {

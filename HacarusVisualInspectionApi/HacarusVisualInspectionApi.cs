@@ -7,22 +7,11 @@ namespace HacarusVisualInspectionApi
 {
     public sealed class HacarusVisualInspection
     {
-        private string ClientId = string.Empty;
-        private string ClientSecret = string.Empty;
-
-        public string StringMessage { get; set; }
         public bool IsAuthorized
         {
             get
             {
                 return !string.IsNullOrEmpty(APIService.Instance.AccessToken);
-            }
-        }
-        public string AccessToken
-        {
-            get
-            {
-                return APIService.Instance.AccessToken;
             }
         }
 
@@ -33,87 +22,56 @@ namespace HacarusVisualInspectionApi
 
         public AccessTokenResponse Authorize(string clientId, string clientSecret)
         {
-            this.ClientId = clientId;
-            this.ClientSecret = clientSecret;
-
-            var response = APIService.Instance.Authorize(this.ClientId, this.ClientSecret);
-
-            this.StringMessage = response.httpResponse.Content;
-
-            return response;
+            var Response = APIService.Instance.Authorize(clientId, clientSecret);
+            return Response;
         }
 
         public LicenseResponse ActivateLicense(FileModel licenseFile, string customerId)
         {
-            var response = APIService.Instance.ActivateLicense(licenseFile, customerId);
-            this.StringMessage = response.httpResponse.Content;
-
-            return response;
+            return APIService.Instance.ActivateLicense(licenseFile, customerId);
         }
 
 
         public ItemsResponse GetItems()
         {
-            var response = APIService.Instance.GetItems();
-            this.StringMessage = response.httpResponse.Content;
-
-            return response;
+            return APIService.Instance.GetItems();
         }
 
         public AlgorithmResponse GetAlgorithms()
         {
-            var response = APIService.Instance.GetAlgorithms();
-            this.StringMessage = response.httpResponse.Content;
-
-            return response;
+            return APIService.Instance.GetAlgorithms();
         }
 
         public ModelsResponse GetModels()
         {
-            var response = APIService.Instance.GetModels();
-            this.StringMessage = response.httpResponse.Content;
-
-            return response;
+            return APIService.Instance.GetModels();
         }
 
         public ModelResponse Train(string algorithmId, string modelName, string[] itemIds, AlgorithmParameter[] algorithmParameters)
         {
-            var response = APIService.Instance.Train(algorithmId, modelName, itemIds, algorithmParameters);
-            this.StringMessage = response.httpResponse.Content;
-
-            return response;
+            return APIService.Instance.Train(algorithmId, modelName, itemIds, algorithmParameters);
         }
 
         // Upload for training
         public UploadResponse Upload(List<FileModel> files, bool isGood)
         {
-            var response = APIService.Instance.Upload(files, isGood, true);
-            this.StringMessage = response.httpResponse.Content;
-            return response;
+            return APIService.Instance.Upload(files, isGood, true);
         }
 
         // Upload for prediction
         public UploadResponse Upload(List<FileModel> files)
         {
-            var response = APIService.Instance.Upload(files, null, false);
-            this.StringMessage = response.httpResponse.Content;
-            return response;
+            return APIService.Instance.Upload(files, null, false);
         }
 
         public PredictResponse Serve(string[] itemIds, int? modelId = null)
         {
-            var response = APIService.Instance.Serve(itemIds, modelId);
-            this.StringMessage = response.httpResponse.Content;
-
-            return response;
+            return APIService.Instance.Serve(itemIds, modelId);
         }
 
         public ItemResponse GetItem(string itemId)
         {
-            var response = APIService.Instance.GetItem(itemId);
-            this.StringMessage = response.httpResponse.Content;
-
-            return response;
+            return APIService.Instance.GetItem(itemId);
         }
     }
 }
