@@ -27,12 +27,11 @@ namespace HacarusVisualInspectionApi.Models
                     {
                         // Do nothing
                     }
-                    else if (_detail is string[])
+                    else
                     {
-                        _detail = string.Join("\n\n", (string[])_detail);
+                        _detail = string.Join("\n", ((Newtonsoft.Json.Linq.JArray)_detail).ToObject<string[]>());
                     }
                 }
-
                 return _detail as string;
             }
         }

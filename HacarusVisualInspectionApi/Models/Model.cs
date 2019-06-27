@@ -26,12 +26,4 @@ namespace HacarusVisualInspectionApi.Models
     {
         public List<ModelData> data { get; set; }
     }
-
-    public class TrainRootObject
-    {
-        public List<string> item_ids { get; set; }
-        public string algorithm_id { get; set; }
-        public string name { get; set; }
-        public Errors errors { get; set; }
-    }
 }

@@ -1,0 +1,10 @@
+﻿{
+    "errors": {
+        "detail": null,
+        "source": {
+            "pointer": "/api/v1/algorithms"
+        },
+        "status": 404,
+        "title": "No algorithms found"
+    }
+}

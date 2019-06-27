@@ -400,8 +400,8 @@ UploadResponse response = hacarusVisualInspection.Upload(filenames);
 ```
 - Use this method to upload items for prediction
 
-
-- Use `filenames` parameter to pass an array of `ImageModel`. `ImageModel` have properties `filename` and `contentType`.
+- Use `filenames` parameter to pass an array of `FileModel`. `FileModel` have properties `FileName` and `ContentType`.
+- To create a FileModel, use `FileModel File = new FileModel()` or `FileModel File = new FileModel("FileName", "ContentType")`
 - To check the uploaded item, use the `GetItems()` method
 - The filename of the image will be used as the `item_id` of the item
 - Supported file types: `png`, `jpeg`, `tiff`
@@ -447,8 +447,8 @@ UploadResponse response = hacarusVisualInspection.Upload(filenames);
         "source": {
             "pointer": "/api/v1/upload"
         },
-        "status": "No images to upload",
-        "title": 400
+        "status": 400,
+        "title":  "No images to upload"
     }
 }
 ```
@@ -560,7 +560,7 @@ ItemResponse response = visualInspection.GetItem(itemId);
         "source": {
             "pointer": "/api/v1/item/sdsd"
         },
-        "status": 404,
+        "status": 401,
         "title": "No permission to view item!"
     }
 }
@@ -615,7 +615,7 @@ PredictResponse response = visualInspection.Serve(itemIds, modelId);
         "source": {
             "pointer": "/api/v1/serve"
         },
-        "status": 404,
+        "status": 400,
         "title": "There is no available model"
     }
 }
