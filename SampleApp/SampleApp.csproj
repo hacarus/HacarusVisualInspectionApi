@@ -19,4 +19,7 @@
       <HintPath>..\HacarusVisualInspectionApi\bin\Debug\netstandard2.0\HacarusVisualInspectionApi.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\uploads\IMG_4268.jpg" />
+  </ItemGroup>
 </Project>

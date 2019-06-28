@@ -23,11 +23,11 @@ namespace HacarusVisualInspectionApi.Tests
             LicenseResponse Response = VisualInspection.ActivateLicense(LicenseFile, "test_customer_id");
             Assert.IsNotNull(Response);
             Assert.IsNotNull(Response.HttpResponse);
-            Assert.IsNotNull(Response.data);
+            Assert.IsNotNull(Response.Data);
             Assert.IsNull(Response.Errors);
             Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.OK));
-            Assert.IsTrue(Response.data.customer_id.Equals("test_customer_id"));
-            Assert.IsTrue(Response.data.status.Equals("ok"));
+            Assert.IsTrue(Response.Data.CustomerId.Equals("test_customer_id"));
+            Assert.IsTrue(Response.Data.Status.Equals("ok"));
             Console.WriteLine("Success End");
         }
 
@@ -43,7 +43,7 @@ namespace HacarusVisualInspectionApi.Tests
             LicenseResponse Response = VisualInspection.ActivateLicense(LicenseFile, "invalid_test_customer_id");
             Assert.IsNotNull(Response);
             Assert.IsNotNull(Response.HttpResponse);
-            Assert.IsNull(Response.data);
+            Assert.IsNull(Response.Data);
             Assert.IsNotNull(Response.Errors);
             Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.Forbidden));
             Assert.IsTrue(Response.Errors.Title.Equals("Invalid license!"));
@@ -62,7 +62,7 @@ namespace HacarusVisualInspectionApi.Tests
             LicenseResponse Response = VisualInspection.ActivateLicense(LicenseFile, "test_customer_id");
             Assert.IsNotNull(Response);
             Assert.IsNotNull(Response.HttpResponse);
-            Assert.IsNull(Response.data);
+            Assert.IsNull(Response.Data);
             Assert.IsNotNull(Response.Errors);
             Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.Forbidden));
             Assert.IsTrue(Response.Errors.Title.Equals("Invalid license!"));
@@ -81,7 +81,7 @@ namespace HacarusVisualInspectionApi.Tests
             LicenseResponse Response = VisualInspection.ActivateLicense(LicenseFile, "test_customer_id");
             Assert.IsNotNull(Response);
             Assert.IsNotNull(Response.HttpResponse);
-            Assert.IsNull(Response.data);
+            Assert.IsNull(Response.Data);
             Assert.IsNotNull(Response.Errors);
             Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.Forbidden));
             Assert.IsTrue(Response.Errors.Title.Equals("Invalid license!"));

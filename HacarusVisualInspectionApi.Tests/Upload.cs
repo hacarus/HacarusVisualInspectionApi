@@ -22,11 +22,11 @@ namespace HacarusVisualInspectionApi.Tests
             UploadResponse Response = VisualInspection.Upload(new List<FileModel> { file });
             Assert.IsNotNull(Response);
             Assert.IsNotNull(Response.HttpResponse);
-            Assert.IsNotNull(Response.data);
+            Assert.IsNotNull(Response.Data);
             Assert.IsNull(Response.Errors);;
             Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.OK));
-            Assert.IsTrue(Response.data.item_ids.Count.Equals(1));
-            Assert.IsTrue(Response.data.item_ids[0].Equals("NewItem"));
+            Assert.IsTrue(Response.Data.ItemIds.Count.Equals(1));
+            Assert.IsTrue(Response.Data.ItemIds[0].Equals("NewItem"));
             Console.WriteLine("Success End");
         }
 
@@ -44,7 +44,7 @@ namespace HacarusVisualInspectionApi.Tests
             Assert.IsNotNull(Response);
             Assert.IsNotNull(Response.HttpResponse);
             Assert.IsNotNull(Response.Errors);;
-            Assert.IsNull(Response.data);
+            Assert.IsNull(Response.Data);
             Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.BadRequest));
             Assert.IsTrue(Response.Errors.Title.Equals("Invalid Request"));
             Assert.IsTrue(Response.Errors.Details.Equals("NewItem invalid.name.png"));
@@ -65,7 +65,7 @@ namespace HacarusVisualInspectionApi.Tests
             Assert.IsNotNull(Response);
             Assert.IsNotNull(Response.HttpResponse);
             Assert.IsNotNull(Response.Errors);
-            Assert.IsNull(Response.data);
+            Assert.IsNull(Response.Data);
             Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.BadRequest));
             Assert.IsTrue(Response.Errors.Title.Equals("No images to upload"));
             Assert.IsNull(Response.Errors.Details);

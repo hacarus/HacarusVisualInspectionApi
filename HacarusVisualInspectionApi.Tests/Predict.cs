@@ -21,12 +21,12 @@ namespace HacarusVisualInspectionApi.Tests
             PredictResponse Response = VisualInspection.Serve(new string[] { "NewItem" });
             Assert.IsNotNull(Response);
             Assert.IsNotNull(Response.HttpResponse);
-            Assert.IsNotNull(Response.data);
+            Assert.IsNotNull(Response.Data);
             Assert.IsNull(Response.Errors);
             Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.OK));
-            Assert.IsTrue(Response.data.item_ids.Count.Equals(1));
-            Assert.IsTrue(Response.data.item_ids[0].Equals("NewItem"));
-            Assert.IsTrue(Response.data.model_version.Equals("model-2019061101:26:07"));
+            Assert.IsTrue(Response.Data.ItemIds.Count.Equals(1));
+            Assert.IsTrue(Response.Data.ItemIds[0].Equals("NewItem"));
+            Assert.IsTrue(Response.Data.ModelVersion.Equals("model-2019061101:26:07"));
             Console.WriteLine("Success End");
         }
 
@@ -41,7 +41,7 @@ namespace HacarusVisualInspectionApi.Tests
             Assert.IsNotNull(Response);
             Assert.IsNotNull(Response.HttpResponse);
             Assert.IsNotNull(Response.Errors);
-            Assert.IsNull(Response.data);
+            Assert.IsNull(Response.Data);
             Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.NotFound));
             Assert.IsTrue(Response.Errors.Title.Equals("Cannot find items"));
             Assert.IsTrue(Response.Errors.Source.Pointer.Equals("/api/v1/serve"));
@@ -60,7 +60,7 @@ namespace HacarusVisualInspectionApi.Tests
             Assert.IsNotNull(Response);
             Assert.IsNotNull(Response.HttpResponse);
             Assert.IsNotNull(Response.Errors);
-            Assert.IsNull(Response.data);
+            Assert.IsNull(Response.Data);
             Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.BadRequest));
             Assert.IsTrue(Response.Errors.Title.Equals("There is no available model"));
             Assert.IsTrue(Response.Errors.Source.Pointer.Equals("/api/v1/serve"));
