@@ -8,24 +8,24 @@ Our technology is based on Sparse Modeling, a Machine Learning technique that un
 
 Our solutions can run in an offline environment on embedded systems or as a cloud module. Compared with conventional DL based approaches we are far more resource efficient and produce better results. 
 
-Visit https://hacarus.com/visual-inspection/ to learn more about Hacarus’ Visual Inspection solution or contact us via inquiry@hacarus.com to request access to our API.
+Visit https://hacarus.com/visual-inspection/ to learn more about Hacarus’ Visual Inspection solution or [contact us](https://hacarus.com/contact/) to request access to our API.
 
-This Visual Inspection Api wrapper for C#  is made for software engineers who want to integrate with the Hacaraus Visual Inspection module through its API. The wrapper provides simple to use method calls for easy integration to your C# based applications. Supports .Net Framework 4.6.1 and .Net Core 2.0.
+This Visual Inspection Api wrapper for C#  is made for software engineers who want to integrate with the Hacarus Visual Inspection module through its API. The wrapper provides simple to use method calls for easy integration to your C# based applications. Supports .Net Framework 4.6.1 and .Net Core 2.0.
 
-- [Installation](#installation)
-- [Terms](#terms)
-- [Usage](#usage)
-  * [1. Initialization](#1-initialization)
-  * [2. Authorize](#2-authorize)
-  * [3. Activate License](#3-activate-license)
-  * [4. Get Items](#4-get-items)
-  * [5. Get Algorithms](#5-get-algorithms)
-  * [6. Get Models](#6-get-models)
-  * [7. Train](#7-train)
-  * [8. Add Item](#8-add-item)
-  * [9. Get Specific Item](#9-get-specific-item)
-  * [10. Predict](#10-predict)
-- [Generic Error](#generic-error)
+- [Installation](#Installation)
+- [Terms](#Terms)
+- [Usage](#Usage)
+  * [1. Initialization](#1-Initialization)
+  * [2. Authorize](#2-Authorize)
+  * [3. Activate License](#3-Activate-License)
+  * [4. Get Items](#4-Get-Items)
+  * [5. Get Algorithms](#5-Get-Algorithms)
+  * [6. Get Models](#6-Get-Models)
+  * [7. Train](#7-Train)
+  * [8. Add Item](#8-Add-Item)
+  * [9. Get Specific Item](#9-Get-Specific-Item)
+  * [10. Predict](#10-Predict)
+- [Generic Error](#Generic-Error)
 
 ## Installation
 To install this package on your project, use this command in Package Manager Console.
@@ -42,7 +42,7 @@ Other installation options can be found on [Nuget Package Site](https://www.nuge
 A brief explanation of the terms used throughout this documentation:
 
 **Model**
-A models is created (or trained) by applying an algorithm to a data-set of items (also called training-data), along with the configuration of a set of parameters.
+A model is created (or trained) by applying an algorithm to a data-set of items (also called training-data), along with the configuration of a set of parameters.
 After creation, the model can be used to analyze new data.
 
 **Algorithm**
@@ -61,12 +61,31 @@ For example: A packaging box in a storage warehouse, with 6 images for each of t
 
 ## Usage
 
+To get started, you need the following:
+- Client ID and Client Secret
+    - These will be used to authorize the SDK.
+    - An authorized user will be able to access the system's functions, such as adding items, getting list of items, algorithms, and models.
+    - To be able to train models and to use the predict function, you also need an active license.
+- License File and Customer ID
+    - These will be used to activate your license.
+- Training Images
+    - A prerequisite to creating a new model, is to provide training items by uploading images.
+    - Use training items to create a model.
+    - Add items for prediction by uploading images.
+    - Use the created model to predict the items for prediction.
+    - Sample images for evaluation are available for download here: [Metal Plates](https://drive.google.com/file/d/1Zg-gCX9gxxYjEau9j29oe0hDBuppDosh/view) and [Wood Blocks](https://drive.google.com/file/d/1oRvEfeDfa3seEn0rFXRa1IgTUyzg0hxv/view)
+        - Contains good and defect images and a list of parameters you may use to create a model. 
+        - Images for training are located in a folder `train`, images for prediction are in `predict`
+        - NG means defect image, OK means good images
+
+
+
 #### 1. Initialization
 
 ```csharp
 using HacarusVisualInspectionApi;
 using HacarusVisualInspectionApi.Models;
-HacarusVisualInspection visualInspection = new HacarusVisualInspection("https://yourserverurl.com/api");
+HacarusVisualInspection VisualInspection = new HacarusVisualInspection("https://yourserverurl.com/api");
 ```
 
 - Initializes the library
@@ -77,7 +96,7 @@ HacarusVisualInspection visualInspection = new HacarusVisualInspection("https://
 #### 2. Authorize
 
 ```csharp
-AccessTokenResponse response = visualInspection.Authorize(YourClientId, YourClientSecret);
+AccessTokenResponse Response = VisualInspection.Authorize("YourClientId", "YourClientSecret");
 ```
 
  - Generates access token
@@ -130,7 +149,8 @@ AccessTokenResponse response = visualInspection.Authorize(YourClientId, YourClie
 #### 3. Activate License
 
 ```csharp
-UploadResponse response = visualInspection.ActivateLicense(licenseFile, customerId);
+var LicenseFile = new FileModel("PathToFile", "ContentType");
+UploadResponse Response = VisualInspection.ActivateLicense(LicenseFile, "CustomerId");
 ```
 
 - Activates the license
@@ -143,7 +163,7 @@ UploadResponse response = visualInspection.ActivateLicense(licenseFile, customer
 ```json
 {
     "data": {
-        "customer_id": "test_client",
+        "customer_id": "CustomerId",
         "status": "ok"
     }
 }
@@ -164,7 +184,7 @@ UploadResponse response = visualInspection.ActivateLicense(licenseFile, customer
 }
 ```
 
--`403 Forbidden`: License is already active
+- `403 Forbidden`: License is already active
 ```json
 {
     "errors": {
@@ -181,7 +201,7 @@ UploadResponse response = visualInspection.ActivateLicense(licenseFile, customer
 #### 4. Get Items
 
 ```csharp
-ItemsResponse response = visualInspection.GetItems();
+ItemsResponse Response = VisualInspection.GetItems();
 ```
 
 - Retrieves list of uploaded items grouped by training, predict, and archived
@@ -221,7 +241,7 @@ ItemsResponse response = visualInspection.GetItems();
             "assessment": null,
             "confirmed_assessment": true,
             "date": "Mon, 10 Jun 2019 08:22:02 GMT",
-            "default_image": "https://hacarus-saas-data.s3.amazonaws.com/raw/b21d29f794e781e12f466a1fcc1bf1a1596e5320",
+            "default_image": "https://hacarus-saas-data.s3.amazonaws.com/raw/b21d29f794e781e12f466a1fcc1bf1a1596e5320a",
             "description": null,
             "detected_objects": 0,
             "finished_date": null,
@@ -231,7 +251,7 @@ ItemsResponse response = visualInspection.GetItems();
             "label": "Job id is T1-22-01",
             "override_assessment": true,
             "status": "pending",
-            "thumbnail_image": "https://hacarus-saas-data.s3.amazonaws.com/thumbnail/b21d29f794e781e12f466a1fcc1bf1a1596e5320"
+            "thumbnail_image": "https://hacarus-saas-data.s3.amazonaws.com/thumbnail/b21d29f794e781e12f466a1fcc1bf1a1596e5320a"
             }
         ]
     }
@@ -241,7 +261,7 @@ ItemsResponse response = visualInspection.GetItems();
 #### 5. Get Algorithms
 
 ```csharp
-AlgorithmResponse response = visualInspection.GetAlgorithms();
+AlgorithmResponse Response = VisualInspection.GetAlgorithms();
 ```
 
 - Returns list of available algorithms including parameters that can be used to create a model
@@ -300,7 +320,7 @@ AlgorithmResponse response = visualInspection.GetAlgorithms();
 #### 6. Get Models
 
 ```csharp
-ModelsResponse response = visualInspection.GetModels();
+ModelsResponse Response = VisualInspection.GetModels();
 ```
 
 - Gets list of created models that can be used to predict items
@@ -332,21 +352,21 @@ ModelsResponse response = visualInspection.GetModels();
 
 ```csharp
 //ID of the algorithm you want to use
-var algorithmId = "hacarus-dictionary-learning";
+var AlgorithmId = "hacarus-dictionary-learning";
 //Name of your model
-var modelName = "ModelName";
+var ModelName = "ModelName";
 //Array of of item ids to use for training the model
-var itemIds = new string[] { "item_id" };
+var ItemIds = new string[] { "ItemId" };
 //Algorithm parameter you want to adjust and use for training the model
-AlgorithmParameter algorithmParameter = new AlgorithmParameter();
-algorithmParameter.algorithm_parameter_id = 221;
-algorithmParameter.value = "50";
+AlgorithmParameter AlgorithmParameter = new AlgorithmParameter();
+algorithmParameter.AlgorithmParameterId = 221;
+algorithmParameter.Value = "50";
 
-ModelResponse reponse = visualInspection.Train(algorithmId, modelName, itemIds, new AlgorithmParameter[] { algorithmParameter });
+ModelResponse Reponse = VisualInspection.Train(AlgorithmId, ModelName, ItemIds, new AlgorithmParameter[] { AlgorithmParameter });
 ```
 
 - Creates model to use for prediction
-- Accepts an optional parameter that contains array for item ids that will be used for training the model
+- Accepts an optional parameter that contains array of item ids that will be used for training the model
 - Accepts an optional parameter that contains array of AlgorithmParameter for adjusting the algorithm settings
 - To check the newly created model, use `GetModels()` method
     
@@ -390,17 +410,16 @@ ModelResponse reponse = visualInspection.Train(algorithmId, modelName, itemIds, 
 #### 8. Add Item
 
 ```csharp
-UploadResponse response = hacarusVisualInspection.Upload(filenames, isGood);
+UploadResponse Response = VisualInspection.Upload(Files, IsGood);
 ```
 - Use this method to upload and label items for training
-- To label items as good or defect, set `isGood` parameter to a boolean value `true`(good) or `false`(defect)
+- To label items as good or defect, set `IsGood` parameter to a boolean value `true`(good) or `false`(defect)
 
 ```csharp
-UploadResponse response = hacarusVisualInspection.Upload(filenames);
+UploadResponse Response = VisualInspection.Upload(Files);
 ```
 - Use this method to upload items for prediction
-
-- Use `filenames` parameter to pass an array of `FileModel`. `FileModel` have properties `FileName` and `ContentType`.
+- Use `Files` parameter to pass an array of `FileModel`. `FileModel` have properties `FileName` and `ContentType`.
 - To create a FileModel, use `FileModel File = new FileModel()` or `FileModel File = new FileModel("FileName", "ContentType")`
 - To check the uploaded item, use the `GetItems()` method
 - The filename of the image will be used as the `item_id` of the item
@@ -456,8 +475,8 @@ UploadResponse response = hacarusVisualInspection.Upload(filenames);
 #### 9. Get Specific Item
 
 ```csharp
-//Set a specific itemId to get detailed information about the item
-ItemResponse response = visualInspection.GetItem(itemId);
+//Set a specific ItemId to get detailed information about the item
+ItemResponse Response = VisualInspection.GetItem("ItemId");
 ```
 
 - Get details of a specific item identified by its item ID 
@@ -569,9 +588,9 @@ ItemResponse response = visualInspection.GetItem(itemId);
 #### 10. Predict
 
 ```csharp
-//Use itemIds to pass an array of item ids you want to set for prediction
-//You may use a specific model for prediction by setting a modelId value. This is optional. IF not set, the active/default model will be used.
-PredictResponse response = visualInspection.Serve(itemIds, modelId);
+//Use ItemIds to pass an array of item ids you want to set for prediction
+//You may use a specific model for prediction by setting a ModelId value. This is optional. If not set, the active/default model will be used.
+PredictResponse Response = VisualInspection.Serve(ItemIds, "ModelId");
 ```
 
 - Predicts if items are good or defect
@@ -621,7 +640,7 @@ PredictResponse response = visualInspection.Serve(itemIds, modelId);
 }
 ```
 
-## Generic error
+## Generic Error
 - Error when calling a method but not yet authorized. When encounted, please call `Authorize` method first.
 
 ```json
