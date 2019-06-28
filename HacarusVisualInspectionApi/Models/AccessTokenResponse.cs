@@ -1,14 +1,20 @@
 ﻿using System;
+using Newtonsoft.Json;
+
 namespace HacarusVisualInspectionApi.Models
 {
     public class AccessTokenData
     {
-        public string access_token { get; set; }
-        public int expires { get; set; }
+        [JsonProperty("access_token")]
+        public string AccessToken { get; set; }
+
+        [JsonProperty("expires")]
+        public int Expires { get; set; }
     }
 
     public class AccessTokenResponse: Response
     {
-        public AccessTokenData data { get; set; }
+        [JsonProperty("data")]
+        public AccessTokenData Data { get; set; }
     }
 }

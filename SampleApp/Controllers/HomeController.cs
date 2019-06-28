@@ -122,8 +122,8 @@ namespace SampleApp.Controllers
         )
         {
             AlgorithmParameter algorithmParameter = new AlgorithmParameter();
-            algorithmParameter.algorithm_parameter_id = 221;
-            algorithmParameter.value = "50";
+            algorithmParameter.AlgorithmParameterId = 221;
+            algorithmParameter.Value = "50";
 
             if (string.IsNullOrEmpty(algorithmId))
             {
@@ -257,10 +257,10 @@ namespace SampleApp.Controllers
                     Console.Write(trainingResponse.data.training.Count);
                 }
 
-                if (algorithmResponse != null && algorithmResponse.data != null)
+                if (algorithmResponse != null && algorithmResponse.Data != null)
                 {
-                    ViewBag.Algorithms = algorithmResponse.data;
-                    Console.Write(algorithmResponse.data.Count);
+                    ViewBag.Algorithms = algorithmResponse.Data;
+                    Console.Write(algorithmResponse.Data.Count);
                 }
 
                 if (modelsResponse != null && modelsResponse.data != null)

@@ -13,15 +13,15 @@ namespace HacarusVisualInspectionApi.Tests
         public void Success()
         {
             Console.WriteLine("Success Start");
-            var JSONString = File.ReadAllText("../../../Files/GetModels.txt");
-            var Client = MockGenerator.MockRestClient<ModelsResponse>(HttpStatusCode.OK, JSONString);
-            HacarusVisualInspection visualInspection = new HacarusVisualInspection(Client);
-            ModelsResponse Response = visualInspection.GetModels();
+            var JsonString = File.ReadAllText("../../../Files/GetModels.txt");
+            var Client = MockGenerator.MockRestClient<ModelsResponse>(HttpStatusCode.OK, JsonString);
+            HacarusVisualInspection VisualInspection = new HacarusVisualInspection(Client);
+            ModelsResponse Response = VisualInspection.GetModels();
             Assert.IsNotNull(Response);
-            Assert.IsNotNull(Response.httpResponse);
+            Assert.IsNotNull(Response.HttpResponse);
             Assert.IsNotNull(Response.data);
-            Assert.IsNull(Response.errors);
-            Assert.IsTrue(Response.httpResponse.StatusCode.Equals(HttpStatusCode.OK));
+            Assert.IsNull(Response.Errors);
+            Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.OK));
             Assert.IsTrue(Response.data.Count.Equals(1));
             Assert.IsTrue(Response.data[0].active);
             Assert.IsTrue(Response.data[0].algorithm_id.Equals("one-class-svm"));

@@ -13,15 +13,15 @@ namespace HacarusVisualInspectionApi.Tests
         public void Success()
         {
             Console.WriteLine("Success Start");
-            var JSONString = File.ReadAllText("../../../Files/GetItemSuccess.txt");
-            var Client = MockGenerator.MockRestClient<ItemResponse>(HttpStatusCode.OK, JSONString);
-            HacarusVisualInspection visualInspection = new HacarusVisualInspection(Client);
-            ItemResponse Response = visualInspection.GetItem("ItemId");
+            var JsonString = File.ReadAllText("../../../Files/GetItemSuccess.txt");
+            var Client = MockGenerator.MockRestClient<ItemResponse>(HttpStatusCode.OK, JsonString);
+            HacarusVisualInspection VisualInspection = new HacarusVisualInspection(Client);
+            ItemResponse Response = VisualInspection.GetItem("ItemId");
             Assert.IsNotNull(Response);
-            Assert.IsNotNull(Response.httpResponse);
+            Assert.IsNotNull(Response.HttpResponse);
             Assert.IsNotNull(Response.data);
-            Assert.IsNull(Response.errors);
-            Assert.IsTrue(Response.httpResponse.StatusCode.Equals(HttpStatusCode.OK));
+            Assert.IsNull(Response.Errors);
+            Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.OK));
 
             Assert.IsTrue(Response.data.computed_assessment.assessment_result.Equals("[PatchOneClassSVMDetector] Defected product"));
             Assert.IsTrue(Response.data.computed_assessment.detected_objects.Equals(2));
@@ -73,15 +73,15 @@ namespace HacarusVisualInspectionApi.Tests
         public void SuccessManual()
         {
             Console.WriteLine("Success Start");
-            var JSONString = File.ReadAllText("../../../Files/GetItemSuccessManual.txt");
-            var Client = MockGenerator.MockRestClient<ItemResponse>(HttpStatusCode.OK, JSONString);
-            HacarusVisualInspection visualInspection = new HacarusVisualInspection(Client);
-            ItemResponse Response = visualInspection.GetItem("ItemId");
+            var JsonString = File.ReadAllText("../../../Files/GetItemSuccessManual.txt");
+            var Client = MockGenerator.MockRestClient<ItemResponse>(HttpStatusCode.OK, JsonString);
+            HacarusVisualInspection VisualInspection = new HacarusVisualInspection(Client);
+            ItemResponse Response = VisualInspection.GetItem("ItemId");
             Assert.IsNotNull(Response);
-            Assert.IsNotNull(Response.httpResponse);
+            Assert.IsNotNull(Response.HttpResponse);
             Assert.IsNotNull(Response.data);
-            Assert.IsNull(Response.errors);
-            Assert.IsTrue(Response.httpResponse.StatusCode.Equals(HttpStatusCode.OK));
+            Assert.IsNull(Response.Errors);
+            Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.OK));
 
             Assert.IsTrue(Response.data.computed_assessment.assessment_result.Equals("[DictionaryReconstructDetector] Good product!"));
             Assert.IsTrue(Response.data.computed_assessment.detected_objects.Equals(0));
@@ -107,18 +107,18 @@ namespace HacarusVisualInspectionApi.Tests
         public void FailedItemIdDoesNotExist()
         {
             Console.WriteLine("FailedItemIdDoesNotExists Start");
-            var JSONString = File.ReadAllText("../../../Files/GetItemFailedItemIdDoesNotExist.txt");
-            var Client = MockGenerator.MockRestClient<ItemResponse>(HttpStatusCode.NotFound, JSONString);
-            HacarusVisualInspection visualInspection = new HacarusVisualInspection(Client);
-            ItemResponse Response = visualInspection.GetItem("invaliditem");
+            var JsonString = File.ReadAllText("../../../Files/GetItemFailedItemIdDoesNotExist.txt");
+            var Client = MockGenerator.MockRestClient<ItemResponse>(HttpStatusCode.NotFound, JsonString);
+            HacarusVisualInspection VisualInspection = new HacarusVisualInspection(Client);
+            ItemResponse Response = VisualInspection.GetItem("invaliditem");
             Assert.IsNotNull(Response);
-            Assert.IsNotNull(Response.httpResponse);
-            Assert.IsNotNull(Response.errors);
+            Assert.IsNotNull(Response.HttpResponse);
+            Assert.IsNotNull(Response.Errors);
             Assert.IsNull(Response.data);
-            Assert.IsTrue(Response.httpResponse.StatusCode.Equals(HttpStatusCode.NotFound));
-            Assert.IsTrue(Response.errors.title.Equals("No match for item_id!"));
-            Assert.IsTrue(Response.errors.source.pointer.Equals("/api/v1/item/invaliditem"));
-            Assert.IsTrue(Response.errors.status.Equals((int)HttpStatusCode.NotFound));
+            Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.NotFound));
+            Assert.IsTrue(Response.Errors.Title.Equals("No match for item_id!"));
+            Assert.IsTrue(Response.Errors.Source.Pointer.Equals("/api/v1/item/invaliditem"));
+            Assert.IsTrue(Response.Errors.Status.Equals((int)HttpStatusCode.NotFound));
             Console.WriteLine("FailedItemIdDoesNotExist End");
         }
 
@@ -127,18 +127,18 @@ namespace HacarusVisualInspectionApi.Tests
         public void FailedItemIdNoPermission()
         {
             Console.WriteLine("FailedItemIdNoPermission Start");
-            var JSONString = File.ReadAllText("../../../Files/GetItemFailedItemIdNoPermission.txt");
-            var Client = MockGenerator.MockRestClient<ItemResponse>(HttpStatusCode.Unauthorized, JSONString);
-            HacarusVisualInspection visualInspection = new HacarusVisualInspection(Client);
-            ItemResponse Response = visualInspection.GetItem("NoPermissionItemId");
+            var JsonString = File.ReadAllText("../../../Files/GetItemFailedItemIdNoPermission.txt");
+            var Client = MockGenerator.MockRestClient<ItemResponse>(HttpStatusCode.Unauthorized, JsonString);
+            HacarusVisualInspection VisualInspection = new HacarusVisualInspection(Client);
+            ItemResponse Response = VisualInspection.GetItem("NoPermissionItemId");
             Assert.IsNotNull(Response);
-            Assert.IsNotNull(Response.httpResponse);
-            Assert.IsNotNull(Response.errors);
+            Assert.IsNotNull(Response.HttpResponse);
+            Assert.IsNotNull(Response.Errors);
             Assert.IsNull(Response.data);
-            Assert.IsTrue(Response.httpResponse.StatusCode.Equals(HttpStatusCode.Unauthorized));
-            Assert.IsTrue(Response.errors.title.Equals("No permission to view item!"));
-            Assert.IsTrue(Response.errors.source.pointer.Equals("/api/v1/item/NoPermissionItemId"));
-            Assert.IsTrue(Response.errors.status.Equals((int)HttpStatusCode.Unauthorized));
+            Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.Unauthorized));
+            Assert.IsTrue(Response.Errors.Title.Equals("No permission to view item!"));
+            Assert.IsTrue(Response.Errors.Source.Pointer.Equals("/api/v1/item/NoPermissionItemId"));
+            Assert.IsTrue(Response.Errors.Status.Equals((int)HttpStatusCode.Unauthorized));
             Console.WriteLine("FailedItemIdNoPermission End");
         }
 

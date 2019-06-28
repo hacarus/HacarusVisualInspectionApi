@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using RestSharp;
 using HacarusVisualInspectionApi.Models;
-using System.Security.Cryptography.X509Certificates;
 
 namespace HacarusVisualInspectionApi
 {
@@ -35,77 +34,77 @@ namespace HacarusVisualInspectionApi
 
         public AccessTokenResponse Authorize(string clientId, string clientSecret)
         {
-            var request = new RestRequest("auth/token", Method.POST);
+            var Request = new RestRequest("auth/token", Method.POST);
 
-            var parameters = new
+            var Parameters = new
             {
                 client_id = clientId,
                 client_secret = clientSecret,
                 grant_type = "client_credentials"
             };
-            var json = JsonConvert.SerializeObject(parameters);
-            request.AddJsonBody(json);
+            var Json = JsonConvert.SerializeObject(Parameters);
+            Request.AddJsonBody(Json);
 
-            var response = this.Client.Execute(request);
-            AccessTokenResponse responseObject = JsonConvert.DeserializeObject<AccessTokenResponse>(response.Content);
-            if(responseObject.errors == null)
+            var Response = this.Client.Execute(Request);
+            AccessTokenResponse ResponseObject = JsonConvert.DeserializeObject<AccessTokenResponse>(Response.Content);
+            if(ResponseObject.Errors == null)
             {
-                this.AccessToken = responseObject.data.access_token;
+                this.AccessToken = ResponseObject.Data.AccessToken;
             }
-            responseObject.httpResponse = response;
-            return responseObject;
+            ResponseObject.HttpResponse = Response;
+            return ResponseObject;
         }
 
         public LicenseResponse ActivateLicense(FileModel licenseFile, string costumerId)
         {
-            var request = new RestRequest("auth/license", Method.POST);
-            request.AlwaysMultipartFormData = true;
-            request.AddHeader("Content-Type", "multipart/form-data");
-            request.AddFile("license", licenseFile.FileName, licenseFile.FileName);
-            request.AddParameter("customer_id", costumerId);
-            var response = this.Client.Execute(request);
-            LicenseResponse responseObject = JsonConvert.DeserializeObject<LicenseResponse>(response.Content);
-            responseObject.httpResponse = response;
-            return responseObject;
+            var Request = new RestRequest("auth/license", Method.POST);
+            Request.AlwaysMultipartFormData = true;
+            Request.AddHeader("Content-Type", "multipart/form-data");
+            Request.AddFile("license", licenseFile.FileName, licenseFile.FileName);
+            Request.AddParameter("customer_id", costumerId);
+            var Response = this.Client.Execute(Request);
+            LicenseResponse ResponseObject = JsonConvert.DeserializeObject<LicenseResponse>(Response.Content);
+            ResponseObject.HttpResponse = Response;
+            return ResponseObject;
         }
 
         public ItemsResponse GetItems()
         {
-            var request = new RestRequest("v1/items", Method.GET);
-            request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
-            var response = this.Client.Execute(request);
-            ItemsResponse responseObject = JsonConvert.DeserializeObject<ItemsResponse>(response.Content);
-            responseObject.httpResponse = response;
-            return responseObject;
+            var Request = new RestRequest("v1/items", Method.GET);
+            Request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
+            var Response = this.Client.Execute(Request);
+            ItemsResponse ResponseObject = JsonConvert.DeserializeObject<ItemsResponse>(Response.Content);
+            ResponseObject.HttpResponse = Response;
+            return ResponseObject;
         }
 
         public AlgorithmResponse GetAlgorithms()
         {
-            var request = new RestRequest("v1/algorithms", Method.GET);
-            request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
-            var response = this.Client.Execute(request);
-            AlgorithmResponse responseObject = JsonConvert.DeserializeObject<AlgorithmResponse>(response.Content);
-            responseObject.httpResponse = response;
-            return responseObject;
+            var Request = new RestRequest("v1/algorithms", Method.GET);
+            Request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
+            var Response = this.Client.Execute(Request);
+            AlgorithmResponse ResponseObject = JsonConvert.DeserializeObject<AlgorithmResponse>(Response.Content);
+            ResponseObject.HttpResponse = Response;
+            return ResponseObject;
         }
 
 
         public ModelsResponse GetModels()
         {
-            var request = new RestRequest("v1/models", Method.GET);
-            request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
-            var response = this.Client.Execute(request);
-            ModelsResponse responseObject = JsonConvert.DeserializeObject<ModelsResponse>(response.Content);
-            responseObject.httpResponse = response;
-            return responseObject;
+            var Request = new RestRequest("v1/models", Method.GET);
+            Request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
+            var Response = this.Client.Execute(Request);
+            ModelsResponse ResponseObject = JsonConvert.DeserializeObject<ModelsResponse>(Response.Content);
+            ResponseObject.HttpResponse = Response;
+            return ResponseObject;
         }
 
 
         public ModelResponse Train(string algorithmId, string modelName, string[] itemIds, AlgorithmParameter[] algorithmParameters)
         {
-            var request = new RestRequest("v1/train", Method.POST);
-            request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
-            var parameters = new
+            var Request = new RestRequest("v1/train", Method.POST);
+            Request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
+            var Parameters = new
             {
                 algorithm_id = algorithmId,
                 name = modelName,
@@ -113,61 +112,61 @@ namespace HacarusVisualInspectionApi
                 item_ids = itemIds
             };
 
-            var json = JsonConvert.SerializeObject(parameters);
-            request.AddJsonBody(json);
-            var response = this.Client.Execute(request);
-            ModelResponse responseObject = JsonConvert.DeserializeObject<ModelResponse>(response.Content);
-            responseObject.httpResponse = response;
-            return responseObject;
+            var Json = JsonConvert.SerializeObject(Parameters);
+            Request.AddJsonBody(Json);
+            var Response = this.Client.Execute(Request);
+            ModelResponse ResponseObject = JsonConvert.DeserializeObject<ModelResponse>(Response.Content);
+            ResponseObject.HttpResponse = Response;
+            return ResponseObject;
         }
 
         public UploadResponse Upload(List<FileModel> filenames, bool? isGood, bool isTraining)
         {
-            var request = new RestRequest("v1/upload", Method.POST);
-            request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
-            request.AlwaysMultipartFormData = true;
-            request.AddHeader("Content-Type", "multipart/form-data");
+            var Request = new RestRequest("v1/upload", Method.POST);
+            Request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
+            Request.AlwaysMultipartFormData = true;
+            Request.AddHeader("Content-Type", "multipart/form-data");
             var indexCounter = 0;
             foreach (var file in filenames)
             {
-                request.AddFile("files[" + indexCounter + "]", file.FileName, file.ContentType);
+                Request.AddFile("files[" + indexCounter + "]", file.FileName, file.ContentType);
                 indexCounter = indexCounter + 1;
             }
-            request.AddParameter("training", isTraining ? "true" : "false");
-            request.AddParameter("good", isGood == null ? null : (isGood.Equals(true) ? "true" : "false"));
-            var response = this.Client.Execute(request);
-            UploadResponse responseObject = JsonConvert.DeserializeObject<UploadResponse>(response.Content);
-            responseObject.httpResponse = response;
-            return responseObject;
+            Request.AddParameter("training", isTraining ? "true" : "false");
+            Request.AddParameter("good", isGood == null ? null : (isGood.Equals(true) ? "true" : "false"));
+            var Response = this.Client.Execute(Request);
+            UploadResponse ResponseObject = JsonConvert.DeserializeObject<UploadResponse>(Response.Content);
+            ResponseObject.HttpResponse = Response;
+            return ResponseObject;
         }
 
 
         public PredictResponse Serve(string[] item_ids, int? modelId = null)
         {
-            var request = new RestRequest("v1/serve", Method.POST);
-            request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
+            var Request = new RestRequest("v1/serve", Method.POST);
+            Request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
             var predictParameters = new
             {
                 item_ids,
                 model_id = modelId
             };
 
-            var json = JsonConvert.SerializeObject(predictParameters);
-            request.AddJsonBody(json);
-            var predictResponse = this.Client.Execute(request);
-            PredictResponse responseObject = JsonConvert.DeserializeObject<PredictResponse>(predictResponse.Content);
-            responseObject.httpResponse = predictResponse;
-            return responseObject;
+            var Json = JsonConvert.SerializeObject(predictParameters);
+            Request.AddJsonBody(Json);
+            var predictResponse = this.Client.Execute(Request);
+            PredictResponse ResponseObject = JsonConvert.DeserializeObject<PredictResponse>(predictResponse.Content);
+            ResponseObject.HttpResponse = predictResponse;
+            return ResponseObject;
         }
 
         public ItemResponse GetItem(string item_id)
         {
-            var request = new RestRequest("v1/item/" + item_id, Method.GET);
-            request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
-            var predictResponse = this.Client.Execute(request);
-            ItemResponse responseObject = JsonConvert.DeserializeObject<ItemResponse>(predictResponse.Content);
-            responseObject.httpResponse = predictResponse;
-            return responseObject;
+            var Request = new RestRequest("v1/item/" + item_id, Method.GET);
+            Request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
+            var predictResponse = this.Client.Execute(Request);
+            ItemResponse ResponseObject = JsonConvert.DeserializeObject<ItemResponse>(predictResponse.Content);
+            ResponseObject.HttpResponse = predictResponse;
+            return ResponseObject;
         }
     }
 }

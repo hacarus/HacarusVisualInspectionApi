@@ -13,15 +13,15 @@ namespace HacarusVisualInspectionApi.Tests
         public void Success()
         {
             Console.WriteLine("Success Start");
-            var JSONString = File.ReadAllText("../../../Files/GetItems.txt");
-            var Client = MockGenerator.MockRestClient<ItemsResponse>(HttpStatusCode.OK, JSONString);
-            HacarusVisualInspection visualInspection = new HacarusVisualInspection(Client);
-            ItemsResponse Response = visualInspection.GetItems();
+            var JsonString = File.ReadAllText("../../../Files/GetItems.txt");
+            var Client = MockGenerator.MockRestClient<ItemsResponse>(HttpStatusCode.OK, JsonString);
+            HacarusVisualInspection VisualInspection = new HacarusVisualInspection(Client);
+            ItemsResponse Response = VisualInspection.GetItems();
             Assert.IsNotNull(Response);
-            Assert.IsNotNull(Response.httpResponse);
+            Assert.IsNotNull(Response.HttpResponse);
             Assert.IsNotNull(Response.data);
-            Assert.IsNull(Response.errors);
-            Assert.IsTrue(Response.httpResponse.StatusCode.Equals(HttpStatusCode.OK));
+            Assert.IsNull(Response.Errors);
+            Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.OK));
             Assert.IsTrue(Response.data.archived.Count.Equals(0));
             Assert.IsTrue(Response.data.predict.Count.Equals(1));
             Assert.IsTrue(Response.data.training.Count.Equals(1));
@@ -47,10 +47,10 @@ namespace HacarusVisualInspectionApi.Tests
         public void SuccessPredictGoodStatus()
         {
             Console.WriteLine("SuccessPredictGoodStatus Start");
-            var JSONString = File.ReadAllText("../../../Files/GetItems.txt");
-            var Client = MockGenerator.MockRestClient<ItemsResponse>(HttpStatusCode.OK, JSONString);
-            HacarusVisualInspection visualInspection = new HacarusVisualInspection(Client);
-            ItemsResponse Response = visualInspection.GetItems();
+            var JsonString = File.ReadAllText("../../../Files/GetItems.txt");
+            var Client = MockGenerator.MockRestClient<ItemsResponse>(HttpStatusCode.OK, JsonString);
+            HacarusVisualInspection VisualInspection = new HacarusVisualInspection(Client);
+            ItemsResponse Response = VisualInspection.GetItems();
             Assert.IsTrue(Response.data.predict[0].assessment.Equals("Upload specific status"));
             Assert.IsFalse(Response.data.predict[0].confirmed_assessment);
             Assert.IsTrue(Response.data.predict[0].date.Equals(DateTime.Parse("Wed, 19 Jun 2019 05:03:09 GMT").ToUniversalTime()));
@@ -73,10 +73,10 @@ namespace HacarusVisualInspectionApi.Tests
         public void SuccessTrainingNullStatus()
         {
             Console.WriteLine("SuccessTrainingNullStatus Start");
-            var JSONString = File.ReadAllText("../../../Files/GetItems.txt");
-            var Client = MockGenerator.MockRestClient<ItemsResponse>(HttpStatusCode.OK, JSONString);
-            HacarusVisualInspection visualInspection = new HacarusVisualInspection(Client);
-            ItemsResponse Response = visualInspection.GetItems();
+            var JsonString = File.ReadAllText("../../../Files/GetItems.txt");
+            var Client = MockGenerator.MockRestClient<ItemsResponse>(HttpStatusCode.OK, JsonString);
+            HacarusVisualInspection VisualInspection = new HacarusVisualInspection(Client);
+            ItemsResponse Response = VisualInspection.GetItems();
             Assert.IsNull(Response.data.training[0].assessment);
             Assert.IsTrue(Response.data.training[0].confirmed_assessment);
             Assert.IsTrue(Response.data.training[0].date.Equals(DateTime.Parse("Mon, 10 Jun 2019 08:22:02 GMT").ToUniversalTime()));
