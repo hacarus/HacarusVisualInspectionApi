@@ -1,0 +1,10 @@
+﻿{
+    "errors": {
+        "detail": null,
+        "source": {
+            "pointer": "https://sdd-api.hacarus.com/api/v1/item/invaliditem"
+        },
+        "status": 404,
+        "title": "No match for item_id!"
+    }
+}

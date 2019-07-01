@@ -1,0 +1,10 @@
+﻿{
+    "errors": {
+        "detail": null,
+        "source": {
+            "pointer": "https://sdd-api.hacarus.com/api/auth/token"
+        },
+        "status": 401,
+        "title": "Cannot find client information"
+    }
+}
