@@ -265,6 +265,7 @@ AlgorithmResponse Response = VisualInspection.GetAlgorithms();
 ```
 
 - Returns list of available algorithms including parameters that can be used to create a model
+- Algorithm documentation available [here](https://github.com/hacarus/HacarusVisualInspectionApi/blob/master/Integration%20Memo%20v0.pdf)
 
 ##### Sample Response
 
