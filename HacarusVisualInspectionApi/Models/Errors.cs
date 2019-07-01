@@ -5,19 +5,23 @@ namespace HacarusVisualInspectionApi.Models
 {
     public class Source
     {
-        public string pointer { get; set; }
+        [JsonProperty("pointer")]
+        public string Pointer { get; set; }
     }
 
     public class Errors
     {
-        public Source source { get; set; }
-        public int status { get; set; }
-        public string title { get; set; }
+        [JsonProperty("source")]
+        public Source Source { get; set; }
+        [JsonProperty("status")]
+        public int Status { get; set; }
+        [JsonProperty("title")]
+        public string Title { get; set; }
 
         [JsonProperty("detail")]
         private object _detail;
 
-        public string details
+        public string Details
         {
             get
             {

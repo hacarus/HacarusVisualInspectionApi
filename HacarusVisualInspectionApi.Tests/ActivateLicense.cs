@@ -15,21 +15,19 @@ namespace HacarusVisualInspectionApi.Tests
         public void Success()
         {
             Console.WriteLine("Success Start");
-            var JSONString = File.ReadAllText("../../../Files/ActivateLicenseSuccess.txt");
-            var Client = MockGenerator.MockRestClient<LicenseResponse>(HttpStatusCode.OK, JSONString);
-            HacarusVisualInspection visualInspection = new HacarusVisualInspection(Client);
-            var LicenseFile = new FileModel();
-            LicenseFile.filename = "../../../Files/license0";
-            LicenseFile.contentType = "txt";
+            var JsonString = File.ReadAllText("../../../Files/ActivateLicenseSuccess.txt");
+            var Client = MockGenerator.MockRestClient<LicenseResponse>(HttpStatusCode.OK, JsonString);
+            HacarusVisualInspection VisualInspection = new HacarusVisualInspection(Client);
+            var LicenseFile = new FileModel("../../../Files/license0", "txt");
 
-            LicenseResponse Response = visualInspection.ActivateLicense(LicenseFile, "test_customer_id");
+            LicenseResponse Response = VisualInspection.ActivateLicense(LicenseFile, "test_customer_id");
             Assert.IsNotNull(Response);
-            Assert.IsNotNull(Response.httpResponse);
-            Assert.IsNotNull(Response.data);
-            Assert.IsNull(Response.errors);
-            Assert.IsTrue(Response.httpResponse.StatusCode.Equals(HttpStatusCode.OK));
-            Assert.IsTrue(Response.data.customer_id.Equals("test_customer_id"));
-            Assert.IsTrue(Response.data.status.Equals("ok"));
+            Assert.IsNotNull(Response.HttpResponse);
+            Assert.IsNotNull(Response.Data);
+            Assert.IsNull(Response.Errors);
+            Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.OK));
+            Assert.IsTrue(Response.Data.CustomerId.Equals("test_customer_id"));
+            Assert.IsTrue(Response.Data.Status.Equals("ok"));
             Console.WriteLine("Success End");
         }
 
@@ -37,20 +35,18 @@ namespace HacarusVisualInspectionApi.Tests
         public void FailedInvalidCustomerID()
         {
             Console.WriteLine("FailedInvalidCustomerID Start");
-            var JSONString = File.ReadAllText("../../../Files/ActivateLicenseFailedInvalidCustomerID.txt");
-            var Client = MockGenerator.MockRestClient<LicenseResponse>(HttpStatusCode.Forbidden, JSONString);
-            HacarusVisualInspection visualInspection = new HacarusVisualInspection(Client);
-            var LicenseFile = new FileModel();
-            LicenseFile.filename = "../../../Files/license0";
-            LicenseFile.contentType = "txt";
-
-            LicenseResponse Response = visualInspection.ActivateLicense(LicenseFile, "invalid_test_customer_id");
+            var JsonString = File.ReadAllText("../../../Files/ActivateLicenseFailedInvalidCustomerID.txt");
+            var Client = MockGenerator.MockRestClient<LicenseResponse>(HttpStatusCode.Forbidden, JsonString);
+            HacarusVisualInspection VisualInspection = new HacarusVisualInspection(Client);
+            var LicenseFile = new FileModel("../../../Files/license0", "txt");
+           
+            LicenseResponse Response = VisualInspection.ActivateLicense(LicenseFile, "invalid_test_customer_id");
             Assert.IsNotNull(Response);
-            Assert.IsNotNull(Response.httpResponse);
-            Assert.IsNull(Response.data);
-            Assert.IsNotNull(Response.errors);
-            Assert.IsTrue(Response.httpResponse.StatusCode.Equals(HttpStatusCode.Forbidden));
-            Assert.IsTrue(Response.errors.title.Equals("Invalid license!"));
+            Assert.IsNotNull(Response.HttpResponse);
+            Assert.IsNull(Response.Data);
+            Assert.IsNotNull(Response.Errors);
+            Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.Forbidden));
+            Assert.IsTrue(Response.Errors.Title.Equals("Invalid license!"));
             Console.WriteLine("FailedInvalidCustomerID End");
         }
 
@@ -58,20 +54,18 @@ namespace HacarusVisualInspectionApi.Tests
         public void FailedInvalidLicenseFile()
         {
             Console.WriteLine("FailedInvalidLicenseFile Start");
-            var JSONString = File.ReadAllText("../../../Files/ActivateLicenseFailedInvalidCustomerID.txt");
-            var Client = MockGenerator.MockRestClient<LicenseResponse>(HttpStatusCode.Forbidden, JSONString);
-            HacarusVisualInspection visualInspection = new HacarusVisualInspection(Client);
-            var LicenseFile = new FileModel();
-            LicenseFile.filename = "../../../Files/license0";
-            LicenseFile.contentType = "txt";
+            var JsonString = File.ReadAllText("../../../Files/ActivateLicenseFailedInvalidCustomerID.txt");
+            var Client = MockGenerator.MockRestClient<LicenseResponse>(HttpStatusCode.Forbidden, JsonString);
+            HacarusVisualInspection VisualInspection = new HacarusVisualInspection(Client);
+            var LicenseFile = new FileModel("../../../Files/license0", "txt");
 
-            LicenseResponse Response = visualInspection.ActivateLicense(LicenseFile, "test_customer_id");
+            LicenseResponse Response = VisualInspection.ActivateLicense(LicenseFile, "test_customer_id");
             Assert.IsNotNull(Response);
-            Assert.IsNotNull(Response.httpResponse);
-            Assert.IsNull(Response.data);
-            Assert.IsNotNull(Response.errors);
-            Assert.IsTrue(Response.httpResponse.StatusCode.Equals(HttpStatusCode.Forbidden));
-            Assert.IsTrue(Response.errors.title.Equals("Invalid license!"));
+            Assert.IsNotNull(Response.HttpResponse);
+            Assert.IsNull(Response.Data);
+            Assert.IsNotNull(Response.Errors);
+            Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.Forbidden));
+            Assert.IsTrue(Response.Errors.Title.Equals("Invalid license!"));
             Console.WriteLine("FailedInvalidLicenseFile End");
         }
 
@@ -79,21 +73,19 @@ namespace HacarusVisualInspectionApi.Tests
         public void FailedLicenseFileExists()
         {
             Console.WriteLine("FailedLicenseFileExists Start");
-            var JSONString = File.ReadAllText("../../../Files/ActivateLicenseFailedLicenseFileExists.txt");
-            var Client = MockGenerator.MockRestClient<LicenseResponse>(HttpStatusCode.Forbidden, JSONString);
-            HacarusVisualInspection visualInspection = new HacarusVisualInspection(Client);
-            var LicenseFile = new FileModel();
-            LicenseFile.filename = "../../../Files/license0";
-            LicenseFile.contentType = "txt";
+            var JsonString = File.ReadAllText("../../../Files/ActivateLicenseFailedLicenseFileExists.txt");
+            var Client = MockGenerator.MockRestClient<LicenseResponse>(HttpStatusCode.Forbidden, JsonString);
+            HacarusVisualInspection VisualInspection = new HacarusVisualInspection(Client);
+            var LicenseFile = new FileModel("../../../Files/license0", "txt");
 
-            LicenseResponse Response = visualInspection.ActivateLicense(LicenseFile, "test_customer_id");
+            LicenseResponse Response = VisualInspection.ActivateLicense(LicenseFile, "test_customer_id");
             Assert.IsNotNull(Response);
-            Assert.IsNotNull(Response.httpResponse);
-            Assert.IsNull(Response.data);
-            Assert.IsNotNull(Response.errors);
-            Assert.IsTrue(Response.httpResponse.StatusCode.Equals(HttpStatusCode.Forbidden));
-            Assert.IsTrue(Response.errors.title.Equals("Invalid license!"));
-            Assert.IsTrue(Response.errors.details.Equals("License already exists"));
+            Assert.IsNotNull(Response.HttpResponse);
+            Assert.IsNull(Response.Data);
+            Assert.IsNotNull(Response.Errors);
+            Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.Forbidden));
+            Assert.IsTrue(Response.Errors.Title.Equals("Invalid license!"));
+            Assert.IsTrue(Response.Errors.Details.Equals("License already exists"));
             Console.WriteLine("FailedLicenseFileExists End");
         }
     }

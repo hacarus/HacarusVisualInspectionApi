@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace HacarusVisualInspectionApi.Models
 {
     public class UploadData
     {
-        public List<string> item_ids { get; set; }
+        [JsonProperty("item_ids")]
+        public List<string> ItemIds { get; set; }
     }
 
     public class UploadResponse : Response
     {
-        public UploadData data { get; set; }
+        [JsonProperty("data")]
+        public UploadData Data { get; set; }
     }
 
 }

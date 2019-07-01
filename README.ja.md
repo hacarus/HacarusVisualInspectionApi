@@ -6,11 +6,11 @@ Visual Inspection Api for C#
 
 弊社のスパースモデリングに基づいた技術は、人間のようにデータを理解できる独自の機械学習手法です。スパースモデリングは軽量に設計されているため、コンピューティングパワー、クラウド環境、および少量の学習データなどの資源の制限された環境下で特に有用です。
 
-弊社のソリューションは組み込みシステムでオフライン環境かクラウドで実行できます。伝統的なDLベースの手法に比べ、資源を効率的に使用し、よりよい結果を提供します。
+弊社のソリューションは組み込みシステムでオフライン環境かクラウドで実行できます。伝統的なディープラーニングベースの手法に比べ、資源を効率的に使用し、よりよい結果を提供します。
 
-ハカルスの外観検査ソリューションの詳細を参照するには、こちらのリンク、https://hacarus.com/visual-inspection/ をご覧ください。また、APIへのアクセスのリクエストはinquiry@hacarus.comまでご連絡ください。
+ハカルスの外観検査ソリューションの詳細を参照するには、こちらのリンク、https://hacarus.com/ja/visual-inspection/ をご覧ください。また、APIへのアクセスのリクエストは[contact us](https://hacarus.com/ja/contact/) までご連絡ください。
 
-この外観検査 API wrapper for C#はあなたのC#のプロジェクトに、このAPI通して外観検査モジュールを組み込むことができます。このライブラリはC# .Net Framework 4.6.1 と.Net Core 2.0.をサポートしています。
+この外観検査用 API wrapper for C#は、あなたのC#のプロジェクトに、APIを通じて外観検査モジュールを組み込むことができます。このライブラリはC# .Net Framework 4.6.1 と .Net Core 2.0.をサポートしています。
 
 
 - [インストール](#インストール)
@@ -64,28 +64,50 @@ NuGetパッケージマネージャを使用してプロジェクトに追加す
 
 ## 使用方法
 
+始めに、下記のものが必要です。
+* クライエントIDとクライエントシークレット
+    * これはSDKを認証するために使用されます。
+    * 認証されたユーザーはシステム機能にアクセスでき、データを追加したり、データ、アルゴリズム、モデルの一覧を取得ことができます。
+    * モデルの学習や推論を行うためにはライセンスをアクティベートする必要があります。
+* ライセンスファイルとカスタマーID
+    * これはライセンスをアクティベートするため使用されます。
+* 学習画像
+    * モデルを作成するためには、画像をアップロードして、学習データを提供する必要があります。
+    * モデルを作成するには学習データが使用されます。
+    * 画像をアップロードすることで推論のためのデータを追加します。
+    * 作成済みのモデルを用いてデータを推論します。
+    * サンプル画像はこちらからダウンロードすることができます。（[Metal Plates](https://drive.google.com/file/d/1Zg-gCX9gxxYjEau9j29oe0hDBuppDosh/view)、[Wood Blocks](https://https://drive.google.com/file/d/1oRvEfeDfa3seEn0rFXRa1IgTUyzg0hxv/view)）
+        * モデルの作成に使用できる良品と不良品の画像とパラメータの一覧が含まれています。
+        * 学習用の画像はtrainフォルダにあり、推論用の画像はpredictフォルダにあります。
+        * NGとは不良品の画像、OKとは良品の画像という意味です。
+
+
+
+
+
+
+
 #### 1. 初期化
 
 ```csharp
 using HacarusVisualInspectionApi;
 using HacarusVisualInspectionApi.Models;
-HacarusVisualInspection visualInspection = new HacarusVisualInspection("https://yourserverurl.com/api");
+HacarusVisualInspection VisualInspection = new HacarusVisualInspection("https://yourserverurl.com/api");
 ```
 
-- ライブラリを初期化します
-- エンドポイントURLを引数として入力
-- エンドポイントが入力されていない場合、ライブラリはデフォルトのエンドポイントhttps://sdd.hacarus.com/apiを使用します。
+- ライブラリを初期化します。
+- エンドポイントURLをとして入力。
+- エンドポイントが入力されていない場合、ライブラリはデフォルトのエンドポイント https://sdd.hacarus.com/api を使用します。
 - 個別のエンドポイントURLは、リクエストに応じてHacarusから提供されます。
-
 
 #### 2. 認証
 
 ```csharp
-AccessTokenResponse response = visualInspection.Authorize(YourClientId, YourClientSecret);
+AccessTokenResponse Response = VisualInspection.Authorize("YourClientId", "YourClientSecret");
 ```
 
-- アクセストークンを生成します
-- クライアントIDとクライアントシークレットを引数として入力する
+- アクセストークンを作成します。
+- クライアントIDとクライアントシークレットをパラメータとして入力する。
 - クライアントIDとクライアントシークレットは、リクエストに応じてHacarusから提供されます。
 
 
@@ -102,7 +124,7 @@ AccessTokenResponse response = visualInspection.Authorize(YourClientId, YourClie
 
 ##### 起こり得るエラー
 
-- `401 Unauthorized`: クライアントIDが無効です
+- `401 Unauthorized`: クライアントIDが無効です。
 
 ```json
 {
@@ -117,7 +139,7 @@ AccessTokenResponse response = visualInspection.Authorize(YourClientId, YourClie
 }
 ```
 
-- `401 Unauthorized`: クライアントシークレットが無効です
+- `401 Unauthorized`: クライアントシークレットが無効です。
 
 ```json
 {
@@ -135,11 +157,12 @@ AccessTokenResponse response = visualInspection.Authorize(YourClientId, YourClie
 #### 3. ライセンスのアクティベート
 
 ```csharp
-UploadResponse response = visualInspection.ActivateLicense(licenseFile, customerId);
+var LicenseFile = new FileModel("PathToFile", "ContentType");
+UploadResponse Response = VisualInspection.ActivateLicense(LicenseFile, "CustomerId");
 ```
 
-- ライセンスをアクティベートします
-- ライセンスファイルとカスタマーIDを引数として入力してください。
+- ライセンスをアクティベートします。
+- ライセンスファイルとカスタマーIDをパラメータとして入力してください。
 - ライセンスはユーザーが`Train` または `Predict`というファンクションを使用する前にアクティベートしてください。
 - ライセンスファイルを取得するには、ハカルスにご連絡ください。
 
@@ -157,7 +180,7 @@ UploadResponse response = visualInspection.ActivateLicense(licenseFile, customer
 
 #### 起こり得るエラー
 
-- `403 Forbidden`: 得意先コードまたはライセンスファイルが無効  
+- `403 Forbidden`: カスタマーIDまたはライセンスファイルが無効。  
 ```json
 {
     "errors": {
@@ -172,7 +195,7 @@ UploadResponse response = visualInspection.ActivateLicense(licenseFile, customer
 ```
 
 
--`403 Forbidden`: ライセンスはアクティベート済み
+- `403 Forbidden`: ライセンスはアクティベート済み。
 ```json
 {
     "errors": {
@@ -189,14 +212,14 @@ UploadResponse response = visualInspection.ActivateLicense(licenseFile, customer
 #### 4. データを取得する
 
 ```csharp
-ItemsResponse response = visualInspection.GetItems();
+ItemsResponse Response = VisualInspection.GetItems();
 ```
 
 - 学習、推論、およびアーカイブ別に分類したアップロード済みアイテムのリストを取得します。
     - `training`: 学習に使用するデータ
         - データが`true`（good）、`false`（defect）、または`null`（ラベルなし）のいずれかにラベル付けされているかをgoodというキーで知ることができます。
     - `predict`: アップロード済みのデータのうち、推論用のもの
-        - 推論結果を確認するには、`good`と`status`のキーを確認してください
+        - 推論結果を確認するには、`good`と`status`のキーを確認してください。
     - `archived`: アーカイブ済みデータ（将来実装予定の機能、現在使用されていません）
 - `override_assessment`および`confirm_assessment`はUI（ユーザインタフェース）固有のものであり、SDKを使用している場合は無視できます。
 
@@ -249,10 +272,10 @@ ItemsResponse response = visualInspection.GetItems();
 #### 5. アルゴリズムを取得する
 
 ```csharp
-AlgorithmResponse response = visualInspection.GetAlgorithms();
+AlgorithmResponse Response = VisualInspection.GetAlgorithms();
 ```
 
-- 学習に使用できるアルゴリズムと使用できるパラメータの一覧をリストで返します
+- 学習に使用できるアルゴリズムと使用できるパラメータの一覧をリストで返します。
 
 ##### レスポンスの一例
 
@@ -290,7 +313,7 @@ AlgorithmResponse response = visualInspection.GetAlgorithms();
 
 ##### 起こり得るエラー
 
-- `404 NotFound`: 利用可能なアルゴリズムがありません。 この問題が発生した場合はHacarusに連絡してください
+- `404 NotFound`: 利用可能なアルゴリズムがありません。 この問題が発生した場合はHacarusに連絡してください。
 
 ```json
 {
@@ -308,10 +331,10 @@ AlgorithmResponse response = visualInspection.GetAlgorithms();
 #### 6. モデルを取得する
 
 ```csharp
-ModelsResponse response = visualInspection.GetModels();
+ModelsResponse Response = VisualInspection.GetModels();
 ```
 
-- データを推論するのに使用できる作成済みモデルのリストを取得します
+- データを推論するのに使用できる作成済みモデルのリストを取得します。
 - モデルIDが渡されなかった場合（`Serve`メソッドを使用して）、`active`が`true`のモデルをデフォルトとして使用します。
 - `status`キーは、モデルが`active`か`failed`かを示します。 
     - `status`が `active`のモデルは正常に作成され、予測に使用できます
@@ -340,23 +363,23 @@ ModelsResponse response = visualInspection.GetModels();
 
 ```csharp
 //ID of the algorithm you want to use
-var algorithmId = "hacarus-dictionary-learning";
+var AlgorithmId = "hacarus-dictionary-learning";
 //Name of your model
-var modelName = "ModelName";
+var ModelName = "ModelName";
 //Array of of item ids to use for training the model
-var itemIds = new string[] { "item_id" };
+var ItemIds = new string[] { "ItemId" };
 //Algorithm parameter you want to adjust and use for training the model
-AlgorithmParameter algorithmParameter = new AlgorithmParameter();
-algorithmParameter.algorithm_parameter_id = 221;
-algorithmParameter.value = "50";
+AlgorithmParameter AlgorithmParameter = new AlgorithmParameter();
+algorithmParameter.AlgorithmParameterId = 221;
+algorithmParameter.Value = "50";
 
-ModelResponse reponse = visualInspection.Train(algorithmId, modelName, itemIds, new AlgorithmParameter[] { algorithmParameter });
+ModelResponse Reponse = VisualInspection.Train(AlgorithmId, ModelName, ItemIds, new AlgorithmParameter[] { AlgorithmParameter });
 ```
 
-- 推論に使用するモデルを作成します
-- モデルの学習に使用するデータIDの配列を含むオプションのパラメータを入力します
-- アルゴリズムの設定を調整するためAlgorithmParameterの配列を入力します
-- 新しく作成したモデルを確認するには、GetModels（）メソッドを使用します。
+- 推論に使用するモデルを作成します。
+- モデルの学習に使用するデータIDの配列を含むオプションのパラメータを入力します。
+- アルゴリズムの設定を調整するため`AlgorithmParameter`の配列を入力します。
+- 新しく作成したモデルを確認するには、`GetModels（）`メソッドを使用します。
     
 
 ##### レスポンスの一例
@@ -398,18 +421,19 @@ ModelResponse reponse = visualInspection.Train(algorithmId, modelName, itemIds, 
 #### 8. データを追加する
 
 ```csharp
-UploadResponse response = visualInspection.Upload(filenames, isGood, isTraining);
+UploadResponse Response = VisualInspection.Upload(Files, IsGood);
 ```
-
-- このメソッドを使用して、学習または推論のためのデータをアップロードしてラベルを付けます
-- データに良品または不良品としてラベルを付ける場合は、`isGood`パラメータをブール値で`true`（良品）または`false`（不良品）に設定します。それ以外の場合は、`null`（ラベルなし）を使用します。
-- データをアップロードする場合、データを推論に使用するか学習に使用するかを設定するには、`isTraining`パラメーターを使用します。 isTrainingパラメータは必要です。
-
-- `filenames`パラメータを使用して`FileModel`の配列を渡します。 `FileModel`は`filename`と`contentType`のプロパティを持ちます。
+- このメソッドを使用して、学習のためのデータをアップロードしてラベルを付けます。
+- データに良品または不良品としてラベルを付ける場合は、`IsGood`パラメータをブール値で`true`（良品）または`false`（不良品）に設定します。
+```csharp
+UploadResponse Response = VisualInspection.Upload(Files);`
+```
+- このメソッドを使用して、推論のためのデータをアップロードしてラベルを付けます。
+- `Files`パラメータを使用して`FileModel`の配列を渡します。 `FileModel`は`FileName`と`ContentType`のプロパティを持ちます。
+- FileModelを作成をするには、`FileModel File = new FileModel() `または、 `FileModel File = new FileModel("FileName", "ContentType")`を使用してください。
 - アップロードしたデータを確認するには、`GetItems（）`メソッドを使用します。
 - 画像のファイル名はデータID(`item_id`)として使用します。
 - サポートされているファイル形式：`png`、`jpeg`、`tiff`
-
 
 ##### レスポンスの一例
 
@@ -425,7 +449,7 @@ UploadResponse response = visualInspection.Upload(filenames, isGood, isTraining)
 
 ##### 起こり得るエラー
 
-- `400 BadRequest`: ファイル名かファイル形の無効
+- `400 BadRequest`: ファイル名かファイル形の無効。
 
 ```json
 {
@@ -442,7 +466,7 @@ UploadResponse response = visualInspection.Upload(filenames, isGood, isTraining)
 }
 ```
 
-- `400 BadRequest`: アップロード用の画像が送信されていません
+- `400 BadRequest`: アップロード用の画像が送信されていません。
 
 ```json
 {
@@ -460,8 +484,8 @@ UploadResponse response = visualInspection.Upload(filenames, isGood, isTraining)
 #### 9. 特定のデータを取得する
 
 ```csharp
-//Set a specific itemId to get detailed information about the item
-ItemResponse response = visualInspection.GetItem(itemId);
+//Set a specific ItemId to get detailed information about the item
+ItemResponse Response = VisualInspection.GetItem("ItemId");
 ```
 
 - データIDで特定のデータを取得します。
@@ -471,7 +495,7 @@ ItemResponse response = visualInspection.GetItem(itemId);
     - `annotations`: `Serve`メソッドが呼び出されたときに生成されるアノテーションのリストを含みます
     - `raw_url`: アップロードされたファイルのURL
     - `url`: 欠陥箇所表示ファイル（緑色のボックス）
-    - `status`: データのステータス。`pending`（推論前または予測中）または`done`（予測済み）のいずれか。
+    - `status`: データのステータス。`pending`（推論前または予測中）または`done`（予測済み）のいずれか
 
 ##### レスポンスの一例
 
@@ -573,12 +597,12 @@ ItemResponse response = visualInspection.GetItem(itemId);
 #### 10. 予測
 
 ```csharp
-//Use itemIds to pass an array of item ids you want to set for prediction
-//You may use a specific model for prediction by setting a modelId value. This is optional. IF not set, the active/default model will be used.
-PredictResponse response = visualInspection.Serve(itemIds, modelId);
+//Use ItemIds to pass an array of item ids you want to set for prediction
+//You may use a specific model for prediction by setting a ModelId value. This is optional. If not set, the active/default model will be used.
+PredictResponse Response = VisualInspection.Serve(ItemIds, "ModelId");
 ```
 
-- データは良品か不良品があるか推論します
+- データは良品か不良品があるか推論します。
 - 結果を確認するには、`GetItems()`メソッドを使用して、各データの`good`キーを確認します。
 
 ##### レスポンスの一例

@@ -14,22 +14,19 @@ namespace HacarusVisualInspectionApi.Tests
         public void Success()
         {
             Console.WriteLine("Success Start");
-            var JSONString = File.ReadAllText("../../../Files/UploadSuccess.txt");
-            var Client = MockGenerator.MockRestClient<UploadResponse>(HttpStatusCode.OK, JSONString);
-            HacarusVisualInspection visualInspection = new HacarusVisualInspection(Client);
+            var JsonString = File.ReadAllText("../../../Files/UploadSuccess.txt");
+            var Client = MockGenerator.MockRestClient<UploadResponse>(HttpStatusCode.OK, JsonString);
+            HacarusVisualInspection VisualInspection = new HacarusVisualInspection(Client);
 
-            var file = new FileModel();
-            file.filename = "../../../Files/NewItem.JPG";
-            file.contentType = "jpg";
-
-            UploadResponse Response = visualInspection.Upload(new List<FileModel> { file }, null, false);
+            var file = new FileModel("../../../Files/NewItem.JPG", "jpg");
+            UploadResponse Response = VisualInspection.Upload(new List<FileModel> { file });
             Assert.IsNotNull(Response);
-            Assert.IsNotNull(Response.httpResponse);
-            Assert.IsNotNull(Response.data);
-            Assert.IsNull(Response.errors);
-            Assert.IsTrue(Response.httpResponse.StatusCode.Equals(HttpStatusCode.OK));
-            Assert.IsTrue(Response.data.item_ids.Count.Equals(1));
-            Assert.IsTrue(Response.data.item_ids[0].Equals("NewItem"));
+            Assert.IsNotNull(Response.HttpResponse);
+            Assert.IsNotNull(Response.Data);
+            Assert.IsNull(Response.Errors);;
+            Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.OK));
+            Assert.IsTrue(Response.Data.ItemIds.Count.Equals(1));
+            Assert.IsTrue(Response.Data.ItemIds[0].Equals("NewItem"));
             Console.WriteLine("Success End");
         }
 
@@ -37,24 +34,22 @@ namespace HacarusVisualInspectionApi.Tests
         public void FailedInvalidFile()
         {
             Console.WriteLine("FailedInvalidFile Start");
-            var JSONString = File.ReadAllText("../../../Files/UploadFailedInvalidFile.txt");
-            var Client = MockGenerator.MockRestClient<UploadResponse>(HttpStatusCode.BadRequest, JSONString);
-            HacarusVisualInspection visualInspection = new HacarusVisualInspection(Client);
+            var JsonString = File.ReadAllText("../../../Files/UploadFailedInvalidFile.txt");
+            var Client = MockGenerator.MockRestClient<UploadResponse>(HttpStatusCode.BadRequest, JsonString);
+            HacarusVisualInspection VisualInspection = new HacarusVisualInspection(Client);
 
-            var file = new FileModel();
-            file.filename = "../../../Files/NewItem invalid.name.JPG";
-            file.contentType = "jpg";
-
-            UploadResponse Response = visualInspection.Upload(new List<FileModel> { file }, null, false);
+            var file = new FileModel("../../../Files/NewItem invalid.name.JPG", "jpg");
+           
+            UploadResponse Response = VisualInspection.Upload(new List<FileModel> { file }, true);
             Assert.IsNotNull(Response);
-            Assert.IsNotNull(Response.httpResponse);
-            Assert.IsNotNull(Response.errors);
-            Assert.IsNull(Response.data);
-            Assert.IsTrue(Response.httpResponse.StatusCode.Equals(HttpStatusCode.BadRequest));
-            Assert.IsTrue(Response.errors.title.Equals("Invalid Request"));
-            Assert.IsTrue(Response.errors.details.Equals("NewItem invalid.name.png"));
-            Assert.IsTrue(Response.errors.source.pointer.Equals("/api/v1/upload"));
-            Assert.IsTrue(Response.errors.status.Equals((int)HttpStatusCode.BadRequest));
+            Assert.IsNotNull(Response.HttpResponse);
+            Assert.IsNotNull(Response.Errors);;
+            Assert.IsNull(Response.Data);
+            Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.BadRequest));
+            Assert.IsTrue(Response.Errors.Title.Equals("Invalid Request"));
+            Assert.IsTrue(Response.Errors.Details.Equals("NewItem invalid.name.png"));
+            Assert.IsTrue(Response.Errors.Source.Pointer.Equals("/api/v1/upload"));
+            Assert.IsTrue(Response.Errors.Status.Equals((int)HttpStatusCode.BadRequest));
             Console.WriteLine("FailedInvalidFile End");
         }
 
@@ -62,20 +57,20 @@ namespace HacarusVisualInspectionApi.Tests
         public void FailedNoFile()
         {
             Console.WriteLine("FailedNoFile Start");
-            var JSONString = File.ReadAllText("../../../Files/UploadFailedNoFile.txt");
-            var Client = MockGenerator.MockRestClient<UploadResponse>(HttpStatusCode.BadRequest, JSONString);
-            HacarusVisualInspection visualInspection = new HacarusVisualInspection(Client);
+            var JsonString = File.ReadAllText("../../../Files/UploadFailedNoFile.txt");
+            var Client = MockGenerator.MockRestClient<UploadResponse>(HttpStatusCode.BadRequest, JsonString);
+            HacarusVisualInspection VisualInspection = new HacarusVisualInspection(Client);
 
-            UploadResponse Response = visualInspection.Upload(new List<FileModel> { }, null, false);
+            UploadResponse Response = VisualInspection.Upload(new List<FileModel> { });
             Assert.IsNotNull(Response);
-            Assert.IsNotNull(Response.httpResponse);
-            Assert.IsNotNull(Response.errors);
-            Assert.IsNull(Response.data);
-            Assert.IsTrue(Response.httpResponse.StatusCode.Equals(HttpStatusCode.BadRequest));
-            Assert.IsTrue(Response.errors.title.Equals("No images to upload"));
-            Assert.IsNull(Response.errors.details);
-            Assert.IsTrue(Response.errors.source.pointer.Equals("/api/v1/upload"));
-            Assert.IsTrue(Response.errors.status.Equals((int)HttpStatusCode.BadRequest));
+            Assert.IsNotNull(Response.HttpResponse);
+            Assert.IsNotNull(Response.Errors);
+            Assert.IsNull(Response.Data);
+            Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.BadRequest));
+            Assert.IsTrue(Response.Errors.Title.Equals("No images to upload"));
+            Assert.IsNull(Response.Errors.Details);
+            Assert.IsTrue(Response.Errors.Source.Pointer.Equals("/api/v1/upload"));
+            Assert.IsTrue(Response.Errors.Status.Equals((int)HttpStatusCode.BadRequest));
             Console.WriteLine("FailedNoFile End");
         }
 

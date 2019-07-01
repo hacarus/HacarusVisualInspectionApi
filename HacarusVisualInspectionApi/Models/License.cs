@@ -1,14 +1,20 @@
 ﻿using System;
+using Newtonsoft.Json;
+
 namespace HacarusVisualInspectionApi.Models
 {
     public class LicenseData
     {
-        public string customer_id { get; set; }
-        public string status { get; set; }
+        [JsonProperty("customer_id")]
+        public string CustomerId { get; set; }
+
+        [JsonProperty("status")]
+        public string Status { get; set; }
     }
 
     public class LicenseResponse : Response
     {
-        public LicenseData data { get; set; }
+        [JsonProperty("data")]
+        public LicenseData Data { get; set; }
     }
 }

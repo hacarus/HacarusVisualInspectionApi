@@ -22,17 +22,17 @@ namespace HacarusVisualInspectionApi.Tests
         public void Success()
         {
             Console.WriteLine("Success Start");
-            var JSONString = File.ReadAllText("../../../Files/AuthorizeSuccess.txt");
-            var Client = MockGenerator.MockRestClient<AccessTokenResponse>(HttpStatusCode.OK, JSONString);
-            HacarusVisualInspection visualInspection = new HacarusVisualInspection(Client);
-            AccessTokenResponse response = visualInspection.Authorize("ValidClientId", "ValidClientSecret");
-            Assert.IsNotNull(response);
-            Assert.IsNotNull(response.httpResponse);
-            Assert.IsNotNull(response.data);
-            Assert.IsNull(response.errors);
-            Assert.IsTrue(response.httpResponse.StatusCode.Equals(HttpStatusCode.OK));
-            Assert.IsTrue(response.data.access_token.Equals("GeneratedAccessToken"));
-            Assert.IsTrue(response.data.expires.Equals(2592000));
+            var JsonString = File.ReadAllText("../../../Files/AuthorizeSuccess.txt");
+            var Client = MockGenerator.MockRestClient<AccessTokenResponse>(HttpStatusCode.OK, JsonString);
+            HacarusVisualInspection VisualInspection = new HacarusVisualInspection(Client);
+            AccessTokenResponse Response = VisualInspection.Authorize("ValidClientId", "ValidClientSecret");
+            Assert.IsNotNull(Response);
+            Assert.IsNotNull(Response.HttpResponse);
+            Assert.IsNotNull(Response.Data);
+            Assert.IsNull(Response.Errors);
+            Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.OK));
+            Assert.IsTrue(Response.Data.AccessToken.Equals("GeneratedAccessToken"));
+            Assert.IsTrue(Response.Data.Expires.Equals(2592000));
             Console.WriteLine("Success End");
 
         }
@@ -41,17 +41,17 @@ namespace HacarusVisualInspectionApi.Tests
         public void FailedClientID()
         {
             Console.WriteLine("FailedClientID Start");
-            var JSONString = File.ReadAllText("../../../Files/AuthorizeFailedClientID.txt");
-            var Client = MockGenerator.MockRestClient<AccessTokenResponse>(HttpStatusCode.Unauthorized, JSONString);
-            HacarusVisualInspection visualInspection = new HacarusVisualInspection(Client);
-            AccessTokenResponse response = visualInspection.Authorize("InvalidClientId", "ValidClientSecret");
-            Assert.IsNotNull(response);
-            Assert.IsNotNull(response.httpResponse);
-            Assert.IsNotNull(response.errors);
-            Assert.IsNull(response.data);
-            Assert.IsTrue(response.httpResponse.StatusCode.Equals(HttpStatusCode.Unauthorized));
-            Assert.IsTrue(response.errors.title.Equals("Cannot find client information"));
-            Assert.IsTrue(response.errors.status.Equals((int)HttpStatusCode.Unauthorized));
+            var JsonString = File.ReadAllText("../../../Files/AuthorizeFailedClientID.txt");
+            var Client = MockGenerator.MockRestClient<AccessTokenResponse>(HttpStatusCode.Unauthorized, JsonString);
+            HacarusVisualInspection VisualInspection = new HacarusVisualInspection(Client);
+            AccessTokenResponse Response = VisualInspection.Authorize("InvalidClientId", "ValidClientSecret");
+            Assert.IsNotNull(Response);
+            Assert.IsNotNull(Response.HttpResponse);
+            Assert.IsNotNull(Response.Errors);
+            Assert.IsNull(Response.Data);
+            Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.Unauthorized));
+            Assert.IsTrue(Response.Errors.Title.Equals("Cannot find client information"));
+            Assert.IsTrue(Response.Errors.Status.Equals((int)HttpStatusCode.Unauthorized));
             Console.WriteLine("FailedClientID End");
 
         }
@@ -60,18 +60,18 @@ namespace HacarusVisualInspectionApi.Tests
         public void FailedClientSecret()
         {
             Console.WriteLine("FailedClientSecret Start");
-            var JSONString = File.ReadAllText("../../../Files/AuthorizeFailedClientSecret.txt");
-            var Client = MockGenerator.MockRestClient<AccessTokenResponse>(HttpStatusCode.Unauthorized, JSONString);
-            HacarusVisualInspection visualInspection = new HacarusVisualInspection(Client);
-            AccessTokenResponse response = visualInspection.Authorize("ValidClientId", "InvalidClientSecret");
-            Assert.IsNotNull(response);
-            Assert.IsNotNull(response.httpResponse);
-            Assert.IsNotNull(response.errors);
-            Assert.IsNull(response.data);
-            Assert.IsTrue(response.httpResponse.StatusCode.Equals(HttpStatusCode.Unauthorized));
-            Assert.IsTrue(response.errors.title.Equals("Client id and secret mismatch"));
-            Assert.IsTrue(response.errors.source.pointer.Equals("/api/auth/token"));
-            Assert.IsTrue(response.errors.status.Equals((int)HttpStatusCode.Unauthorized));
+            var JsonString = File.ReadAllText("../../../Files/AuthorizeFailedClientSecret.txt");
+            var Client = MockGenerator.MockRestClient<AccessTokenResponse>(HttpStatusCode.Unauthorized, JsonString);
+            HacarusVisualInspection VisualInspection = new HacarusVisualInspection(Client);
+            AccessTokenResponse Response = VisualInspection.Authorize("ValidClientId", "InvalidClientSecret");
+            Assert.IsNotNull(Response);
+            Assert.IsNotNull(Response.HttpResponse);
+            Assert.IsNotNull(Response.Errors);
+            Assert.IsNull(Response.Data);
+            Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.Unauthorized));
+            Assert.IsTrue(Response.Errors.Title.Equals("Client id and secret mismatch"));
+            Assert.IsTrue(Response.Errors.Source.Pointer.Equals("/api/auth/token"));
+            Assert.IsTrue(Response.Errors.Status.Equals((int)HttpStatusCode.Unauthorized));
             Console.WriteLine("FailedClientSecret End");
         }
 

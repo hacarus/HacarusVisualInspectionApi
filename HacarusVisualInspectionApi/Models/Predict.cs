@@ -1,17 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace HacarusVisualInspectionApi.Models
 {
 
     public class PredictData
     {
-        public List<string> item_ids { get; set; }
-        public string model_version { get; set; }
+        [JsonProperty("item_ids")]
+        public List<string> ItemIds { get; set; }
+
+        [JsonProperty("model_version")]
+        public string ModelVersion { get; set; }
     }
 
     public class PredictResponse: Response
     {
-        public PredictData data { get; set; }
+        [JsonProperty("data")]
+        public PredictData Data { get; set; }
     }
 }

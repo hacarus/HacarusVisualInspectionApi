@@ -200,7 +200,7 @@ ModelRootObject reponse = sdd.Train(algorithmId, modelName, itemIds, algorithmPa
                         <select id="algorithmId" name="algorithmId" class="form-control">
                             @foreach (HacarusVisualInspectionApi.Models.Algorithm algo in ViewBag.Algorithms)
                             {
-                            <option value="@algo.algorithm_id">@algo.name</option>
+                            <option value="@algo.AlgorithmId">@algo.Name</option>
                             }
                         </select>
                     </div>
@@ -214,7 +214,7 @@ ModelRootObject reponse = sdd.Train(algorithmId, modelName, itemIds, algorithmPa
                         <select id="itemIds" name="itemIds" class="form-control" multiple>
                             @foreach (HacarusVisualInspectionApi.Models.Item item in ViewBag.TrainingItems)
                             {
-                                <option value="@item.item_id"> @item.item_id </option>
+                                <option value="@item.ItemId"> @item.ItemId </option>
                             }
                         </select>
                     </div>
@@ -283,9 +283,6 @@ UploadRootObject uploadResponse = sdd.Upload(filenames);</code></pre>
                         <label class="radio-inline">
                             <input type="radio" name="good" id="inlineRadio2" value="false"> Defect
                         </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="good" id="inlineRadio3" value=""> Unlabled
-                        </label>
                     </div>
                     <div class="form-group">
                         <label>Images</label><br/>
@@ -320,11 +317,11 @@ Content-Type:application/json</pre>
                         <select id="itemId" name="itemId" class="form-control">
                             @foreach (HacarusVisualInspectionApi.Models.Item item in ViewBag.TrainingItems)
                             {
-                            <option value="@item.item_id">@item.item_id</option>
+                            <option value="@item.ItemId">@item.ItemId</option>
                             }
                             @foreach (HacarusVisualInspectionApi.Models.Item item in ViewBag.PredictItems)
                             {
-                            <option value="@item.item_id">@item.item_id</option>
+                            <option value="@item.ItemId">@item.ItemId</option>
                             }
                         </select>
                     </div>
@@ -369,14 +366,14 @@ Content-Type:application/json</pre>
                         <select id="itemIdServe" name="itemIdServe" class="form-control">
                             @foreach (HacarusVisualInspectionApi.Models.Item item in ViewBag.PredictItems)
                             {
-                            <option value="@item.item_id">@item.item_id</option>
+                            <option value="@item.ItemId">@item.ItemId</option>
                             }
                         </select>
                         <label for="modelIdServe">Model</label>
                         <select id="modelIdServe" name="modelIdServe" class="form-control">
                             @foreach (HacarusVisualInspectionApi.Models.ModelData item in ViewBag.Models)
                             {
-                            <option value="@item.model_id">@item.name</option>
+                            <option value="@item.ModelId">@item.Name</option>
                             }
                         </select>
                     </div>
