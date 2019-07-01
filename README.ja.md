@@ -33,13 +33,13 @@ Visual Inspection Api for C#
 
 
 ```
-PM> Install-Package HacarusVisualInspectionApi -Version 1.0.0-beta
+PM> Install-Package HacarusVisualInspectionApi -Version 1.1.0-beta
 ```
 
 NuGetパッケージマネージャを使用してプロジェクトに追加することもできます。Show prerelease packagesにチェックを入れ、 HacarusVisualInspectionApi を [nuget.org](nuget.org)のリポジトリで検索してください。
 
 
-他のインストール方法は[Nuget Package Site](https://www.nuget.org/packages/HacarusVisualInspectionApi/1.0.0-beta)を参照ください。
+他のインストール方法は[Nuget Package Site](https://www.nuget.org/packages/HacarusVisualInspectionApi/1.1.0-beta)を参照ください。
 
 ## 用語説明
 このドキュメントの全体で使用されている用語の簡単な説明：
@@ -131,7 +131,7 @@ AccessTokenResponse Response = VisualInspection.Authorize("YourClientId", "YourC
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "/api/auth/token"
+            "pointer": "https://sdd-api.hacarus.com/api/auth/token"
         },
         "status": 401,
         "title": "Cannot find client information"
@@ -146,7 +146,7 @@ AccessTokenResponse Response = VisualInspection.Authorize("YourClientId", "YourC
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "/api/auth/token"
+            "pointer": "https://sdd-api.hacarus.com/api/auth/token"
         },
         "status": 401,
         "title": "Client id and secret mismatch"
@@ -186,7 +186,7 @@ UploadResponse Response = VisualInspection.ActivateLicense(LicenseFile, "Custome
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "/api/auth/license"
+            "pointer": "https://sdd-api.hacarus.com/api/auth/license"
         },
         "status": 403,
         "title": "Invalid license!"
@@ -201,7 +201,7 @@ UploadResponse Response = VisualInspection.ActivateLicense(LicenseFile, "Custome
     "errors": {
         "detail": "License already exists", 
         "source": {
-            "pointer": "/api/auth/license"
+            "pointer": "https://sdd-api.hacarus.com/api/auth/license"
         }, 
         "status": 403, 
         "title": "Invalid license!"
@@ -320,7 +320,7 @@ AlgorithmResponse Response = VisualInspection.GetAlgorithms();
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "/api/v1/algorithms"
+            "pointer": "https://sdd-api.hacarus.com/api/v1/algorithms"
         },
         "status": 404,
         "title": "No algorithms found"
@@ -410,7 +410,7 @@ ModelResponse Reponse = VisualInspection.Train(AlgorithmId, ModelName, ItemIds, 
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "/api/v1/train"
+            "pointer": "https://sdd-api.hacarus.com/api/v1/train"
         },
         "status": 403,
         "title": "You do not have access to one or more item ids provided"
@@ -458,7 +458,7 @@ UploadResponse Response = VisualInspection.Upload(Files);`
             "Invalid filename 2019-05-24 at 3.27.11 PM.png"
         ],
         "source": {
-            "pointer": "/api/v1/upload"
+            "pointer": "https://sdd-api.hacarus.com/api/v1/upload"
         },
         "status": 400,
         "title": "Invalid Request"
@@ -473,7 +473,7 @@ UploadResponse Response = VisualInspection.Upload(Files);`
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "/api/v1/upload"
+            "pointer": "https://sdd-api.hacarus.com/api/v1/upload"
         },
         "status": 400,
         "title": "No images to upload"
@@ -571,7 +571,7 @@ ItemResponse Response = VisualInspection.GetItem("ItemId");
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "/api/v1/item/invaliditemidexample"
+            "pointer": "https://sdd-api.hacarus.com/api/v1/item/invaliditemidexample"
         },
         "status": 404,
         "title": "No match for item_id!"
@@ -586,7 +586,7 @@ ItemResponse Response = VisualInspection.GetItem("ItemId");
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "/api/v1/item/sdsd"
+            "pointer": "https://sdd-api.hacarus.com/api/v1/item/sdsd"
         },
         "status": 401,
         "title": "No permission to view item!"
@@ -626,7 +626,7 @@ PredictResponse Response = VisualInspection.Serve(ItemIds, "ModelId");
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "/api/v1/serve"
+            "pointer": "https://sdd-api.hacarus.com/api/v1/serve"
         },
         "status": 404,
         "title": "Cannot find items"
@@ -642,7 +642,7 @@ PredictResponse Response = VisualInspection.Serve(ItemIds, "ModelId");
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "/api/v1/serve"
+            "pointer": "https://sdd-api.hacarus.com/api/v1/serve"
         },
         "status": 400,
         "title": "There is no available model"
@@ -658,7 +658,7 @@ PredictResponse Response = VisualInspection.Serve(ItemIds, "ModelId");
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "/api/v1/algorithms"
+            "pointer": "https://sdd-api.hacarus.com/api/v1/algorithms"
         },
         "status": 401,
         "title": "No permission to access this resource"
@@ -673,7 +673,7 @@ PredictResponse Response = VisualInspection.Serve(ItemIds, "ModelId");
         "errors": {
             "detail": null,
             "source": {
-                "pointer": "/api/v1/upload"
+                "pointer": "https://sdd-api.hacarus.com/api/v1/upload"
             },
             "status": 403,
             "title": "Invalid license!"

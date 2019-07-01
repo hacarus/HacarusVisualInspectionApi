@@ -2,7 +2,7 @@
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "/api/v1/upload"
+            "pointer": "https://sdd-api.hacarus.com/api/v1/upload"
         },
         "status": 400,
         "title": "No images to upload"

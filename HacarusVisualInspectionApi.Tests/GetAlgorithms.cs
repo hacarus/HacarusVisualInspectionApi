@@ -50,7 +50,7 @@ namespace HacarusVisualInspectionApi.Tests
             Assert.IsNull(Response.Data);
             Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.NotFound));
             Assert.IsTrue(Response.Errors.Title.Equals("No algorithms found"));
-            Assert.IsTrue(Response.Errors.Source.Pointer.Equals("/api/v1/algorithms"));
+            Assert.IsTrue(Response.Errors.Source.Pointer.Equals("https://sdd-api.hacarus.com/api/v1/algorithms"));
             Assert.IsTrue(Response.Errors.Status.Equals((int)HttpStatusCode.NotFound));
             Console.WriteLine("FailedNoAlgorithm End");
 

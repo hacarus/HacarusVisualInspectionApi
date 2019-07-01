@@ -117,7 +117,7 @@ namespace HacarusVisualInspectionApi.Tests
             Assert.IsNull(Response.Data);
             Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.NotFound));
             Assert.IsTrue(Response.Errors.Title.Equals("No match for item_id!"));
-            Assert.IsTrue(Response.Errors.Source.Pointer.Equals("/api/v1/item/invaliditem"));
+            Assert.IsTrue(Response.Errors.Source.Pointer.Equals("https://sdd-api.hacarus.com/api/v1/item/invaliditem"));
             Assert.IsTrue(Response.Errors.Status.Equals((int)HttpStatusCode.NotFound));
             Console.WriteLine("FailedItemIdDoesNotExist End");
         }
@@ -137,7 +137,7 @@ namespace HacarusVisualInspectionApi.Tests
             Assert.IsNull(Response.Data);
             Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.Unauthorized));
             Assert.IsTrue(Response.Errors.Title.Equals("No permission to view item!"));
-            Assert.IsTrue(Response.Errors.Source.Pointer.Equals("/api/v1/item/NoPermissionItemId"));
+            Assert.IsTrue(Response.Errors.Source.Pointer.Equals("https://sdd-api.hacarus.com/api/v1/item/NoPermissionItemId"));
             Assert.IsTrue(Response.Errors.Status.Equals((int)HttpStatusCode.Unauthorized));
             Console.WriteLine("FailedItemIdNoPermission End");
         }

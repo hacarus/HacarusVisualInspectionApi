@@ -70,7 +70,7 @@ namespace HacarusVisualInspectionApi.Tests
             Assert.IsNull(Response.Data);
             Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.Unauthorized));
             Assert.IsTrue(Response.Errors.Title.Equals("Client id and secret mismatch"));
-            Assert.IsTrue(Response.Errors.Source.Pointer.Equals("/api/auth/token"));
+            Assert.IsTrue(Response.Errors.Source.Pointer.Equals("https://sdd-api.hacarus.com/api/auth/token"));
             Assert.IsTrue(Response.Errors.Status.Equals((int)HttpStatusCode.Unauthorized));
             Console.WriteLine("FailedClientSecret End");
         }

@@ -2,7 +2,7 @@
     "errors": {
         "detail": "License already exists", 
         "source": {
-            "pointer": "/api/auth/license"
+            "pointer": "https://sdd-api.hacarus.com/api/auth/license"
         }, 
         "status": 403, 
         "title": "Invalid license!"

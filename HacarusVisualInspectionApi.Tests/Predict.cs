@@ -44,7 +44,7 @@ namespace HacarusVisualInspectionApi.Tests
             Assert.IsNull(Response.Data);
             Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.NotFound));
             Assert.IsTrue(Response.Errors.Title.Equals("Cannot find items"));
-            Assert.IsTrue(Response.Errors.Source.Pointer.Equals("/api/v1/serve"));
+            Assert.IsTrue(Response.Errors.Source.Pointer.Equals("https://sdd-api.hacarus.com/api/v1/serve"));
             Assert.IsTrue(Response.Errors.Status.Equals((int)HttpStatusCode.NotFound));
             Console.WriteLine("FailedItemIdDoesNotExist End");
         }
@@ -63,7 +63,7 @@ namespace HacarusVisualInspectionApi.Tests
             Assert.IsNull(Response.Data);
             Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.BadRequest));
             Assert.IsTrue(Response.Errors.Title.Equals("There is no available model"));
-            Assert.IsTrue(Response.Errors.Source.Pointer.Equals("/api/v1/serve"));
+            Assert.IsTrue(Response.Errors.Source.Pointer.Equals("https://sdd-api.hacarus.com/api/v1/serve"));
             Assert.IsTrue(Response.Errors.Status.Equals((int)HttpStatusCode.BadRequest));
             Console.WriteLine("FailedItemIdDoesNotExists End");
         }

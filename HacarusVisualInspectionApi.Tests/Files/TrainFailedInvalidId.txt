@@ -2,7 +2,7 @@
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "/api/v1/train"
+            "pointer": "https://sdd-api.hacarus.com/api/v1/train"
         },
         "status": 403,
         "title": "You do not have access to one or more item ids provided"

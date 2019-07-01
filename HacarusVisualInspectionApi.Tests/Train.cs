@@ -48,7 +48,7 @@ namespace HacarusVisualInspectionApi.Tests
             Assert.IsNull(Response.Data);
             Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.Forbidden));
             Assert.IsTrue(Response.Errors.Title.Equals("You do not have access to one or more item ids provided"));
-            Assert.IsTrue(Response.Errors.Source.Pointer.Equals("/api/v1/train"));
+            Assert.IsTrue(Response.Errors.Source.Pointer.Equals("https://sdd-api.hacarus.com/api/v1/train"));
             Assert.IsTrue(Response.Errors.Status.Equals((int)HttpStatusCode.Forbidden));
             Console.WriteLine("FailedInvalidId End");
 

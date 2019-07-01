@@ -48,7 +48,7 @@ namespace HacarusVisualInspectionApi.Tests
             Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.BadRequest));
             Assert.IsTrue(Response.Errors.Title.Equals("Invalid Request"));
             Assert.IsTrue(Response.Errors.Details.Equals("NewItem invalid.name.png"));
-            Assert.IsTrue(Response.Errors.Source.Pointer.Equals("/api/v1/upload"));
+            Assert.IsTrue(Response.Errors.Source.Pointer.Equals("https://sdd-api.hacarus.com/api/v1/upload"));
             Assert.IsTrue(Response.Errors.Status.Equals((int)HttpStatusCode.BadRequest));
             Console.WriteLine("FailedInvalidFile End");
         }
@@ -69,7 +69,7 @@ namespace HacarusVisualInspectionApi.Tests
             Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.BadRequest));
             Assert.IsTrue(Response.Errors.Title.Equals("No images to upload"));
             Assert.IsNull(Response.Errors.Details);
-            Assert.IsTrue(Response.Errors.Source.Pointer.Equals("/api/v1/upload"));
+            Assert.IsTrue(Response.Errors.Source.Pointer.Equals("https://sdd-api.hacarus.com/api/v1/upload"));
             Assert.IsTrue(Response.Errors.Status.Equals((int)HttpStatusCode.BadRequest));
             Console.WriteLine("FailedNoFile End");
         }
