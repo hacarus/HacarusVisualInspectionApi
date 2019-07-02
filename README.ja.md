@@ -276,6 +276,7 @@ AlgorithmResponse Response = VisualInspection.GetAlgorithms();
 ```
 
 - 学習に使用できるアルゴリズムと使用できるパラメータの一覧をリストで返します。
+- アルゴリズムの説明について、[こちら](https://github.com/hacarus/HacarusVisualInspectionApi/blob/master/%E3%83%AA%E3%83%AA%E3%83%BC%E3%82%B9%E3%83%8E%E3%83%BC%E3%83%88%20v0.pdf)をご覧ください。
 
 ##### レスポンスの一例
 
