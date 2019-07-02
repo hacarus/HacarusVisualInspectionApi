@@ -1,4 +1,4 @@
-Visual Inspection Api for C#
+Visual Inspection Api for C# [![Build Status](https://travis-ci.com/adin234/HacarusVisualInspectionApi.svg?branch=master)](https://travis-ci.com/adin234/HacarusVisualInspectionApi)
 ===
 *[English](README.md) | [日本語](README.ja.md)*
 
