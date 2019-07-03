@@ -45,25 +45,15 @@ Content-Type:application/json</pre>
                     <div class="json-container">
                         <div class="json">
                             {
-                            "customer_id": "customer_id"
+                            "customer_id": "CustomerId"
                             }
                         </div>
                     </div>
                 </div>
                 <div class="request-item">
                     C#:
-                    <pre><code class="cs csharp">
-if (file.Length > 0)
-    {
-        using (var fileStream = new FileStream(Path.Combine(uploads, file.FileName), FileMode.Create)){
-            await file.CopyToAsync(fileStream);
-            var image = new FileModel();
-            image.filename = Path.Combine(uploads, file.FileName);
-            image.contentType = file.ContentType;
-
-            LicenseResponse response = hacarusVisualInspection.ActivateLicense(customerId, licenseFile);
-        }
-}
+                    <pre><code class="cs csharp">var LicenseFile = new FileModel("PathToFile", "ContentType");
+UploadResponse Response = VisualInspection.ActivateLicense(LicenseFile, "CustomerId");
 </code></pre>
                 </div>
                 <form asp-controller="Home" asp-action="ActivateLicense" method="post" enctype="multipart/form-data">
@@ -97,7 +87,7 @@ Content-Type:application/json</pre>
                 </div>
                 <div class="request-item">
                     C#:
-                    <pre><code class="cs csharp">ItemRootObject predictResponse = sdd.GetItem(itemId);</code></pre>
+                    <pre><code class="cs csharp">ItemsResponse Response = VisualInspection.GetItems();</code></pre>
                 </div>
                 <form asp-controller="Home" asp-action="GetItems" method="post">
                     <button type="submit" name="getItems" class="btn btn-primary">Try it!</button>
@@ -122,7 +112,7 @@ Content-Type:application/json</pre>
                 </div>
                 <div class="request-item">
                     C#:
-                    <pre><code class="cs csharp">AlgorithmRootObject reponse = sdd.GetAlgorithms();</code></pre>
+                    <pre><code class="cs csharp">AlgorithmResponse Response = VisualInspection.GetAlgorithms();</code></pre>
                 </div>
                 <form asp-controller="Home" asp-action="GetAlgorithms" method="post">
                     <button type="submit" name="getAlgorithms" class="btn btn-primary">Try it!</button>
@@ -147,7 +137,7 @@ Content-Type:application/json</pre>
                 </div>
                 <div class="request-item">
                     C#:
-                    <pre><code class="cs csharp">ModelsRootObject reponse = sdd.GetModels();</code></pre>
+                    <pre><code class="cs csharp">ModelsResponse Response = VisualInspection.GetModels();</code></pre>
                 </div>
                 <form asp-controller="Home" asp-action="GetModels" method="post">
                     <button type="submit" name="getModels" class="btn btn-primary">Try it!</button>
@@ -184,15 +174,19 @@ Content-Type:application/json</pre>
                 </div>
                 <div class="request-item">
                     C#:
-                    <pre><code class="cs csharp">
-var algorithmId = "hacarus-dictionary-learning";
-var modelName = "some name";
-var itemIds = new string[] { "item_id" };
-AlgorithmParameter algorithmParameter = new AlgorithmParameter();
-algorithmParameter.algorithm_parameter_id = 221;
-algorithmParameter.value = "50";
+                    <pre><code class="cs csharp">//ID of the algorithm you want to use
+var AlgorithmId = "hacarus-dictionary-learning";
+//Name of your model
+var ModelName = "ModelName";
+//Array of of item ids to use for training the model
+var ItemIds = new string[] { "ItemId" };
+//Algorithm parameter you want to adjust and use for training the model
+AlgorithmParameter AlgorithmParameter = new AlgorithmParameter();
+algorithmParameter.AlgorithmParameterId = 221;
+algorithmParameter.Value = "50";
 
-ModelRootObject reponse = sdd.Train(algorithmId, modelName, itemIds, algorithmParameter);</code></pre>
+ModelResponse Reponse = VisualInspection.Train(AlgorithmId, ModelName, ItemIds, new AlgorithmParameter[] { AlgorithmParameter });
+</code></pre>
                 </div>
                 <form asp-controller="Home" asp-action="Train" method="post">
                     <div class="form-group">
@@ -251,22 +245,10 @@ Content-Type:application/json</pre>
                 </div>
                 <div class="request-item">
                     C#:
-                    <pre><code class="cs csharp">List<ImageModel> filenames = new List<ImageModel>();
-foreach (var file in files) {
-    if (file.Length > 0) {
-        var path = Path.Combine(uploads, file.FileName);
-        var fileStream = new FileStream(path, FileMode.Create)
-        using (fileStream) {
-            await file.CopyToAsync(fileStream);
-            var image = new ImageModel();
-            var fileName = file.FileName;
-            image.filename = Path.Combine(uploads, fileName);
-            image.contentType = file.ContentType;
-            filenames.Add(image);
-        }
-    }
-}
-UploadRootObject uploadResponse = sdd.Upload(filenames);</code></pre>
+                    <pre><code class="cs csharp">UploadResponse Response = VisualInspection.Upload(Files, IsGood);
+or
+UploadResponse Response = VisualInspection.Upload(Files);
+</code></pre>
                 </div>
                 <form asp-controller="Home" asp-action="Upload" method="post" enctype="multipart/form-data">
                     <div class="form-group">
@@ -309,7 +291,9 @@ Content-Type:application/json</pre>
                 </div>
                 <div class="request-item">
                     C#:
-                    <pre><code class="cs csharp">ItemRootObject predictResponse = sdd.GetItem(itemId);</code></pre>
+                    <pre><code class="cs csharp">//Set a specific ItemId to get detailed information about the item
+ItemResponse Response = VisualInspection.GetItem("ItemId");
+</code></pre>
                 </div>
                 <form asp-controller="Home" asp-action="GetItem" method="post">
                     <div class="form-group">
@@ -350,15 +334,18 @@ Content-Type:application/json</pre>
                     <div class="json-container">
                         <div class="json">
                             {
-                                "item_ids" : ["NG-06-01"],
-                                "model_id" : "model_id"
+                            "item_ids" : ["NG-06-01"],
+                            "model_id" : "ModelId"
                             }
                         </div>
                     </div>
                 </div>
                 <div class="request-item">
                     C#:
-                    <pre><code class="cs csharp">PredictRootObject predictResponse = sdd.Serve(new string[] { itemIdServe }, modelId);</code></pre>
+                    <pre><code class="cs csharp">//Use ItemIds to pass an array of item ids you want to set for prediction
+//You may use a specific model for prediction by setting a ModelId value. This is optional. If not set, the active/default model will be used.
+PredictResponse Response = VisualInspection.Serve(ItemIds, "ModelId");
+</code></pre>
                 </div>
                 <form asp-controller="Home" asp-action="Serve" method="post">
                     <div class="form-group">
