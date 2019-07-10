@@ -16,6 +16,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\uploads\IMG_4268.jpg" />
+    <Content Remove="wwwroot\uploads\IMG-1002-OK-T.JPG" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="HacarusVisualInspectionApi">
