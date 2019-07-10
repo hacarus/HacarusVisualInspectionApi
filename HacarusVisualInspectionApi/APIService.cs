@@ -55,13 +55,12 @@ namespace HacarusVisualInspectionApi
             return ResponseObject;
         }
 
-        public LicenseResponse ActivateLicense(FileModel licenseFile, string costumerId)
+        public LicenseResponse ActivateLicense(FileModel licenseFile)
         {
             var Request = new RestRequest("auth/license", Method.POST);
             Request.AlwaysMultipartFormData = true;
             Request.AddHeader("Content-Type", "multipart/form-data");
             Request.AddFile("license", licenseFile.FileName, licenseFile.FileName);
-            Request.AddParameter("customer_id", costumerId);
             var Response = this.Client.Execute(Request);
             LicenseResponse ResponseObject = JsonConvert.DeserializeObject<LicenseResponse>(Response.Content);
             ResponseObject.HttpResponse = Response;

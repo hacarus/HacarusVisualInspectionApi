@@ -66,7 +66,7 @@ To get started, you need the following:
     - These will be used to authorize the SDK.
     - An authorized user will be able to access the system's functions, such as adding items, getting list of items, algorithms, and models.
     - To be able to train models and to use the predict function, you also need an active license.
-- License File and Customer ID
+- License File
     - These will be used to activate your license.
 - Training Images
     - A prerequisite to creating a new model, is to provide training items by uploading images.
@@ -123,7 +123,7 @@ AccessTokenResponse Response = VisualInspection.Authorize("YourClientId", "YourC
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "https://sdd-api.hacarus.com/api/auth/token"
+            "pointer": "/api/auth/token"
         },
         "status": 401,
         "title": "Cannot find client information"
@@ -138,7 +138,7 @@ AccessTokenResponse Response = VisualInspection.Authorize("YourClientId", "YourC
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "https://sdd-api.hacarus.com/api/auth/token"
+            "pointer": "/api/auth/token"
         },
         "status": 401,
         "title": "Client id and secret mismatch"
@@ -150,11 +150,11 @@ AccessTokenResponse Response = VisualInspection.Authorize("YourClientId", "YourC
 
 ```csharp
 var LicenseFile = new FileModel("PathToFile", "ContentType");
-UploadResponse Response = VisualInspection.ActivateLicense(LicenseFile, "CustomerId");
+UploadResponse Response = VisualInspection.ActivateLicense(LicenseFile);
 ```
 
 - Activates the license
-- Customer ID and license file must be added as parameters
+- License file must be added as parameters
 - License must be activated first before the user can use the  `Train` or `Predict` functions
 - To have a license file, please contact Hacarus
 
@@ -163,20 +163,19 @@ UploadResponse Response = VisualInspection.ActivateLicense(LicenseFile, "Custome
 ```json
 {
     "data": {
-        "customer_id": "CustomerId",
         "status": "ok"
     }
 }
 ```
 
 #### Possible errors
-- `403 Forbidden`: Customer ID or license file is invalid  
+- `403 Forbidden`: License file is invalid  
 ```json
 {
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "https://sdd-api.hacarus.com/api/auth/license"
+            "pointer": "/api/auth/license"
         },
         "status": 403,
         "title": "Invalid license!"
@@ -190,7 +189,7 @@ UploadResponse Response = VisualInspection.ActivateLicense(LicenseFile, "Custome
     "errors": {
         "detail": "License already exists", 
         "source": {
-            "pointer": "https://sdd-api.hacarus.com/api/auth/license"
+            "pointer": "/api/auth/license"
         }, 
         "status": 403, 
         "title": "Invalid license!"
@@ -310,7 +309,7 @@ AlgorithmResponse Response = VisualInspection.GetAlgorithms();
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "https://sdd-api.hacarus.com/api/v1/algorithms"
+            "pointer": "/api/v1/algorithms"
         },
         "status": 404,
         "title": "No algorithms found"
@@ -400,7 +399,7 @@ ModelResponse Reponse = VisualInspection.Train(AlgorithmId, ModelName, ItemIds, 
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "https://sdd-api.hacarus.com/api/v1/train"
+            "pointer": "/api/v1/train"
         },
         "status": 403,
         "title": "You do not have access to one or more item ids provided"
@@ -450,7 +449,7 @@ UploadResponse Response = VisualInspection.Upload(Files);
             "Invalid filename 2019-05-24 at 3.27.11 PM.png"
         ],
         "source": {
-            "pointer": "https://sdd-api.hacarus.com/api/v1/upload"
+            "pointer": "/api/v1/upload"
         },
         "status": 400,
         "title": "Invalid Request"
@@ -465,7 +464,7 @@ UploadResponse Response = VisualInspection.Upload(Files);
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "https://sdd-api.hacarus.com/api/v1/upload"
+            "pointer": "/api/v1/upload"
         },
         "status": 400,
         "title":  "No images to upload"
@@ -563,7 +562,7 @@ ItemResponse Response = VisualInspection.GetItem("ItemId");
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "https://sdd-api.hacarus.com/api/v1/item/invaliditemidexample"
+            "pointer": "/api/v1/item/invaliditemidexample"
         },
         "status": 404,
         "title": "No match for item_id!"
@@ -578,7 +577,7 @@ ItemResponse Response = VisualInspection.GetItem("ItemId");
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "https://sdd-api.hacarus.com/api/v1/item/sdsd"
+            "pointer": "/api/v1/item/sdsd"
         },
         "status": 401,
         "title": "No permission to view item!"
@@ -618,7 +617,7 @@ PredictResponse Response = VisualInspection.Serve(ItemIds, "ModelId");
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "https://sdd-api.hacarus.com/api/v1/serve"
+            "pointer": "/api/v1/serve"
         },
         "status": 404,
         "title": "Cannot find items"
@@ -633,7 +632,7 @@ PredictResponse Response = VisualInspection.Serve(ItemIds, "ModelId");
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "https://sdd-api.hacarus.com/api/v1/serve"
+            "pointer": "/api/v1/serve"
         },
         "status": 400,
         "title": "There is no available model"
@@ -649,7 +648,7 @@ PredictResponse Response = VisualInspection.Serve(ItemIds, "ModelId");
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "https://sdd-api.hacarus.com/api/v1/algorithms"
+            "pointer": "/api/v1/algorithms"
         },
         "status": 401,
         "title": "No permission to access this resource"
@@ -664,7 +663,7 @@ PredictResponse Response = VisualInspection.Serve(ItemIds, "ModelId");
         "errors": {
             "detail": null,
             "source": {
-                "pointer": "https://sdd-api.hacarus.com/api/v1/upload"
+                "pointer": "/api/v1/upload"
             },
             "status": 403,
             "title": "Invalid license!"

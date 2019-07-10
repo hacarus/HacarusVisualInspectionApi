@@ -4,7 +4,7 @@
             "NewItem invalid.name.png"
         ],
         "source": {
-            "pointer": "https://sdd-api.hacarus.com/api/v1/upload"
+            "pointer": "/api/v1/upload"
         },
         "status": 400,
         "title": "Invalid Request"

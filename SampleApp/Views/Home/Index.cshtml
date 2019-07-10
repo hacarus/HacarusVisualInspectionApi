@@ -41,27 +41,12 @@ Authorization:Token [[token]]
 Content-Type:application/json</pre>
                 </div>
                 <div class="request-item">
-                    Body:
-                    <div class="json-container">
-                        <div class="json">
-                            {
-                            "customer_id": "CustomerId"
-                            }
-                        </div>
-                    </div>
-                </div>
-                <div class="request-item">
                     C#:
                     <pre><code class="cs csharp">var LicenseFile = new FileModel("PathToFile", "ContentType");
-UploadResponse Response = VisualInspection.ActivateLicense(LicenseFile, "CustomerId");
+UploadResponse Response = VisualInspection.ActivateLicense(LicenseFile);
 </code></pre>
                 </div>
                 <form asp-controller="Home" asp-action="ActivateLicense" method="post" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="customerId">Customer ID</label>
-                        <input type="text" name="customerId" id="customerId"
-                               class="form-control" value="" />
-                    </div>
                     <div class="form-group">
                         <label>License File</label><br />
                         <input type="file" name="licenseFile" />

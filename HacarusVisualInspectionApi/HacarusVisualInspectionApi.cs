@@ -31,9 +31,9 @@ namespace HacarusVisualInspectionApi
             return Response;
         }
 
-        public LicenseResponse ActivateLicense(FileModel licenseFile, string customerId)
+        public LicenseResponse ActivateLicense(FileModel licenseFile)
         {
-            return APIService.Instance.ActivateLicense(licenseFile, customerId);
+            return APIService.Instance.ActivateLicense(licenseFile);
         }
 
 

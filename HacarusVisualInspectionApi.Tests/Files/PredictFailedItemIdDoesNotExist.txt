@@ -2,7 +2,7 @@
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "https://sdd-api.hacarus.com/api/v1/serve"
+            "pointer": "/api/v1/serve"
         },
         "status": 404,
         "title": "Cannot find items"

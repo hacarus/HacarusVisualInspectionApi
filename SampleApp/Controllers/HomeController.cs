@@ -39,7 +39,7 @@ namespace SampleApp.Controllers
 
         [HttpPost]
         public async Task<IActionResult> ActivateLicense(
-            string customerId, IFormFile licenseFile
+            IFormFile licenseFile
         )
         {
             var Uploads = Path.Combine(Environment.WebRootPath, "uploads");
@@ -57,7 +57,7 @@ namespace SampleApp.Controllers
                     file.ContentType = licenseFile.ContentType;
                 }
 
-                LicenseResponse Result = VisualInspection.ActivateLicense(file, customerId);
+                LicenseResponse Result = VisualInspection.ActivateLicense(file);
 
                 ViewData["HttpResponse"] = "Status code: " + Result.HttpResponse.StatusCode;
                 ViewData["StringMessage"] = Result.HttpResponse.Content;

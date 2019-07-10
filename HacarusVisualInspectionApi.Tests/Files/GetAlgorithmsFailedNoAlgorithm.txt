@@ -2,7 +2,7 @@
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "https://sdd-api.hacarus.com/api/v1/algorithms"
+            "pointer": "/api/v1/algorithms"
         },
         "status": 404,
         "title": "No algorithms found"

@@ -5,9 +5,6 @@ namespace HacarusVisualInspectionApi.Models
 {
     public class LicenseData
     {
-        [JsonProperty("customer_id")]
-        public string CustomerId { get; set; }
-
         [JsonProperty("status")]
         public string Status { get; set; }
     }

@@ -69,7 +69,7 @@ NuGetパッケージマネージャを使用してプロジェクトに追加す
     * これはSDKを認証するために使用されます。
     * 認証されたユーザーはシステム機能にアクセスでき、データを追加したり、データ、アルゴリズム、モデルの一覧を取得ことができます。
     * モデルの学習や推論を行うためにはライセンスをアクティベートする必要があります。
-* ライセンスファイルとカスタマーID
+* ライセンスファイル
     * これはライセンスをアクティベートするため使用されます。
 * 学習画像
     * モデルを作成するためには、画像をアップロードして、学習データを提供する必要があります。
@@ -131,7 +131,7 @@ AccessTokenResponse Response = VisualInspection.Authorize("YourClientId", "YourC
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "https://sdd-api.hacarus.com/api/auth/token"
+            "pointer": "/api/auth/token"
         },
         "status": 401,
         "title": "Cannot find client information"
@@ -146,7 +146,7 @@ AccessTokenResponse Response = VisualInspection.Authorize("YourClientId", "YourC
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "https://sdd-api.hacarus.com/api/auth/token"
+            "pointer": "/api/auth/token"
         },
         "status": 401,
         "title": "Client id and secret mismatch"
@@ -158,11 +158,11 @@ AccessTokenResponse Response = VisualInspection.Authorize("YourClientId", "YourC
 
 ```csharp
 var LicenseFile = new FileModel("PathToFile", "ContentType");
-UploadResponse Response = VisualInspection.ActivateLicense(LicenseFile, "CustomerId");
+UploadResponse Response = VisualInspection.ActivateLicense(LicenseFile);
 ```
 
 - ライセンスをアクティベートします。
-- ライセンスファイルとカスタマーIDをパラメータとして入力してください。
+- ライセンスファイルをパラメータとして入力してください。
 - ライセンスはユーザーが`Train` または `Predict`というファンクションを使用する前にアクティベートしてください。
 - ライセンスファイルを取得するには、ハカルスにご連絡ください。
 
@@ -172,7 +172,6 @@ UploadResponse Response = VisualInspection.ActivateLicense(LicenseFile, "Custome
 ```json
 {
     "data": {
-        "customer_id": "test_client",
         "status": "ok"
     }
 }
@@ -180,13 +179,13 @@ UploadResponse Response = VisualInspection.ActivateLicense(LicenseFile, "Custome
 
 #### 起こり得るエラー
 
-- `403 Forbidden`: カスタマーIDまたはライセンスファイルが無効。  
+- `403 Forbidden`: ライセンスファイルが無効。  
 ```json
 {
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "https://sdd-api.hacarus.com/api/auth/license"
+            "pointer": "/api/auth/license"
         },
         "status": 403,
         "title": "Invalid license!"
@@ -201,7 +200,7 @@ UploadResponse Response = VisualInspection.ActivateLicense(LicenseFile, "Custome
     "errors": {
         "detail": "License already exists", 
         "source": {
-            "pointer": "https://sdd-api.hacarus.com/api/auth/license"
+            "pointer": "/api/auth/license"
         }, 
         "status": 403, 
         "title": "Invalid license!"
@@ -321,7 +320,7 @@ AlgorithmResponse Response = VisualInspection.GetAlgorithms();
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "https://sdd-api.hacarus.com/api/v1/algorithms"
+            "pointer": "/api/v1/algorithms"
         },
         "status": 404,
         "title": "No algorithms found"
@@ -411,7 +410,7 @@ ModelResponse Reponse = VisualInspection.Train(AlgorithmId, ModelName, ItemIds, 
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "https://sdd-api.hacarus.com/api/v1/train"
+            "pointer": "/api/v1/train"
         },
         "status": 403,
         "title": "You do not have access to one or more item ids provided"
@@ -459,7 +458,7 @@ UploadResponse Response = VisualInspection.Upload(Files);`
             "Invalid filename 2019-05-24 at 3.27.11 PM.png"
         ],
         "source": {
-            "pointer": "https://sdd-api.hacarus.com/api/v1/upload"
+            "pointer": "/api/v1/upload"
         },
         "status": 400,
         "title": "Invalid Request"
@@ -474,7 +473,7 @@ UploadResponse Response = VisualInspection.Upload(Files);`
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "https://sdd-api.hacarus.com/api/v1/upload"
+            "pointer": "/api/v1/upload"
         },
         "status": 400,
         "title": "No images to upload"
@@ -572,7 +571,7 @@ ItemResponse Response = VisualInspection.GetItem("ItemId");
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "https://sdd-api.hacarus.com/api/v1/item/invaliditemidexample"
+            "pointer": "/api/v1/item/invaliditemidexample"
         },
         "status": 404,
         "title": "No match for item_id!"
@@ -587,7 +586,7 @@ ItemResponse Response = VisualInspection.GetItem("ItemId");
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "https://sdd-api.hacarus.com/api/v1/item/sdsd"
+            "pointer": "/api/v1/item/sdsd"
         },
         "status": 401,
         "title": "No permission to view item!"
@@ -627,7 +626,7 @@ PredictResponse Response = VisualInspection.Serve(ItemIds, "ModelId");
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "https://sdd-api.hacarus.com/api/v1/serve"
+            "pointer": "/api/v1/serve"
         },
         "status": 404,
         "title": "Cannot find items"
@@ -643,7 +642,7 @@ PredictResponse Response = VisualInspection.Serve(ItemIds, "ModelId");
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "https://sdd-api.hacarus.com/api/v1/serve"
+            "pointer": "/api/v1/serve"
         },
         "status": 400,
         "title": "There is no available model"
@@ -659,7 +658,7 @@ PredictResponse Response = VisualInspection.Serve(ItemIds, "ModelId");
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "https://sdd-api.hacarus.com/api/v1/algorithms"
+            "pointer": "/api/v1/algorithms"
         },
         "status": 401,
         "title": "No permission to access this resource"
@@ -674,7 +673,7 @@ PredictResponse Response = VisualInspection.Serve(ItemIds, "ModelId");
         "errors": {
             "detail": null,
             "source": {
-                "pointer": "https://sdd-api.hacarus.com/api/v1/upload"
+                "pointer": "/api/v1/upload"
             },
             "status": 403,
             "title": "Invalid license!"
