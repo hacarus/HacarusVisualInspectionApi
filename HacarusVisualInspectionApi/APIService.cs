@@ -36,7 +36,7 @@ namespace HacarusVisualInspectionApi
         public AccessTokenResponse Authorize(string clientId, string clientSecret)
         {
             var Request = new RestRequest("auth/token", Method.POST);
-            Request.AddHeader("lang", this.Language);
+            //Request.AddHeader("lang", this.Language);
 
             var Parameters = new
             {
@@ -61,7 +61,7 @@ namespace HacarusVisualInspectionApi
         {
             var Request = new RestRequest("v1/license", Method.POST);
             Request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
-            Request.AddHeader("lang", this.Language);
+            //Request.AddHeader("lang", this.Language);
             Request.AlwaysMultipartFormData = true;
             Request.AddHeader("Content-Type", "multipart/form-data");
             Request.AddFile("license", licenseFile.FileName, licenseFile.FileName);
@@ -74,7 +74,7 @@ namespace HacarusVisualInspectionApi
         public ItemsResponse GetItems()
         {
             var Request = new RestRequest("v1/items", Method.GET);
-            Request.AddHeader("lang", this.Language);
+            //Request.AddHeader("lang", this.Language);
             Request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
             var Response = this.Client.Execute(Request);
             ItemsResponse ResponseObject = JsonConvert.DeserializeObject<ItemsResponse>(Response.Content);
@@ -85,7 +85,7 @@ namespace HacarusVisualInspectionApi
         public AlgorithmResponse GetAlgorithms()
         {
             var Request = new RestRequest("v1/algorithms", Method.GET);
-            Request.AddHeader("lang", this.Language);
+            //Request.AddHeader("lang", this.Language);
             Request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
             var Response = this.Client.Execute(Request);
             AlgorithmResponse ResponseObject = JsonConvert.DeserializeObject<AlgorithmResponse>(Response.Content);
@@ -97,7 +97,7 @@ namespace HacarusVisualInspectionApi
         public ModelsResponse GetModels()
         {
             var Request = new RestRequest("v1/models", Method.GET);
-            Request.AddHeader("lang", this.Language);
+            //Request.AddHeader("lang", this.Language);
             Request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
             var Response = this.Client.Execute(Request);
             ModelsResponse ResponseObject = JsonConvert.DeserializeObject<ModelsResponse>(Response.Content);
@@ -109,7 +109,7 @@ namespace HacarusVisualInspectionApi
         public ModelResponse Train(string algorithmId, string modelName, string[] itemIds, AlgorithmParameter[] algorithmParameters)
         {
             var Request = new RestRequest("v1/train", Method.POST);
-            Request.AddHeader("lang", this.Language);
+            //Request.AddHeader("lang", this.Language);
             Request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
             var Parameters = new
             {
@@ -130,7 +130,7 @@ namespace HacarusVisualInspectionApi
         public UploadResponse Upload(List<FileModel> filenames, bool? isGood, bool isTraining)
         {
             var Request = new RestRequest("v1/upload", Method.POST);
-            Request.AddHeader("lang", this.Language);
+            //Request.AddHeader("lang", this.Language);
             Request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
             Request.AlwaysMultipartFormData = true;
             Request.AddHeader("Content-Type", "multipart/form-data");
@@ -152,7 +152,7 @@ namespace HacarusVisualInspectionApi
         public PredictResponse Serve(string[] item_ids, int? modelId = null)
         {
             var Request = new RestRequest("v1/serve", Method.POST);
-            Request.AddHeader("lang", this.Language);
+            //Request.AddHeader("lang", this.Language);
             Request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
             var predictParameters = new
             {
@@ -171,7 +171,7 @@ namespace HacarusVisualInspectionApi
         public ItemResponse GetItem(string item_id)
         {
             var Request = new RestRequest("v1/item/" + item_id, Method.GET);
-            Request.AddHeader("lang", this.Language);
+            //Request.AddHeader("lang", this.Language);
             Request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
             var predictResponse = this.Client.Execute(Request);
             ItemResponse ResponseObject = JsonConvert.DeserializeObject<ItemResponse>(predictResponse.Content);
