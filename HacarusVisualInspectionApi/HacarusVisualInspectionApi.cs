@@ -15,14 +15,21 @@ namespace HacarusVisualInspectionApi
             }
         }
 
-        public HacarusVisualInspection(string serverUrl = "https://sdd-api.hacarus.com/api")
+        public HacarusVisualInspection(string serverUrl = "https://sdd-api.hacarus.com/api", string language = "en")
         {
             APIService.Instance.ServerUrl = serverUrl;
+            APIService.Instance.Language = language;
         }
 
         public HacarusVisualInspection(RestClient client)
         {
             APIService.Instance.Client = client;
+        }
+
+
+        public void SetLanguage(string language)
+        {
+            APIService.Instance.Language = language;
         }
 
         public AccessTokenResponse Authorize(string clientId, string clientSecret)
