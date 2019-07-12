@@ -272,8 +272,8 @@ AlgorithmResponse Response = VisualInspection.GetAlgorithms();
 {
     "data": [
         {
-            "algorithm_id": "one-class-svm",
-            "name": "Patch One Class SVM",
+            "algorithm_id": "OC",
+            "name": "OC",
             "parameters": [
                 {
                     "algorithm_parameter_id": 252,
@@ -336,7 +336,7 @@ ModelsResponse Response = VisualInspection.GetModels();
     "data": [
         {
             "active": true,
-            "algorithm_id": "one-class-svm",
+            "algorithm_id": "OC",
             "context_default": false,
             "created_at": "2019-06-10T08:28:16Z",
             "model_id": 269,
@@ -352,7 +352,7 @@ ModelsResponse Response = VisualInspection.GetModels();
 
 ```csharp
 //ID of the algorithm you want to use
-var AlgorithmId = "hacarus-dictionary-learning";
+var AlgorithmId = "OC";
 //Name of your model
 var ModelName = "ModelName";
 //Array of of item ids to use for training the model
@@ -377,7 +377,7 @@ ModelResponse Reponse = VisualInspection.Train(AlgorithmId, ModelName, ItemIds, 
 {
     "data": {
         "active": false,
-        "algorithm_id": "one-class-svm",
+        "algorithm_id": "OC",
         "context_default": false,
         "context_id": 1000,
         "created_at": "2019-06-11T01:26:08Z",
@@ -494,7 +494,7 @@ ItemResponse Response = VisualInspection.GetItem("ItemId");
 {
     "data": {
         "computed_assessment": {
-            "assessment_result": "[PatchOneClassSVMDetector] Defected product",
+            "assessment_result": "[OC] Defected product",
             "detected_objects": 2,
             "detection_accuracy": 100,
             "good": false

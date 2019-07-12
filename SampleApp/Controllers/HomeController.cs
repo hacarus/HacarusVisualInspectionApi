@@ -127,7 +127,7 @@ namespace SampleApp.Controllers
 
             if (string.IsNullOrEmpty(algorithmId))
             {
-                algorithmId = "hacarus-fused-lasso";
+                algorithmId = "OC";
             }
 
             if (string.IsNullOrEmpty(name))

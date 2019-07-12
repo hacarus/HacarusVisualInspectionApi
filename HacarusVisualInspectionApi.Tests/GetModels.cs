@@ -24,7 +24,7 @@ namespace HacarusVisualInspectionApi.Tests
             Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.OK));
             Assert.IsTrue(Response.Data.Count.Equals(1));
             Assert.IsTrue(Response.Data[0].Active);
-            Assert.IsTrue(Response.Data[0].AlgorithmId.Equals("one-class-svm"));
+            Assert.IsTrue(Response.Data[0].AlgorithmId.Equals("OC"));
             Assert.IsFalse(Response.Data[0].ContextDefault);
             Assert.IsTrue(Response.Data[0].CreatedAt.Equals(DateTime.Parse("2019-06-10T08:28:16Z").ToUniversalTime()));
             Assert.IsTrue(Response.Data[0].ModelId.Equals(269));

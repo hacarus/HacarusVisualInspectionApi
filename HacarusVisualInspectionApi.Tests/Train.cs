@@ -15,14 +15,14 @@ namespace HacarusVisualInspectionApi.Tests
             var JsonString = File.ReadAllText("../../../Files/TrainSuccess.txt");
             var Client = MockGenerator.MockRestClient<ModelResponse>(HttpStatusCode.OK, JsonString);
             HacarusVisualInspection VisualInspection = new HacarusVisualInspection(Client);
-            ModelResponse Response = VisualInspection.Train("one-class-svm", "6/11/19 10:26:07 AM", new string[] { "iItemID" }, new AlgorithmParameter[] { });
+            ModelResponse Response = VisualInspection.Train("OC", "6/11/19 10:26:07 AM", new string[] { "iItemID" }, new AlgorithmParameter[] { });
             Assert.IsNotNull(Response);
             Assert.IsNotNull(Response.HttpResponse);
             Assert.IsNotNull(Response.Data);
             Assert.IsNull(Response.Errors);
             Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.OK));
             Assert.IsFalse(Response.Data.Active);
-            Assert.IsTrue(Response.Data.AlgorithmId.Equals("one-class-svm"));
+            Assert.IsTrue(Response.Data.AlgorithmId.Equals("OC"));
             Assert.IsFalse(Response.Data.ContextDefault);
             Assert.IsTrue(Response.Data.ContextId.Equals(1000));
             Assert.IsTrue(Response.Data.CreatedAt.Equals(DateTime.Parse("2019-06-11T01:26:08Z").ToUniversalTime()));
@@ -41,7 +41,7 @@ namespace HacarusVisualInspectionApi.Tests
             var JsonString = File.ReadAllText("../../../Files/TrainFailedInvalidId.txt");
             var Client = MockGenerator.MockRestClient<ModelResponse>(HttpStatusCode.Forbidden, JsonString);
             HacarusVisualInspection VisualInspection = new HacarusVisualInspection(Client);
-            ModelResponse Response = VisualInspection.Train("one-class-svm", "6/11/19 10:26:07 AM", new string[] { "InvalidItemID" }, new AlgorithmParameter[] { });
+            ModelResponse Response = VisualInspection.Train("OC", "6/11/19 10:26:07 AM", new string[] { "InvalidItemID" }, new AlgorithmParameter[] { });
             Assert.IsNotNull(Response);
             Assert.IsNotNull(Response.HttpResponse);
             Assert.IsNotNull(Response.Errors);

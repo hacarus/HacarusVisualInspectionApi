@@ -23,7 +23,7 @@ namespace HacarusVisualInspectionApi.Tests
             Assert.IsNull(Response.Errors);
             Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.OK));
 
-            Assert.IsTrue(Response.Data.ComputedAssessment.AssessmentResult.Equals("[PatchOneClassSVMDetector] Defected product"));
+            Assert.IsTrue(Response.Data.ComputedAssessment.AssessmentResult.Equals("[OC] Defected product"));
             Assert.IsTrue(Response.Data.ComputedAssessment.DetectedObjects.Equals(2));
             Assert.IsTrue(Response.Data.ComputedAssessment.DetectionAccuracy.Equals(100.0));
             Assert.IsFalse((bool)Response.Data.ComputedAssessment.Good);
@@ -83,7 +83,7 @@ namespace HacarusVisualInspectionApi.Tests
             Assert.IsNull(Response.Errors);
             Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.OK));
 
-            Assert.IsTrue(Response.Data.ComputedAssessment.AssessmentResult.Equals("[DictionaryReconstructDetector] Good product!"));
+            Assert.IsTrue(Response.Data.ComputedAssessment.AssessmentResult.Equals("[DR] Good product!"));
             Assert.IsTrue(Response.Data.ComputedAssessment.DetectedObjects.Equals(0));
             Assert.IsTrue(Response.Data.ComputedAssessment.DetectionAccuracy.Equals(100.0));
             Assert.IsTrue((bool)Response.Data.ComputedAssessment.Good);
