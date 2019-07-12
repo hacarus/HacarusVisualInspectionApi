@@ -93,6 +93,8 @@ NuGetパッケージマネージャを使用してプロジェクトに追加す
 using HacarusVisualInspectionApi;
 using HacarusVisualInspectionApi.Models;
 HacarusVisualInspection VisualInspection = new HacarusVisualInspection("https://yourserverurl.com/api");
+//HacarusVisualInspection VisualInspection = new HacarusVisualInspection("https://yourserverurl.com/api", "ja");
+//HacarusVisualInspection VisualInspection = new HacarusVisualInspection(language: "ja");
 ```
 
 - ライブラリを初期化します。

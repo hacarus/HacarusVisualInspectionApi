@@ -86,6 +86,8 @@ To get started, you need the following:
 using HacarusVisualInspectionApi;
 using HacarusVisualInspectionApi.Models;
 HacarusVisualInspection VisualInspection = new HacarusVisualInspection("https://yourserverurl.com/api");
+//HacarusVisualInspection VisualInspection = new HacarusVisualInspection("https://yourserverurl.com/api", "ja");
+//HacarusVisualInspection VisualInspection = new HacarusVisualInspection(language: "ja");
 ```
 
 - Initializes the library
