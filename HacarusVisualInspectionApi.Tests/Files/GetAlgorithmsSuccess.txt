@@ -1,8 +1,8 @@
 ﻿{
     "data": [
         {
-            "algorithm_id": "one-class-svm",
-            "name": "Patch One Class SVM",
+            "algorithm_id": "OC",
+            "name": "OC",
             "parameters": [
                 {
                     "algorithm_parameter_id": 249,

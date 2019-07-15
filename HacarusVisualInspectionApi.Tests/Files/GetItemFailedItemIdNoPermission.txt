@@ -2,7 +2,7 @@
     "errors": {
         "detail": null,
         "source": {
-            "pointer": "https://sdd-api.hacarus.com/api/v1/item/NoPermissionItemId"
+            "pointer": "/api/v1/item/NoPermissionItemId"
         },
         "status": 401,
         "title": "No permission to view item!"

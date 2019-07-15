@@ -23,8 +23,8 @@ namespace HacarusVisualInspectionApi.Tests
             Assert.IsNotNull(Response.Data);
             Assert.IsNull(Response.Errors);
             Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.OK));
-            Assert.IsTrue(Response.Data[0].AlgorithmId.Equals("one-class-svm"));
-            Assert.IsTrue(Response.Data[0].Name.Equals("Patch One Class SVM"));
+            Assert.IsTrue(Response.Data[0].AlgorithmId.Equals("OC"));
+            Assert.IsTrue(Response.Data[0].Name.Equals("OC"));
             Assert.IsTrue(Response.Data[0].Parameters.Count.Equals(1));
             Assert.IsTrue(Response.Data[0].Parameters[0].AlgorithmParameterId.Equals(249));
             Assert.IsTrue(Response.Data[0].Parameters[0].CreatedAt.Equals(DateTime.Parse("2019-06-06T23:29:17Z").ToUniversalTime()));
@@ -50,7 +50,7 @@ namespace HacarusVisualInspectionApi.Tests
             Assert.IsNull(Response.Data);
             Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.NotFound));
             Assert.IsTrue(Response.Errors.Title.Equals("No algorithms found"));
-            Assert.IsTrue(Response.Errors.Source.Pointer.Equals("https://sdd-api.hacarus.com/api/v1/algorithms"));
+            Assert.IsTrue(Response.Errors.Source.Pointer.Equals("/api/v1/algorithms"));
             Assert.IsTrue(Response.Errors.Status.Equals((int)HttpStatusCode.NotFound));
             Console.WriteLine("FailedNoAlgorithm End");
 

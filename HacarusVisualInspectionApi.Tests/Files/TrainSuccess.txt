@@ -1,7 +1,7 @@
 ﻿{
     "data": {
         "active": false,
-        "algorithm_id": "one-class-svm",
+        "algorithm_id": "OC",
         "context_default": false,
         "context_id": 1000,
         "created_at": "2019-06-11T01:26:08Z",

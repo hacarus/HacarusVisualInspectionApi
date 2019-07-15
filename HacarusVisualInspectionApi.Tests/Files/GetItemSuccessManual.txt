@@ -1,7 +1,7 @@
 ﻿{
   "data": {
     "computed_assessment": {
-      "assessment_result": "[DictionaryReconstructDetector] Good product!", 
+      "assessment_result": "[DR] Good product!", 
       "detected_objects": 0, 
       "detection_accuracy": 100, 
       "good": true

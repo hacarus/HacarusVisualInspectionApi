@@ -1,7 +1,7 @@
 ﻿{
     "data": {
         "computed_assessment": {
-            "assessment_result": "[PatchOneClassSVMDetector] Defected product",
+            "assessment_result": "[OC] Defected product",
             "detected_objects": 2,
             "detection_accuracy": 100,
             "good": false
