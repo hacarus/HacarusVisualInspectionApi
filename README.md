@@ -31,12 +31,12 @@ This Visual Inspection Api wrapper for C#  is made for software engineers who wa
 To install this package on your project, use this command in Package Manager Console.
 
 ```
-PM> Install-Package HacarusVisualInspectionApi -Version 1.1.0-beta
+PM> Install-Package HacarusVisualInspectionApi -Version 1.1.1-beta
 ```
 
 You can also add it on your project by using "Add packages", check on the `Show prerelease packages`, and search for `HacarusVisualInspectionApi` on the nuget.org repository.
 
-Other installation options can be found on [Nuget Package Site](https://www.nuget.org/packages/HacarusVisualInspectionApi/1.1.0-beta).
+Other installation options can be found on [Nuget Package Site](https://www.nuget.org/packages/HacarusVisualInspectionApi/1.1.1-beta).
 
 ## Terms
 A brief explanation of the terms used throughout this documentation:
