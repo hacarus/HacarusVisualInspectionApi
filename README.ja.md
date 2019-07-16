@@ -33,13 +33,13 @@ Visual Inspection Api for C# [![Build Status](https://travis-ci.org/hacarus/Haca
 
 
 ```
-PM> Install-Package HacarusVisualInspectionApi -Version 1.1.0-beta
+PM> Install-Package HacarusVisualInspectionApi -Version 1.1.1-beta
 ```
 
 NuGetパッケージマネージャを使用してプロジェクトに追加することもできます。Show prerelease packagesにチェックを入れ、 HacarusVisualInspectionApi を [nuget.org](nuget.org)のリポジトリで検索してください。
 
 
-他のインストール方法は[Nuget Package Site](https://www.nuget.org/packages/HacarusVisualInspectionApi/1.1.0-beta)を参照ください。
+他のインストール方法は[Nuget Package Site](https://www.nuget.org/packages/HacarusVisualInspectionApi/1.1.1-beta)を参照ください。
 
 ## 用語説明
 このドキュメントの全体で使用されている用語の簡単な説明：
