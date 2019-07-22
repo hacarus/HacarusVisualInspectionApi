@@ -31,7 +31,7 @@
                     Endpoint:
                     <div class="endpoint-container">
                         <span class="method">POST</span>
-                        <span class="endpoint">/api/auth/license</span>
+                        <span class="endpoint">/api/v1/license</span>
                     </div>
                 </div>
                 <div class="request-item">
@@ -51,6 +51,31 @@ UploadResponse Response = VisualInspection.ActivateLicense(LicenseFile);
                         <label>License File</label><br />
                         <input type="file" name="licenseFile" />
                     </div>
+                </form>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" data-toggle="collapse" data-target="#getVersionNumber-form">Get Version Number</div>
+            <div class="panel-body @(ViewBag.Active != "getVersionNumber" ? " collapse" : "" )" id="getVersionNumber-form">
+                <div class="request-item">
+                    Endpoint:
+                    <div class="endpoint-container">
+                        <span class="method">GET</span>
+                        <span class="endpoint">/api/auth/app_version</span>
+                    </div>
+                </div>
+                <div class="request-item">
+                    Headers:
+                    <pre>
+Authorization:Token [[token]]
+Content-Type:application/json</pre>
+                </div>
+                <div class="request-item">
+                    C#:
+                    <pre><code class="cs csharp">VersionResponse Response = VisualInspection.GetVersionNumber();</code></pre>
+                </div>
+                <form asp-controller="Home" asp-action="GetVersionNumber" method="post">
+                    <button type="submit" name="getVersionNumber" class="btn btn-primary">Try it!</button>
                 </form>
             </div>
         </div>
