@@ -1,1 +1,10 @@
-﻿
+﻿{
+  "errors": {
+    "detail": "Cannot find context", 
+    "source": {
+      "pointer": "/api/context/10011?"
+    }, 
+    "status": 404, 
+    "title": ""
+  }
+}

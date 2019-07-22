@@ -13,7 +13,7 @@ namespace HacarusVisualInspectionApi.Tests
         public void GetContextEnglishSetLanguage()
         {
             Console.WriteLine("GetContextEnglish Start");
-            var JsonString = File.ReadAllText("../../../Files/LanguageEn.txt");
+            var JsonString = File.ReadAllText("../../../Files/GetItemsErrorEn.txt");
             var Client = MockGenerator.MockRestClient<ItemsResponse>(HttpStatusCode.NotFound, JsonString);
             HacarusVisualInspection VisualInspection = new HacarusVisualInspection(Client);
             VisualInspection.SetLanguage("en");
@@ -31,7 +31,7 @@ namespace HacarusVisualInspectionApi.Tests
         public void GetContextJapaneseSetLanguage()
         {
             Console.WriteLine("GetContextJapaneseSetLanguage Start");
-            var JsonString = File.ReadAllText("../../../Files/LanguageJa.txt");
+            var JsonString = File.ReadAllText("../../../Files/GetItemsErrorJa.txt");
             var Client = MockGenerator.MockRestClient<ItemsResponse>(HttpStatusCode.NotFound, JsonString);
             HacarusVisualInspection VisualInspection = new HacarusVisualInspection(Client);
             VisualInspection.SetLanguage("ja");
@@ -49,7 +49,7 @@ namespace HacarusVisualInspectionApi.Tests
         public void GetContextJapanese()
         {
             Console.WriteLine("GetContextJapanese Start");
-            var JsonString = File.ReadAllText("../../../Files/LanguageJa.txt");
+            var JsonString = File.ReadAllText("../../../Files/GetItemsErrorJa.txt");
             var Client = MockGenerator.MockRestClient<ItemsResponse>(HttpStatusCode.NotFound, JsonString);
             HacarusVisualInspection VisualInspection = new HacarusVisualInspection(Client, "ja");
             ItemsResponse Response = VisualInspection.GetItems();
