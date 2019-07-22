@@ -1,0 +1,327 @@
+ja:
+  introduction: "Hacarus Visual Inspection Api"
+  introductionMessage: "
+  ハカルスはメーカーとメディカル事業に向け、軽量で説明可能なAIソリューションズを提供しています。
+  <br/><br/>
+  弊社のスパースモデリングに基づいた技術は、人間のようにデータを理解できる独自の機械学習手法です。スパースモデリングは軽量に設計されているため、コンピューティングパワー、クラウド環境、および少量の学習データなどの資源の制限された環境下で特に有用です。
+  <br/><br/>
+  弊社のソリューションは組み込みシステムでオフライン環境かクラウドで実行できます。伝統的なディープラーニングベースの手法に比べ、資源を効率的に使用し、よりよい結果を提供します。
+  <br/><br/>
+  ハカルスの外観検査ソリューションの詳細を参照するには、こちらのリンク、<a href='https://hacarus.com/ja/visual-inspection/'>https://hacarus.com/ja/visual-inspection/</a> をご覧ください。また、APIへのアクセスのリクエストは<a href='https://hacarus.com/ja/contact/'>contact us</a> までご連絡ください。
+  "
+  introductionMessageMoreCSharp: "この外観検査用 API wrapper for C#は、あなたのC#のプロジェクトに、APIを通じて外観検査モジュールを組み込むことができます。このライブラリはC# .Net Framework 4.6.1 と .Net Core 2.0.をサポートしています。" 
+  introductionMessageMorePython: "This Visual Inspection SDK for Python is made for software engineers who want to integrate with the Hacarus Visual Inspection module through its API. The wrapper provides simple to use method calls for easy integration to your Python based applications.
+  " 
+  installation: "インストール"
+  installationMessagePython: "To install this package on your project, use this command:"
+  installationMessageCSharp: "このパッケージをプロジェクトにインストールするため、こちらのコマンドをPackage Manager Consoleに入力してください。"
+  installationMessageMoreCSharp: "
+  NuGetパッケージマネージャを使用してプロジェクトに追加することもできます。Show prerelease packagesにチェックを入れ、 HacarusVisualInspectionApi を nuget.org のリポジトリで検索してください。
+  <br/><br/>
+  他のインストール方法は<a href='https://www.nuget.org/packages/HacarusVisualInspectionApi/1.1.1-beta'>Nuget Package Site</a>を参照ください。"
+  terms: "用語説明"
+  termsMessage: "
+このドキュメントの全体で使用されている用語の簡単な説明：
+<br/><br/>
+<b>モデル</b><br/>
+モデルは一連のパラメータの設定とともに、データセットの学習データ（トレーニングデータ）をアルゴリズムに適用して、作成・学習できます。
+<br/><br/>
+<b>アルゴリズム</b><br/>
+アルゴリズムはモデルを構成するため使用する機械学習アルゴリズムのことです。外観検査の性質と予想される精度および性能によって選択します。
+<br/><br/>
+<b>学習</b><br/>
+新しいモデルを作成する操作です。
+<br/><br/>
+<b>パラメータ</b><br/>
+パラメータは、学習中にアルゴリズムを適用する方法を構成するために使用されます。 例えば、最小または最大の画像解像度などがあります。
+<br/><br/>
+<b>データ</b><br/>
+データ（アイテムとも呼ばれる)は検査の対象となる単一の製品のデータを表します。 1つのデータに1つまたは複数の画像を関連付けることができます。
+例：倉庫内の梱包箱の場合、一つの箱に6つの面の画像があります。
+"
+  usage: "使用方法"
+  usageMessage: "
+始めに、下記のものが必要です。
+<ul>
+  <li>
+    クライエントIDとクライエントシークレット
+    <ul>
+      <li>
+        これはSDKを認証するために使用されます。
+      </li>
+      <li>
+        認証されたユーザーはシステム機能にアクセスでき、データを追加したり、データ、アルゴリズム、モデルの一覧を取得ことができます。
+      </li>
+      <li>
+        モデルの学習や推論を行うためにはライセンスをアクティベートする必要があります。
+      </li>
+    </ul>
+  </li>
+  <li>
+    ライセンスファイル
+    <ul>
+      <li>
+        これはライセンスをアクティベートするため使用されます。
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    学習画像
+    <ul>
+      <li>
+        モデルを作成するためには、画像をアップロードして、学習データを提供する必要があります。
+      </li>
+      <li>
+        モデルを作成するには学習データが使用されます。
+      </li>
+      <li>
+        画像をアップロードすることで推論のためのデータを追加します。
+      </li>
+      <li>
+        作成済みのモデルを用いてデータを推論します。
+      </li>
+      <li>
+        サンプル画像はこちらからダウンロードすることができます。（<a href='https://drive.google.com/file/d/1Zg*gCX9gxxYjEau9j29oe0hDBuppDosh/view'>Metal Plates</a>、<a href='https://drive.google.com/file/d/1oRvEfeDfa3seEn0rFXRa1IgTUyzg0hxv/view'>Wood Blocks</a>）
+        <ul>
+          <li>
+            モデルの作成に使用できる良品と不良品の画像とパラメータの一覧が含まれています。
+          </li>
+          <li>
+            学習用の画像はtrainフォルダにあり、推論用の画像はpredictフォルダにあります。
+          </li>
+          <li>
+            NGとは不良品の画像、OKとは良品の画像という意味です。
+          </li>
+        </ul>
+      </li>
+    </ul>
+</ul>"
+  initialization: "初期化"
+  initializationMessage: "
+  <ul>
+    <li>
+      ライブラリを初期化します。
+    </li>
+    <li>
+      エンドポイントURLをとして入力。
+    </li>
+    <li>
+      エンドポイントが入力されていない場合、ライブラリはデフォルトのエンドポイント https://sdd.hacarus.com/api を使用します。      
+    </li>
+    <li>
+      個別のエンドポイントURLは、リクエストに応じてHacarusから提供されます。
+    </li>
+  </ul>
+  "
+  authorization: "認証"
+  authorizationMessage: "
+  <ul>
+    <li>
+      アクセストークンを作成します。
+    </li>
+    <li>
+      クライアントIDとクライアントシークレットをパラメータとして入力する。
+    </li>
+    <li>
+      クライアントIDとクライアントシークレットは、リクエストに応じてHacarusから提供されます。
+    </li>
+  </ul>"
+  sampleResponse: "レスポンスの一例"
+  possibleErrors: "起こり得るエラー"
+  error401: " 401 Unauthorized:"
+  invalidClientId: "クライアントIDが無効です。"
+  invalidClientSecret: "クライアントシークレットが無効です。"
+  methods: "Methods"
+  activateLicense: "ライセンスのアクティベート"
+  activateLicenseMessage: "
+  <ul>
+    <li>
+      ライセンスをアクティベートします。
+    </li>
+    <li>
+      ライセンスファイルをパラメータとして入力してください。
+    </li>
+    <li>
+      ライセンスはユーザーが`Train` または `Predict`というファンクションを使用する前にアクティベートしてください。
+    </li>
+    <li>
+      ライセンスファイルを取得するには、ハカルスにご連絡ください。
+    </li>
+  </ul>"
+  error403: "403 Forbidden:"
+  invalidLicense: "ライセンスファイルが無効。"
+  licenseExists: "ライセンスはアクティベート済み。"
+  getItems: "データを取得する"
+  getItemsMessage: "
+  <ul>
+    <li>
+      学習、推論、およびアーカイブ別に分類したアップロード済みアイテムのリストを取得します。
+      <ul>
+        <li>
+          `training`: 学習に使用するデータ
+          <ul>
+            <li>
+              データが`true`（good）、`false`（defect）、または`null`（ラベルなし）のいずれかにラベル付けされているかをgoodというキーで知ることができます。
+            </li>
+          </ul>
+        </li>
+        <li>
+          `predict`: アップロード済みのデータのうち、推論用のもの
+          <ul>
+            <li>
+             推論結果を確認するには、`good`と`status`のキーを確認してください。
+            </li>
+          </ul>
+        </li>
+        <li>
+          `archived`: アーカイブ済みデータ（将来実装予定の機能、現在使用されていません）
+        </li>
+      </ul>
+    </li>
+    <li>
+      `override_assessment`および`confirm_assessment`はUI（ユーザインタフェース）固有のものであり、SDKを使用している場合は無視できます。
+    </li>
+  </ul>
+  "
+  getAlgorithms:  "アルゴリズムを取得する"
+  getAlgorithmsMessage: "
+  <ul>
+    <li>
+      学習に使用できるアルゴリズムと使用できるパラメータの一覧をリストで返します。
+    </li>
+    <li>
+      アルゴリズムの説明について、<a href='https://github.com/hacarus/HacarusVisualInspectionApi/blob/master/%E3%83%AA%E3%83%AA%E3%83%BC%E3%82%B9%E3%83%8E%E3%83%BC%E3%83%88%20v0.pdf'>こちら</a>をご覧ください。
+    </li>
+  </ul> 
+  "
+  possibleError: "起こり得るエラー"
+  error404: "404 NotFound:"
+  noAlgorithm: "利用可能なアルゴリズムがありません。 この問題が発生した場合はHacarusに連絡してください。"
+  getModels: "モデルを取得する"
+  getModelsMessage: "
+  <ul>
+    <li>
+      データを推論するのに使用できる作成済みモデルのリストを取得します。
+    </li>
+    <li>
+      モデルIDが渡されなかった場合（`Serve`メソッドを使用して）、`active`が`true`のモデルをデフォルトとして使用します。
+    </li>
+    <li>
+      `status`キーは、モデルが`active`か`failed`かを示します。 
+      <ul>
+        <li>
+          `status`が `active`のモデルは正常に作成され、予測に使用できます
+        </li>
+        <li>
+          `status`が `failed`のモデルは作成に失敗し、予測には使用できません
+        </li>
+      </ul>
+    </li>
+  </ul>
+  "
+  train: "学習"
+  trainMessage: "
+  <ul>
+    <li>
+      推論に使用するモデルを作成します。
+    </li>
+    <li>
+      モデルの学習に使用するデータIDの配列を含むオプションのパラメータを入力します。
+    </li>
+    <li>
+      アルゴリズムの設定を調整するため`AlgorithmParameter`の配列を入力します。
+    </li>
+    <li>
+      新しく作成したモデルを確認するには、`GetModels（）`メソッドを使用します。
+    </li>
+  </ul>
+  "
+  invalidId: "少なくとも1つのデータIDがクライアントに属していないか、無効か、または存在しません。"
+  addItem: "データを追加する"
+  addItemMessage: "
+  <ul>
+    <li>
+      このメソッドを使用して、学習のためのデータをアップロードしてラベルを付けます。
+    </li>
+    <li>
+      データに良品または不良品としてラベルを付ける場合は、`IsGood`パラメータをブール値で`true`（良品）または`false`（不良品）に設定します。
+    </li>
+  </ul>
+  "
+  addItemMessageMore: "
+  <ul>
+    <li>
+      このメソッドを使用して、推論のためのデータをアップロードしてラベルを付けます。
+    </li>
+    <li>
+      `Files`パラメータを使用して`FileModel`の配列を渡します。 `FileModel`は`FileName`と`ContentType`のプロパティを持ちます。
+    </li>
+    <li>
+      FileModelを作成をするには、`FileModel File = new FileModel() `または、 `FileModel File = new FileModel(\"FileName\", \"ContentType\")`を使用してください。
+    </li>
+    <li>
+      アップロードしたデータを確認するには、`GetItems（）`メソッドを使用します。
+    </li>
+    <li>
+      画像のファイル名はデータID(`item_id`)として使用します。
+    </li>
+    <li>
+      サポートされているファイル形式：`png`、`jpeg`、`tiff`
+    </li>
+  </ul>
+  "
+  error400: "400 BadRequest:"
+  invalidFile: "ファイル名かファイル形の無効。"
+  noImage: "アップロード用の画像が送信されていません。"
+  getItem: "特定のデータを取得する"
+  getItemMessage: "
+  <ul>
+    <li>
+      データIDで特定のデータを取得します。
+    </li>
+    <li>
+      データIDは、アップロード時に画像ファイル名に基づいて割り当てられます。
+    </li>
+    <li>
+      重要なキー:
+      <ul>
+        <li>
+          `computed_assessment`: 予測の結果
+        </li>
+        <li>
+          `annotations`: `Serve`メソッドが呼び出されたときに生成されるアノテーションのリストを含みます
+        </li>
+        <li>
+          `raw_url`: アップロードされたファイルのURL
+        </li>
+        <li>
+          `url`: 欠陥箇所表示ファイル（緑色のボックス）
+        </li>
+        <li>
+          `status`: データのステータス。`pending`（推論前または予測中）または`done`（予測済み）のいずれか
+        </li>
+      </ul>
+    </li>
+  </ul>
+  "
+  itemIdDoesNotExists: "データIDが存在していません。"
+  doesNotBelongToClient: " 指定されたデータIDのあるデータがクライアントに属していません。"
+  predict: "予測"
+  predictMessage: "
+  <ul>
+    <li>
+      データは良品か不良品があるか推論します。
+    </li>
+    <li>
+      結果を確認するには、`GetItems()`メソッドを使用して、各データの`good`キーを確認します。
+    </li>
+  </ul>
+  "
+  itemDoesNotExists: "送信されたデータとデータIDは存在していません。"
+  noModel: "推論に使用できるモデルがないか、使用可能なモデルのステータスがのfailedです。 Trainメソッドを使用し、新しいモデルを作成してください。"
+  genericErrors: "一般的なエラー"
+  errorUnauthorized: "メソッドを呼び出すときにまだ承認されていないエラーです。エラーを遭遇する場合、最初に`Authorize`メソッドを呼び出してください。"
+  errorNoLicense: "メソッドを呼び出すが、ライセンスがまだアクティベートされていないか期限切れになっているときのエラーです。 遭遇したら、最初に`ActivateLicense`メソッドを呼び出してください。"
+

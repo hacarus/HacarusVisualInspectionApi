@@ -1,0 +1,327 @@
+en:
+  introduction: "Hacarus Visual Inspection Api"
+  introductionMessage: "Hacarus is a provider of lightweight and explainable AI solutions for manufacturing and medical industries.
+  <br/><br/>
+  Our technology is based on Sparse Modeling, a Machine Learning technique that understands data like a human would - by its unique key features. Sparse Modeling is especially useful in resource constraint environments where computing power, cloud connection and availability of training data are limited – thanks to its lightweight design.
+  <br/><br/>
+  Our solutions can run in an offline environment on embedded systems or as a cloud module. Compared with conventional DL based approaches we are far more resource efficient and produce better results.
+  <br/><br/>
+  Visit <a href='https://hacarus.com/visual-inspection/'>https://hacarus.com/visual-inspection/</a> to learn more about Hacarus’ Visual Inspection solution or <a href='https://hacarus.com/contact/'>contact us</a> to request access to our API.
+  "
+  introductionMessageMoreCSharp: "This Visual Inspection Api wrapper for C#  is made for software engineers who want to integrate with the Hacarus Visual Inspection module through its API. The wrapper provides simple to use method calls for easy integration to your C# based applications. Supports .Net Framework 4.6.1 and .Net Core 2.0.
+  " 
+  introductionMessageMorePython: "This Visual Inspection SDK for Python is made for software engineers who want to integrate with the Hacarus Visual Inspection module through its API. The wrapper provides simple to use method calls for easy integration to your Python based applications.
+  " 
+  installation: "Installation"
+  installationMessagePython: "To install this package on your project, use this command:"
+  installationMessageCSharp: "To install this package on your project, use this command in Package Manager Console."
+  installationMessageMoreCSharp: "
+  You can also add it on your project by using `Add packages`, check on the `Show prerelease packages`, and search for `HacarusVisualInspectionApi` on the nuget.org repository.
+  <br/><br/>
+  Other installation options can be found on <a href='https://www.nuget.org/packages/HacarusVisualInspectionApi/1.1.1-beta'>Nuget Package Site</a>.
+  "
+  terms: "Terms"
+  termsMessage: "A brief explanation of the terms used throughout this documentation:
+<br/><br/>
+<b>Model</b><br/>
+A model is created (or trained) by applying an algorithm to a data-set of items (also called training-data), along with the configuration of a set of parameters.
+After creation, the model can be used to analyze new data.
+<br/><br/>
+<b>Algorithm</b><br/>
+The machine learning code that is used to build a model – selected depending on the nature of the visual inspection task and the expected precision and performance.
+<br/><br/>
+<b>Training</b><br/>
+The process of creating a new model.
+<br/><br/>
+<b>Parameter</b><br/>
+Parameters are used to configure how an algorithm should be applied during the training. For example the minimal or maximum accepted image resolution, etc.
+<br/><br/>
+<b>Item</b><br/>
+An item represents the data of a single product that is the subject of the inspection. One item can have one or several images associated.
+For example: A packaging box in a storage warehouse, with 6 images for each of the 6 box sides.
+"
+  usage: "Usage"
+  usageMessage: "
+To get started, you need the following:
+<ul>
+  <li>
+    Client ID and Client Secret
+    <ul>
+      <li>
+        These will be used to authorize the SDK.
+      </li>
+      <li>
+        An authorized user will be able to access the system's functions, such as adding items, getting list of items, algorithms, and models.
+      </li>
+      <li>
+        To be able to train models and to use the predict function, you also need an active license.
+      </li>
+    </ul>
+  </li>
+  <li>
+    License File
+    <ul>
+      <li>
+        These will be used to activate your license.
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Training Images
+    <ul>
+      <li>
+        A prerequisite to creating a new model, is to provide training items by uploading images.
+      </li>
+      <li>
+        Use training items to create a model.
+      </li>
+      <li>
+        Add items for prediction by uploading images.
+      </li>
+      <li>
+        Use the created model to predict the items for prediction.
+      </li>
+      <li>
+        Sample images for evaluation are available for download here: <a href='https://drive.google.com/file/d/1Zg*gCX9gxxYjEau9j29oe0hDBuppDosh/view'>Metal Plates</a> and <a href='https://drive.google.com/file/d/1oRvEfeDfa3seEn0rFXRa1IgTUyzg0hxv/view'>Wood Blocks</a>
+        <ul>
+          <li>
+            Contains good and defect images and a list of parameters you may use to create a model.
+          </li>
+          <li>
+            Images for training are located in a folder `train`, images for prediction are in `predict`
+          </li>
+          <li>
+            NG means defect image, OK means good images
+          </li>
+        </ul>
+      </li>
+    </ul>
+</ul>"
+  initialization: "Initialization"
+  initializationMessage: "
+  <ul>
+    <li>
+      Initializes the library
+    </li>
+    <li>
+      Use your endpoint URL as parameter
+    </li>
+    <li>
+      If no endpoint is used, the library will use the default endpoint https://sdd-api.hacarus.com/api
+    </li>
+    <li>
+      INDIVIDUAL endpoint URL will be provided by Hacarus on request
+    </li>
+  </ul>"
+  authorization: "Authorization"
+  authorizationMessage: "
+  <ul>
+    <li>
+      Generates access token
+    </li>
+    <li>
+      Use your Client ID and Client Secret as parameters
+    </li>
+    <li>
+      Client ID and Client Secret will be provided by Hacarus on request
+    </li>
+  </ul>"
+  sampleResponse: "Sample response"
+  possibleErrors: "Possible errors"
+  error401: " 401 Unauthorized:"
+  invalidClientId: "Client ID is invalid"
+  invalidClientSecret: "Client secret is invalid"
+  methods: "Methods"
+  activateLicense: "Activate License"
+  activateLicenseMessage: "
+  <ul>
+    <li>
+      Activates the license
+    </li>
+    <li>
+      Customer ID and license file must be added as parameters
+    </li>
+    <li>
+      License must be activated first before the user can use the train or predict functions
+    </li>
+    <li>
+      To have a license file, please contact Hacarus
+    </li>
+  </ul>"
+  error403: "403 Forbidden:"
+  invalidLicense: "License file is invalid"
+  licenseExists: "License is already active"
+  getItems: "Get Items"
+  getItemsMessage: "
+  <ul>
+    <li>
+      Retrieves list of uploaded items grouped by training, predict, and archived
+      <ul>
+        <li>
+          `training`: Items to be used for training
+          <ul>
+            <li>
+              Check for key `good` to know if item is labeled as `true`(good), `false`(defect) or `null` (unlabeled)
+            </li>
+          </ul>
+        </li>
+        <li>
+          `predict`: Uploaded items that can be predicted
+          <ul>
+            <li>
+              To check for labels and results, check for the keys `good` and `status`
+            </li>
+          </ul>
+        </li>
+        <li>
+          `archived`: Achived items (Future feature, currently not in use)
+        </li>
+      </ul>
+    </li>
+    <li>
+      `override_assessment` and `confirmed_assessment` are specific to UI and can be ignored when working with the SDK
+    </li>
+  </ul>
+  "
+  getAlgorithms:  "Get Algorithms"
+  getAlgorithmsMessage: "
+  <ul>
+    <li>
+      Returns list of available algorithms including parameters that can be used to create a model
+    </li>
+    <li>
+      Algorithm documentation available <a href='https://github.com/hacarus/HacarusVisualInspectionApi/blob/master/Integration%20Memo%20v0.pdf'>here</a>
+    </li>
+  </ul> 
+  "
+  possibleError: "Possible error"
+  error404: "404 NotFound:"
+  noAlgorithm: "No available algorithm. Please contact Hacarus if this problem occurs"
+  getModels: "Get Models"
+  getModelsMessage: "
+  <ul>
+    <li>
+      Gets list of created models that can be used to predict items
+    </li>
+    <li>
+      The key `active` means that if an item is predicted (using `Serve` method) without passing a model id, the model with `active` valued `true` will be used as default
+    </li>
+    <li>
+      The key `status` shows if a model is `active` or `failed.`
+      <ul>
+        <li>
+          Models with `status: active` are successfully created and can be used for prediction
+        </li>
+        <li>
+          Models with `status: failed` are not successfully created and cannot be used for prediction
+        </li>
+      </ul>
+    </li>
+  </ul>
+  "
+  train: "Train"
+  trainMessage: "
+  <ul>
+    <li>
+      Creates model to use for prediction
+    </li>
+    <li>
+      Accepts an optional parameter that contains array of item ids that will be used for training the model
+    </li>
+    <li>
+      Accepts an optional parameter that contains array of AlgorithmParameter for adjusting the algorithm settings
+    </li>
+    <li>
+      To check the newly created model, use `GetModels()` method    
+    </li>
+  </ul>
+    "
+  invalidId: "Atleast one item id does not belong to the client, is invalid or does not exist."
+  addItem: "Add Item"
+  addItemMessage: "
+  <ul>
+    <li>
+      Use this method to upload and label items for training
+    </li>
+    <li>
+      To label items as good or defect, set `IsGood` parameter to a boolean value `true`(good) or `false`(defect)
+    </li>
+  </ul>
+"
+  addItemMessageMore: "
+  <ul>
+    <li>
+      Use this method to upload items for prediction
+    </li>
+    <li>
+      Use `Files` parameter to pass an array of `FileModel`. `FileModel` have properties `FileName` and `ContentType`.
+    </li>
+    <li>
+      To create a FileModel, use `FileModel File = new FileModel()` or `FileModel File = new FileModel(\"FileName\", \"ContentType\")`
+    </li>
+    <li>
+      To check the uploaded item, use the `GetItems()` method
+    </li>
+    <li>
+      The filename of the image will be used as the `item_id` of the item
+    </li>
+    <li>
+      Supported file types: `png`, `jpeg`, `tiff`
+    </li>
+  </ul>
+  "
+  error400: "400 BadRequest:"
+  invalidFile: "Invalid file name or file type"
+  noImage: "No image sent for upload"
+  getItem: "Get Specific Item"
+  getItemMessage: "
+  <ul>
+    <li>
+      Get details of a specific item identified by its item ID 
+    </li>
+    <li>
+      The item ID is assigned during upload and based on the image file name
+    </li>
+    <li>
+      Important keys:
+      <ul>
+        <li>
+          `computed_assessment`: result of the prediction
+        </li>
+        <li>
+          `annotations`: contains list of annotations generated when `Serve` method is called
+        </li>
+        <li>
+          `raw_url`: url of your uploaded file
+        </li>
+        <li>
+          `url`: processed file with defect annotations (green boxes)
+        </li>
+        <li>
+          `status`: status of the item. It can be `pending`(not yet predicted or being predicted) or `done`(predicted)
+        </li>
+      </ul>
+    </li>
+  </ul>
+  "
+  itemIdDoesNotExists: "Item id does not exist"
+  doesNotBelongToClient: "Item with the given item id does not belong to the client"
+  predict: "Predict"
+  predictMessage: "
+  <ul>
+    <li>
+      Predicts if items are good or defect
+    </li>
+    <li>
+      To check the result, use the `GetItems()` method and check for key `good` of each item
+    </li>
+  </ul>
+  "
+  itemDoesNotExists: "Item with item id sent does not exist"
+  noModel: "No model available to use for prediction or available models have `failed` status. Create a new model by using `Train` method."
+  genericErrors: "Generic Errors"
+  errorUnauthorized: "Error when calling a method but not yet authorized. When encounted, please call `Authorize` method first."
+  errorNoLicense: "Error when calling a method but license is not yet activated or expired. When encounted, please call `ActivateLicense` method first."
+
