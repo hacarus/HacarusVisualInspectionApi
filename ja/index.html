@@ -1,0 +1,885 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="../stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="../stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="../javascripts/all.js"></script>
+  </head>
+
+  <body class="ja ja_index" data-languages="[&quot;csharp&quot;,&quot;python&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="../images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <div class="filtered-image">
+      <img src="../images/logo.png" class="logo" alt="Logo" />
+      </div>
+        <div class="lang-selector">
+              <a href="#" data-language-name="csharp">csharp</a>
+              <a href="#" data-language-name="python">python</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#t-introduction" class="toc-h1 toc-link" data-title="Hacarus Visual Inspection Api">Hacarus Visual Inspection Api</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#t-installation" class="toc-h2 toc-link" data-title="インストール">インストール</a>
+                  </li>
+                  <li>
+                    <a href="#t-terms" class="toc-h2 toc-link" data-title="用語説明">用語説明</a>
+                  </li>
+                  <li>
+                    <a href="#t-usage" class="toc-h2 toc-link" data-title="使用方法">使用方法</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#t-initialization" class="toc-h1 toc-link" data-title="初期化">初期化</a>
+          </li>
+          <li>
+            <a href="#t-authorization" class="toc-h1 toc-link" data-title="認証">認証</a>
+          </li>
+          <li>
+            <a href="#t-methods" class="toc-h1 toc-link" data-title="Methods">Methods</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#t-activatelicense" class="toc-h2 toc-link" data-title="ライセンスのアクティベート">ライセンスのアクティベート</a>
+                  </li>
+                  <li>
+                    <a href="#t-getitems" class="toc-h2 toc-link" data-title="データを取得する">データを取得する</a>
+                  </li>
+                  <li>
+                    <a href="#t-getalgorithms" class="toc-h2 toc-link" data-title="アルゴリズムを取得する">アルゴリズムを取得する</a>
+                  </li>
+                  <li>
+                    <a href="#t-getmodels" class="toc-h2 toc-link" data-title="モデルを取得する">モデルを取得する</a>
+                  </li>
+                  <li>
+                    <a href="#t-train" class="toc-h2 toc-link" data-title="学習">学習</a>
+                  </li>
+                  <li>
+                    <a href="#t-additem" class="toc-h2 toc-link" data-title="データを追加する">データを追加する</a>
+                  </li>
+                  <li>
+                    <a href="#t-getitem" class="toc-h2 toc-link" data-title="特定のデータを取得する">特定のデータを取得する</a>
+                  </li>
+                  <li>
+                    <a href="#t-predict" class="toc-h2 toc-link" data-title="予測">予測</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#t-genericerrors" class="toc-h1 toc-link" data-title="一般的なエラー">一般的なエラー</a>
+          </li>
+      </ul>
+        <ul class="toc-footer">
+            <li><a href='mailto:inquiry@hacarus.com'>Sign Up for a Developer Key</a></li>
+            <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='t-introduction'>Hacarus Visual Inspection Api</h1>
+<ul>
+<li><strong>C#</strong> <a href="https://travis-ci.org/hacarus/HacarusVisualInspectionApi"><img src="https://travis-ci.org/hacarus/HacarusVisualInspectionApi.svg?branch=master" alt="Build Status" /></a></li>
+<li><strong>Python</strong> <a href="https://travis-ci.org/hacarus/HacarusVisualInspectionApi"><img src="https://travis-ci.org/hacarus/HacarusVisualInspectionApi.svg?branch=master" alt="Build Status" /></a></li>
+</ul>
+
+<p><a href="./">English</a> | <a href="/ja">日本語</a>
+<br/>
+<br/>
+ ハカルスはメーカーとメディカル事業に向け、軽量で説明可能なAIソリューションズを提供しています。 <br/><br/> 弊社のスパースモデリングに基づいた技術は、人間のようにデータを理解できる独自の機械学習手法です。スパースモデリングは軽量に設計されているため、コンピューティングパワー、クラウド環境、および少量の学習データなどの資源の制限された環境下で特に有用です。 <br/><br/> 弊社のソリューションは組み込みシステムでオフライン環境かクラウドで実行できます。伝統的なディープラーニングベースの手法に比べ、資源を効率的に使用し、よりよい結果を提供します。 <br/><br/> ハカルスの外観検査ソリューションの詳細を参照するには、こちらのリンク、<a href='https://hacarus.com/ja/visual-inspection/'>https://hacarus.com/ja/visual-inspection/</a> をご覧ください。また、APIへのアクセスのリクエストは<a href='https://hacarus.com/ja/contact/'>contact us</a> までご連絡ください。 </p>
+
+<div class="hacarus-content lang-specific csharp">
+この外観検査用 API wrapper for C#は、あなたのC#のプロジェクトに、APIを通じて外観検査モジュールを組み込むことができます。このライブラリはC# .Net Framework 4.6.1 と .Net Core 2.0.をサポートしています。
+</div>
+
+<div class="hacarus-content lang-specific python">
+This Visual Inspection SDK for Python is made for software engineers who want to integrate with the Hacarus Visual Inspection module through its API. The wrapper provides simple to use method calls for easy integration to your Python based applications. 
+</div>
+
+<p><br/>
+<br/></p>
+<h2 id='t-installation'>インストール</h2><pre class="highlight csharp tab-csharp"><code><span class="n">PM</span><span class="p">&gt;</span> <span class="n">Install</span><span class="p">-</span><span class="n">Package</span> <span class="n">HacarusVisualInspectionApi</span> <span class="p">-</span><span class="n">Version</span> <span class="m">1.1</span><span class="p">.</span><span class="m">1</span><span class="p">-</span><span class="n">beta</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="o">&gt;</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">hacarus_visual_inspection</span>
+</code></pre>
+<div class="hacarus-content lang-specific csharp">
+このパッケージをプロジェクトにインストールするため、こちらのコマンドをPackage Manager Consoleに入力してください。
+</div>
+
+<div class="hacarus-content lang-specific python">
+To install this package on your project, use this command:
+</div>
+
+<div class="hacarus-content lang-specific csharp">
+ NuGetパッケージマネージャを使用してプロジェクトに追加することもできます。Show prerelease packagesにチェックを入れ、 HacarusVisualInspectionApi を nuget.org のリポジトリで検索してください。 <br/><br/> 他のインストール方法は<a href='https://www.nuget.org/packages/HacarusVisualInspectionApi/1.1.1-beta'>Nuget Package Site</a>を参照ください。
+</div>
+<h2 id='t-terms'>用語説明</h2>
+<p> このドキュメントの全体で使用されている用語の簡単な説明： <br/><br/> <b>モデル</b><br/> モデルは一連のパラメータの設定とともに、データセットの学習データ（トレーニングデータ）をアルゴリズムに適用して、作成・学習できます。 <br/><br/> <b>アルゴリズム</b><br/> アルゴリズムはモデルを構成するため使用する機械学習アルゴリズムのことです。外観検査の性質と予想される精度および性能によって選択します。 <br/><br/> <b>学習</b><br/> 新しいモデルを作成する操作です。 <br/><br/> <b>パラメータ</b><br/> パラメータは、学習中にアルゴリズムを適用する方法を構成するために使用されます。 例えば、最小または最大の画像解像度などがあります。 <br/><br/> <b>データ</b><br/> データ（アイテムとも呼ばれる)は検査の対象となる単一の製品のデータを表します。 1つのデータに1つまたは複数の画像を関連付けることができます。 例：倉庫内の梱包箱の場合、一つの箱に6つの面の画像があります。 </p>
+<h2 id='t-usage'>使用方法</h2>
+<p> 始めに、下記のものが必要です。 <ul> <li> クライエントIDとクライエントシークレット <ul> <li> これはSDKを認証するために使用されます。 </li> <li> 認証されたユーザーはシステム機能にアクセスでき、データを追加したり、データ、アルゴリズム、モデルの一覧を取得ことができます。 </li> <li> モデルの学習や推論を行うためにはライセンスをアクティベートする必要があります。 </li> </ul> </li> <li> ライセンスファイル <ul> <li> これはライセンスをアクティベートするため使用されます。 </li> </ul> </li> </ul> <ul> <li> 学習画像 <ul> <li> モデルを作成するためには、画像をアップロードして、学習データを提供する必要があります。 </li> <li> モデルを作成するには学習データが使用されます。 </li> <li> 画像をアップロードすることで推論のためのデータを追加します。 </li> <li> 作成済みのモデルを用いてデータを推論します。 </li> <li> サンプル画像はこちらからダウンロードすることができます。（<a href='https://drive.google.com/file/d/1Zg*gCX9gxxYjEau9j29oe0hDBuppDosh/view'>Metal Plates</a>、<a href='https://drive.google.com/file/d/1oRvEfeDfa3seEn0rFXRa1IgTUyzg0hxv/view'>Wood Blocks</a>） <ul> <li> モデルの作成に使用できる良品と不良品の画像とパラメータの一覧が含まれています。 </li> <li> 学習用の画像はtrainフォルダにあり、推論用の画像はpredictフォルダにあります。 </li> <li> NGとは不良品の画像、OKとは良品の画像という意味です。 </li> </ul> </li> </ul> </ul></p>
+<h1 id='t-initialization'>初期化</h1><pre class="highlight csharp tab-csharp"><code><span class="k">using</span> <span class="nn">HacarusVisualInspectionApi</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">HacarusVisualInspectionApi.Models</span><span class="p">;</span>
+<span class="n">HacarusVisualInspection</span> <span class="n">VisualInspection</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">HacarusVisualInspection</span><span class="p">(</span><span class="s">"https://yourserverurl.com/api"</span><span class="p">);</span>
+
+<span class="c1">//Language support</span>
+<span class="n">HacarusVisualInspection</span> <span class="n">VisualInspection</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">HacarusVisualInspection</span><span class="p">(</span><span class="s">"https://yourserverurl.com/api"</span><span class="p">,</span> <span class="s">"ja"</span><span class="p">);</span>
+<span class="c1">//HacarusVisualInspection VisualInspection = new HacarusVisualInspection(language: "ja");</span>
+<span class="c1">//VisualInspection.SetLanguage("ja");</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">hacarus_visual_inspection</span> <span class="kn">import</span> <span class="n">VisualInspectionSDK</span>
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">VisualInspectionSDK</span><span class="p">(</span>
+    <span class="s">"&lt;your_client_id&gt;"</span><span class="p">,</span>
+    <span class="s">"&lt;your_client_secret&gt;"</span><span class="p">,</span>
+    <span class="s">"&lt;your_api_url&gt;"</span>
+<span class="p">)</span>
+</code></pre>
+<p> <ul> <li> ライブラリを初期化します。 </li> <li> エンドポイントURLをとして入力。 </li> <li> エンドポイントが入力されていない場合、ライブラリはデフォルトのエンドポイント https://sdd.hacarus.com/api を使用します。 </li> <li> 個別のエンドポイントURLは、リクエストに応じてHacarusから提供されます。 </li> </ul> </p>
+<h1 id='t-authorization'>認証</h1><pre class="highlight csharp tab-csharp"><code><span class="n">AccessTokenResponse</span> <span class="n">Response</span> <span class="p">=</span> <span class="n">VisualInspection</span><span class="p">.</span><span class="nf">Authorize</span><span class="p">(</span><span class="s">"YourClientId"</span><span class="p">,</span> <span class="s">"YourClientSecret"</span><span class="p">);</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="c"># already part of the initialization</span>
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">VisualInspectionSDK</span><span class="p">(</span>
+    <span class="s">"&lt;your_client_id&gt;"</span><span class="p">,</span>
+    <span class="s">"&lt;your_client_secret&gt;"</span><span class="p">,</span>
+    <span class="s">"&lt;your_api_url&gt;"</span>
+<span class="p">)</span>
+</code></pre>
+<p> <ul> <li> アクセストークンを作成します。 </li> <li> クライアントIDとクライアントシークレットをパラメータとして入力する。 </li> <li> クライアントIDとクライアントシークレットは、リクエストに応じてHacarusから提供されます。 </li> </ul></p>
+
+<!-- <div class="hacarus-content lang-specific csharp"> -->
+
+<blockquote>
+<p><strong>レスポンスの一例</strong></p>
+</blockquote>
+<pre class="highlight csharp tab-csharp"><code><span class="p">{</span>
+    <span class="s">"data"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"access_token"</span><span class="p">:</span> <span class="s">"GeneratedAccessToken"</span><span class="p">,</span>
+        <span class="s">"expires"</span><span class="p">:</span> <span class="m">2592000</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<blockquote>
+<p><strong>起こり得るエラー</strong>
+<br/>
+<em> 401 Unauthorized:</em> クライアントIDが無効です。</p>
+</blockquote>
+<pre class="highlight csharp tab-csharp"><code><span class="p">{</span>
+    <span class="s">"errors"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"detail"</span><span class="p">:</span> <span class="k">null</span><span class="p">,</span>
+        <span class="s">"source"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">"pointer"</span><span class="p">:</span> <span class="s">"/api/auth/token"</span>
+        <span class="p">},</span>
+        <span class="s">"status"</span><span class="p">:</span> <span class="m">401</span><span class="p">,</span>
+        <span class="s">"title"</span><span class="p">:</span> <span class="s">"Cannot find client information"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre><pre class="highlight python tab-python"><code>    <span class="n">hacarus_visual_inspection</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">APIError</span><span class="p">:</span> <span class="n">Cannot</span> <span class="n">find</span> <span class="n">client</span> <span class="n">information</span> <span class="p">(</span><span class="mi">401</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p><em> 401 Unauthorized:</em> クライアントシークレットが無効です。</p>
+</blockquote>
+<pre class="highlight csharp tab-csharp"><code><span class="p">{</span>
+    <span class="s">"errors"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"detail"</span><span class="p">:</span> <span class="k">null</span><span class="p">,</span>
+        <span class="s">"source"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">"pointer"</span><span class="p">:</span> <span class="s">"/api/auth/token"</span>
+        <span class="p">},</span>
+        <span class="s">"status"</span><span class="p">:</span> <span class="m">401</span><span class="p">,</span>
+        <span class="s">"title"</span><span class="p">:</span> <span class="s">"Client id and secret mismatch"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre><pre class="highlight python tab-python"><code>    <span class="n">hacarus_visual_inspection</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">APIError</span><span class="p">:</span> <span class="n">Client</span> <span class="nb">id</span> <span class="ow">and</span> <span class="n">secret</span> <span class="n">mismatch</span> <span class="p">(</span><span class="mi">400</span><span class="p">)</span>
+</code></pre>
+<!-- </div>  -->
+<h1 id='t-methods'>Methods</h1><h2 id='t-activatelicense'>ライセンスのアクティベート</h2><pre class="highlight csharp tab-csharp"><code><span class="kt">var</span> <span class="n">LicenseFile</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">FileModel</span><span class="p">(</span><span class="s">"PathToFile"</span><span class="p">,</span> <span class="s">"ContentType"</span><span class="p">);</span>
+<span class="n">UploadResponse</span> <span class="n">Response</span> <span class="p">=</span> <span class="n">VisualInspection</span><span class="p">.</span><span class="nf">ActivateLicense</span><span class="p">(</span><span class="n">LicenseFile</span><span class="p">);</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="n">sdk</span><span class="o">.</span><span class="n">activate_license</span><span class="p">(</span><span class="s">"test_client"</span><span class="p">,</span> <span class="s">"tests/data/license.key"</span><span class="p">)</span>
+</code></pre>
+<p> <ul> <li> ライセンスをアクティベートします。 </li> <li> ライセンスファイルをパラメータとして入力してください。 </li> <li> ライセンスはユーザーが`Train` または `Predict`というファンクションを使用する前にアクティベートしてください。 </li> <li> ライセンスファイルを取得するには、ハカルスにご連絡ください。 </li> </ul></p>
+
+<blockquote>
+<p><strong>レスポンスの一例</strong></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p><strong>起こり得るエラー</strong>
+<br/>
+<em>403 Forbidden:</em> ライセンスファイルが無効。</p>
+</blockquote>
+<pre class="highlight csharp tab-csharp"><code><span class="p">{</span>
+    <span class="s">"errors"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"detail"</span><span class="p">:</span> <span class="k">null</span><span class="p">,</span>
+        <span class="s">"source"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">"pointer"</span><span class="p">:</span> <span class="s">"/api/auth/license"</span>
+        <span class="p">},</span>
+        <span class="s">"status"</span><span class="p">:</span> <span class="m">403</span><span class="p">,</span>
+        <span class="s">"title"</span><span class="p">:</span> <span class="s">"Invalid license!"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre><pre class="highlight python tab-python"><code>    <span class="n">python</span> <span class="n">hacarus_visual_inspection</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">APIError</span><span class="p">:</span> <span class="n">Invalid</span> <span class="n">license</span><span class="err">!</span> <span class="p">(</span><span class="mi">403</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p><em>403 Forbidden:</em> ライセンスはアクティベート済み。</p>
+</blockquote>
+<pre class="highlight csharp tab-csharp"><code><span class="p">{</span>
+    <span class="s">"errors"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"detail"</span><span class="p">:</span> <span class="s">"License already exists"</span><span class="p">,</span> 
+        <span class="s">"source"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">"pointer"</span><span class="p">:</span> <span class="s">"/api/auth/license"</span>
+        <span class="p">},</span> 
+        <span class="s">"status"</span><span class="p">:</span> <span class="m">403</span><span class="p">,</span> 
+        <span class="s">"title"</span><span class="p">:</span> <span class="s">"Invalid license!"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre><pre class="highlight python tab-python"><code>    <span class="n">python</span> <span class="n">hacarus_visual_inspection</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">APIError</span><span class="p">:</span> <span class="n">License</span> <span class="n">already</span> <span class="n">exists</span><span class="err">!</span> <span class="p">(</span><span class="mi">403</span><span class="p">)</span>
+</code></pre><h2 id='t-getitems'>データを取得する</h2><pre class="highlight csharp tab-csharp"><code><span class="n">ItemsResponse</span> <span class="n">Response</span> <span class="p">=</span> <span class="n">VisualInspection</span><span class="p">.</span><span class="nf">GetItems</span><span class="p">();</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="n">sdk</span><span class="o">.</span><span class="n">get_items</span><span class="p">()</span>
+</code></pre>
+<p> <ul> <li> 学習、推論、およびアーカイブ別に分類したアップロード済みアイテムのリストを取得します。 <ul> <li> `training`: 学習に使用するデータ <ul> <li> データが`true`（good）、`false`（defect）、または`null`（ラベルなし）のいずれかにラベル付けされているかをgoodというキーで知ることができます。 </li> </ul> </li> <li> `predict`: アップロード済みのデータのうち、推論用のもの <ul> <li> 推論結果を確認するには、`good`と`status`のキーを確認してください。 </li> </ul> </li> <li> `archived`: アーカイブ済みデータ（将来実装予定の機能、現在使用されていません） </li> </ul> </li> <li> `override_assessment`および`confirm_assessment`はUI（ユーザインタフェース）固有のものであり、SDKを使用している場合は無視できます。 </li> </ul> </p>
+
+<blockquote>
+<p><strong>レスポンスの一例</strong></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"archived"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"predict"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"summary"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"adjusted"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"analysed"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"archived_defects"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"assessment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bad Product"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"confirmed"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"defects_detected"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"detection_accuracy"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"items_archived"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"items_for_review"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Context #1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"training"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"defect"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"good"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"training"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"assessment"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"confirmed_assessment"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mon, 10 Jun 2019 08:22:02 GMT"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"default_image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://hacarus-saas-data.s3.amazonaws.com/raw/b21d2..."</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"detected_objects"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"finished_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"good"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_training_data"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"item_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"T1-22-01"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Job id is T1-22-01"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"override_assessment"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"thumbnail_image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://hacarus-saas-data.s3.amazonaws.com/thumbnail/b21d2..."</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='t-getalgorithms'>アルゴリズムを取得する</h2><pre class="highlight csharp tab-csharp"><code><span class="n">AlgorithmResponse</span> <span class="n">Response</span> <span class="p">=</span> <span class="n">VisualInspection</span><span class="p">.</span><span class="nf">GetAlgorithms</span><span class="p">();</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="n">sdk</span><span class="o">.</span><span class="n">get_algorithms</span><span class="p">()</span>
+</code></pre>
+<p> <ul> <li> 学習に使用できるアルゴリズムと使用できるパラメータの一覧をリストで返します。 </li> <li> アルゴリズムの説明について、<a href='https://github.com/hacarus/HacarusVisualInspectionApi/blob/master/%E3%83%AA%E3%83%AA%E3%83%BC%E3%82%B9%E3%83%8E%E3%83%BC%E3%83%88%20v0.pdf'>こちら</a>をご覧ください。 </li> </ul> </p>
+
+<blockquote>
+<p><strong>レスポンスの一例</strong></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"algorithm_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OC"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OC"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"algorithm_parameter_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">252</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-06T23:29:17Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"data_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"float"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"model_parameter"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nu_max"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-07T00:10:09Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"algorithm_parameter_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">249</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-06T23:29:17Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"data_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tuple"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"model_parameter"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"patch_size"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-06T23:30:20Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[4, 4]"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p><strong>起こり得るエラー</strong>
+  <br/>
+<em>404 NotFound:</em> 利用可能なアルゴリズムがありません。 この問題が発生した場合はHacarusに連絡してください。</p>
+</blockquote>
+<pre class="highlight csharp tab-csharp"><code><span class="p">{</span>
+    <span class="s">"errors"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"detail"</span><span class="p">:</span> <span class="k">null</span><span class="p">,</span>
+        <span class="s">"source"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">"pointer"</span><span class="p">:</span> <span class="s">"/api/v1/algorithms"</span>
+        <span class="p">},</span>
+        <span class="s">"status"</span><span class="p">:</span> <span class="m">404</span><span class="p">,</span>
+        <span class="s">"title"</span><span class="p">:</span> <span class="s">"No algorithms found"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre><h2 id='t-getmodels'>モデルを取得する</h2><pre class="highlight csharp tab-csharp"><code><span class="n">ModelsResponse</span> <span class="n">Response</span> <span class="p">=</span> <span class="n">VisualInspection</span><span class="p">.</span><span class="nf">GetModels</span><span class="p">();</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="n">sdk</span><span class="o">.</span><span class="n">get_models</span><span class="p">()</span>
+</code></pre>
+<p> <ul> <li> データを推論するのに使用できる作成済みモデルのリストを取得します。 </li> <li> モデルIDが渡されなかった場合（`Serve`メソッドを使用して）、`active`が`true`のモデルをデフォルトとして使用します。 </li> <li> `status`キーは、モデルが`active`か`failed`かを示します。 <ul> <li> `status`が `active`のモデルは正常に作成され、予測に使用できます </li> <li> `status`が `failed`のモデルは作成に失敗し、予測には使用できません </li> </ul> </li> </ul> </p>
+
+<blockquote>
+<p><strong>レスポンスの一例</strong></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"algorithm_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OC"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"context_default"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-10T08:28:16Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"model_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">269</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test-20190610-01"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"model-2019061008:28:16"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre><h2 id='t-train'>学習</h2><pre class="highlight csharp tab-csharp"><code><span class="c1">//ID of the algorithm you want to use</span>
+<span class="kt">var</span> <span class="n">AlgorithmId</span> <span class="p">=</span> <span class="s">"OC"</span><span class="p">;</span>
+<span class="c1">//Name of your model</span>
+<span class="kt">var</span> <span class="n">ModelName</span> <span class="p">=</span> <span class="s">"ModelName"</span><span class="p">;</span>
+<span class="c1">//Array of of item ids to use for training the model</span>
+<span class="kt">var</span> <span class="n">ItemIds</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">string</span><span class="p">[]</span> <span class="p">{</span> <span class="s">"ItemId"</span> <span class="p">};</span>
+<span class="c1">//Algorithm parameter you want to adjust and use for training the model</span>
+<span class="n">AlgorithmParameter</span> <span class="n">AlgorithmParameter</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">AlgorithmParameter</span><span class="p">();</span>
+<span class="n">algorithmParameter</span><span class="p">.</span><span class="n">AlgorithmParameterId</span> <span class="p">=</span> <span class="m">221</span><span class="p">;</span>
+<span class="n">algorithmParameter</span><span class="p">.</span><span class="n">Value</span> <span class="p">=</span> <span class="s">"50"</span><span class="p">;</span>
+
+<span class="n">ModelResponse</span> <span class="n">Reponse</span> <span class="p">=</span> <span class="n">VisualInspection</span><span class="p">.</span><span class="nf">Train</span><span class="p">(</span><span class="n">AlgorithmId</span><span class="p">,</span> <span class="n">ModelName</span><span class="p">,</span> <span class="n">ItemIds</span><span class="p">,</span> <span class="k">new</span> <span class="n">AlgorithmParameter</span><span class="p">[]</span> <span class="p">{</span> <span class="n">AlgorithmParameter</span> <span class="p">});</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="c">#ID of the algorithm you want to use</span>
+<span class="n">algorithm_id</span> <span class="o">=</span> <span class="s">"hacarus-dictionary-learning"</span><span class="p">;</span>
+<span class="c">#N ame of your model</span>
+<span class="n">model_name</span> <span class="o">=</span> <span class="s">"ModelName"</span><span class="p">;</span>
+<span class="c"># List of of item ids to use for training the model</span>
+<span class="n">item_ids</span> <span class="o">=</span> <span class="p">[</span><span class="s">"ItemId"</span><span class="p">]</span>
+<span class="c">#Algorithm parameter you want to adjust and use for training the model</span>
+<span class="n">algo_param</span> <span class="o">=</span> <span class="p">[{</span>
+    <span class="s">"algorithm_parameter_id"</span><span class="p">:</span> <span class="mi">221</span><span class="p">,</span>
+    <span class="s">"value"</span><span class="p">:</span> <span class="s">"50"</span>
+<span class="p">}]</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">algorithm_id</span><span class="p">,</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">algo_param</span><span class="p">,</span> <span class="n">item_ids</span><span class="p">)</span>
+</code></pre>
+<p> <ul> <li> 推論に使用するモデルを作成します。 </li> <li> モデルの学習に使用するデータIDの配列を含むオプションのパラメータを入力します。 </li> <li> アルゴリズムの設定を調整するため`AlgorithmParameter`の配列を入力します。 </li> <li> 新しく作成したモデルを確認するには、`GetModels（）`メソッドを使用します。 </li> </ul> </p>
+
+<blockquote>
+<p><strong>レスポンスの一例</strong></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"algorithm_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"context_default"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"context_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-11T01:26:08Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"model_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">270</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6/11/19 10:26:07 AM"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"creating"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-11T10:26:07Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"model-2019061101:26:07"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p><strong>起こり得るエラー</strong> <br/>
+<em>403 Forbidden:</em></b> 少なくとも1つのデータIDがクライアントに属していないか、無効か、または存在しません。</p>
+</blockquote>
+<pre class="highlight csharp tab-csharp"><code><span class="p">{</span>
+    <span class="s">"errors"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"detail"</span><span class="p">:</span> <span class="k">null</span><span class="p">,</span>
+        <span class="s">"source"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">"pointer"</span><span class="p">:</span> <span class="s">"/api/v1/train"</span>
+        <span class="p">},</span>
+        <span class="s">"status"</span><span class="p">:</span> <span class="m">403</span><span class="p">,</span>
+        <span class="s">"title"</span><span class="p">:</span> <span class="s">"You do not have access to one or more item ids provided"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="n">hacarus_visual_inspection</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">APIError</span><span class="p">:</span> <span class="n">You</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">have</span> <span class="n">access</span> <span class="n">to</span> <span class="n">one</span> <span class="ow">or</span> <span class="n">more</span> <span class="n">item</span> <span class="n">ids</span> <span class="n">provided</span> <span class="p">(</span><span class="mi">403</span><span class="p">)</span>
+</code></pre><h2 id='t-additem'>データを追加する</h2><pre class="highlight csharp tab-csharp"><code><span class="c1">//For training</span>
+<span class="n">UploadResponse</span> <span class="n">Response</span> <span class="p">=</span> <span class="n">VisualInspection</span><span class="p">.</span><span class="nf">Upload</span><span class="p">(</span><span class="n">Files</span><span class="p">,</span> <span class="n">IsGood</span><span class="p">);</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="c"># For training</span>
+<span class="n">filenames</span> <span class="o">=</span> <span class="p">[</span><span class="s">'images1.tif'</span><span class="p">,</span> <span class="s">'tests/images2.tif'</span><span class="p">]</span>
+<span class="n">is_good</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">sdk</span><span class="o">.</span><span class="n">upload</span><span class="p">(</span><span class="n">filenames</span><span class="p">,</span> <span class="n">is_good</span><span class="p">)</span>
+</code></pre>
+<p> <ul> <li> このメソッドを使用して、学習のためのデータをアップロードしてラベルを付けます。 </li> <li> データに良品または不良品としてラベルを付ける場合は、`IsGood`パラメータをブール値で`true`（良品）または`false`（不良品）に設定します。 </li> </ul> </p>
+<pre class="highlight csharp tab-csharp"><code><span class="c1">//For prediction</span>
+<span class="n">UploadResponse</span> <span class="n">Response</span> <span class="p">=</span> <span class="n">VisualInspection</span><span class="p">.</span><span class="nf">Upload</span><span class="p">(</span><span class="n">Files</span><span class="p">);</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="c"># For prediction</span>
+<span class="n">sdk</span><span class="o">.</span><span class="n">upload</span><span class="p">(</span><span class="n">filenames</span><span class="p">)</span>
+</code></pre>
+<p> <ul> <li> このメソッドを使用して、推論のためのデータをアップロードしてラベルを付けます。 </li> <li> `Files`パラメータを使用して`FileModel`の配列を渡します。 `FileModel`は`FileName`と`ContentType`のプロパティを持ちます。 </li> <li> FileModelを作成をするには、`FileModel File = new FileModel() `または、 `FileModel File = new FileModel("FileName", "ContentType")`を使用してください。 </li> <li> アップロードしたデータを確認するには、`GetItems（）`メソッドを使用します。 </li> <li> 画像のファイル名はデータID(`item_id`)として使用します。 </li> <li> サポートされているファイル形式：`png`、`jpeg`、`tiff` </li> </ul> </p>
+
+<blockquote>
+<p><strong>レスポンスの一例</strong></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"item_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"IMG6760_U"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p><strong>起こり得るエラー</strong>
+<br/>
+<em>400 BadRequest:</em> ファイル名かファイル形の無効。</p>
+</blockquote>
+<pre class="highlight csharp tab-csharp"><code><span class="p">{</span>
+    <span class="s">"errors"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"detail"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s">"Invalid filename 2019-05-24 at 3.27.11 PM.png"</span>
+        <span class="p">],</span>
+        <span class="s">"source"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">"pointer"</span><span class="p">:</span> <span class="s">"/api/v1/upload"</span>
+        <span class="p">},</span>
+        <span class="s">"status"</span><span class="p">:</span> <span class="m">400</span><span class="p">,</span>
+        <span class="s">"title"</span><span class="p">:</span> <span class="s">"Invalid Request"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="n">hacarus_visual_inspection</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">APIError</span><span class="p">:</span> <span class="n">Invalid</span> <span class="n">filename</span> <span class="mi">2019</span><span class="o">-</span><span class="mo">05</span><span class="o">-</span><span class="mi">24</span> <span class="n">at</span> <span class="mf">3.27</span><span class="o">.</span><span class="mi">11</span> <span class="n">PM</span><span class="o">.</span><span class="n">png</span> <span class="p">(</span><span class="mi">400</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p><em>400 BadRequest:</em></b> アップロード用の画像が送信されていません。</p>
+</blockquote>
+<pre class="highlight csharp tab-csharp"><code><span class="p">{</span>
+    <span class="s">"errors"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"detail"</span><span class="p">:</span> <span class="k">null</span><span class="p">,</span>
+        <span class="s">"source"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">"pointer"</span><span class="p">:</span> <span class="s">"/api/v1/upload"</span>
+        <span class="p">},</span>
+        <span class="s">"status"</span><span class="p">:</span> <span class="m">400</span><span class="p">,</span>
+        <span class="s">"title"</span><span class="p">:</span>  <span class="s">"No images to upload"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="n">hacarus_visual_inspection</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">APIError</span><span class="p">:</span> <span class="n">No</span> <span class="n">images</span> <span class="n">to</span> <span class="n">upload</span> <span class="p">(</span><span class="mi">400</span><span class="p">)</span>
+</code></pre><h2 id='t-getitem'>特定のデータを取得する</h2><pre class="highlight csharp tab-csharp"><code><span class="c1">//Set a specific ItemId to get detailed information about the item</span>
+<span class="n">ItemResponse</span> <span class="n">Response</span> <span class="p">=</span> <span class="n">VisualInspection</span><span class="p">.</span><span class="nf">GetItem</span><span class="p">(</span><span class="s">"ItemId"</span><span class="p">);</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="c">#Set a specific ItemId to get detailed information about the item</span>
+<span class="n">item</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_item</span><span class="p">(</span><span class="s">"ItemId"</span><span class="p">);</span>
+</code></pre>
+<p> <ul> <li> データIDで特定のデータを取得します。 </li> <li> データIDは、アップロード時に画像ファイル名に基づいて割り当てられます。 </li> <li> 重要なキー: <ul> <li> `computed_assessment`: 予測の結果 </li> <li> `annotations`: `Serve`メソッドが呼び出されたときに生成されるアノテーションのリストを含みます </li> <li> `raw_url`: アップロードされたファイルのURL </li> <li> `url`: 欠陥箇所表示ファイル（緑色のボックス） </li> <li> `status`: データのステータス。`pending`（推論前または予測中）または`done`（予測済み）のいずれか </li> </ul> </li> </ul> </p>
+
+<blockquote>
+<p><strong>レスポンスの一例</strong></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"computed_assessment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"assessment_result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[OC] Defected product"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"detected_objects"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"detection_accuracy"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"good"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"confirmed_assessment"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"annotations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"annotation_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8269</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-11T05:47:00Z"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"image_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1805</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"x_max"</span><span class="p">:</span><span class="w"> </span><span class="mi">620</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"x_min"</span><span class="p">:</span><span class="w"> </span><span class="mi">606</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"y_max"</span><span class="p">:</span><span class="w"> </span><span class="mi">2322</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"y_min"</span><span class="p">:</span><span class="w"> </span><span class="mi">2284</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"annotation_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8270</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-11T05:47:00Z"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"image_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1805</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"x_max"</span><span class="p">:</span><span class="w"> </span><span class="mi">2082</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"x_min"</span><span class="p">:</span><span class="w"> </span><span class="mi">2064</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"y_max"</span><span class="p">:</span><span class="w"> </span><span class="mi">1722</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"y_min"</span><span class="p">:</span><span class="w"> </span><span class="mi">1702</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/jpeg"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"defect_counted"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"exif_metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+            </span><span class="s2">"file_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">1524794</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">3024</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"image_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1805</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"is_raw_uploaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"position"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"processed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"raw_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://hacarus-saas-data.s3.amazonaws.com/raw/d9b6b9709b29d4deb30be4e981031f09823120c7"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://hacarus-saas-data.s3.amazonaws.com/processed/d9b6b9709b29d4deb30be4e981031f09823120c7"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">4032</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"is_training_data"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"item_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IMG6760_U"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Job id is IMG6760_U"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"manual_assessment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"assessment_result"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"detected_objects"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"detection_accuracy"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"good"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"override_assessment"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"done"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p><strong>起こり得るエラー</strong>
+  <br/>
+<em>404 NotFound:</em> データIDが存在していません。</p>
+</blockquote>
+<pre class="highlight csharp tab-csharp"><code><span class="p">{</span>
+    <span class="s">"errors"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"detail"</span><span class="p">:</span> <span class="k">null</span><span class="p">,</span>
+        <span class="s">"source"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">"pointer"</span><span class="p">:</span> <span class="s">"/api/v1/item/invaliditemidexample"</span>
+        <span class="p">},</span>
+        <span class="s">"status"</span><span class="p">:</span> <span class="m">404</span><span class="p">,</span>
+        <span class="s">"title"</span><span class="p">:</span> <span class="s">"No match for item_id!"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="n">hacarus_visual_inspection</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">APIError</span><span class="p">:</span> <span class="n">No</span> <span class="n">match</span> <span class="k">for</span> <span class="n">item_id</span><span class="err">!</span> <span class="p">(</span><span class="mi">404</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p><em> 401 Unauthorized:</em>  指定されたデータIDのあるデータがクライアントに属していません。</p>
+</blockquote>
+<pre class="highlight csharp tab-csharp"><code><span class="p">{</span>
+    <span class="s">"errors"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"detail"</span><span class="p">:</span> <span class="k">null</span><span class="p">,</span>
+        <span class="s">"source"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">"pointer"</span><span class="p">:</span> <span class="s">"/api/v1/item/sdsd"</span>
+        <span class="p">},</span>
+        <span class="s">"status"</span><span class="p">:</span> <span class="m">401</span><span class="p">,</span>
+        <span class="s">"title"</span><span class="p">:</span> <span class="s">"No permission to view item!"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="n">hacarus_visual_inspection</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">APIError</span><span class="p">:</span> <span class="n">No</span> <span class="n">permission</span> <span class="n">to</span> <span class="n">view</span> <span class="n">item</span><span class="err">!</span> <span class="p">(</span><span class="mi">401</span><span class="p">)</span>
+</code></pre><h2 id='t-predict'>予測</h2><pre class="highlight csharp tab-csharp"><code><span class="c1">//Use ItemIds to pass an array of item ids you want to set for prediction</span>
+<span class="c1">//You may use a specific model for prediction by setting a ModelId value. This is optional. If not set, the active/default model will be used.</span>
+<span class="n">PredictResponse</span> <span class="n">Response</span> <span class="p">=</span> <span class="n">VisualInspection</span><span class="p">.</span><span class="nf">Serve</span><span class="p">(</span><span class="n">ItemIds</span><span class="p">,</span> <span class="s">"ModelId"</span><span class="p">);</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="c"># Use item_ids to pass a list of item ids you want to set for prediction</span>
+<span class="c"># You may use a specific model for prediction by setting a model_id value. This is optional. If not set, the active/default model will be used.</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">serve</span><span class="p">(</span><span class="n">item_ids</span><span class="p">,</span> <span class="s">"model_id"</span><span class="p">)</span>
+</code></pre>
+<p> <ul> <li> データは良品か不良品があるか推論します。 </li> <li> 結果を確認するには、`GetItems()`メソッドを使用して、各データの`good`キーを確認します。 </li> </ul> </p>
+
+<blockquote>
+<p><strong>レスポンスの一例</strong></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"item_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"IMG6760_U"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"model_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"model-2019061101:26:07"</span><span class="w">
+</span><span class="p">}</span><span class="w">    
+</span></code></pre>
+<blockquote>
+<p><strong>起こり得るエラー</strong>
+<br/>
+<em>404 NotFound:</em> 送信されたデータとデータIDは存在していません。</p>
+</blockquote>
+<pre class="highlight csharp tab-csharp"><code><span class="p">{</span>
+    <span class="s">"errors"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"detail"</span><span class="p">:</span> <span class="k">null</span><span class="p">,</span>
+        <span class="s">"source"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">"pointer"</span><span class="p">:</span> <span class="s">"/api/v1/serve"</span>
+        <span class="p">},</span>
+        <span class="s">"status"</span><span class="p">:</span> <span class="m">404</span><span class="p">,</span>
+        <span class="s">"title"</span><span class="p">:</span> <span class="s">"Cannot find items"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="n">hacarus_visual_inspection</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">APIError</span><span class="p">:</span> <span class="n">Cannot</span> <span class="n">find</span> <span class="n">items</span> <span class="p">(</span><span class="mi">404</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p><em>400 BadRequest:</em> 推論に使用できるモデルがないか、使用可能なモデルのステータスがのfailedです。 Trainメソッドを使用し、新しいモデルを作成してください。</p>
+</blockquote>
+<pre class="highlight csharp tab-csharp"><code><span class="p">{</span>
+    <span class="s">"errors"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"detail"</span><span class="p">:</span> <span class="k">null</span><span class="p">,</span>
+        <span class="s">"source"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">"pointer"</span><span class="p">:</span> <span class="s">"/api/v1/serve"</span>
+        <span class="p">},</span>
+        <span class="s">"status"</span><span class="p">:</span> <span class="m">400</span><span class="p">,</span>
+        <span class="s">"title"</span><span class="p">:</span> <span class="s">"There is no available model"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="n">hacarus_visual_inspection</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">APIError</span><span class="p">:</span> <span class="n">There</span> <span class="ow">is</span> <span class="n">no</span> <span class="n">available</span> <span class="n">model</span> <span class="p">(</span><span class="mi">400</span><span class="p">)</span>
+</code></pre><h1 id='t-genericerrors'>一般的なエラー</h1>
+<blockquote>
+<p>メソッドを呼び出すときにまだ承認されていないエラーです。エラーを遭遇する場合、最初に`Authorize`メソッドを呼び出してください。</p>
+</blockquote>
+<pre class="highlight csharp tab-csharp"><code><span class="p">{</span>
+    <span class="s">"errors"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"detail"</span><span class="p">:</span> <span class="k">null</span><span class="p">,</span>
+        <span class="s">"source"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">"pointer"</span><span class="p">:</span> <span class="s">"/api/v1/algorithms"</span>
+        <span class="p">},</span>
+        <span class="s">"status"</span><span class="p">:</span> <span class="m">401</span><span class="p">,</span>
+        <span class="s">"title"</span><span class="p">:</span> <span class="s">"No permission to access this resource"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="n">hacarus_visual_inspection</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">APIError</span><span class="p">:</span> <span class="n">No</span> <span class="n">permission</span> <span class="n">to</span> <span class="n">access</span> <span class="n">this</span> <span class="n">resource</span><span class="err">!</span> <span class="p">(</span><span class="mi">401</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>メソッドを呼び出すが、ライセンスがまだアクティベートされていないか期限切れになっているときのエラーです。 遭遇したら、最初に`ActivateLicense`メソッドを呼び出してください。</p>
+</blockquote>
+<pre class="highlight csharp tab-csharp"><code><span class="p">{</span>
+    <span class="s">"errors"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"detail"</span><span class="p">:</span> <span class="k">null</span><span class="p">,</span>
+        <span class="s">"source"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">"pointer"</span><span class="p">:</span> <span class="s">"/api/v1/upload"</span>
+        <span class="p">},</span>
+        <span class="s">"status"</span><span class="p">:</span> <span class="m">403</span><span class="p">,</span>
+        <span class="s">"title"</span><span class="p">:</span> <span class="s">"Invalid license!"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="n">hacarus_visual_inspection</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">APIError</span><span class="p">:</span> <span class="n">Invalid</span> <span class="n">license</span><span class="err">!</span> <span class="p">(</span><span class="mi">403</span><span class="p">)</span>
+</code></pre>
+<!-- 
+# Errors
+
+<aside class="notice">
+This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
+</aside>
+
+The Kittn API uses the following error codes:
+
+
+Error Code | Meaning
+---------- | -------
+400 | Bad Request -- Your request is invalid.
+401 | Unauthorized -- Your API key is wrong.
+403 | Forbidden -- The kitten requested is hidden for administrators only.
+404 | Not Found -- The specified kitten could not be found.
+405 | Method Not Allowed -- You tried to access a kitten with an invalid method.
+406 | Not Acceptable -- You requested a format that isn't json.
+410 | Gone -- The kitten requested has been removed from our servers.
+418 | I'm a teapot.
+429 | Too Many Requests -- You're requesting too many kittens! Slow down!
+500 | Internal Server Error -- We had a problem with our server. Try again later.
+503 | Service Unavailable -- We're temporarily offline for maintenance. Please try again later. -->
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="csharp">csharp</a>
+                <a href="#" data-language-name="python">python</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
