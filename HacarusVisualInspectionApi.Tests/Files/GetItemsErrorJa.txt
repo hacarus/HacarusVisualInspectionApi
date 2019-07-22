@@ -1,0 +1,10 @@
+﻿{
+  "errors": {
+    "detail": "\u30b3\u30f3\u30c6\u30ad\u30b9\u30c8\u304c\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3002", 
+    "source": {
+      "pointer": "/api/context/100133?"
+    }, 
+    "status": 404, 
+    "title": ""
+  }
+}

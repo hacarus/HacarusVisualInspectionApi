@@ -71,6 +71,17 @@ namespace HacarusVisualInspectionApi
             return ResponseObject;
         }
 
+        public VersionResponse GetVersionNumber()
+        {
+            var Request = new RestRequest("auth/app_version", Method.GET);
+            Request.AddHeader("Accept-Language", this.Language);
+            Request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
+            var Response = this.Client.Execute(Request);
+            VersionResponse ResponseObject = JsonConvert.DeserializeObject<VersionResponse>(Response.Content);
+            ResponseObject.HttpResponse = Response;
+            return ResponseObject;
+        }
+
         public ItemsResponse GetItems()
         {
             var Request = new RestRequest("v1/items", Method.GET);

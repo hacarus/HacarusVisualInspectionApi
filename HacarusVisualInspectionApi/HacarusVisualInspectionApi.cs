@@ -21,9 +21,10 @@ namespace HacarusVisualInspectionApi
             APIService.Instance.Language = language;
         }
 
-        public HacarusVisualInspection(RestClient client)
+        public HacarusVisualInspection(RestClient client, string language = "en")
         {
             APIService.Instance.Client = client;
+            APIService.Instance.Language = language;
         }
 
 
@@ -47,6 +48,12 @@ namespace HacarusVisualInspectionApi
         public ItemsResponse GetItems()
         {
             return APIService.Instance.GetItems();
+        }
+
+
+        public VersionResponse GetVersionNumber()
+        {
+            return APIService.Instance.GetVersionNumber();
         }
 
         public AlgorithmResponse GetAlgorithms()

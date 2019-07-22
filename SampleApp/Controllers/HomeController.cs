@@ -71,6 +71,22 @@ namespace SampleApp.Controllers
             return Index();
         }
 
+
+
+        [HttpPost]
+        public IActionResult GetVersionNumber(
+        )
+        {
+            VersionResponse Result = VisualInspection.GetVersionNumber();
+
+            ViewData["HttpResponse"] = "Status code: " + (int)Result.HttpResponse.StatusCode + " " + Result.HttpResponse.StatusCode;
+            ViewData["StringMessage"] = Result.HttpResponse.Content;
+            ViewBag.BearerAvailable = VisualInspection.IsAuthorized;
+            ViewBag.Active = "getVersionNumber";
+
+            return Index();
+        }
+
         [HttpPost]
         public IActionResult GetItems(
             string getItems
