@@ -324,4 +324,5 @@ To get started, you need the following:
   genericErrors: "Generic Errors"
   errorUnauthorized: "Error when calling a method but not yet authorized. When encounted, please call `Authorize` method first."
   errorNoLicense: "Error when calling a method but license is not yet activated or expired. When encounted, please call `ActivateLicense` method first."
-
+  enLink: "./"
+  jaLink: "./ja"

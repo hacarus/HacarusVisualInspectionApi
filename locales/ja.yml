@@ -324,4 +324,5 @@ ja:
   genericErrors: "一般的なエラー"
   errorUnauthorized: "メソッドを呼び出すときにまだ承認されていないエラーです。エラーを遭遇する場合、最初に`Authorize`メソッドを呼び出してください。"
   errorNoLicense: "メソッドを呼び出すが、ライセンスがまだアクティベートされていないか期限切れになっているときのエラーです。 遭遇したら、最初に`ActivateLicense`メソッドを呼び出してください。"
-
+  enLink: "../"
+  jaLink: "./"
