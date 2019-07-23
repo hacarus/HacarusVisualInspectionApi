@@ -6,7 +6,6 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - python
 
 toc_footers:
-  - <a href='mailto:inquiry@hacarus.com'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -18,9 +17,9 @@ search: true
 # t(:introduction)
 
 - **C#** [![Build Status](https://travis-ci.org/hacarus/HacarusVisualInspectionApi.svg?branch=master)](https://travis-ci.org/hacarus/HacarusVisualInspectionApi)
-- **Python** [![Build Status](https://travis-ci.org/hacarus/HacarusVisualInspectionApi.svg?branch=master)](https://travis-ci.org/hacarus/HacarusVisualInspectionApi)
+- **Python**
 
-[English](/) | [日本語](/ja)
+[English](./) | [日本語](./ja)
 <br/>
 <br/>
 t(:introductionMessage)
