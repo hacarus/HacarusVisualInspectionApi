@@ -19,7 +19,7 @@ search: true
 - **C#** [![Build Status](https://travis-ci.org/hacarus/HacarusVisualInspectionApi.svg?branch=master)](https://travis-ci.org/hacarus/HacarusVisualInspectionApi)
 - **Python**
 
-[English](./) | [日本語](./ja)
+[English](t(:enLink)) | [日本語](t(:jaLink))
 <br/>
 <br/>
 t(:introductionMessage)
