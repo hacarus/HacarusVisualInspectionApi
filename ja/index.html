@@ -248,6 +248,9 @@
                     <a href="#t-activatelicense" class="toc-h2 toc-link" data-title="ライセンスのアクティベート">ライセンスのアクティベート</a>
                   </li>
                   <li>
+                    <a href="#t-getversionnumber" class="toc-h2 toc-link" data-title="バージョン番号を取得する">バージョン番号を取得する</a>
+                  </li>
+                  <li>
                     <a href="#t-getitems" class="toc-h2 toc-link" data-title="データを取得する">データを取得する</a>
                   </li>
                   <li>
@@ -435,7 +438,18 @@
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre><pre class="highlight python tab-python"><code>    <span class="n">python</span> <span class="n">hacarus_visual_inspection</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">APIError</span><span class="p">:</span> <span class="n">License</span> <span class="n">already</span> <span class="n">exists</span><span class="err">!</span> <span class="p">(</span><span class="mi">403</span><span class="p">)</span>
-</code></pre><h2 id='t-getitems'>データを取得する</h2><pre class="highlight csharp tab-csharp"><code><span class="n">ItemsResponse</span> <span class="n">Response</span> <span class="p">=</span> <span class="n">VisualInspection</span><span class="p">.</span><span class="nf">GetItems</span><span class="p">();</span>
+</code></pre><h2 id='t-getversionnumber'>バージョン番号を取得する</h2><pre class="highlight csharp tab-csharp"><code><span class="n">VersionResponse</span> <span class="n">Response</span> <span class="p">=</span> <span class="n">VisualInspection</span><span class="p">.</span><span class="nf">GetVersionNumber</span><span class="p">();</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="n">sdk</span><span class="o">.</span><span class="n">get_version_number</span><span class="p">()</span>
+</code></pre>
+<p>ハカルス外観検査APIの現在のバージョン番号を取得するには、このメソッドを使用します。</p>
+
+<blockquote>
+<p><strong>レスポンスの一例</strong></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0.0"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='t-getitems'>データを取得する</h2><pre class="highlight csharp tab-csharp"><code><span class="n">ItemsResponse</span> <span class="n">Response</span> <span class="p">=</span> <span class="n">VisualInspection</span><span class="p">.</span><span class="nf">GetItems</span><span class="p">();</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">sdk</span><span class="o">.</span><span class="n">get_items</span><span class="p">()</span>
 </code></pre>
 <p> <ul> <li> 学習、推論、およびアーカイブ別に分類したアップロード済みアイテムのリストを取得します。 <ul> <li> `training`: 学習に使用するデータ <ul> <li> データが`true`（good）、`false`（defect）、または`null`（ラベルなし）のいずれかにラベル付けされているかをgoodというキーで知ることができます。 </li> </ul> </li> <li> `predict`: アップロード済みのデータのうち、推論用のもの <ul> <li> 推論結果を確認するには、`good`と`status`のキーを確認してください。 </li> </ul> </li> <li> `archived`: アーカイブ済みデータ（将来実装予定の機能、現在使用されていません） </li> </ul> </li> <li> `override_assessment`および`confirm_assessment`はUI（ユーザインタフェース）固有のものであり、SDKを使用している場合は無視できます。 </li> </ul> </p>
