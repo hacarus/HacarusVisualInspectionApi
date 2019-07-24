@@ -242,7 +242,7 @@
             <a href="#t-authorization" class="toc-h1 toc-link" data-title="認証">認証</a>
           </li>
           <li>
-            <a href="#t-methods" class="toc-h1 toc-link" data-title="Methods">Methods</a>
+            <a href="#t-methods" class="toc-h1 toc-link" data-title="メソッド">メソッド</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#t-activatelicense" class="toc-h2 toc-link" data-title="ライセンスのアクティベート">ライセンスのアクティベート</a>
@@ -297,7 +297,7 @@
 </div>
 
 <div class="hacarus-content lang-specific python">
-This Visual Inspection SDK for Python is made for software engineers who want to integrate with the Hacarus Visual Inspection module through its API. The wrapper provides simple to use method calls for easy integration to your Python based applications. 
+このPython用外観検査SDKは、APIを用いてハカルス外観検査モジュールを使いたいソフトウェアエンジニアのために作成しています。 このAPIによって、Pythonベースのアプリケーションに外観検査モジュールを簡単に統合することができます。
 </div>
 
 <p><br/>
@@ -310,7 +310,7 @@ This Visual Inspection SDK for Python is made for software engineers who want to
 </div>
 
 <div class="hacarus-content lang-specific python">
-To install this package on your project, use this command:
+このパッケージをインストールするために、以下のコマンドを実行してください。
 </div>
 
 <div class="hacarus-content lang-specific csharp">
@@ -391,7 +391,7 @@ To install this package on your project, use this command:
 </code></pre><pre class="highlight python tab-python"><code>    <span class="n">hacarus_visual_inspection</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">APIError</span><span class="p">:</span> <span class="n">Client</span> <span class="nb">id</span> <span class="ow">and</span> <span class="n">secret</span> <span class="n">mismatch</span> <span class="p">(</span><span class="mi">400</span><span class="p">)</span>
 </code></pre>
 <!-- </div>  -->
-<h1 id='t-methods'>Methods</h1><h2 id='t-activatelicense'>ライセンスのアクティベート</h2><pre class="highlight csharp tab-csharp"><code><span class="kt">var</span> <span class="n">LicenseFile</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">FileModel</span><span class="p">(</span><span class="s">"PathToFile"</span><span class="p">,</span> <span class="s">"ContentType"</span><span class="p">);</span>
+<h1 id='t-methods'>メソッド</h1><h2 id='t-activatelicense'>ライセンスのアクティベート</h2><pre class="highlight csharp tab-csharp"><code><span class="kt">var</span> <span class="n">LicenseFile</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">FileModel</span><span class="p">(</span><span class="s">"PathToFile"</span><span class="p">,</span> <span class="s">"ContentType"</span><span class="p">);</span>
 <span class="n">UploadResponse</span> <span class="n">Response</span> <span class="p">=</span> <span class="n">VisualInspection</span><span class="p">.</span><span class="nf">ActivateLicense</span><span class="p">(</span><span class="n">LicenseFile</span><span class="p">);</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">sdk</span><span class="o">.</span><span class="n">activate_license</span><span class="p">(</span><span class="s">"test_client"</span><span class="p">,</span> <span class="s">"tests/data/license.key"</span><span class="p">)</span>
 </code></pre>
