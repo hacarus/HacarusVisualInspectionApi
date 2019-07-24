@@ -10,10 +10,9 @@ ja:
   ハカルスの外観検査ソリューションの詳細を参照するには、こちらのリンク、<a href='https://hacarus.com/ja/visual-inspection/'>https://hacarus.com/ja/visual-inspection/</a> をご覧ください。また、APIへのアクセスのリクエストは<a href='https://hacarus.com/ja/contact/'>contact us</a> までご連絡ください。
   "
   introductionMessageMoreCSharp: "この外観検査用 API wrapper for C#は、あなたのC#のプロジェクトに、APIを通じて外観検査モジュールを組み込むことができます。このライブラリはC# .Net Framework 4.6.1 と .Net Core 2.0.をサポートしています。" 
-  introductionMessageMorePython: "This Visual Inspection SDK for Python is made for software engineers who want to integrate with the Hacarus Visual Inspection module through its API. The wrapper provides simple to use method calls for easy integration to your Python based applications.
-  " 
+  introductionMessageMorePython: "このPython用外観検査SDKは、APIを用いてハカルス外観検査モジュールを使いたいソフトウェアエンジニアのために作成しています。 このAPIによって、Pythonベースのアプリケーションに外観検査モジュールを簡単に統合することができます。" 
   installation: "インストール"
-  installationMessagePython: "To install this package on your project, use this command:"
+  installationMessagePython: "このパッケージをインストールするために、以下のコマンドを実行してください。"
   installationMessageCSharp: "このパッケージをプロジェクトにインストールするため、こちらのコマンドをPackage Manager Consoleに入力してください。"
   installationMessageMoreCSharp: "
   NuGetパッケージマネージャを使用してプロジェクトに追加することもできます。Show prerelease packagesにチェックを入れ、 HacarusVisualInspectionApi を nuget.org のリポジトリで検索してください。
@@ -133,7 +132,7 @@ ja:
   error401: " 401 Unauthorized:"
   invalidClientId: "クライアントIDが無効です。"
   invalidClientSecret: "クライアントシークレットが無効です。"
-  methods: "Methods"
+  methods: "メソッド"
   activateLicense: "ライセンスのアクティベート"
   activateLicenseMessage: "
   <ul>
@@ -153,6 +152,8 @@ ja:
   error403: "403 Forbidden:"
   invalidLicense: "ライセンスファイルが無効。"
   licenseExists: "ライセンスはアクティベート済み。"
+  getVersionNumber: "バージョン番号を取得する"
+  getVersionNumberMessage: "ハカルス外観検査APIの現在のバージョン番号を取得するには、このメソッドを使用します。"
   getItems: "データを取得する"
   getItemsMessage: "
   <ul>
