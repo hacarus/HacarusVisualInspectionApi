@@ -216,6 +216,25 @@ t(:activateLicenseMessage)
     python hacarus_visual_inspection.errors.APIError: License already exists! (403)
 ```
 
+## t(:getVersionNumber)
+
+```csharp
+VersionResponse Response = VisualInspection.GetVersionNumber();
+```
+
+```python
+sdk.get_version_number()
+```
+t(:getVersionNumberMessage)
+
+> **t(:sampleResponse)**
+
+```json
+{
+    "data": "1.0.0.0"
+}
+```
+
 ## t(:getItems)
 
 ```csharp

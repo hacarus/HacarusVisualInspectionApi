@@ -153,6 +153,8 @@ To get started, you need the following:
   error403: "403 Forbidden:"
   invalidLicense: "License file is invalid"
   licenseExists: "License is already active"
+  getVersionNumber: "Get Version Number"
+  getVersionNumberMessage: "Use this method to get the current version number of the Hacarus Visual Inspection API"
   getItems: "Get Items"
   getItemsMessage: "
   <ul>
