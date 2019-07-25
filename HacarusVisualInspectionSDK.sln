@@ -6,7 +6,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0CCA9329-7176-4AB4-8725-BAE3F8940952}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
-		README.ja.md = README.ja.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HacarusVisualInspectionApi", "HacarusVisualInspectionApi\HacarusVisualInspectionApi.csproj", "{3D199DAC-F364-4F4B-8651-47AE907F0F22}"
