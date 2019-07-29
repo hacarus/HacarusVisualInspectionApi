@@ -1,10 +1,5 @@
-language: csharp
-mono: 5.2.0
-solution: "./HacarusVisualInspectionApi/HacarusVisualInspectionApi.sln"
-dotnet: 2.1.301
-install:
-  - export FrameworkPathOverride=$(dirname $(which mono))/../lib/mono/4.5/
-script:
-  - dotnet build HacarusVisualInspectionApi
-  - dotnet restore
-  - dotnet test HacarusVisualInspectionApi.Tests
+
+# blacklist
+branches:
+  except:
+    - slate
