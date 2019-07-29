@@ -17,7 +17,7 @@ ja:
   installationMessageMoreCSharp: "
   NuGetパッケージマネージャを使用してプロジェクトに追加することもできます。Show prerelease packagesにチェックを入れ、 HacarusVisualInspectionApi を nuget.org のリポジトリで検索してください。
   <br/><br/>
-  他のインストール方法は<a href='https://www.nuget.org/packages/HacarusVisualInspectionApi/1.1.1-beta'>Nuget Package Site</a>を参照ください。"
+  他のインストール方法は<a href='https://www.nuget.org/packages/HacarusVisualInspectionApi/1.1.2-beta'>Nuget Package Site</a>を参照ください。"
   terms: "用語説明"
   termsMessage: "
 このドキュメントの全体で使用されている用語の簡単な説明：
@@ -164,7 +164,7 @@ ja:
           `training`: 学習に使用するデータ
           <ul>
             <li>
-              データが`true`（good）、`false`（defect）、または`null`（ラベルなし）のいずれかにラベル付けされているかをgoodというキーで知ることができます。
+              データが`%{true}`（good）、`%{false}`（defect）、または`%{null}`（ラベルなし）のいずれかにラベル付けされているかをgoodというキーで知ることができます。
             </li>
           </ul>
         </li>
@@ -207,7 +207,7 @@ ja:
       データを推論するのに使用できる作成済みモデルのリストを取得します。
     </li>
     <li>
-      モデルIDが渡されなかった場合（`Serve`メソッドを使用して）、`active`が`true`のモデルをデフォルトとして使用します。
+      モデルIDが渡されなかった場合（`%{serve}`メソッドを使用して）、`active`が`%{true}`のモデルをデフォルトとして使用します。
     </li>
     <li>
       `status`キーは、モデルが`active`か`failed`かを示します。 
@@ -223,6 +223,7 @@ ja:
   </ul>
   "
   train: "学習"
+  algorithmParameter: "アルゴリズムパラメータ"
   trainMessage: "
   <ul>
     <li>
@@ -232,10 +233,10 @@ ja:
       モデルの学習に使用するデータIDの配列を含むオプションのパラメータを入力します。
     </li>
     <li>
-      アルゴリズムの設定を調整するため`AlgorithmParameter`の配列を入力します。
+      アルゴリズムの設定を調整するため%{algorithmParameter}の配列を入力します。
     </li>
     <li>
-      新しく作成したモデルを確認するには、`GetModels（）`メソッドを使用します。
+      新しく作成したモデルを確認するには、`%{getModels}`メソッドを使用します。
     </li>
   </ul>
   "
@@ -247,11 +248,11 @@ ja:
       このメソッドを使用して、学習のためのデータをアップロードしてラベルを付けます。
     </li>
     <li>
-      データに良品または不良品としてラベルを付ける場合は、`IsGood`パラメータをブール値で`true`（良品）または`false`（不良品）に設定します。
+      データに良品または不良品としてラベルを付ける場合は、`%{isGood}`パラメータをブール値で`%{true}`（良品）または`%{false}`（不良品）に設定します。
     </li>
   </ul>
   "
-  addItemMessageMore: "
+  addItemMessageMoreCSharp: "
   <ul>
     <li>
       このメソッドを使用して、推論のためのデータをアップロードしてラベルを付けます。
@@ -264,6 +265,22 @@ ja:
     </li>
     <li>
       アップロードしたデータを確認するには、`GetItems（）`メソッドを使用します。
+    </li>
+    <li>
+      画像のファイル名はデータID(`item_id`)として使用します。
+    </li>
+    <li>
+      サポートされているファイル形式：`png`、`jpeg`、`tiff`
+    </li>
+  </ul>
+  "
+  addItemMessageMorePython: "
+  <ul>
+    <li>
+      このメソッドを使用して、推論のためのデータをアップロードしてラベルを付けます。
+    </li>
+    <li>
+      アップロードしたデータを確認するには、`get_items（）`メソッドを使用します。
     </li>
     <li>
       画像のファイル名はデータID(`item_id`)として使用します。
@@ -292,7 +309,7 @@ ja:
           `computed_assessment`: 予測の結果
         </li>
         <li>
-          `annotations`: `Serve`メソッドが呼び出されたときに生成されるアノテーションのリストを含みます
+          `annotations`: `%{serve}`メソッドが呼び出されたときに生成されるアノテーションのリストを含みます
         </li>
         <li>
           `raw_url`: アップロードされたファイルのURL
@@ -316,14 +333,14 @@ ja:
       データは良品か不良品があるか推論します。
     </li>
     <li>
-      結果を確認するには、`GetItems()`メソッドを使用して、各データの`good`キーを確認します。
+      結果を確認するには、`%{getItems}()`メソッドを使用して、各データの`good`キーを確認します。
     </li>
   </ul>
   "
   itemDoesNotExists: "送信されたデータとデータIDは存在していません。"
   noModel: "推論に使用できるモデルがないか、使用可能なモデルのステータスがのfailedです。 Trainメソッドを使用し、新しいモデルを作成してください。"
   genericErrors: "一般的なエラー"
-  errorUnauthorized: "メソッドを呼び出すときにまだ承認されていないエラーです。エラーを遭遇する場合、最初に`Authorize`メソッドを呼び出してください。"
-  errorNoLicense: "メソッドを呼び出すが、ライセンスがまだアクティベートされていないか期限切れになっているときのエラーです。 遭遇したら、最初に`ActivateLicense`メソッドを呼び出してください。"
+  errorUnauthorized: "メソッドを呼び出すときにまだ承認されていないエラーです。エラーを遭遇する場合、最初に`%{authorize}`メソッドを呼び出してください。"
+  errorNoLicense: "メソッドを呼び出すが、ライセンスがまだアクティベートされていないか期限切れになっているときのエラーです。 遭遇したら、最初に`%{activateLicense}`メソッドを呼び出してください。"
   enLink: "../"
   jaLink: "./"

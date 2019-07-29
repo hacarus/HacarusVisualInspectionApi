@@ -18,7 +18,7 @@ en:
   installationMessageMoreCSharp: "
   You can also add it on your project by using `Add packages`, check on the `Show prerelease packages`, and search for `HacarusVisualInspectionApi` on the nuget.org repository.
   <br/><br/>
-  Other installation options can be found on <a href='https://www.nuget.org/packages/HacarusVisualInspectionApi/1.1.1-beta'>Nuget Package Site</a>.
+  Other installation options can be found on <a href='https://www.nuget.org/packages/HacarusVisualInspectionApi/1.1.2-beta'>Nuget Package Site</a>.
   "
   terms: "Terms"
   termsMessage: "A brief explanation of the terms used throughout this documentation:
@@ -165,7 +165,7 @@ To get started, you need the following:
           `training`: Items to be used for training
           <ul>
             <li>
-              Check for key `good` to know if item is labeled as `true`(good), `false`(defect) or `null` (unlabeled)
+              Check for key `good` to know if item is labeled as `%{true}`(good), `%{false}`(defect) or `%{null}` (unlabeled)
             </li>
           </ul>
         </li>
@@ -208,7 +208,7 @@ To get started, you need the following:
       Gets list of created models that can be used to predict items
     </li>
     <li>
-      The key `active` means that if an item is predicted (using `Serve` method) without passing a model id, the model with `active` valued `true` will be used as default
+      The key `active` means that if an item is predicted (using `%{serve}` method) without passing a model id, the model with `active` valued `%{true}` will be used as default
     </li>
     <li>
       The key `status` shows if a model is `active` or `failed.`
@@ -224,6 +224,7 @@ To get started, you need the following:
   </ul>
   "
   train: "Train"
+  algorithmParamter: "algorithm parameter"
   trainMessage: "
   <ul>
     <li>
@@ -233,13 +234,13 @@ To get started, you need the following:
       Accepts an optional parameter that contains array of item ids that will be used for training the model
     </li>
     <li>
-      Accepts an optional parameter that contains array of AlgorithmParameter for adjusting the algorithm settings
+      Accepts an optional parameter that contains array of %{algorithmParameter} for adjusting the algorithm settings
     </li>
     <li>
-      To check the newly created model, use `GetModels()` method    
+      To check the newly created model, use `%{getModels}` method    
     </li>
   </ul>
-    "
+  "
   invalidId: "Atleast one item id does not belong to the client, is invalid or does not exist."
   addItem: "Add Item"
   addItemMessage: "
@@ -248,11 +249,11 @@ To get started, you need the following:
       Use this method to upload and label items for training
     </li>
     <li>
-      To label items as good or defect, set `IsGood` parameter to a boolean value `true`(good) or `false`(defect)
+      To label items as good or defect, set `%{isGood}` parameter to a boolean value `%{true}`(good) or `%{false}`(defect)
     </li>
   </ul>
-"
-  addItemMessageMore: "
+  "
+  addItemMessageMoreCSharp: "
   <ul>
     <li>
       Use this method to upload items for prediction
@@ -265,6 +266,22 @@ To get started, you need the following:
     </li>
     <li>
       To check the uploaded item, use the `GetItems()` method
+    </li>
+    <li>
+      The filename of the image will be used as the `item_id` of the item
+    </li>
+    <li>
+      Supported file types: `png`, `jpeg`, `tiff`
+    </li>
+  </ul>
+  "
+  addItemMessageMorePython: "
+  <ul>
+    <li>
+      Use this method to upload items for prediction
+    </li>
+    <li>
+      To check the uploaded item, use the `get_items()` method
     </li>
     <li>
       The filename of the image will be used as the `item_id` of the item
@@ -293,7 +310,7 @@ To get started, you need the following:
           `computed_assessment`: result of the prediction
         </li>
         <li>
-          `annotations`: contains list of annotations generated when `Serve` method is called
+          `annotations`: contains list of annotations generated when `%{serve}` method is called
         </li>
         <li>
           `raw_url`: url of your uploaded file
@@ -317,14 +334,14 @@ To get started, you need the following:
       Predicts if items are good or defect
     </li>
     <li>
-      To check the result, use the `GetItems()` method and check for key `good` of each item
+      To check the result, use the `%{getItems}()` method and check for key `good` of each item
     </li>
   </ul>
   "
   itemDoesNotExists: "Item with item id sent does not exist"
   noModel: "No model available to use for prediction or available models have `failed` status. Create a new model by using `Train` method."
   genericErrors: "Generic Errors"
-  errorUnauthorized: "Error when calling a method but not yet authorized. When encounted, please call `Authorize` method first."
-  errorNoLicense: "Error when calling a method but license is not yet activated or expired. When encounted, please call `ActivateLicense` method first."
+  errorUnauthorized: "Error when calling a method but not yet authorized. When encounted, please call `%{authorize}` method first."
+  errorNoLicense: "Error when calling a method but license is not yet activated or expired. When encounted, please call `%{activateLicense}` method first."
   enLink: "./"
   jaLink: "./ja"

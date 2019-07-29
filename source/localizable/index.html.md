@@ -37,7 +37,7 @@ t(:introductionMessageMorePython)
 ## t(:installation)
 
 ```csharp
-PM> Install-Package HacarusVisualInspectionApi -Version 1.1.1-beta
+PM> Install-Package HacarusVisualInspectionApi -Version 1.1.2-beta
 ```
 
 ```python
@@ -245,7 +245,12 @@ ItemsResponse Response = VisualInspection.GetItems();
 sdk.get_items()
 ```
 
-t(:getItemsMessage)
+<div class="hacarus-content-list lang-specific csharp">
+t(:getItemsMessage, true: 'true', false: 'false', null: 'null')
+</div>
+<div class="hacarus-content-list lang-specific python">
+t(:getItemsMessage, true: 'True', false: 'False', null: 'None')
+</div>
 
 > **t(:sampleResponse)**
 
@@ -360,7 +365,13 @@ ModelsResponse Response = VisualInspection.GetModels();
 sdk.get_models()
 ```
 
-t(:getModelsMessage)
+<div class="hacarus-content-list lang-specific csharp">
+t(:getModelsMessage, serve: 'Serve', true: 'true')
+</div>
+
+<div class="hacarus-content-list lang-specific python">
+t(:getModelsMessage, serve: 'serve', true: 'True')
+</div>
 
  > **t(:sampleResponse)**
 
@@ -412,7 +423,13 @@ algo_param = [{
 model = sdk.train(algorithm_id, model_name, algo_param, item_ids)
 ```
 
-t(:trainMessage)
+<div class="hacarus-content-list lang-specific csharp">
+t(:trainMessage, algorithmParameter: 'AlgorithmParameter', getModels: "GetModels")
+</div>
+
+<div class="hacarus-content-list lang-specific python">
+t(:trainMessage, algorithmParameter: 'algo_param', getModels: "get_models")
+</div>
 
 > **t(:sampleResponse)**
 
@@ -465,7 +482,13 @@ is_good = True
 sdk.upload(filenames, is_good)
 ```
 
-t(:addItemMessage)
+<div class="hacarus-content-list lang-specific csharp">
+t(:addItemMessage, isGood: 'IsGood', true: 'true', false: 'false')
+</div>
+
+<div class="hacarus-content-list lang-specific python">
+t(:addItemMessage, isGood: 'is_good', true: 'True', false: 'False')
+</div>
 
 ```csharp
 //For prediction
@@ -477,7 +500,12 @@ UploadResponse Response = VisualInspection.Upload(Files);
 sdk.upload(filenames)
 ```
 
-t(:addItemMessageMore)
+<div class="hacarus-content-list lang-specific csharp">
+t(:addItemMessageMoreCSharp)
+</div>
+<div class="hacarus-content-list lang-specific python">
+t(:addItemMessageMorePython)
+</div>
 
 > **t(:sampleResponse)**
 
@@ -542,7 +570,14 @@ ItemResponse Response = VisualInspection.GetItem("ItemId");
 #Set a specific ItemId to get detailed information about the item
 item = sdk.get_item("ItemId");
 ```
-t(:getItemMessage)
+
+<div class="hacarus-content-list lang-specific csharp">
+t(:getItemMessage, serve: 'Serve')
+</div>
+
+<div class="hacarus-content-list lang-specific python">
+t(:getItemMessage, serve: 'serve')
+</div>
 
 > **t(:sampleResponse)**
 
@@ -661,7 +696,13 @@ PredictResponse Response = VisualInspection.Serve(ItemIds, "ModelId");
 response = sdk.serve(item_ids, "model_id")
 ```
 
-t(:predictMessage)
+<div class="hacarus-content-list lang-specific csharp">
+t(:predictMessage, getItems: 'GetItems')
+</div>
+
+<div class="hacarus-content-list lang-specific python">
+t(:predictMessage, getItems: 'get_items')
+</div>
 
 > **t(:sampleResponse)**
 
