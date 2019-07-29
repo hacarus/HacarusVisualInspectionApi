@@ -275,6 +275,14 @@
           </li>
           <li>
             <a href="#t-genericerrors" class="toc-h1 toc-link" data-title="一般的なエラー">一般的なエラー</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#401-unauthorized" class="toc-h2 toc-link" data-title="401 Unauthorized">401 Unauthorized</a>
+                  </li>
+                  <li>
+                    <a href="#403-forbidden" class="toc-h2 toc-link" data-title="403 Forbidden">403 Forbidden</a>
+                  </li>
+              </ul>
           </li>
       </ul>
         <ul class="toc-footer">
@@ -305,7 +313,7 @@
 
 <p><br/>
 <br/></p>
-<h2 id='t-installation'>インストール</h2><pre class="highlight csharp tab-csharp"><code><span class="n">PM</span><span class="p">&gt;</span> <span class="n">Install</span><span class="p">-</span><span class="n">Package</span> <span class="n">HacarusVisualInspectionApi</span> <span class="p">-</span><span class="n">Version</span> <span class="m">1.1</span><span class="p">.</span><span class="m">1</span><span class="p">-</span><span class="n">beta</span>
+<h2 id='t-installation'>インストール</h2><pre class="highlight csharp tab-csharp"><code><span class="n">PM</span><span class="p">&gt;</span> <span class="n">Install</span><span class="p">-</span><span class="n">Package</span> <span class="n">HacarusVisualInspectionApi</span> <span class="p">-</span><span class="n">Version</span> <span class="m">1.1</span><span class="p">.</span><span class="m">2</span><span class="p">-</span><span class="n">beta</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="o">&gt;</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">hacarus_visual_inspection</span>
 </code></pre>
 <div class="hacarus-content lang-specific csharp">
@@ -317,7 +325,7 @@
 </div>
 
 <div class="hacarus-content lang-specific csharp">
- NuGetパッケージマネージャを使用してプロジェクトに追加することもできます。Show prerelease packagesにチェックを入れ、 HacarusVisualInspectionApi を nuget.org のリポジトリで検索してください。 <br/><br/> 他のインストール方法は<a href='https://www.nuget.org/packages/HacarusVisualInspectionApi/1.1.1-beta'>Nuget Package Site</a>を参照ください。
+ NuGetパッケージマネージャを使用してプロジェクトに追加することもできます。Show prerelease packagesにチェックを入れ、 HacarusVisualInspectionApi を nuget.org のリポジトリで検索してください。 <br/><br/> 他のインストール方法は<a href='https://www.nuget.org/packages/HacarusVisualInspectionApi/1.1.2-beta'>Nuget Package Site</a>を参照ください。
 </div>
 <h2 id='t-terms'>用語説明</h2>
 <p> このドキュメントの全体で使用されている用語の簡単な説明： <br/><br/> <b>モデル</b><br/> モデルは一連のパラメータの設定とともに、データセットの学習データ（トレーニングデータ）をアルゴリズムに適用して、作成・学習できます。 <br/><br/> <b>アルゴリズム</b><br/> アルゴリズムはモデルを構成するため使用する機械学習アルゴリズムのことです。外観検査の性質と予想される精度および性能によって選択します。 <br/><br/> <b>学習</b><br/> 新しいモデルを作成する操作です。 <br/><br/> <b>パラメータ</b><br/> パラメータは、学習中にアルゴリズムを適用する方法を構成するために使用されます。 例えば、最小または最大の画像解像度などがあります。 <br/><br/> <b>データ</b><br/> データ（アイテムとも呼ばれる)は検査の対象となる単一の製品のデータを表します。 1つのデータに1つまたは複数の画像を関連付けることができます。 例：倉庫内の梱包箱の場合、一つの箱に6つの面の画像があります。 </p>
@@ -452,7 +460,13 @@
 </span></code></pre><h2 id='t-getitems'>データを取得する</h2><pre class="highlight csharp tab-csharp"><code><span class="n">ItemsResponse</span> <span class="n">Response</span> <span class="p">=</span> <span class="n">VisualInspection</span><span class="p">.</span><span class="nf">GetItems</span><span class="p">();</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">sdk</span><span class="o">.</span><span class="n">get_items</span><span class="p">()</span>
 </code></pre>
-<p> <ul> <li> 学習、推論、およびアーカイブ別に分類したアップロード済みアイテムのリストを取得します。 <ul> <li> `training`: 学習に使用するデータ <ul> <li> データが`true`（good）、`false`（defect）、または`null`（ラベルなし）のいずれかにラベル付けされているかをgoodというキーで知ることができます。 </li> </ul> </li> <li> `predict`: アップロード済みのデータのうち、推論用のもの <ul> <li> 推論結果を確認するには、`good`と`status`のキーを確認してください。 </li> </ul> </li> <li> `archived`: アーカイブ済みデータ（将来実装予定の機能、現在使用されていません） </li> </ul> </li> <li> `override_assessment`および`confirm_assessment`はUI（ユーザインタフェース）固有のものであり、SDKを使用している場合は無視できます。 </li> </ul> </p>
+<div class="hacarus-content-list lang-specific csharp">
+ <ul> <li> 学習、推論、およびアーカイブ別に分類したアップロード済みアイテムのリストを取得します。 <ul> <li> `training`: 学習に使用するデータ <ul> <li> データが`true`（good）、`false`（defect）、または`null`（ラベルなし）のいずれかにラベル付けされているかをgoodというキーで知ることができます。 </li> </ul> </li> <li> `predict`: アップロード済みのデータのうち、推論用のもの <ul> <li> 推論結果を確認するには、`good`と`status`のキーを確認してください。 </li> </ul> </li> <li> `archived`: アーカイブ済みデータ（将来実装予定の機能、現在使用されていません） </li> </ul> </li> <li> `override_assessment`および`confirm_assessment`はUI（ユーザインタフェース）固有のものであり、SDKを使用している場合は無視できます。 </li> </ul> 
+</div>
+
+<div class="hacarus-content-list lang-specific python">
+ <ul> <li> 学習、推論、およびアーカイブ別に分類したアップロード済みアイテムのリストを取得します。 <ul> <li> `training`: 学習に使用するデータ <ul> <li> データが`True`（good）、`False`（defect）、または`None`（ラベルなし）のいずれかにラベル付けされているかをgoodというキーで知ることができます。 </li> </ul> </li> <li> `predict`: アップロード済みのデータのうち、推論用のもの <ul> <li> 推論結果を確認するには、`good`と`status`のキーを確認してください。 </li> </ul> </li> <li> `archived`: アーカイブ済みデータ（将来実装予定の機能、現在使用されていません） </li> </ul> </li> <li> `override_assessment`および`confirm_assessment`はUI（ユーザインタフェース）固有のものであり、SDKを使用している場合は無視できます。 </li> </ul> 
+</div>
 
 <blockquote>
 <p><strong>レスポンスの一例</strong></p>
@@ -548,7 +562,13 @@
 </code></pre><h2 id='t-getmodels'>モデルを取得する</h2><pre class="highlight csharp tab-csharp"><code><span class="n">ModelsResponse</span> <span class="n">Response</span> <span class="p">=</span> <span class="n">VisualInspection</span><span class="p">.</span><span class="nf">GetModels</span><span class="p">();</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">sdk</span><span class="o">.</span><span class="n">get_models</span><span class="p">()</span>
 </code></pre>
-<p> <ul> <li> データを推論するのに使用できる作成済みモデルのリストを取得します。 </li> <li> モデルIDが渡されなかった場合（`Serve`メソッドを使用して）、`active`が`true`のモデルをデフォルトとして使用します。 </li> <li> `status`キーは、モデルが`active`か`failed`かを示します。 <ul> <li> `status`が `active`のモデルは正常に作成され、予測に使用できます </li> <li> `status`が `failed`のモデルは作成に失敗し、予測には使用できません </li> </ul> </li> </ul> </p>
+<div class="hacarus-content-list lang-specific csharp">
+ <ul> <li> データを推論するのに使用できる作成済みモデルのリストを取得します。 </li> <li> モデルIDが渡されなかった場合（`Serve`メソッドを使用して）、`active`が`true`のモデルをデフォルトとして使用します。 </li> <li> `status`キーは、モデルが`active`か`failed`かを示します。 <ul> <li> `status`が `active`のモデルは正常に作成され、予測に使用できます </li> <li> `status`が `failed`のモデルは作成に失敗し、予測には使用できません </li> </ul> </li> </ul> 
+</div>
+
+<div class="hacarus-content-list lang-specific python">
+ <ul> <li> データを推論するのに使用できる作成済みモデルのリストを取得します。 </li> <li> モデルIDが渡されなかった場合（`serve`メソッドを使用して）、`active`が`True`のモデルをデフォルトとして使用します。 </li> <li> `status`キーは、モデルが`active`か`failed`かを示します。 <ul> <li> `status`が `active`のモデルは正常に作成され、予測に使用できます </li> <li> `status`が `failed`のモデルは作成に失敗し、予測には使用できません </li> </ul> </li> </ul> 
+</div>
 
 <blockquote>
 <p><strong>レスポンスの一例</strong></p>
@@ -591,7 +611,13 @@
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">algorithm_id</span><span class="p">,</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">algo_param</span><span class="p">,</span> <span class="n">item_ids</span><span class="p">)</span>
 </code></pre>
-<p> <ul> <li> 推論に使用するモデルを作成します。 </li> <li> モデルの学習に使用するデータIDの配列を含むオプションのパラメータを入力します。 </li> <li> アルゴリズムの設定を調整するため`AlgorithmParameter`の配列を入力します。 </li> <li> 新しく作成したモデルを確認するには、`GetModels（）`メソッドを使用します。 </li> </ul> </p>
+<div class="hacarus-content-list lang-specific csharp">
+ <ul> <li> 推論に使用するモデルを作成します。 </li> <li> モデルの学習に使用するデータIDの配列を含むオプションのパラメータを入力します。 </li> <li> アルゴリズムの設定を調整するためAlgorithmParameterの配列を入力します。 </li> <li> 新しく作成したモデルを確認するには、`GetModels`メソッドを使用します。 </li> </ul> 
+</div>
+
+<div class="hacarus-content-list lang-specific python">
+ <ul> <li> 推論に使用するモデルを作成します。 </li> <li> モデルの学習に使用するデータIDの配列を含むオプションのパラメータを入力します。 </li> <li> アルゴリズムの設定を調整するためalgo_paramの配列を入力します。 </li> <li> 新しく作成したモデルを確認するには、`get_models`メソッドを使用します。 </li> </ul> 
+</div>
 
 <blockquote>
 <p><strong>レスポンスの一例</strong></p>
@@ -631,13 +657,25 @@
 <span class="n">is_good</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="n">sdk</span><span class="o">.</span><span class="n">upload</span><span class="p">(</span><span class="n">filenames</span><span class="p">,</span> <span class="n">is_good</span><span class="p">)</span>
 </code></pre>
-<p> <ul> <li> このメソッドを使用して、学習のためのデータをアップロードしてラベルを付けます。 </li> <li> データに良品または不良品としてラベルを付ける場合は、`IsGood`パラメータをブール値で`true`（良品）または`false`（不良品）に設定します。 </li> </ul> </p>
+<div class="hacarus-content-list lang-specific csharp">
+ <ul> <li> このメソッドを使用して、学習のためのデータをアップロードしてラベルを付けます。 </li> <li> データに良品または不良品としてラベルを付ける場合は、`IsGood`パラメータをブール値で`true`（良品）または`false`（不良品）に設定します。 </li> </ul> 
+</div>
+
+<div class="hacarus-content-list lang-specific python">
+ <ul> <li> このメソッドを使用して、学習のためのデータをアップロードしてラベルを付けます。 </li> <li> データに良品または不良品としてラベルを付ける場合は、`is_good`パラメータをブール値で`True`（良品）または`False`（不良品）に設定します。 </li> </ul> 
+</div>
 <pre class="highlight csharp tab-csharp"><code><span class="c1">//For prediction</span>
 <span class="n">UploadResponse</span> <span class="n">Response</span> <span class="p">=</span> <span class="n">VisualInspection</span><span class="p">.</span><span class="nf">Upload</span><span class="p">(</span><span class="n">Files</span><span class="p">);</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="c"># For prediction</span>
 <span class="n">sdk</span><span class="o">.</span><span class="n">upload</span><span class="p">(</span><span class="n">filenames</span><span class="p">)</span>
 </code></pre>
-<p> <ul> <li> このメソッドを使用して、推論のためのデータをアップロードしてラベルを付けます。 </li> <li> `Files`パラメータを使用して`FileModel`の配列を渡します。 `FileModel`は`FileName`と`ContentType`のプロパティを持ちます。 </li> <li> FileModelを作成をするには、`FileModel File = new FileModel() `または、 `FileModel File = new FileModel("FileName", "ContentType")`を使用してください。 </li> <li> アップロードしたデータを確認するには、`GetItems（）`メソッドを使用します。 </li> <li> 画像のファイル名はデータID(`item_id`)として使用します。 </li> <li> サポートされているファイル形式：`png`、`jpeg`、`tiff` </li> </ul> </p>
+<div class="hacarus-content-list lang-specific csharp">
+ <ul> <li> このメソッドを使用して、推論のためのデータをアップロードしてラベルを付けます。 </li> <li> `Files`パラメータを使用して`FileModel`の配列を渡します。 `FileModel`は`FileName`と`ContentType`のプロパティを持ちます。 </li> <li> FileModelを作成をするには、`FileModel File = new FileModel() `または、 `FileModel File = new FileModel("FileName", "ContentType")`を使用してください。 </li> <li> アップロードしたデータを確認するには、`GetItems（）`メソッドを使用します。 </li> <li> 画像のファイル名はデータID(`item_id`)として使用します。 </li> <li> サポートされているファイル形式：`png`、`jpeg`、`tiff` </li> </ul> 
+</div>
+
+<div class="hacarus-content-list lang-specific python">
+ <ul> <li> このメソッドを使用して、推論のためのデータをアップロードしてラベルを付けます。 </li> <li> アップロードしたデータを確認するには、`get_items（）`メソッドを使用します。 </li> <li> 画像のファイル名はデータID(`item_id`)として使用します。 </li> <li> サポートされているファイル形式：`png`、`jpeg`、`tiff` </li> </ul> 
+</div>
 
 <blockquote>
 <p><strong>レスポンスの一例</strong></p>
@@ -686,7 +724,13 @@
 </code></pre><pre class="highlight python tab-python"><code><span class="c">#Set a specific ItemId to get detailed information about the item</span>
 <span class="n">item</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_item</span><span class="p">(</span><span class="s">"ItemId"</span><span class="p">);</span>
 </code></pre>
-<p> <ul> <li> データIDで特定のデータを取得します。 </li> <li> データIDは、アップロード時に画像ファイル名に基づいて割り当てられます。 </li> <li> 重要なキー: <ul> <li> `computed_assessment`: 予測の結果 </li> <li> `annotations`: `Serve`メソッドが呼び出されたときに生成されるアノテーションのリストを含みます </li> <li> `raw_url`: アップロードされたファイルのURL </li> <li> `url`: 欠陥箇所表示ファイル（緑色のボックス） </li> <li> `status`: データのステータス。`pending`（推論前または予測中）または`done`（予測済み）のいずれか </li> </ul> </li> </ul> </p>
+<div class="hacarus-content-list lang-specific csharp">
+ <ul> <li> データIDで特定のデータを取得します。 </li> <li> データIDは、アップロード時に画像ファイル名に基づいて割り当てられます。 </li> <li> 重要なキー: <ul> <li> `computed_assessment`: 予測の結果 </li> <li> `annotations`: `Serve`メソッドが呼び出されたときに生成されるアノテーションのリストを含みます </li> <li> `raw_url`: アップロードされたファイルのURL </li> <li> `url`: 欠陥箇所表示ファイル（緑色のボックス） </li> <li> `status`: データのステータス。`pending`（推論前または予測中）または`done`（予測済み）のいずれか </li> </ul> </li> </ul> 
+</div>
+
+<div class="hacarus-content-list lang-specific python">
+ <ul> <li> データIDで特定のデータを取得します。 </li> <li> データIDは、アップロード時に画像ファイル名に基づいて割り当てられます。 </li> <li> 重要なキー: <ul> <li> `computed_assessment`: 予測の結果 </li> <li> `annotations`: `serve`メソッドが呼び出されたときに生成されるアノテーションのリストを含みます </li> <li> `raw_url`: アップロードされたファイルのURL </li> <li> `url`: 欠陥箇所表示ファイル（緑色のボックス） </li> <li> `status`: データのステータス。`pending`（推論前または予測中）または`done`（予測済み）のいずれか </li> </ul> </li> </ul> 
+</div>
 
 <blockquote>
 <p><strong>レスポンスの一例</strong></p>
@@ -788,7 +832,13 @@
 <span class="c"># You may use a specific model for prediction by setting a model_id value. This is optional. If not set, the active/default model will be used.</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">serve</span><span class="p">(</span><span class="n">item_ids</span><span class="p">,</span> <span class="s">"model_id"</span><span class="p">)</span>
 </code></pre>
-<p> <ul> <li> データは良品か不良品があるか推論します。 </li> <li> 結果を確認するには、`GetItems()`メソッドを使用して、各データの`good`キーを確認します。 </li> </ul> </p>
+<div class="hacarus-content-list lang-specific csharp">
+ <ul> <li> データは良品か不良品があるか推論します。 </li> <li> 結果を確認するには、`GetItems()`メソッドを使用して、各データの`good`キーを確認します。 </li> </ul> 
+</div>
+
+<div class="hacarus-content-list lang-specific python">
+ <ul> <li> データは良品か不良品があるか推論します。 </li> <li> 結果を確認するには、`get_items()`メソッドを使用して、各データの`good`キーを確認します。 </li> </ul> 
+</div>
 
 <blockquote>
 <p><strong>レスポンスの一例</strong></p>
@@ -831,11 +881,7 @@
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">hacarus_visual_inspection</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">APIError</span><span class="p">:</span> <span class="n">There</span> <span class="ow">is</span> <span class="n">no</span> <span class="n">available</span> <span class="n">model</span> <span class="p">(</span><span class="mi">400</span><span class="p">)</span>
-</code></pre><h1 id='t-genericerrors'>一般的なエラー</h1>
-<blockquote>
-<p>メソッドを呼び出すときにまだ承認されていないエラーです。エラーを遭遇する場合、最初に`Authorize`メソッドを呼び出してください。</p>
-</blockquote>
-<pre class="highlight csharp tab-csharp"><code><span class="p">{</span>
+</code></pre><h1 id='t-genericerrors'>一般的なエラー</h1><h2 id='401-unauthorized'>401 Unauthorized</h2><pre class="highlight csharp tab-csharp"><code><span class="p">{</span>
     <span class="s">"errors"</span><span class="p">:</span> <span class="p">{</span>
         <span class="s">"detail"</span><span class="p">:</span> <span class="k">null</span><span class="p">,</span>
         <span class="s">"source"</span><span class="p">:</span> <span class="p">{</span>
@@ -847,10 +893,14 @@
 <span class="p">}</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">hacarus_visual_inspection</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">APIError</span><span class="p">:</span> <span class="n">No</span> <span class="n">permission</span> <span class="n">to</span> <span class="n">access</span> <span class="n">this</span> <span class="n">resource</span><span class="err">!</span> <span class="p">(</span><span class="mi">401</span><span class="p">)</span>
 </code></pre>
-<blockquote>
-<p>メソッドを呼び出すが、ライセンスがまだアクティベートされていないか期限切れになっているときのエラーです。 遭遇したら、最初に`ActivateLicense`メソッドを呼び出してください。</p>
-</blockquote>
-<pre class="highlight csharp tab-csharp"><code><span class="p">{</span>
+<div class="hacarus-content lang-specific csharp">
+メソッドを呼び出すときにまだ承認されていないエラーです。エラーを遭遇する場合、最初に`Authorize`メソッドを呼び出してください。
+</div>
+
+<div class="hacarus-content lang-specific python">
+メソッドを呼び出すときにまだ承認されていないエラーです。エラーを遭遇する場合、最初に`authorize`メソッドを呼び出してください。
+</div>
+<h2 id='403-forbidden'>403 Forbidden</h2><pre class="highlight csharp tab-csharp"><code><span class="p">{</span>
     <span class="s">"errors"</span><span class="p">:</span> <span class="p">{</span>
         <span class="s">"detail"</span><span class="p">:</span> <span class="k">null</span><span class="p">,</span>
         <span class="s">"source"</span><span class="p">:</span> <span class="p">{</span>
@@ -862,6 +912,14 @@
 <span class="p">}</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">hacarus_visual_inspection</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">APIError</span><span class="p">:</span> <span class="n">Invalid</span> <span class="n">license</span><span class="err">!</span> <span class="p">(</span><span class="mi">403</span><span class="p">)</span>
 </code></pre>
+<div class="hacarus-content lang-specific csharp">
+メソッドを呼び出すが、ライセンスがまだアクティベートされていないか期限切れになっているときのエラーです。 遭遇したら、最初に`ActivateLicense`メソッドを呼び出してください。
+</div>
+
+<div class="hacarus-content lang-specific python">
+メソッドを呼び出すが、ライセンスがまだアクティベートされていないか期限切れになっているときのエラーです。 遭遇したら、最初に`activate_license`メソッドを呼び出してください。
+</div>
+
 <!-- 
 # Errors
 
