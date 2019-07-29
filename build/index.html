@@ -275,6 +275,14 @@
           </li>
           <li>
             <a href="#t-genericerrors" class="toc-h1 toc-link" data-title="Generic Errors">Generic Errors</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#401-unauthorized" class="toc-h2 toc-link" data-title="401 Unauthorized">401 Unauthorized</a>
+                  </li>
+                  <li>
+                    <a href="#403-forbidden" class="toc-h2 toc-link" data-title="403 Forbidden">403 Forbidden</a>
+                  </li>
+              </ul>
           </li>
       </ul>
         <ul class="toc-footer">
@@ -305,7 +313,7 @@ This Visual Inspection SDK for Python is made for software engineers who want to
 
 <p><br/>
 <br/></p>
-<h2 id='t-installation'>Installation</h2><pre class="highlight csharp tab-csharp"><code><span class="n">PM</span><span class="p">&gt;</span> <span class="n">Install</span><span class="p">-</span><span class="n">Package</span> <span class="n">HacarusVisualInspectionApi</span> <span class="p">-</span><span class="n">Version</span> <span class="m">1.1</span><span class="p">.</span><span class="m">1</span><span class="p">-</span><span class="n">beta</span>
+<h2 id='t-installation'>Installation</h2><pre class="highlight csharp tab-csharp"><code><span class="n">PM</span><span class="p">&gt;</span> <span class="n">Install</span><span class="p">-</span><span class="n">Package</span> <span class="n">HacarusVisualInspectionApi</span> <span class="p">-</span><span class="n">Version</span> <span class="m">1.1</span><span class="p">.</span><span class="m">2</span><span class="p">-</span><span class="n">beta</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="o">&gt;</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">hacarus_visual_inspection</span>
 </code></pre>
 <div class="hacarus-content lang-specific csharp">
@@ -317,7 +325,7 @@ To install this package on your project, use this command:
 </div>
 
 <div class="hacarus-content lang-specific csharp">
- You can also add it on your project by using `Add packages`, check on the `Show prerelease packages`, and search for `HacarusVisualInspectionApi` on the nuget.org repository. <br/><br/> Other installation options can be found on <a href='https://www.nuget.org/packages/HacarusVisualInspectionApi/1.1.1-beta'>Nuget Package Site</a>. 
+ You can also add it on your project by using `Add packages`, check on the `Show prerelease packages`, and search for `HacarusVisualInspectionApi` on the nuget.org repository. <br/><br/> Other installation options can be found on <a href='https://www.nuget.org/packages/HacarusVisualInspectionApi/1.1.2-beta'>Nuget Package Site</a>. 
 </div>
 <h2 id='t-terms'>Terms</h2>
 <p>A brief explanation of the terms used throughout this documentation: <br/><br/> <b>Model</b><br/> A model is created (or trained) by applying an algorithm to a data-set of items (also called training-data), along with the configuration of a set of parameters. After creation, the model can be used to analyze new data. <br/><br/> <b>Algorithm</b><br/> The machine learning code that is used to build a model – selected depending on the nature of the visual inspection task and the expected precision and performance. <br/><br/> <b>Training</b><br/> The process of creating a new model. <br/><br/> <b>Parameter</b><br/> Parameters are used to configure how an algorithm should be applied during the training. For example the minimal or maximum accepted image resolution, etc. <br/><br/> <b>Item</b><br/> An item represents the data of a single product that is the subject of the inspection. One item can have one or several images associated. For example: A packaging box in a storage warehouse, with 6 images for each of the 6 box sides. </p>
@@ -452,7 +460,13 @@ To install this package on your project, use this command:
 </span></code></pre><h2 id='t-getitems'>Get Items</h2><pre class="highlight csharp tab-csharp"><code><span class="n">ItemsResponse</span> <span class="n">Response</span> <span class="p">=</span> <span class="n">VisualInspection</span><span class="p">.</span><span class="nf">GetItems</span><span class="p">();</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">sdk</span><span class="o">.</span><span class="n">get_items</span><span class="p">()</span>
 </code></pre>
-<p> <ul> <li> Retrieves list of uploaded items grouped by training, predict, and archived <ul> <li> `training`: Items to be used for training <ul> <li> Check for key `good` to know if item is labeled as `true`(good), `false`(defect) or `null` (unlabeled) </li> </ul> </li> <li> `predict`: Uploaded items that can be predicted <ul> <li> To check for labels and results, check for the keys `good` and `status` </li> </ul> </li> <li> `archived`: Achived items (Future feature, currently not in use) </li> </ul> </li> <li> `override_assessment` and `confirmed_assessment` are specific to UI and can be ignored when working with the SDK </li> </ul> </p>
+<div class="hacarus-content-list lang-specific csharp">
+ <ul> <li> Retrieves list of uploaded items grouped by training, predict, and archived <ul> <li> `training`: Items to be used for training <ul> <li> Check for key `good` to know if item is labeled as `true`(good), `false`(defect) or `null` (unlabeled) </li> </ul> </li> <li> `predict`: Uploaded items that can be predicted <ul> <li> To check for labels and results, check for the keys `good` and `status` </li> </ul> </li> <li> `archived`: Achived items (Future feature, currently not in use) </li> </ul> </li> <li> `override_assessment` and `confirmed_assessment` are specific to UI and can be ignored when working with the SDK </li> </ul> 
+</div>
+
+<div class="hacarus-content-list lang-specific python">
+ <ul> <li> Retrieves list of uploaded items grouped by training, predict, and archived <ul> <li> `training`: Items to be used for training <ul> <li> Check for key `good` to know if item is labeled as `True`(good), `False`(defect) or `None` (unlabeled) </li> </ul> </li> <li> `predict`: Uploaded items that can be predicted <ul> <li> To check for labels and results, check for the keys `good` and `status` </li> </ul> </li> <li> `archived`: Achived items (Future feature, currently not in use) </li> </ul> </li> <li> `override_assessment` and `confirmed_assessment` are specific to UI and can be ignored when working with the SDK </li> </ul> 
+</div>
 
 <blockquote>
 <p><strong>Sample response</strong></p>
@@ -548,7 +562,13 @@ To install this package on your project, use this command:
 </code></pre><h2 id='t-getmodels'>Get Models</h2><pre class="highlight csharp tab-csharp"><code><span class="n">ModelsResponse</span> <span class="n">Response</span> <span class="p">=</span> <span class="n">VisualInspection</span><span class="p">.</span><span class="nf">GetModels</span><span class="p">();</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">sdk</span><span class="o">.</span><span class="n">get_models</span><span class="p">()</span>
 </code></pre>
-<p> <ul> <li> Gets list of created models that can be used to predict items </li> <li> The key `active` means that if an item is predicted (using `Serve` method) without passing a model id, the model with `active` valued `true` will be used as default </li> <li> The key `status` shows if a model is `active` or `failed.` <ul> <li> Models with `status: active` are successfully created and can be used for prediction </li> <li> Models with `status: failed` are not successfully created and cannot be used for prediction </li> </ul> </li> </ul> </p>
+<div class="hacarus-content-list lang-specific csharp">
+ <ul> <li> Gets list of created models that can be used to predict items </li> <li> The key `active` means that if an item is predicted (using `Serve` method) without passing a model id, the model with `active` valued `true` will be used as default </li> <li> The key `status` shows if a model is `active` or `failed.` <ul> <li> Models with `status: active` are successfully created and can be used for prediction </li> <li> Models with `status: failed` are not successfully created and cannot be used for prediction </li> </ul> </li> </ul> 
+</div>
+
+<div class="hacarus-content-list lang-specific python">
+ <ul> <li> Gets list of created models that can be used to predict items </li> <li> The key `active` means that if an item is predicted (using `serve` method) without passing a model id, the model with `active` valued `True` will be used as default </li> <li> The key `status` shows if a model is `active` or `failed.` <ul> <li> Models with `status: active` are successfully created and can be used for prediction </li> <li> Models with `status: failed` are not successfully created and cannot be used for prediction </li> </ul> </li> </ul> 
+</div>
 
 <blockquote>
 <p><strong>Sample response</strong></p>
@@ -591,7 +611,13 @@ To install this package on your project, use this command:
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">algorithm_id</span><span class="p">,</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">algo_param</span><span class="p">,</span> <span class="n">item_ids</span><span class="p">)</span>
 </code></pre>
-<p> <ul> <li> Creates model to use for prediction </li> <li> Accepts an optional parameter that contains array of item ids that will be used for training the model </li> <li> Accepts an optional parameter that contains array of AlgorithmParameter for adjusting the algorithm settings </li> <li> To check the newly created model, use `GetModels()` method </li> </ul> </p>
+<div class="hacarus-content-list lang-specific csharp">
+ <ul> <li> Creates model to use for prediction </li> <li> Accepts an optional parameter that contains array of item ids that will be used for training the model </li> <li> Accepts an optional parameter that contains array of AlgorithmParameter for adjusting the algorithm settings </li> <li> To check the newly created model, use `GetModels` method </li> </ul> 
+</div>
+
+<div class="hacarus-content-list lang-specific python">
+ <ul> <li> Creates model to use for prediction </li> <li> Accepts an optional parameter that contains array of item ids that will be used for training the model </li> <li> Accepts an optional parameter that contains array of algo_param for adjusting the algorithm settings </li> <li> To check the newly created model, use `get_models` method </li> </ul> 
+</div>
 
 <blockquote>
 <p><strong>Sample response</strong></p>
@@ -631,13 +657,25 @@ To install this package on your project, use this command:
 <span class="n">is_good</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="n">sdk</span><span class="o">.</span><span class="n">upload</span><span class="p">(</span><span class="n">filenames</span><span class="p">,</span> <span class="n">is_good</span><span class="p">)</span>
 </code></pre>
-<p> <ul> <li> Use this method to upload and label items for training </li> <li> To label items as good or defect, set `IsGood` parameter to a boolean value `true`(good) or `false`(defect) </li> </ul> </p>
+<div class="hacarus-content-list lang-specific csharp">
+ <ul> <li> Use this method to upload and label items for training </li> <li> To label items as good or defect, set `IsGood` parameter to a boolean value `true`(good) or `false`(defect) </li> </ul> 
+</div>
+
+<div class="hacarus-content-list lang-specific python">
+ <ul> <li> Use this method to upload and label items for training </li> <li> To label items as good or defect, set `is_good` parameter to a boolean value `True`(good) or `False`(defect) </li> </ul> 
+</div>
 <pre class="highlight csharp tab-csharp"><code><span class="c1">//For prediction</span>
 <span class="n">UploadResponse</span> <span class="n">Response</span> <span class="p">=</span> <span class="n">VisualInspection</span><span class="p">.</span><span class="nf">Upload</span><span class="p">(</span><span class="n">Files</span><span class="p">);</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="c"># For prediction</span>
 <span class="n">sdk</span><span class="o">.</span><span class="n">upload</span><span class="p">(</span><span class="n">filenames</span><span class="p">)</span>
 </code></pre>
-<p> <ul> <li> Use this method to upload items for prediction </li> <li> Use `Files` parameter to pass an array of `FileModel`. `FileModel` have properties `FileName` and `ContentType`. </li> <li> To create a FileModel, use `FileModel File = new FileModel()` or `FileModel File = new FileModel("FileName", "ContentType")` </li> <li> To check the uploaded item, use the `GetItems()` method </li> <li> The filename of the image will be used as the `item_id` of the item </li> <li> Supported file types: `png`, `jpeg`, `tiff` </li> </ul> </p>
+<div class="hacarus-content-list lang-specific csharp">
+ <ul> <li> Use this method to upload items for prediction </li> <li> Use `Files` parameter to pass an array of `FileModel`. `FileModel` have properties `FileName` and `ContentType`. </li> <li> To create a FileModel, use `FileModel File = new FileModel()` or `FileModel File = new FileModel("FileName", "ContentType")` </li> <li> To check the uploaded item, use the `GetItems()` method </li> <li> The filename of the image will be used as the `item_id` of the item </li> <li> Supported file types: `png`, `jpeg`, `tiff` </li> </ul> 
+</div>
+
+<div class="hacarus-content-list lang-specific python">
+ <ul> <li> Use this method to upload items for prediction </li> <li> To check the uploaded item, use the `get_items()` method </li> <li> The filename of the image will be used as the `item_id` of the item </li> <li> Supported file types: `png`, `jpeg`, `tiff` </li> </ul> 
+</div>
 
 <blockquote>
 <p><strong>Sample response</strong></p>
@@ -686,7 +724,13 @@ To install this package on your project, use this command:
 </code></pre><pre class="highlight python tab-python"><code><span class="c">#Set a specific ItemId to get detailed information about the item</span>
 <span class="n">item</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_item</span><span class="p">(</span><span class="s">"ItemId"</span><span class="p">);</span>
 </code></pre>
-<p> <ul> <li> Get details of a specific item identified by its item ID </li> <li> The item ID is assigned during upload and based on the image file name </li> <li> Important keys: <ul> <li> `computed_assessment`: result of the prediction </li> <li> `annotations`: contains list of annotations generated when `Serve` method is called </li> <li> `raw_url`: url of your uploaded file </li> <li> `url`: processed file with defect annotations (green boxes) </li> <li> `status`: status of the item. It can be `pending`(not yet predicted or being predicted) or `done`(predicted) </li> </ul> </li> </ul> </p>
+<div class="hacarus-content-list lang-specific csharp">
+ <ul> <li> Get details of a specific item identified by its item ID </li> <li> The item ID is assigned during upload and based on the image file name </li> <li> Important keys: <ul> <li> `computed_assessment`: result of the prediction </li> <li> `annotations`: contains list of annotations generated when `Serve` method is called </li> <li> `raw_url`: url of your uploaded file </li> <li> `url`: processed file with defect annotations (green boxes) </li> <li> `status`: status of the item. It can be `pending`(not yet predicted or being predicted) or `done`(predicted) </li> </ul> </li> </ul> 
+</div>
+
+<div class="hacarus-content-list lang-specific python">
+ <ul> <li> Get details of a specific item identified by its item ID </li> <li> The item ID is assigned during upload and based on the image file name </li> <li> Important keys: <ul> <li> `computed_assessment`: result of the prediction </li> <li> `annotations`: contains list of annotations generated when `serve` method is called </li> <li> `raw_url`: url of your uploaded file </li> <li> `url`: processed file with defect annotations (green boxes) </li> <li> `status`: status of the item. It can be `pending`(not yet predicted or being predicted) or `done`(predicted) </li> </ul> </li> </ul> 
+</div>
 
 <blockquote>
 <p><strong>Sample response</strong></p>
@@ -788,7 +832,13 @@ To install this package on your project, use this command:
 <span class="c"># You may use a specific model for prediction by setting a model_id value. This is optional. If not set, the active/default model will be used.</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">serve</span><span class="p">(</span><span class="n">item_ids</span><span class="p">,</span> <span class="s">"model_id"</span><span class="p">)</span>
 </code></pre>
-<p> <ul> <li> Predicts if items are good or defect </li> <li> To check the result, use the `GetItems()` method and check for key `good` of each item </li> </ul> </p>
+<div class="hacarus-content-list lang-specific csharp">
+ <ul> <li> Predicts if items are good or defect </li> <li> To check the result, use the `GetItems()` method and check for key `good` of each item </li> </ul> 
+</div>
+
+<div class="hacarus-content-list lang-specific python">
+ <ul> <li> Predicts if items are good or defect </li> <li> To check the result, use the `get_items()` method and check for key `good` of each item </li> </ul> 
+</div>
 
 <blockquote>
 <p><strong>Sample response</strong></p>
@@ -831,11 +881,7 @@ To install this package on your project, use this command:
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">hacarus_visual_inspection</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">APIError</span><span class="p">:</span> <span class="n">There</span> <span class="ow">is</span> <span class="n">no</span> <span class="n">available</span> <span class="n">model</span> <span class="p">(</span><span class="mi">400</span><span class="p">)</span>
-</code></pre><h1 id='t-genericerrors'>Generic Errors</h1>
-<blockquote>
-<p>Error when calling a method but not yet authorized. When encounted, please call `Authorize` method first.</p>
-</blockquote>
-<pre class="highlight csharp tab-csharp"><code><span class="p">{</span>
+</code></pre><h1 id='t-genericerrors'>Generic Errors</h1><h2 id='401-unauthorized'>401 Unauthorized</h2><pre class="highlight csharp tab-csharp"><code><span class="p">{</span>
     <span class="s">"errors"</span><span class="p">:</span> <span class="p">{</span>
         <span class="s">"detail"</span><span class="p">:</span> <span class="k">null</span><span class="p">,</span>
         <span class="s">"source"</span><span class="p">:</span> <span class="p">{</span>
@@ -847,10 +893,14 @@ To install this package on your project, use this command:
 <span class="p">}</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">hacarus_visual_inspection</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">APIError</span><span class="p">:</span> <span class="n">No</span> <span class="n">permission</span> <span class="n">to</span> <span class="n">access</span> <span class="n">this</span> <span class="n">resource</span><span class="err">!</span> <span class="p">(</span><span class="mi">401</span><span class="p">)</span>
 </code></pre>
-<blockquote>
-<p>Error when calling a method but license is not yet activated or expired. When encounted, please call `ActivateLicense` method first.</p>
-</blockquote>
-<pre class="highlight csharp tab-csharp"><code><span class="p">{</span>
+<div class="hacarus-content lang-specific csharp">
+Error when calling a method but not yet authorized. When encounted, please call `Authorize` method first.
+</div>
+
+<div class="hacarus-content lang-specific python">
+Error when calling a method but not yet authorized. When encounted, please call `authorize` method first.
+</div>
+<h2 id='403-forbidden'>403 Forbidden</h2><pre class="highlight csharp tab-csharp"><code><span class="p">{</span>
     <span class="s">"errors"</span><span class="p">:</span> <span class="p">{</span>
         <span class="s">"detail"</span><span class="p">:</span> <span class="k">null</span><span class="p">,</span>
         <span class="s">"source"</span><span class="p">:</span> <span class="p">{</span>
@@ -862,6 +912,14 @@ To install this package on your project, use this command:
 <span class="p">}</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">hacarus_visual_inspection</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">APIError</span><span class="p">:</span> <span class="n">Invalid</span> <span class="n">license</span><span class="err">!</span> <span class="p">(</span><span class="mi">403</span><span class="p">)</span>
 </code></pre>
+<div class="hacarus-content lang-specific csharp">
+Error when calling a method but license is not yet activated or expired. When encounted, please call `ActivateLicense` method first.
+</div>
+
+<div class="hacarus-content lang-specific python">
+Error when calling a method but license is not yet activated or expired. When encounted, please call `activate_license` method first.
+</div>
+
 <!-- 
 # Errors
 
