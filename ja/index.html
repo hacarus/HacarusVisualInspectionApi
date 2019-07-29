@@ -274,6 +274,37 @@
               </ul>
           </li>
           <li>
+            <a href="#t-algorithmswithversion" class="toc-h1 toc-link" data-title="v0.3.0リリースノート">v0.3.0リリースノート</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#t-algorithmoverview" class="toc-h2 toc-link" data-title="アルゴリズム概要">アルゴリズム概要</a>
+                  </li>
+                  <li>
+                    <a href="#t-algorithmdetails" class="toc-h2 toc-link" data-title="アルゴリズム詳細">アルゴリズム詳細</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#t-descriptionofparameters" class="toc-h3 toc-link" data-title="Description of parameters:">Description of parameters:</a>
+                          </li>
+                          <li>
+                            <a href="#t-algo1ai" class="toc-h3 toc-link" data-title="1-a-i: Reconstructor Inspection">1-a-i: Reconstructor Inspection</a>
+                          </li>
+                          <li>
+                            <a href="#t-algo1aii" class="toc-h3 toc-link" data-title="1-a-ii: Auto Classified Inspection">1-a-ii: Auto Classified Inspection</a>
+                          </li>
+                          <li>
+                            <a href="#t-algo1bi" class="toc-h3 toc-link" data-title="1-b-i: Vector Inspection">1-b-i: Vector Inspection</a>
+                          </li>
+                          <li>
+                            <a href="#t-algo1bii" class="toc-h3 toc-link" data-title="1-b-ii: Hunter Grove Inspection">1-b-ii: Hunter Grove Inspection</a>
+                          </li>
+                          <li>
+                            <a href="#t-algo2i" class="toc-h3 toc-link" data-title="2-i: Mixed Grove Inspection">2-i: Mixed Grove Inspection</a>
+                          </li>
+                      </ul>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#t-genericerrors" class="toc-h1 toc-link" data-title="一般的なエラー">一般的なエラー</a>
               <ul class="toc-list-h2">
                   <li>
@@ -437,11 +468,11 @@
 </blockquote>
 <pre class="highlight csharp tab-csharp"><code><span class="p">{</span>
     <span class="s">"errors"</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">"detail"</span><span class="p">:</span> <span class="s">"License already exists"</span><span class="p">,</span> 
+        <span class="s">"detail"</span><span class="p">:</span> <span class="s">"License already exists"</span><span class="p">,</span>
         <span class="s">"source"</span><span class="p">:</span> <span class="p">{</span>
             <span class="s">"pointer"</span><span class="p">:</span> <span class="s">"/api/auth/license"</span>
-        <span class="p">},</span> 
-        <span class="s">"status"</span><span class="p">:</span> <span class="m">403</span><span class="p">,</span> 
+        <span class="p">},</span>
+        <span class="s">"status"</span><span class="p">:</span> <span class="m">403</span><span class="p">,</span>
         <span class="s">"title"</span><span class="p">:</span> <span class="s">"Invalid license!"</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -848,7 +879,7 @@
         </span><span class="s2">"IMG6760_U"</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"model_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"model-2019061101:26:07"</span><span class="w">
-</span><span class="p">}</span><span class="w">    
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p><strong>起こり得るエラー</strong>
@@ -881,7 +912,53 @@
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="n">hacarus_visual_inspection</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">APIError</span><span class="p">:</span> <span class="n">There</span> <span class="ow">is</span> <span class="n">no</span> <span class="n">available</span> <span class="n">model</span> <span class="p">(</span><span class="mi">400</span><span class="p">)</span>
-</code></pre><h1 id='t-genericerrors'>一般的なエラー</h1><h2 id='401-unauthorized'>401 Unauthorized</h2><pre class="highlight csharp tab-csharp"><code><span class="p">{</span>
+</code></pre><h1 id='t-algorithmswithversion'>v0.3.0リリースノート</h1><h2 id='t-algorithmoverview'>アルゴリズム概要</h2>
+<ul>
+<li>教師なし学習(アノテーション必要なし)
+
+<ul>
+<li>正常画像のみから学習
+
+<ul>
+<li>Reconstructor Inspection</li>
+<li>Auto Classified Inspection</li>
+</ul></li>
+<li>正常画像と少量の異常画像から学習
+
+<ul>
+<li>Vector Inspection</li>
+<li>Hunter Grove Inspection</li>
+</ul></li>
+<li>教師あり学習(アノテーション必要あり)
+
+<ul>
+<li>Mixed Grove Inspection</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id='t-algorithmdetails'>アルゴリズム詳細</h2><h3 id='t-descriptionofparameters'>Description of parameters:</h3>
+<ul>
+<li>Model size (学習サイズ): Size of the model, larger models perform better but need longer to process</li>
+<li>Range (型 : 範囲): Values used for this parameter need to be within this range of values</li>
+<li>Variable name (変数名): Technical name of the parameter in the application</li>
+<li>AutoTune (range): Parameters marked with “O” are optional. If not provided the system will automatically find the best value</li>
+</ul>
+<h3 id='t-algo1ai'>1-a-i: Reconstructor Inspection</h3>
+<p>正常画像のみから学習する教師なし学習モデル。推論時には新たな画像に対して、再構成誤差を計算し、その大小に基づいて異常検知を行う。
+ <table class='hacarus-table'> <tr> <td>パラメータ </td> <td>変数名 </td> <td>型 : 範囲 </td> <td>既定値 </td> <td>計算時間への影響 </td> <td>精度への影響 </td> <td>AutoTune (range) </td> <td>備考 </td> </tr> <tr> <td>学習サイズ </td> <td>train_size </td> <td>int : [1, inf] </td> <td>10000 </td> <td>大 -> 大 </td> <td>大 -> 大 </td> <td>x </td> <td> </td> </tr> <tr> <td>最小の検査サイズ </td> <td>min_inspection_size </td> <td>(int, int) : 0~height, 0~width </td> <td>(8, 8) </td> <td>大 -> 大 </td> <td>- </td> <td>O (4, 8, 16) </td> <td>(4, 4) or (8,8) or (16,16) が経験的によい。 <p> 三つの中から選んでもらうようにしたい。 </td> </tr> <tr> <td>最小の検査サイズ幅 </td> <td>min_inspection_step </td> <td>int : [1, inf] </td> <td>4 </td> <td>大 -> 小 </td> <td>大 -> 小 </td> <td>x </td> <td>min_inspection_sizeの約数が望ましい。 <p> 1のとき一番計算負荷がかかるが、もっとも性能がよい。 </td> </tr> <tr> <td>最小の検知サイズ </td> <td>min_detected_area </td> <td>Float : [1, inf] </td> <td>None </td> <td>- </td> <td>- </td> <td>x </td> <td>検出された矩形の面積の閾値 </td> </tr> <tr> <td>異常部分の拡大率 </td> <td>anomaly_magnification </td> <td>(int, int) : 0~height, 0~width </td> <td>(1, 1) </td> <td>- </td> <td>- </td> <td>o(1,3,5) </td> <td>大きくすると、小さい異常部分を検出できるようになる。ただし過検出も増える。 </td> </tr> <tr> <td>無視される外周からの幅 </td> <td>ignore_outer </td> <td>(int, int) : 0~height, 0~width </td> <td>(0,0) </td> <td>- </td> <td>- </td> <td>x </td> <td>外周からの無視する領域の幅 <p> 画像の縦, 横のピクセル数までの値にする。 </td> </tr> <tr> <td>特徴量の次元 </td> <td>n_components </td> <td>int : [1, inf] </td> <td>10 </td> <td>大 -> 大 </td> <td>大 -> ほとんど正常 <p> 小 -> ほとんど異常 </td> <td>o(3, 5, 10, 20, 30) </td> <td>特徴量の次元が大きいと複雑な対象でも再構成できるようになる。 </td> </tr> <tr> <td>アルゴリズム反復回数 </td> <td>max_iter </td> <td>Int : [1, inf] </td> <td>10 </td> <td>大 -> 大 </td> <td>- </td> <td>x </td> <td>少なすぎると性能が悪くなるが、ある程度大きければ、性能はそれほど変わらない。 </td> </tr> <tr> <td>再構成誤差の閾値 </td> <td>reconstruct_thresh </td> <td>float : [0, inf] </td> <td>2.0 </td> <td>- </td> <td>大 -> ほとんど正常 <p> 小 -> ほとんど異常 </td> <td>O () </td> <td>再構成誤差に対する閾値、1.5 ~ 3程度の値が経験的によい </td> </tr> <tr> <td>検知領域の異常度の閾値 </td> <td>detected_area_thresh </td> <td>float : [0, inf] </td> <td>0.1 </td> <td>- </td> <td>- </td> <td>O ([0.1, 0.5]) </td> <td>大きすぎるとほとんど正常、小さすぎるとほとんど異常 </td> </tr> <tr> <td>アルゴリズムの種類 </td> <td>reconstruct_algorithm_name </td> <td>str : {‘nmf’} </td> <td>‘nmf’ </td> <td>- </td> <td>- </td> <td>x </td> <td>他のタイプは後で追加されます </td> </tr> </table> </p>
+<h3 id='t-algo1aii'>1-a-ii: Auto Classified Inspection</h3>
+<p>正常画像のみから学習する教師なし学習モデル。正常な入力画像に対して深層学習を行う。推論時には新たな画像に対して、再構成誤差を計算し、その大小に基づいて異常検知を行う。
+ <table class='hacarus-table'> <tr> <td>パラメータ </td> <td>変数名 </td> <td>型 : 範囲 </td> <td>既定値 </td> <td>計算時間への影響 </td> <td>精度への影響 </td> <td>AutoTune (range) </td> <td>備考 </td> </tr> <tr> <td>学習サイズ </td> <td>train_size </td> <td>int : [1, inf] </td> <td>10000 </td> <td>大 -> 大 </td> <td>大 -> 大 </td> <td>x </td> <td> </td> </tr> <tr> <td>最小の検査サイズ </td> <td>min_inspection_size </td> <td>(int, int) : 0~height, 0~width </td> <td>(8, 8) </td> <td>大 -> 大 </td> <td>- </td> <td>O (4, 8, 16) </td> <td>(4, 4) or (8,8) or (16,16) が経験的によい。 <p> 三つの中から選んでもらうようにしたい。 </td> </tr> <tr> <td>最小の検査サイズ幅 </td> <td>min_inspection_step </td> <td>int : [1, inf] </td> <td>4 </td> <td>大 -> 小 </td> <td>大 -> 小 </td> <td>x </td> <td>min_inspection_sizeの約数が望ましい。 <p> 1のとき一番計算負荷がかかるが、もっとも性能がよい。 </td> </tr> <tr> <td>最小の検知サイズ </td> <td>min_detected_area </td> <td>Float : [1, inf] </td> <td>None </td> <td>- </td> <td>- </td> <td>x </td> <td>検出された矩形の面積の閾値 </td> </tr> <tr> <td>異常部分の拡大率 </td> <td>anomaly_magnification </td> <td>(int, int) : 0~height, 0~width </td> <td>(1, 1) </td> <td>- </td> <td>- </td> <td>o(1,3,5) </td> <td>大きくすると、小さい異常部分を検出できるようになる。ただし過検出も増える。 </td> </tr> <tr> <td>無視される外周からの幅 </td> <td>ignore_outer </td> <td>(int, int) : 0~height, 0~width </td> <td>(0,0) </td> <td>- </td> <td>- </td> <td>x </td> <td>外周からの無視する領域の幅 <p> 画像の縦, 横のピクセル数までの値にする。 </td> </tr> <tr> <td>層の構造 </td> <td>encoding_dims </td> <td>Tuple[int] </td> <td>(128, 64, 32) </td> <td>大 -> 大 </td> <td>大 -> 大 </td> <td>x </td> <td>全ての値はmin_detected_areaの積より小さくしておく。 </td> </tr> <tr> <td>エポック </td> <td>epochs </td> <td>int </td> <td>100 </td> <td>大 -> 大 </td> <td>大 -> 大 </td> <td>x </td> <td>1以上の整数値 </td> </tr> <tr> <td>バッチサイズ </td> <td>batch_size </td> <td>int </td> <td>256 </td> <td>大 -> 大 </td> <td>- </td> <td>x </td> <td>train_size より小さい 2 の累乗が好ましい。 </td> </tr> <tr> <td>再構成誤差の閾値 </td> <td>reconstruct_thresh </td> <td>float : [0, inf] </td> <td>2.0 </td> <td>- </td> <td>大 -> ほとんど正常 <p> 小 -> ほとんど異常 </td> <td>x </td> <td>再構成誤差に対する閾値、1.5 ~ 3程度の値が経験的によい </td> </tr> <tr> <td>検知領域の異常度の閾値 </td> <td>detected_area_thresh </td> <td>float : [0, inf] </td> <td>0.1 </td> <td>- </td> <td>- </td> <td>O ([0.1, 0.5]) </td> <td>大きすぎるとほとんど正常、小さすぎるとほとんど異常 </td> </tr> </table> </p>
+<h3 id='t-algo1bi'>1-b-i: Vector Inspection</h3>
+<p>正常画像と少量の異常画像から学習する教師なし学習モデル。
+ <table class='hacarus-table'> <tr> <td>パラメータ </td> <td>変数名 </td> <td>型 : 範囲 </td> <td>既定値 </td> <td>計算時間への影響 </td> <td>精度への影響 </td> <td>AutoTune (range) </td> <td>備考 </td> </tr> <tr> <td>学習サイズ </td> <td>train_size </td> <td>int : [1, inf] </td> <td>1000 </td> <td>大 -> 大 </td> <td>大 -> 大 </td> <td>x </td> <td> </td> </tr> <tr> <td>最小の検査サイズ </td> <td>min_inspection_size </td> <td>(int, int) : 0~height, 0~width </td> <td>(8, 8) </td> <td>大 -> 大 </td> <td>- </td> <td>O (4, 8, 16) </td> <td>(4, 4) or (8,8) or (16,16) が経験的によい。 <p> 三つの中から選んでもらうようにしたい。 </td> </tr> <tr> <td>最小の検査サイズ幅 </td> <td>min_inspection_step </td> <td>int : [1, inf] </td> <td>4 </td> <td>大 -> 小 </td> <td>大 -> 小 </td> <td>x </td> <td>min_inspection_sizeの約数が望ましい。 <p> 1のとき一番計算負荷がかかるが、もっとも性能がよい。 </td> </tr> <tr> <td>最小の検知サイズ </td> <td>min_detected_area </td> <td>Float : [1, inf] </td> <td>None </td> <td>- </td> <td>- </td> <td>x </td> <td>検出された矩形の面積の閾値 </td> </tr> <tr> <td>異常部分の拡大率 </td> <td>anomaly_magnification </td> <td>(int, int) : 0~height, 0~width </td> <td>(1, 1) </td> <td>- </td> <td>- </td> <td>o(1,3,5) </td> <td>大きくすると、小さい異常部分を検出できるようになる。ただし過検出も増える。 </td> </tr> <tr> <td>無視される外周からの幅 </td> <td>ignore_outer </td> <td>(int, int) : 0~height, 0~width </td> <td>(0,0) </td> <td>- </td> <td>- </td> <td>x </td> <td>外周からの無視する領域の幅 <p> 画像の縦, 横のピクセル数までの値にする。 </td> </tr> <tr> <td>データセット中の異常の割合 </td> <td>contamination </td> <td>Float : [0, 0.5] </td> <td>0.01 </td> <td>- </td> <td>大 -> ほとんど異常 </td> <td>o([0.0001, 0.5]) </td> <td>データセット中の異常の割合に近い値が望ましい </td> </tr> </table> </p>
+<h3 id='t-algo1bii'>1-b-ii: Hunter Grove Inspection</h3>
+<p>正常画像と少量の異常画像から学習する教師なし学習モデル。
+ <table class='hacarus-table'> <tr> <td>パラメータ </td> <td>変数名 </td> <td>型 : 範囲 </td> <td>既定値 </td> <td>計算時間への影響 </td> <td>精度への影響 </td> <td>AutoTune (range) </td> <td>備考 </td> </tr> <tr> <td>学習サイズ </td> <td>train_size </td> <td>int : [1, inf] </td> <td>10000 </td> <td>大 -> 大 </td> <td>大 -> 大 </td> <td>x </td> <td> </td> </tr> <tr> <td>最小の検査サイズ </td> <td>min_inspection_size </td> <td>(int, int) : 0~height, 0~width </td> <td>(8, 8) </td> <td>大 -> 大 </td> <td>- </td> <td>O (4, 8, 16) </td> <td>(4, 4) or (8,8) or (16,16) が経験的によい。 <p> 三つの中から選んでもらうようにしたい。 </td> </tr> <tr> <td>最小の検査サイズ幅 </td> <td>min_inspection_step </td> <td>int : [1, inf] </td> <td>4 </td> <td>大 -> 小 </td> <td>大 -> 小 </td> <td>x </td> <td>min_inspection_sizeの約数が望ましい。 <p> 1のとき一番計算負荷がかかるが、もっとも性能がよい。 </td> </tr> <tr> <td>最小の検知サイズ </td> <td>min_detected_area </td> <td>Float : [1, inf] </td> <td>None </td> <td>- </td> <td>- </td> <td>x </td> <td>検出された矩形の面積の閾値 </td> </tr> <tr> <td>異常部分の拡大率 </td> <td>anomaly_magnification </td> <td>(int, int) : 0~height, 0~width </td> <td>(1, 1) </td> <td>- </td> <td>- </td> <td>o(1,3,5) </td> <td>大きくすると、小さい異常部分を検出できるようになる。ただし過検出も増える。 </td> </tr> <tr> <td>無視される外周からの幅 </td> <td>ignore_outer </td> <td>(int, int) : 0~height, 0~width </td> <td>(0,0) </td> <td>- </td> <td>- </td> <td>x </td> <td>外周からの無視する領域の幅 <p> 画像の縦, 横のピクセル数までの値にする。 </td> </tr> <tr> <td>特徴量の次元 </td> <td>n_estimators </td> <td>Int : [1, inf] </td> <td>100 </td> <td>大->大 </td> <td>大->大 </td> <td>O (10, 50, 100, 200) </td> <td> </td> </tr> <tr> <td>異常とみなせるパッチの割合 </td> <td>contamination </td> <td>Float : [0, 0.5] </td> <td>0.01 </td> <td>- </td> <td>大 -> ほとんど異常 </td> <td>O ([0.0001, 0.5] </td> <td>学習に使われた異常パッチの割合が望ましい </td> </tr> </table> </p>
+<h3 id='t-algo2i'>2-i: Mixed Grove Inspection</h3>
+<p>正常画像と異常画像から学習する教師あり学習モデル。
+ <table class='hacarus-table'> <tr> <td>パラメータ </td> <td>変数名 </td> <td>型 : 範囲 </td> <td>既定値 </td> <td>計算時間への影響 </td> <td>精度への影響 </td> <td>AutoTune (range) </td> <td>備考 </td> </tr> <tr> <td>学習サイズ </td> <td>train_size </td> <td>int : [1, inf] </td> <td>1000 </td> <td>大 -> 大 </td> <td>大 -> 大 </td> <td>x </td> <td> </td> </tr> <tr> <td>最小の検査サイズ </td> <td>min_inspection_size </td> <td>(int, int) : 0~height, 0~width </td> <td>(8, 8) </td> <td>大 -> 大 </td> <td>- </td> <td>O (4, 8, 16) </td> <td>(4, 4) or (8,8) or (16,16) が経験的によい。 <p> 三つの中から選んでもらうようにしたい。 </td> </tr> <tr> <td>最小の検査サイズ幅 </td> <td>min_inspection_step </td> <td>int : [1, inf] </td> <td>4 </td> <td>大 -> 小 </td> <td>大 -> 小 </td> <td>x </td> <td>min_inspection_sizeの約数が望ましい。 <p> 1のとき一番計算負荷がかかるが、もっとも性能がよい。 </td> </tr> <tr> <td>最小の検知サイズ </td> <td>min_detected_area </td> <td>Float : [1, inf] </td> <td>None </td> <td>- </td> <td>- </td> <td>x </td> <td>検出された矩形の面積の閾値 </td> </tr> <tr> <td>異常部分の拡大率 </td> <td>anomaly_magnification </td> <td>(int, int) : 0~height, 0~width </td> <td>(1, 1) </td> <td>- </td> <td>- </td> <td>o(1,3,5) </td> <td>大きくすると、小さい異常部分を検出できるようになる。ただし過検出も増える。 </td> </tr> <tr> <td>無視される外周からの幅 </td> <td>ignore_outer </td> <td>(int, int) : 0~height, 0~width </td> <td>(0,0) </td> <td>- </td> <td>- </td> <td>x </td> <td>外周からの無視する領域の幅 <p> 画像の縦, 横のピクセル数までの値にする。 </td> </tr> <tr> <td>特徴量の次元 </td> <td>n_estimators </td> <td>Int : [1, inf] </td> <td>100 </td> <td>大->大 </td> <td>大->大 </td> <td>O (10, 50, 100, 200) </td> <td> </td> </tr> <tr> <td>検知領域の異常度の閾値 </td> <td>detected_area_thresh </td> <td>float : [0, inf] </td> <td>0.1 </td> <td>- </td> <td>- </td> <td>O ([0.1, 0.5]) </td> <td>大きすぎるとほとんど正常、小さすぎるとほとんど異常 </td> </tr> </table> </p>
+<h1 id='t-genericerrors'>一般的なエラー</h1><h2 id='401-unauthorized'>401 Unauthorized</h2><pre class="highlight csharp tab-csharp"><code><span class="p">{</span>
     <span class="s">"errors"</span><span class="p">:</span> <span class="p">{</span>
         <span class="s">"detail"</span><span class="p">:</span> <span class="k">null</span><span class="p">,</span>
         <span class="s">"source"</span><span class="p">:</span> <span class="p">{</span>
