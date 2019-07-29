@@ -199,14 +199,14 @@ t(:activateLicenseMessage)
 
 > *t(:error403)* t(:licenseExists)
 
-```csharp 
+```csharp
 {
     "errors": {
-        "detail": "License already exists", 
+        "detail": "License already exists",
         "source": {
             "pointer": "/api/auth/license"
-        }, 
-        "status": 403, 
+        },
+        "status": 403,
         "title": "Invalid license!"
     }
 }
@@ -294,7 +294,7 @@ t(:getItemsMessage, true: 'True', false: 'False', null: 'None')
     ]
 }
 ```
-    
+
 ## t(:getAlgorithms)
 
 ```csharp
@@ -375,7 +375,7 @@ t(:getModelsMessage, serve: 'serve', true: 'True')
 
  > **t(:sampleResponse)**
 
- ```json 
+ ```json
  [
     {
         "active": true,
@@ -388,7 +388,7 @@ t(:getModelsMessage, serve: 'serve', true: 'True')
         "version": "model-2019061008:28:16"
     }
 ]
-```  
+```
 
 ## t(:train)
 
@@ -558,7 +558,7 @@ hacarus_visual_inspection.errors.APIError: Invalid filename 2019-05-24 at 3.27.1
 ```python
 hacarus_visual_inspection.errors.APIError: No images to upload (400)
 ```
-        
+
 ## t(:getItem)
 
 ```csharp
@@ -712,7 +712,7 @@ t(:predictMessage, getItems: 'get_items')
         "IMG6760_U"
     ],
     "model_version": "model-2019061101:26:07"
-}    
+}
 ```
 
 > **t(:possibleErrors)**
@@ -753,3 +753,45 @@ hacarus_visual_inspection.errors.APIError: Cannot find items (404)
 ```python
 hacarus_visual_inspection.errors.APIError: There is no available model (400)
 ```
+
+#t(:algorithmsWithVersion)
+
+##t(:algorithmOverview)
+  - t(:algorithmOverview1)
+    - t(:algorithmOverview1a)
+      - t(:algorithmOverview1ai)
+      - t(:algorithmOverview1aii)
+    - t(:algorithmOverview1b)
+      - t(:algorithmOverview1bi)
+      - t(:algorithmOverview1bii)
+    - t(:algorithmOverview2)
+      - t(:algorithmOverview2i)
+
+##t(:algorithmDetails)
+
+###t(:descriptionOfParameters)
+  - t(:descriptionOfParametersText1)
+  - t(:descriptionOfParametersText2)
+  - t(:descriptionOfParametersText3)
+  - t(:descriptionOfParametersText4)
+
+###t(:algo1ai)
+t(:algo1aiText)
+t(:algo1aiTable)
+
+###t(:algo1aii)
+t(:algo1aiiText)
+t(:algo1aiiTable)
+
+###t(:algo1bi)
+t(:algo1biText)
+t(:algo1biTable)
+
+
+###t(:algo1bii)
+t(:algo1biiText)
+t(:algo1biiTable)
+
+###t(:algo2i)
+t(:algo2iText)
+t(:algo2iTable)
