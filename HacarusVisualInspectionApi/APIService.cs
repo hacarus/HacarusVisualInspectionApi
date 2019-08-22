@@ -145,11 +145,11 @@ namespace HacarusVisualInspectionApi
             Request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
             Request.AlwaysMultipartFormData = true;
             Request.AddHeader("Content-Type", "multipart/form-data");
-            var indexCounter = 0;
+            var IndexCounter = 0;
             foreach (var file in filenames)
             {
-                Request.AddFile("files[" + indexCounter + "]", file.FileName, file.ContentType);
-                indexCounter = indexCounter + 1;
+                Request.AddFile("files[" + IndexCounter + "]", file.FileName, file.ContentType);
+                IndexCounter = IndexCounter + 1;
             }
             Request.AddParameter("training", isTraining ? "true" : "false");
             Request.AddParameter("good", isGood == null ? null : (isGood.Equals(true) ? "true" : "false"));
@@ -173,9 +173,27 @@ namespace HacarusVisualInspectionApi
 
             var Json = JsonConvert.SerializeObject(predictParameters);
             Request.AddJsonBody(Json);
-            var predictResponse = this.Client.Execute(Request);
-            PredictResponse ResponseObject = JsonConvert.DeserializeObject<PredictResponse>(predictResponse.Content);
-            ResponseObject.HttpResponse = predictResponse;
+            var Response = this.Client.Execute(Request);
+            PredictResponse ResponseObject = JsonConvert.DeserializeObject<PredictResponse>(Response.Content);
+            ResponseObject.HttpResponse = Response;
+            return ResponseObject;
+        }
+
+        public DeleteResponse Delete(string[] model_ids)
+        {
+            var Request = new RestRequest("v1/delete", Method.POST);
+            Request.AddHeader("Accept-Language", this.Language);
+            Request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
+            var predictParameters = new
+            {
+                model_ids,
+            };
+
+            var Json = JsonConvert.SerializeObject(predictParameters);
+            Request.AddJsonBody(Json);
+            var Response = this.Client.Execute(Request);
+            DeleteResponse ResponseObject = JsonConvert.DeserializeObject<DeleteResponse>(Response.Content);
+            ResponseObject.HttpResponse = Response;
             return ResponseObject;
         }
 
@@ -184,9 +202,9 @@ namespace HacarusVisualInspectionApi
             var Request = new RestRequest("v1/item/" + item_id, Method.GET);
             Request.AddHeader("Accept-Language", this.Language);
             Request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
-            var predictResponse = this.Client.Execute(Request);
-            ItemResponse ResponseObject = JsonConvert.DeserializeObject<ItemResponse>(predictResponse.Content);
-            ResponseObject.HttpResponse = predictResponse;
+            var response = this.Client.Execute(Request);
+            ItemResponse ResponseObject = JsonConvert.DeserializeObject<ItemResponse>(response.Content);
+            ResponseObject.HttpResponse = response;
             return ResponseObject;
         }
     }
