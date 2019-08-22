@@ -189,5 +189,16 @@ namespace HacarusVisualInspectionApi
             ResponseObject.HttpResponse = predictResponse;
             return ResponseObject;
         }
+
+        public WorkersResponse GetWorkers()
+        {
+            var Request = new RestRequest("v1/workers", Method.GET);
+            Request.AddHeader("Accept-Language", this.Language);
+            Request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
+            var predictResponse = this.Client.Execute(Request);
+            WorkersResponse ResponseObject = JsonConvert.DeserializeObject<WorkersResponse>(predictResponse.Content);
+            ResponseObject.HttpResponse = predictResponse;
+            return ResponseObject;
+        }
     }
 }

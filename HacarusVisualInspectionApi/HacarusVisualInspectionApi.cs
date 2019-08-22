@@ -92,5 +92,10 @@ namespace HacarusVisualInspectionApi
         {
             return APIService.Instance.GetItem(itemId);
         }
+
+        public WorkersResponse GetWorkers()
+        {
+            return APIService.Instance.GetWorkers();
+        }
     }
 }

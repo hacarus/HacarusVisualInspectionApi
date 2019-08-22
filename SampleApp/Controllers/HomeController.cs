@@ -103,6 +103,21 @@ namespace SampleApp.Controllers
         }
 
         [HttpPost]
+        public IActionResult GetWorkers(
+            string getWorkers
+        )
+        {
+            WorkersResponse Result = VisualInspection.GetWorkers();
+
+            ViewData["HttpResponse"] = "Status code: " + (int)Result.HttpResponse.StatusCode + " " + Result.HttpResponse.StatusCode;
+            ViewData["StringMessage"] = Result.HttpResponse.Content;
+            ViewBag.BearerAvailable = VisualInspection.IsAuthorized;
+            ViewBag.Active = "getWorkers";
+
+            return Index();
+        }
+
+        [HttpPost]
         public IActionResult GetAlgorithms(
             string getAlgorithms
         )
