@@ -15,7 +15,7 @@ namespace SampleApp.Controllers
     public class HomeController : Controller
     {
         private readonly IHostingEnvironment Environment;
-        private readonly HacarusVisualInspection VisualInspection = new HacarusVisualInspection();
+        private readonly HacarusVisualInspection VisualInspection = new HacarusVisualInspection("https://sdd-demo.hacarus.com/api");
         public static string AccessToken;
         public static string CurrentContextId;
 
@@ -232,6 +232,23 @@ namespace SampleApp.Controllers
 
             return Index();
         }
+
+
+        [HttpPost]
+        public IActionResult DeletModels(
+            string deleteModels, string modelIdsServe
+        )
+        {
+            DeleteResponse Result = VisualInspection.Delete(new string[] { modelIdsServe });
+
+            ViewData["HttpResponse"] = "Status code: " + (int)Result.HttpResponse.StatusCode + " " + Result.HttpResponse.StatusCode;
+            ViewData["StringMessage"] = Result.HttpResponse.Content;
+            ViewBag.BearerAvailable = VisualInspection.IsAuthorized;
+            ViewBag.Active = "deleteModels";
+
+            return Index();
+        }
+
 
 
         [HttpPost]

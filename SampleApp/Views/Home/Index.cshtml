@@ -155,6 +155,52 @@ Content-Type:application/json</pre>
             </div>
         </div>
         <div class="panel panel-default">
+            <div class="panel-heading" data-toggle="collapse" data-target="#deletemodels-form">Delete Models</div>
+            <div class="panel-body @(ViewBag.Active != "deleteModels" ? " collapse" : "" )" id="deletemodels-form">
+                <div class="request-item">
+                    Endpoint:
+                    <div class="endpoint-container">
+                        <span class="method">POST</span>
+                        <span class="endpoint">/api/v1/delete</span>
+                    </div>
+                </div>
+                <div class="request-item">
+                    Headers:
+                    <pre>
+Authorization:Token [[token]]
+Content-Type:application/json</pre>
+                </div>
+                <div class="request-item">
+                    Body:
+                    <div class="json-container">
+                        <div class="json">
+                            {
+                            "model_ids" : ["ModelID"],
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="request-item">
+                    C#:
+                    <pre><code class="cs csharp">//Use ModelIds to pass an array of model ids you want to delete
+PredictResponse Response = VisualInspection.Delete(ModelIds);
+</code></pre>
+                </div>
+                <form asp-controller="Home" asp-action="DeleteModels" method="post">
+                    <div class="form-group">
+                        <label for="modeIdsServe">Model ID</label>
+                        <select id="modeIdsServe" name="modeIdsServe" class="form-control">
+                            @foreach (HacarusVisualInspectionApi.Models.ModelData item in ViewBag.Models)
+    {
+                        <option value="@item.ModelId">@item.ModelId</option>
+}
+                        </select>
+                    </div>
+                    <button type="submit" name="deleteModels" class="btn btn-primary">Try it!</button>
+                </form>
+            </div>
+        </div>
+        <div class="panel panel-default">
             <div class="panel-heading" data-toggle="collapse" data-target="#train-form">Train</div>
             <div class="panel-body @(ViewBag.Active != "train" ? " collapse" : "" )" id="train-form">
                 <div class="request-item">
