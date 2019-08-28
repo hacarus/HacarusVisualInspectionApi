@@ -15,7 +15,7 @@ namespace SampleApp.Controllers
     public class HomeController : Controller
     {
         private readonly IHostingEnvironment Environment;
-        private readonly HacarusVisualInspection VisualInspection = new HacarusVisualInspection();
+        private readonly HacarusVisualInspection VisualInspection = new HacarusVisualInspection("http://127.0.0.1:3000/api");
         public static string AccessToken;
         public static string CurrentContextId;
 
