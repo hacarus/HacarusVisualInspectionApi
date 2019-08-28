@@ -6,6 +6,13 @@ namespace HacarusVisualInspectionApi.Models
     public class DeleteResponse : Response
     {
         [JsonProperty("data")]
-        public string Data { get; set; }
+        public Data Data { get; set; }
     }
+
+    public class Data
+    {
+        [JsonProperty("status")]
+        public string Status { get; set; }
+    }
+
 }

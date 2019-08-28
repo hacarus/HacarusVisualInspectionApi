@@ -88,9 +88,9 @@ namespace HacarusVisualInspectionApi
             return APIService.Instance.Serve(itemIds, modelId);
         }
 
-        public DeleteResponse Delete(string[] modelIds)
+        public DeleteResponse DeleteModels(int[] modelIds)
         {
-            return APIService.Instance.Delete(modelIds);
+            return APIService.Instance.DeleteModels(modelIds);
         }
 
         public ItemResponse GetItem(string itemId)

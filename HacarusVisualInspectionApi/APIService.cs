@@ -179,9 +179,9 @@ namespace HacarusVisualInspectionApi
             return ResponseObject;
         }
 
-        public DeleteResponse Delete(string[] model_ids)
+        public DeleteResponse DeleteModels(int[] model_ids)
         {
-            var Request = new RestRequest("v1/delete", Method.POST);
+            var Request = new RestRequest("v1/model", Method.DELETE);
             Request.AddHeader("Accept-Language", this.Language);
             Request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
             var predictParameters = new

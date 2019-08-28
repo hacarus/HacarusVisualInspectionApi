@@ -15,7 +15,7 @@ namespace SampleApp.Controllers
     public class HomeController : Controller
     {
         private readonly IHostingEnvironment Environment;
-        private readonly HacarusVisualInspection VisualInspection = new HacarusVisualInspection("https://sdd-demo.hacarus.com/api");
+        private readonly HacarusVisualInspection VisualInspection = new HacarusVisualInspection();
         public static string AccessToken;
         public static string CurrentContextId;
 
@@ -235,17 +235,27 @@ namespace SampleApp.Controllers
 
 
         [HttpPost]
-        public IActionResult DeletModels(
+        public IActionResult DeleteModels(
             string deleteModels, string modelIdsServe
         )
         {
-            DeleteResponse Result = VisualInspection.Delete(new string[] { modelIdsServe });
+            try
+            {
+                int modelId = Int32.Parse(modelIdsServe);
+                DeleteResponse Result = VisualInspection.DeleteModels(new int[] { modelId });
 
-            ViewData["HttpResponse"] = "Status code: " + (int)Result.HttpResponse.StatusCode + " " + Result.HttpResponse.StatusCode;
-            ViewData["StringMessage"] = Result.HttpResponse.Content;
-            ViewBag.BearerAvailable = VisualInspection.IsAuthorized;
-            ViewBag.Active = "deleteModels";
-
+                ViewData["HttpResponse"] = "Status code: " + (int)Result.HttpResponse.StatusCode + " " + Result.HttpResponse.StatusCode;
+                ViewData["StringMessage"] = Result.HttpResponse.Content;
+                ViewBag.BearerAvailable = VisualInspection.IsAuthorized;
+                ViewBag.Active = "deleteModels";
+            }
+            catch (FormatException)
+            {
+                ViewData["HttpResponse"] = "Invalid input";
+                ViewData["StringMessage"] = "Model id should be integer";
+                ViewBag.BearerAvailable = VisualInspection.IsAuthorized;
+                ViewBag.Active = "deleteModels";
+            }
             return Index();
         }
 

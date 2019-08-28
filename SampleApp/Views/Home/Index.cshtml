@@ -160,8 +160,8 @@ Content-Type:application/json</pre>
                 <div class="request-item">
                     Endpoint:
                     <div class="endpoint-container">
-                        <span class="method">POST</span>
-                        <span class="endpoint">/api/v1/delete</span>
+                        <span class="method">DELETE</span>
+                        <span class="endpoint">/api/v1/model</span>
                     </div>
                 </div>
                 <div class="request-item">
@@ -175,7 +175,7 @@ Content-Type:application/json</pre>
                     <div class="json-container">
                         <div class="json">
                             {
-                            "model_ids" : ["ModelID"],
+                            "model_ids" : [ModelID],
                             }
                         </div>
                     </div>
@@ -183,13 +183,13 @@ Content-Type:application/json</pre>
                 <div class="request-item">
                     C#:
                     <pre><code class="cs csharp">//Use ModelIds to pass an array of model ids you want to delete
-PredictResponse Response = VisualInspection.Delete(ModelIds);
+DeleteResponse Response = VisualInspection.DeleteModels(ModelIds);
 </code></pre>
                 </div>
                 <form asp-controller="Home" asp-action="DeleteModels" method="post">
                     <div class="form-group">
-                        <label for="modeIdsServe">Model ID</label>
-                        <select id="modeIdsServe" name="modeIdsServe" class="form-control">
+                        <label for="modelIdsServe">Model ID</label>
+                        <select id="modelIdsServe" name="modelIdsServe" class="form-control">
                             @foreach (HacarusVisualInspectionApi.Models.ModelData item in ViewBag.Models)
     {
                         <option value="@item.ModelId">@item.ModelId</option>
