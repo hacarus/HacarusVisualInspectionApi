@@ -160,14 +160,14 @@ namespace HacarusVisualInspectionApi
         }
 
 
-        public PredictResponse Serve(string[] item_ids, int? modelId = null)
+        public PredictResponse Serve(string[] itemIds, int? modelId = null)
         {
             var Request = new RestRequest("v1/serve", Method.POST);
             Request.AddHeader("Accept-Language", this.Language);
             Request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
             var predictParameters = new
             {
-                item_ids,
+                item_ids = itemIds,
                 model_id = modelId
             };
 
@@ -179,14 +179,31 @@ namespace HacarusVisualInspectionApi
             return ResponseObject;
         }
 
-        public ItemResponse GetItem(string item_id)
+        public ItemResponse GetItem(string itemId)
         {
-            var Request = new RestRequest("v1/item/" + item_id, Method.GET);
+            var Request = new RestRequest("v1/item/" + itemId, Method.GET);
             Request.AddHeader("Accept-Language", this.Language);
             Request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
             var predictResponse = this.Client.Execute(Request);
             ItemResponse ResponseObject = JsonConvert.DeserializeObject<ItemResponse>(predictResponse.Content);
             ResponseObject.HttpResponse = predictResponse;
+            return ResponseObject;
+        }
+
+        public GenericResponse AddAnnotations(Annotation[] annotations, string imageId)
+        {
+            var Request = new RestRequest("v1/image/" + imageId + "/annotation", Method.POST);
+            Request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
+            Request.AddHeader("Accept-Language", this.Language);
+            Request.AlwaysMultipartFormData = true;
+            var RequestParameters = new
+            {
+                annotations
+            };
+            var Json = JsonConvert.SerializeObject(RequestParameters);
+            var Response = this.Client.Execute(Request);
+            GenericResponse ResponseObject = JsonConvert.DeserializeObject<GenericResponse>(Response.Content);
+            ResponseObject.HttpResponse = Response;
             return ResponseObject;
         }
     }

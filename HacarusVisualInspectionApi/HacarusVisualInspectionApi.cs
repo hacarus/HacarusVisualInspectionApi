@@ -44,12 +44,10 @@ namespace HacarusVisualInspectionApi
             return APIService.Instance.ActivateLicense(licenseFile);
         }
 
-
         public ItemsResponse GetItems()
         {
             return APIService.Instance.GetItems();
         }
-
 
         public VersionResponse GetVersionNumber()
         {
@@ -92,5 +90,11 @@ namespace HacarusVisualInspectionApi
         {
             return APIService.Instance.GetItem(itemId);
         }
+
+        public GenericResponse AddAnnotations(Annotation[] annotations, string imageId)
+        {
+            return APIService.Instance.AddAnnotations(annotations, imageId);
+        }
+
     }
 }

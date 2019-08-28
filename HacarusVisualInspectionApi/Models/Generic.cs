@@ -25,4 +25,16 @@ namespace HacarusVisualInspectionApi.Models
             ContentType = contentType;
         }
     }
+
+    public class GenericData
+    {
+        [JsonProperty("status")]
+        public string Status { get; set; }
+    }
+
+    public class GenericResponse : Response
+    {
+        [JsonProperty("data")]
+        public GenericData Data { get; set; }
+    }
 }

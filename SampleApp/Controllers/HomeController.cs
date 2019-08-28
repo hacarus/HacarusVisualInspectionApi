@@ -15,7 +15,7 @@ namespace SampleApp.Controllers
     public class HomeController : Controller
     {
         private readonly IHostingEnvironment Environment;
-        private readonly HacarusVisualInspection VisualInspection = new HacarusVisualInspection();
+        private readonly HacarusVisualInspection VisualInspection = new HacarusVisualInspection("http://127.0.0.1:3000/api");
         public static string AccessToken;
         public static string CurrentContextId;
 
@@ -248,6 +248,28 @@ namespace SampleApp.Controllers
 
             return Index();
         }
+
+
+        [HttpPost]
+        public IActionResult AddAnnotation(
+            string addAnnotation, string imageId
+        )
+        {
+            Annotation NewAnnotation = new Annotation();
+            NewAnnotation.XMax = 20;
+            NewAnnotation.XMin = 10;
+            NewAnnotation.YMax = 20;
+            NewAnnotation.YMin = 10;
+            GenericResponse Result = VisualInspection.AddAnnotation(new Annotation[] { NewAnnotation }, "1025");
+
+            ViewData["HttpResponse"] = "Status code: " + (int)Result.HttpResponse.StatusCode + " " + Result.HttpResponse.StatusCode;
+            ViewData["StringMessage"] = Result.HttpResponse.Content;
+            ViewBag.BearerAvailable = VisualInspection.IsAuthorized;
+            ViewBag.Active = "getItem";
+
+            return Index();
+        }
+
 
         public IActionResult Index()
         {

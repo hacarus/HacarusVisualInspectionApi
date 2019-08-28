@@ -378,6 +378,47 @@ PredictResponse Response = VisualInspection.Serve(ItemIds, "ModelId");
                 </form>
             </div>
         </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" data-toggle="collapse" data-target="#addannotation-form">Add Annotation</div>
+            <div class="panel-body @(ViewBag.Active != "addAnnotation" ? " collapse" : "" )" id="addannotation-form">
+                <div class="request-item">
+                    Endpoint:
+                    <div class="endpoint-container">
+                        <span class="method">GET</span>
+                        <span class="endpoint">/api/v1/image/:imageId/annotation</span>
+                    </div>
+                </div>
+                <div class="request-item">
+                    Headers:
+                    <pre>
+    Authorization:Token [[token]]
+    Content-Type:application/json</pre>
+                </div>
+                <div class="request-item">
+                    C#:
+                    <pre><code class="cs csharp">
+        //Set a specific ItemId to get detailed information about the item
+        ItemResponse Response = VisualInspection.AddAnnotation(annotations, "ImageId");
+    </code></pre>
+                </div>
+                <form asp-controller="Home" asp-action="AddAnnotation" method="post">
+                    <div class="form-group">
+                        <label for="itemId">Item ID</label>
+                        <select id="itemId" name="itemId" class="form-control">
+                            @foreach (HacarusVisualInspectionApi.Models.Item item in ViewBag.TrainingItems)
+                        {
+                            <option value="@item.ItemId">@item.ItemId</option>
+                    }
+                            @foreach (HacarusVisualInspectionApi.Models.Item item in ViewBag.PredictItems)
+                        {
+                            <option value="@item.ItemId">@item.ItemId</option>
+                    }
+                        </select>
+                    </div>
+                    <button type="submit" name="addAnnotation" class="btn btn-primary">Try it!</button>
+                </form>
+            </div>
+        </div>
         }
     </div>
     <div class="col-lg-6 col-md-4 col-xs-12" id="json-return">
