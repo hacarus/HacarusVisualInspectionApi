@@ -4,7 +4,14 @@ solution: "./HacarusVisualInspectionApi/HacarusVisualInspectionApi.sln"
 dotnet: 2.1.301
 install:
   - export FrameworkPathOverride=$(dirname $(which mono))/../lib/mono/4.5/
+before_script:
+  - chmod a+x ./travis_build.sh
 script:
-  - dotnet build HacarusVisualInspectionApi
-  - dotnet restore
+  - ./travis_build.sh
   - dotnet test HacarusVisualInspectionApi.Tests
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: chmod +x ./deploy.sh && ./deploy.sh $NUGET_API_KEY $NUGET_SOURCE
+  on:
+    branch: master
