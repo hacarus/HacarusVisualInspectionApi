@@ -195,12 +195,12 @@ namespace HacarusVisualInspectionApi
             var Request = new RestRequest("v1/image/" + imageId + "/annotation", Method.POST);
             Request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
             Request.AddHeader("Accept-Language", this.Language);
-            Request.AlwaysMultipartFormData = true;
             var RequestParameters = new
             {
                 annotations
             };
             var Json = JsonConvert.SerializeObject(RequestParameters);
+            Request.AddJsonBody(Json);
             var Response = this.Client.Execute(Request);
             GenericResponse ResponseObject = JsonConvert.DeserializeObject<GenericResponse>(Response.Content);
             ResponseObject.HttpResponse = Response;

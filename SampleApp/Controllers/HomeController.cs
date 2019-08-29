@@ -252,20 +252,25 @@ namespace SampleApp.Controllers
 
         [HttpPost]
         public IActionResult AddAnnotation(
-            string addAnnotation, string imageId
+            string addAnnotation, string imageId,
+            int xMin, int xMax,
+            int yMin, int yMax,
+            string notes
         )
         {
+
             Annotation NewAnnotation = new Annotation();
-            NewAnnotation.XMax = 20;
-            NewAnnotation.XMin = 10;
-            NewAnnotation.YMax = 20;
-            NewAnnotation.YMin = 10;
-            GenericResponse Result = VisualInspection.AddAnnotation(new Annotation[] { NewAnnotation }, "1025");
+            NewAnnotation.XMax = xMax;
+            NewAnnotation.XMin = xMin;
+            NewAnnotation.YMax = yMax;
+            NewAnnotation.YMin = yMin;
+            NewAnnotation.Notes = notes;
+            GenericResponse Result = VisualInspection.AddAnnotations(new Annotation[] { NewAnnotation }, imageId);
 
             ViewData["HttpResponse"] = "Status code: " + (int)Result.HttpResponse.StatusCode + " " + Result.HttpResponse.StatusCode;
             ViewData["StringMessage"] = Result.HttpResponse.Content;
             ViewBag.BearerAvailable = VisualInspection.IsAuthorized;
-            ViewBag.Active = "getItem";
+            ViewBag.Active = "addAnnotation";
 
             return Index();
         }
@@ -289,7 +294,7 @@ namespace SampleApp.Controllers
                 {
                     ViewBag.TrainingItems = TrainingResponse.Data.Training;
                     ViewBag.PredictItems = TrainingResponse.Data.Predict;
-                    Console.Write(TrainingResponse.Data.Training.Count);
+                    //Console.Write(TrainingResponse.Data.Training.Count);
                 }
 
                 if (AlgorithmResponse != null && AlgorithmResponse.Data != null)
