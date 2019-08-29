@@ -94,12 +94,15 @@ namespace HacarusVisualInspectionApi.Models
 
     public partial class Annotation
     {
+        [JsonIgnore]
         [JsonProperty("annotation_id")]
         public long AnnotationId { get; set; }
 
+        [JsonIgnore]
         [JsonProperty("created_at")]
         public DateTimeOffset CreatedAt { get; set; }
 
+        [JsonIgnore]
         [JsonProperty("for_training")]
         public bool ForTraining { get; set; }
 
@@ -107,16 +110,16 @@ namespace HacarusVisualInspectionApi.Models
         public string Notes { get; set; }
 
         [JsonProperty("x_max")]
-        public long XMax { get; set; }
+        public int XMax { get; set; }
 
         [JsonProperty("x_min")]
-        public long XMin { get; set; }
+        public int XMin { get; set; }
 
         [JsonProperty("y_max")]
-        public long YMax { get; set; }
+        public int YMax { get; set; }
 
         [JsonProperty("y_min")]
-        public long YMin { get; set; }
+        public int YMin { get; set; }
     }
 
 

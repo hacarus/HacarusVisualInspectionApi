@@ -18,55 +18,47 @@ namespace HacarusVisualInspectionApi.Tests
             var JsonString = File.ReadAllText("../../../Files/AddAnnotationSuccess.txt");
             var Client = MockGenerator.MockRestClient<LicenseResponse>(HttpStatusCode.OK, JsonString);
             HacarusVisualInspection VisualInspection = new HacarusVisualInspection(Client);
-            var LicenseFile = new FileModel("../../../Files/license0", "txt");
 
-            AddAnnotationResponse Response = VisualInspection.AddAnnotation(LicenseFile);
+            Annotation NewAnnotation = new Annotation();
+            NewAnnotation.XMax = 10;
+            NewAnnotation.XMin = 20;
+            NewAnnotation.YMax = 30;
+            NewAnnotation.YMin = 40;
+            NewAnnotation.Notes = "test";
+            GenericResponse Response = VisualInspection.AddAnnotations(new Annotation[] { NewAnnotation }, "1000");
             Assert.IsNotNull(Response);
             Assert.IsNotNull(Response.HttpResponse);
             Assert.IsNotNull(Response.Data);
             Assert.IsNull(Response.Errors);
             Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.OK));
-            Assert.IsTrue(Response.Data.Equals("ok"));
+            Assert.IsTrue(Response.Data.Status.Equals("ok"));
             Console.WriteLine("Success End");
         }
 
-        //[TestMethod]
-        //public void FailedInvalidLicenseFile()
-        //{
-        //    Console.WriteLine("FailedInvalidLicenseFile Start");
-        //    var JsonString = File.ReadAllText("../../../Files/ActivateLicenseFailed.txt");
-        //    var Client = MockGenerator.MockRestClient<LicenseResponse>(HttpStatusCode.Forbidden, JsonString);
-        //    HacarusVisualInspection VisualInspection = new HacarusVisualInspection(Client);
-        //    var LicenseFile = new FileModel("../../../Files/license0", "txt");
+        [TestMethod]
+        public void FailedImageNotFound()
+        {
+            Console.WriteLine("FailedImageNotFound Start");
+            var JsonString = File.ReadAllText("../../../Files/AddAnnotationFailed.txt");
+            var Client = MockGenerator.MockRestClient<LicenseResponse>(HttpStatusCode.NotFound, JsonString);
+            HacarusVisualInspection VisualInspection = new HacarusVisualInspection(Client);
 
-        //    LicenseResponse Response = VisualInspection.ActivateLicense(LicenseFile);
-        //    Assert.IsNotNull(Response);
-        //    Assert.IsNotNull(Response.HttpResponse);
-        //    Assert.IsNull(Response.Data);
-        //    Assert.IsNotNull(Response.Errors);
-        //    Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.Forbidden));
-        //    Assert.IsTrue(Response.Errors.Title.Equals("Invalid license!"));
-        //    Console.WriteLine("FailedInvalidLicenseFile End");
-        //}
+            Annotation NewAnnotation = new Annotation();
+            NewAnnotation.XMax = 10;
+            NewAnnotation.XMin = 20;
+            NewAnnotation.YMax = 30;
+            NewAnnotation.YMin = 40;
+            NewAnnotation.Notes = "test";
+            GenericResponse Response = VisualInspection.AddAnnotations(new Annotation[] { NewAnnotation }, "1001");
+            Assert.IsNotNull(Response);
+            Assert.IsNotNull(Response.HttpResponse);
+            Assert.IsNull(Response.Data);
+            Assert.IsNotNull(Response.Errors);
+            Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.NotFound));
+            Assert.IsTrue(Response.Errors.Title.Equals("Cannot find image"));
+            Assert.IsTrue(Response.Errors.Source.Pointer.Equals("/api/v1/image/10/annotation?"));
+            Console.WriteLine("FailedImageNotFound End");
+        }
 
-        //[TestMethod]
-        //public void FailedLicenseFileExists()
-        //{
-        //    Console.WriteLine("FailedLicenseFileExists Start");
-        //    var JsonString = File.ReadAllText("../../../Files/ActivateLicenseFailedLicenseFileExists.txt");
-        //    var Client = MockGenerator.MockRestClient<LicenseResponse>(HttpStatusCode.Forbidden, JsonString);
-        //    HacarusVisualInspection VisualInspection = new HacarusVisualInspection(Client);
-        //    var LicenseFile = new FileModel("../../../Files/license0", "txt");
-
-        //    LicenseResponse Response = VisualInspection.ActivateLicense(LicenseFile);
-        //    Assert.IsNotNull(Response);
-        //    Assert.IsNotNull(Response.HttpResponse);
-        //    Assert.IsNull(Response.Data);
-        //    Assert.IsNotNull(Response.Errors);
-        //    Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.Forbidden));
-        //    Assert.IsTrue(Response.Errors.Title.Equals("Invalid license!"));
-        //    Assert.IsTrue(Response.Errors.Details.Equals("License already exists"));
-        //    Console.WriteLine("FailedLicenseFileExists End");
-        //}
     }
 }
