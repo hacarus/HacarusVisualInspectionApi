@@ -25,7 +25,7 @@
                                     "result": "good"
                                 },
                                 "confirmed": false,
-                                "created_at": "2019-08-28T11:58:50+00:00",
+                                "created_at": "2019-08-29T08:48:09+00:00",
                                 "final": {
                                     "detected_objects": 100,
                                     "detection_accuracy": 50,
@@ -45,7 +45,7 @@
                                     "result": "good"
                                 },
                                 "confirmed": false,
-                                "created_at": "2019-08-28T11:58:50+00:00",
+                                "created_at": "2019-08-29T08:48:09+00:00",
                                 "final": {
                                     "detected_objects": 100,
                                     "detection_accuracy": 50,
@@ -54,86 +54,6 @@
                                 },
                                 "finished_date": null,
                                 "image_id": 1002,
-                                "model_id": 1000
-                            },
-                            {
-                                "annotations": [],
-                                "computed": {
-                                    "detected_objects": 100,
-                                    "detection_accuracy": 50,
-                                    "label": "OK",
-                                    "result": "good"
-                                },
-                                "confirmed": false,
-                                "created_at": "2019-08-28T11:58:50+00:00",
-                                "final": {
-                                    "detected_objects": 100,
-                                    "detection_accuracy": 50,
-                                    "label": "OK",
-                                    "result": "good"
-                                },
-                                "finished_date": null,
-                                "image_id": 1003,
-                                "model_id": 1000
-                            },
-                            {
-                                "annotations": [],
-                                "computed": {
-                                    "detected_objects": 100,
-                                    "detection_accuracy": 50,
-                                    "label": "OK",
-                                    "result": "good"
-                                },
-                                "confirmed": false,
-                                "created_at": "2019-08-28T11:58:50+00:00",
-                                "final": {
-                                    "detected_objects": 100,
-                                    "detection_accuracy": 50,
-                                    "label": "OK",
-                                    "result": "good"
-                                },
-                                "finished_date": null,
-                                "image_id": 1004,
-                                "model_id": 1000
-                            },
-                            {
-                                "annotations": [],
-                                "computed": {
-                                    "detected_objects": 100,
-                                    "detection_accuracy": 50,
-                                    "label": "NG",
-                                    "result": "good"
-                                },
-                                "confirmed": false,
-                                "created_at": "2019-08-28T11:58:50+00:00",
-                                "final": {
-                                    "detected_objects": 100,
-                                    "detection_accuracy": 50,
-                                    "label": "NG",
-                                    "result": "good"
-                                },
-                                "finished_date": null,
-                                "image_id": 1005,
-                                "model_id": 1000
-                            },
-                            {
-                                "annotations": [],
-                                "computed": {
-                                    "detected_objects": 100,
-                                    "detection_accuracy": 50,
-                                    "label": "NG",
-                                    "result": "good"
-                                },
-                                "confirmed": false,
-                                "created_at": "2019-08-28T11:58:50+00:00",
-                                "final": {
-                                    "detected_objects": 100,
-                                    "detection_accuracy": 50,
-                                    "label": "NG",
-                                    "result": "good"
-                                },
-                                "finished_date": null,
-                                "image_id": 1006,
                                 "model_id": 1000
                             }
                         ],
@@ -161,157 +81,6 @@
                 },
                 "status": "done",
                 "thumbnail_image": null
-            },
-            {
-                "active": true,
-                "created_at": "2018-10-30T14:00:15+00:00",
-                "default_image": null,
-                "description": null,
-                "finished_date": "2018-10-30T14:03:04+00:00",
-                "is_training_data": false,
-                "item_id": "1002",
-                "models": [],
-                "override": null,
-                "status": "done",
-                "thumbnail_image": null
-            },
-            {
-                "active": true,
-                "created_at": "2018-10-30T14:00:20+00:00",
-                "default_image": null,
-                "description": null,
-                "finished_date": "2018-10-30T14:03:17+00:00",
-                "is_training_data": false,
-                "item_id": "1010",
-                "models": [],
-                "override": null,
-                "status": "done",
-                "thumbnail_image": null
-            },
-            {
-                "active": true,
-                "created_at": "2018-10-30T14:00:20+00:00",
-                "default_image": null,
-                "description": null,
-                "finished_date": "2018-10-30T14:03:21+00:00",
-                "is_training_data": false,
-                "item_id": "1011",
-                "models": [],
-                "override": null,
-                "status": "done",
-                "thumbnail_image": null
-            },
-            {
-                "active": true,
-                "created_at": "2018-10-30T14:00:16+00:00",
-                "default_image": null,
-                "description": null,
-                "finished_date": "2018-10-30T14:03:08+00:00",
-                "images": [],
-                "is_training_data": false,
-                "item_id": "1003",
-                "models": [],
-                "override": null,
-                "status": "archived",
-                "thumbnail_image": null
-            },
-            {
-                "active": true,
-                "created_at": "2018-10-30T14:00:17+00:00",
-                "default_image": null,
-                "description": null,
-                "finished_date": "2018-10-30T14:03:11+00:00",
-                "images": [],
-                "is_training_data": false,
-                "item_id": "1004",
-                "models": [],
-                "override": null,
-                "status": "archived",
-                "thumbnail_image": null
-            },
-            {
-                "active": true,
-                "created_at": "2018-10-30T14:00:18+00:00",
-                "default_image": null,
-                "description": null,
-                "finished_date": null,
-                "images": [],
-                "is_training_data": false,
-                "item_id": "1005",
-                "models": [],
-                "override": null,
-                "status": "archived",
-                "thumbnail_image": null
-            },
-            {
-                "active": true,
-                "created_at": "2018-10-30T14:00:18+00:00",
-                "default_image": null,
-                "description": null,
-                "finished_date": null,
-                "images": [],
-                "is_training_data": false,
-                "item_id": "1006",
-                "models": [],
-                "override": null,
-                "status": "archived",
-                "thumbnail_image": null
-            },
-            {
-                "active": true,
-                "created_at": "2018-10-30T14:00:19+00:00",
-                "default_image": null,
-                "description": null,
-                "finished_date": null,
-                "images": [],
-                "is_training_data": false,
-                "item_id": "1007",
-                "models": [],
-                "override": null,
-                "status": "archived",
-                "thumbnail_image": null
-            },
-            {
-                "active": true,
-                "created_at": "2018-10-30T14:00:19+00:00",
-                "default_image": null,
-                "description": null,
-                "finished_date": null,
-                "images": [],
-                "is_training_data": false,
-                "item_id": "1008",
-                "models": [],
-                "override": null,
-                "status": "archived",
-                "thumbnail_image": null
-            },
-            {
-                "active": true,
-                "created_at": "2018-10-30T14:00:19+00:00",
-                "default_image": null,
-                "description": null,
-                "finished_date": null,
-                "images": [],
-                "is_training_data": false,
-                "item_id": "1009",
-                "models": [],
-                "override": null,
-                "status": "archived",
-                "thumbnail_image": null
-            },
-            {
-                "active": true,
-                "created_at": "2018-10-30T14:00:20+00:00",
-                "default_image": null,
-                "description": null,
-                "finished_date": null,
-                "images": [],
-                "is_training_data": false,
-                "item_id": "1012",
-                "models": [],
-                "override": null,
-                "status": "archived",
-                "thumbnail_image": null
             }
         ],
         "summary": {
@@ -335,12 +104,12 @@
         "training": [
             {
                 "active": true,
-                "created_at": "2019-08-28T04:10:15+00:00",
-                "default_image": "http://127.0.0.1:8080/raw/0672f2cac27072b9922b6445e3c34c338562821c",
+                "created_at": "2019-08-29T01:04:10+00:00",
+                "default_image": "http://127.0.0.1:8080/raw/1eb4ecce4c2d0783964a771034805e290af70082",
                 "description": null,
                 "finished_date": null,
                 "is_training_data": true,
-                "item_id": "IMG-1001-OK-T",
+                "item_id": "IMG-1006-OK-T",
                 "override": {
                     "detected_objects": null,
                     "detection_accuracy": null,
@@ -348,7 +117,7 @@
                     "result": "Upload specific status"
                 },
                 "status": "done",
-                "thumbnail_image": "http://127.0.0.1:8080/thumbnail/0672f2cac27072b9922b6445e3c34c338562821c"
+                "thumbnail_image": "http://127.0.0.1:8080/thumbnail/1eb4ecce4c2d0783964a771034805e290af70082"
             }
         ]
     }

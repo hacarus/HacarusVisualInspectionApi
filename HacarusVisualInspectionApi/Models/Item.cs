@@ -8,31 +8,31 @@ namespace HacarusVisualInspectionApi.Models
     public partial class ItemResponse : Response
     {
         [JsonProperty("data")]
-        public Data Data { get; set; }
+        public Item Data { get; set; }
     }
 
-    public partial class Data
+    public partial class Item
     {
         [JsonProperty("active")]
         public bool Active { get; set; }
 
         [JsonProperty("created_at")]
-        public DateTimeOffset CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; }
 
         [JsonProperty("default_image")]
         public string DefaultImage { get; set; }
 
         [JsonProperty("description")]
-        public object Description { get; set; }
+        public string Description { get; set; }
 
         [JsonProperty("finished_date")]
-        public object FinishedDate { get; set; }
+        public DateTime? FinishedDate { get; set; }
 
         [JsonProperty("images")]
         public Image[] Images { get; set; }
 
         [JsonProperty("is_training_data")]
-        public bool IsTrainingData { get; set; }
+        public bool? IsTrainingData { get; set; }
 
         [JsonProperty("item_id")]
         public string ItemId { get; set; }
@@ -42,6 +42,13 @@ namespace HacarusVisualInspectionApi.Models
 
         [JsonProperty("status")]
         public string Status { get; set; }
+
+        [JsonProperty("thumbnail_image")]
+        public string ThumbnailImage { get; set; }
+    
+        [JsonProperty("models")]
+        public Model[] Models { get; set; }
+
     }
 
     public partial class Image
@@ -56,7 +63,7 @@ namespace HacarusVisualInspectionApi.Models
         public string ContentType { get; set; }
 
         [JsonProperty("created_at")]
-        public DateTimeOffset CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; }
 
         [JsonProperty("defects")]
         public long Defects { get; set; }
@@ -68,7 +75,7 @@ namespace HacarusVisualInspectionApi.Models
         public string FileName { get; set; }
 
         [JsonProperty("file_size")]
-        public long FileSize { get; set; }
+        public int? FileSize { get; set; }
 
         [JsonProperty("height")]
         public long Height { get; set; }
@@ -80,7 +87,7 @@ namespace HacarusVisualInspectionApi.Models
         public string Key { get; set; }
 
         [JsonProperty("position")]
-        public object Position { get; set; }
+        public string Position { get; set; }
 
         [JsonProperty("processed")]
         public bool Processed { get; set; }
@@ -90,19 +97,25 @@ namespace HacarusVisualInspectionApi.Models
 
         [JsonProperty("width")]
         public long Width { get; set; }
+
+        [JsonProperty("is_raw_uploaded")]
+        public bool? IsRawUploaded { get; set; }
+
+        [JsonProperty("raw_url")]
+        public string RawUrl { get; set; }
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
     }
 
     public partial class Annotation
     {
-        [JsonIgnore]
         [JsonProperty("annotation_id")]
-        public long AnnotationId { get; set; }
+        public int AnnotationId { get; set; }
 
-        [JsonIgnore]
         [JsonProperty("created_at")]
-        public DateTimeOffset CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; }
 
-        [JsonIgnore]
         [JsonProperty("for_training")]
         public bool ForTraining { get; set; }
 
@@ -120,6 +133,37 @@ namespace HacarusVisualInspectionApi.Models
 
         [JsonProperty("y_min")]
         public int YMin { get; set; }
+
+
+        public Annotation() { }
+        public Annotation(
+            int xMin,
+            int xMax,
+            int yMin,
+            int yMax,
+            string notes)
+        {
+            XMin = xMin;
+            XMax = xMax;
+            YMin = yMin;
+            YMax = yMax;
+            Notes = notes;
+        }
+
+        public bool ShouldSerializeAnnotationId()
+        {
+            return false;
+        }
+
+        public bool ShouldSerializeCreatedAt()
+        {
+            return false;
+        }
+
+        public bool ShouldSerializeForTraining()
+        {
+            return false;
+        }
     }
 
 
@@ -175,16 +219,65 @@ namespace HacarusVisualInspectionApi.Models
     public class Override
     {
         [JsonProperty("detected_objects")]
-        public object DetectedObjects { get; set; }
+        public int? DetectedObjects { get; set; }
 
         [JsonProperty("detection_accuracy")]
-        public object DetectionAccuracy { get; set; }
+        public int? DetectionAccuracy { get; set; }
 
         [JsonProperty("label")]
         public string Label { get; set; }
 
         [JsonProperty("result")]
         public string Result { get; set; }
+    }
+
+
+    public class Model
+    {
+        [JsonProperty("aggregate")]
+        public Aggregate Aggregate { get; set; }
+
+        [JsonProperty("assessments")]
+        public Assessment[] Assessments { get; set; }
+
+        [JsonProperty("model_id")]
+        public long ModelId { get; set; }
+    }
+
+    public class Aggregate
+    {
+        [JsonProperty("detected_objects")]
+        public long DetectedObjects { get; set; }
+
+        [JsonProperty("label")]
+        public string Label { get; set; }
+    }
+
+    public class Assessment
+    {
+        [JsonProperty("annotations")]
+        public Annotation[] Annotations { get; set; }
+
+        [JsonProperty("computed")]
+        public Override Computed { get; set; }
+
+        [JsonProperty("confirmed")]
+        public bool Confirmed { get; set; }
+
+        [JsonProperty("created_at")]
+        public DateTime CreatedAt { get; set; }
+
+        [JsonProperty("final")]
+        public Override Final { get; set; }
+
+        [JsonProperty("finished_date")]
+        public DateTime? FinishedDate { get; set; }
+
+        [JsonProperty("image_id")]
+        public long ImageId { get; set; }
+
+        [JsonProperty("model_id")]
+        public long ModelId { get; set; }
     }
 
     //public class Item

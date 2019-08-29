@@ -22,106 +22,106 @@ namespace HacarusVisualInspectionApi.Models
         public Item[] Training { get; set; }
     }
 
-    public class Item
-    {
-        [JsonProperty("active")]
-        public bool Active { get; set; }
+    //public class Item
+    //{
+    //    [JsonProperty("active")]
+    //    public bool Active { get; set; }
 
-        [JsonProperty("created_at")]
-        public DateTimeOffset CreatedAt { get; set; }
+    //    [JsonProperty("created_at")]
+    //    public DateTimeOffset CreatedAt { get; set; }
 
-        [JsonProperty("default_image")]
-        public object DefaultImage { get; set; }
+    //    [JsonProperty("default_image")]
+    //    public object DefaultImage { get; set; }
 
-        [JsonProperty("description")]
-        public object Description { get; set; }
+    //    [JsonProperty("description")]
+    //    public object Description { get; set; }
 
-        [JsonProperty("finished_date")]
-        public DateTimeOffset? FinishedDate { get; set; }
+    //    [JsonProperty("finished_date")]
+    //    public DateTimeOffset? FinishedDate { get; set; }
 
-        [JsonProperty("is_training_data")]
-        public bool IsTrainingData { get; set; }
+    //    [JsonProperty("is_training_data")]
+    //    public bool IsTrainingData { get; set; }
 
-        [JsonProperty("item_id")]
-        public string ItemId { get; set; }
+    //    [JsonProperty("item_id")]
+    //    public string ItemId { get; set; }
 
-        [JsonProperty("models")]
-        public Model[] Models { get; set; }
+    //    [JsonProperty("models")]
+    //    public Model[] Models { get; set; }
 
-        [JsonProperty("override")]
-        public Override Override { get; set; }
+    //    [JsonProperty("override")]
+    //    public Override Override { get; set; }
 
-        [JsonProperty("status")]
-        public string Status { get; set; }
+    //    [JsonProperty("status")]
+    //    public string Status { get; set; }
 
-        [JsonProperty("thumbnail_image")]
-        public object ThumbnailImage { get; set; }
+    //    [JsonProperty("thumbnail_image")]
+    //    public object ThumbnailImage { get; set; }
 
-        [JsonProperty("images", NullValueHandling = NullValueHandling.Ignore)]
-        public object[] Images { get; set; }
-    }
+    //    [JsonProperty("images", NullValueHandling = NullValueHandling.Ignore)]
+    //    public object[] Images { get; set; }
+    //}
 
-    public class Model
-    {
-        [JsonProperty("aggregate")]
-        public Aggregate Aggregate { get; set; }
+    //public class Model
+    //{
+    //    [JsonProperty("aggregate")]
+    //    public Aggregate Aggregate { get; set; }
 
-        [JsonProperty("assessments")]
-        public Assessment[] Assessments { get; set; }
+    //    [JsonProperty("assessments")]
+    //    public Assessment[] Assessments { get; set; }
 
-        [JsonProperty("model_id")]
-        public long ModelId { get; set; }
-    }
+    //    [JsonProperty("model_id")]
+    //    public long ModelId { get; set; }
+    //}
 
-    public class Aggregate
-    {
-        [JsonProperty("detected_objects")]
-        public long DetectedObjects { get; set; }
+    //public class Aggregate
+    //{
+    //    [JsonProperty("detected_objects")]
+    //    public long DetectedObjects { get; set; }
 
-        [JsonProperty("label")]
-        public string Label { get; set; }
-    }
+    //    [JsonProperty("label")]
+    //    public string Label { get; set; }
+    //}
 
-    public class Assessment
-    {
-        [JsonProperty("annotations")]
-        public object[] Annotations { get; set; }
+    //public class Assessment
+    //{
+    //    [JsonProperty("annotations")]
+    //    public object[] Annotations { get; set; }
 
-        [JsonProperty("computed")]
-        public Override Computed { get; set; }
+    //    [JsonProperty("computed")]
+    //    public Override Computed { get; set; }
 
-        [JsonProperty("confirmed")]
-        public bool Confirmed { get; set; }
+    //    [JsonProperty("confirmed")]
+    //    public bool Confirmed { get; set; }
 
-        [JsonProperty("created_at")]
-        public DateTimeOffset CreatedAt { get; set; }
+    //    [JsonProperty("created_at")]
+    //    public DateTimeOffset CreatedAt { get; set; }
 
-        [JsonProperty("final")]
-        public Override Final { get; set; }
+    //    [JsonProperty("final")]
+    //    public Override Final { get; set; }
 
-        [JsonProperty("finished_date")]
-        public object FinishedDate { get; set; }
+    //    [JsonProperty("finished_date")]
+    //    public object FinishedDate { get; set; }
 
-        [JsonProperty("image_id")]
-        public long ImageId { get; set; }
+    //    [JsonProperty("image_id")]
+    //    public long ImageId { get; set; }
 
-        [JsonProperty("model_id")]
-        public long ModelId { get; set; }
-    }
+    //    [JsonProperty("model_id")]
+    //    public long ModelId { get; set; }
+    //}
 
     public  class Summary
     {
         [JsonProperty("predict_stats")]
-        public PredictStat[] PredictStats { get; set; }
+        public Stats[] PredictStats { get; set; }
 
         [JsonProperty("title")]
         public string Title { get; set; }
 
         [JsonProperty("training_stats")]
-        public TrainingStats TrainingStats { get; set; }
+        public Stats TrainingStats { get; set; }
     }
 
-    public  class PredictStat
+    public  class Stats
     {
         [JsonProperty("NG_count")]
         public long NgCount { get; set; }
@@ -143,14 +143,5 @@ namespace HacarusVisualInspectionApi.Models
 
         [JsonProperty("model_id")]
         public long ModelId { get; set; }
-    }
-
-    public  class TrainingStats
-    {
-        [JsonProperty("NG_count")]
-        public long NgCount { get; set; }
-
-        [JsonProperty("OK_count")]
-        public long OkCount { get; set; }
     }
 }

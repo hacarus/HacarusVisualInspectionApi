@@ -259,12 +259,7 @@ namespace SampleApp.Controllers
         )
         {
 
-            Annotation NewAnnotation = new Annotation();
-            NewAnnotation.XMax = xMax;
-            NewAnnotation.XMin = xMin;
-            NewAnnotation.YMax = yMax;
-            NewAnnotation.YMin = yMin;
-            NewAnnotation.Notes = notes;
+            Annotation NewAnnotation = new Annotation(xMin, xMax, yMin, yMax, notes);
             GenericResponse Result = VisualInspection.AddAnnotations(new Annotation[] { NewAnnotation }, imageId);
 
             ViewData["HttpResponse"] = "Status code: " + (int)Result.HttpResponse.StatusCode + " " + Result.HttpResponse.StatusCode;
