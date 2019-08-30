@@ -260,7 +260,7 @@ namespace SampleApp.Controllers
         {
 
             Annotation NewAnnotation = new Annotation(xMin, xMax, yMin, yMax, notes);
-            GenericResponse Result = VisualInspection.AddAnnotations(new Annotation[] { NewAnnotation }, imageId);
+            GenericResponse Result = VisualInspection.SetAnnotations(new Annotation[] { NewAnnotation }, imageId);
 
             ViewData["HttpResponse"] = "Status code: " + (int)Result.HttpResponse.StatusCode + " " + Result.HttpResponse.StatusCode;
             ViewData["StringMessage"] = Result.HttpResponse.Content;

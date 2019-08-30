@@ -190,7 +190,7 @@ namespace HacarusVisualInspectionApi
             return ResponseObject;
         }
 
-        public GenericResponse AddAnnotations(Annotation[] annotations, string imageId)
+        public GenericResponse SetAnnotations(Annotation[] annotations, string imageId)
         {
             var Request = new RestRequest("v1/image/" + imageId + "/annotation", Method.POST);
             Request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));

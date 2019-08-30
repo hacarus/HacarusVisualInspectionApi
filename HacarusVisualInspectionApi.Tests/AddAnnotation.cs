@@ -25,7 +25,7 @@ namespace HacarusVisualInspectionApi.Tests
             NewAnnotation.YMax = 30;
             NewAnnotation.YMin = 40;
             NewAnnotation.Notes = "test";
-            GenericResponse Response = VisualInspection.AddAnnotations(new Annotation[] { NewAnnotation }, "1000");
+            GenericResponse Response = VisualInspection.SetAnnotations(new Annotation[] { NewAnnotation }, "1000");
             Assert.IsNotNull(Response);
             Assert.IsNotNull(Response.HttpResponse);
             Assert.IsNotNull(Response.Data);
@@ -49,7 +49,7 @@ namespace HacarusVisualInspectionApi.Tests
             NewAnnotation.YMax = 30;
             NewAnnotation.YMin = 40;
             NewAnnotation.Notes = "test";
-            GenericResponse Response = VisualInspection.AddAnnotations(new Annotation[] { NewAnnotation }, "1001");
+            GenericResponse Response = VisualInspection.SetAnnotations(new Annotation[] { NewAnnotation }, "1001");
             Assert.IsNotNull(Response);
             Assert.IsNotNull(Response.HttpResponse);
             Assert.IsNull(Response.Data);

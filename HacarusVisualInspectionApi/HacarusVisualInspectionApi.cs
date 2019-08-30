@@ -91,9 +91,9 @@ namespace HacarusVisualInspectionApi
             return APIService.Instance.GetItem(itemId);
         }
 
-        public GenericResponse AddAnnotations(Annotation[] annotations, string imageId)
+        public GenericResponse SetAnnotations(Annotation[] annotations, string imageId)
         {
-            return APIService.Instance.AddAnnotations(annotations, imageId);
+            return APIService.Instance.SetAnnotations(annotations, imageId);
         }
 
     }
