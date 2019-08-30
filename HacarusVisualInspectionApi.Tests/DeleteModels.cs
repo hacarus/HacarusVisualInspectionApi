@@ -46,24 +46,5 @@ namespace HacarusVisualInspectionApi.Tests
             Assert.IsTrue(Response.Errors.Status.Equals((int)HttpStatusCode.NotFound));
             Console.WriteLine("FailedModelIdDoesNotExist End");
         }
-
-        //[TestMethod]
-        //public void FailedNoModel()
-        //{
-        //    Console.WriteLine("FailedNoModel Start");
-        //    var JsonString = File.ReadAllText("../../../Files/PredictFailedNoModel.txt");
-        //    var Client = MockGenerator.MockRestClient<UploadResponse>(HttpStatusCode.BadRequest, JsonString);
-        //    HacarusVisualInspection VisualInspection = new HacarusVisualInspection(Client);
-        //    PredictResponse Response = VisualInspection.Serve(new string[] { "NewItem" });
-        //    Assert.IsNotNull(Response);
-        //    Assert.IsNotNull(Response.HttpResponse);
-        //    Assert.IsNotNull(Response.Errors);
-        //    Assert.IsNull(Response.Data);
-        //    Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.BadRequest));
-        //    Assert.IsTrue(Response.Errors.Title.Equals("There is no available model"));
-        //    Assert.IsTrue(Response.Errors.Source.Pointer.Equals("/api/v1/serve"));
-        //    Assert.IsTrue(Response.Errors.Status.Equals((int)HttpStatusCode.BadRequest));
-        //    Console.WriteLine("FailedItemIdDoesNotExists End");
-        //}
     }
 }
