@@ -1,1 +1,65 @@
-﻿
+﻿{
+    "data": {
+        "active": true,
+        "created_at": "2018-10-30T13:24:57+00:00",
+        "default_image": null,
+        "description": null,
+        "finished_date": "2018-10-30T14:03:01+00:00",
+        "is_training_data": false,
+        "item_id": "1001",
+        "models": [
+            {
+                "aggregate": {
+                    "detected_objects": 2,
+                    "label": "NG"
+                },
+                "assessments": [
+                    {
+                        "annotations": [],
+                        "computed": {
+                            "detected_objects": 100,
+                            "detection_accuracy": 50,
+                            "label": "OK",
+                            "result": "good"
+                        },
+                        "confirmed": false,
+                        "created_at": "2019-08-29T08:48:09+00:00",
+                        "final": {
+                            "detected_objects": 100,
+                            "detection_accuracy": 50,
+                            "label": "OK",
+                            "result": "good"
+                        },
+                        "finished_date": null,
+                        "image_id": 1001,
+                        "model_id": 1000
+                    },
+                    {
+                        "annotations": [],
+                        "computed": {
+                            "detected_objects": 100,
+                            "detection_accuracy": 50,
+                            "label": "OK",
+                            "result": "good"
+                        },
+                        "confirmed": false,
+                        "created_at": "2019-08-29T08:48:09+00:00",
+                        "final": {
+                            "detected_objects": 100,
+                            "detection_accuracy": 50,
+                            "label": "OK",
+                            "result": "good"
+                        },
+                        "finished_date": null,
+                        "image_id": 1002,
+                        "model_id": 1000
+                    }
+                ],
+                "model_id": 1000
+            }
+        ],
+        "override": null,
+        "status": "done",
+        "thumbnail_image": null
+    }
+}

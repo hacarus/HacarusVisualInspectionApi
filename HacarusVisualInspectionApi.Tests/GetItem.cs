@@ -132,39 +132,54 @@ namespace HacarusVisualInspectionApi.Tests
         }
 
 
-        //[TestMethod]
-        //public void SuccessManual()
-        //{
-        //    Console.WriteLine("Success Start");
-        //    var JsonString = File.ReadAllText("../../../Files/GetItemSuccessManual.txt");
-        //    var Client = MockGenerator.MockRestClient<ItemResponse>(HttpStatusCode.OK, JsonString);
-        //    HacarusVisualInspection VisualInspection = new HacarusVisualInspection(Client);
-        //    ItemResponse Response = VisualInspection.GetItem("ItemId");
-        //    Assert.IsNotNull(Response);
-        //    Assert.IsNotNull(Response.HttpResponse);
-        //    Assert.IsNotNull(Response.Data);
-        //    Assert.IsNull(Response.Errors);
-        //    Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.OK));
+        [TestMethod]
+        public void SuccessPredictSuccess()
+        {
+            Console.WriteLine("GetItemPredictSuccess Start");
+            var JsonString = File.ReadAllText("../../../Files/GetItemPredictSuccess.txt");
+            var Client = MockGenerator.MockRestClient<ItemResponse>(HttpStatusCode.OK, JsonString);
+            HacarusVisualInspection VisualInspection = new HacarusVisualInspection(Client);
+            ItemResponse Response = VisualInspection.GetItem("ItemId");
+            Assert.IsNotNull(Response);
+            Assert.IsNotNull(Response.HttpResponse);
+            Assert.IsNotNull(Response.Data);
+            Assert.IsNull(Response.Errors);
+            Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.OK));
 
-        //    //Assert.IsTrue(Response.Data.ComputedAssessment.AssessmentResult.Equals("[DR] Good product!"));
-        //    //Assert.IsTrue(Response.Data.ComputedAssessment.DetectedObjects.Equals(0));
-        //    //Assert.IsTrue(Response.Data.ComputedAssessment.DetectionAccuracy.Equals(100.0));
-        //    //Assert.IsTrue((bool)Response.Data.ComputedAssessment.Good);
+            Assert.IsTrue(Response.Data.Active);
+            Assert.IsTrue(Response.Data.CreatedAt.Equals(DateTime.Parse("2018-10-30T13:24:57+00:00")));
+            Assert.IsNull(Response.Data.DefaultImage);
+            Assert.IsNull(Response.Data.Description);
+            Assert.IsTrue(Response.Data.FinishedDate.Equals(DateTime.Parse("2018-10-30T14:03:01+00:00")));
+            Assert.IsFalse((bool)Response.Data.IsTrainingData);
+            Assert.IsTrue(Response.Data.ItemId.Equals("1001"));
+            Assert.IsNull(Response.Data.Override);
+            Assert.IsTrue(Response.Data.Status.Equals("done"));
+            Assert.IsNull(Response.Data.ThumbnailImage);
+            Assert.IsTrue(Response.Data.Models.Length.Equals(1));
+            Assert.IsNotNull(Response.Data.Models[0].Aggregate);
+            Assert.IsTrue(Response.Data.Models[0].Aggregate.DetectedObjects.Equals(2));
+            Assert.IsTrue(Response.Data.Models[0].Aggregate.Label.Equals("NG"));
+            Assert.IsTrue(Response.Data.Models[0].ModelId.Equals(1000));
+            Assert.IsNotNull(Response.Data.Models[0].Assessments);
+            Assert.IsTrue(Response.Data.Models[0].Assessments.Length.Equals(2));
+            Assert.IsTrue(Response.Data.Models[0].Assessments[0].Annotations.Length.Equals(0));
+            Assert.IsTrue(Response.Data.Models[0].Assessments[0].Computed.DetectedObjects.Equals(100));
+            Assert.IsTrue(Response.Data.Models[0].Assessments[0].Computed.DetectionAccuracy.Equals(50));
+            Assert.IsTrue(Response.Data.Models[0].Assessments[0].Computed.Label.Equals("OK"));
+            Assert.IsTrue(Response.Data.Models[0].Assessments[0].Computed.Result.Equals("good"));
+            Assert.IsFalse(Response.Data.Models[0].Assessments[0].Confirmed);
+            Assert.IsTrue(Response.Data.Models[0].Assessments[0].CreatedAt.Equals(DateTime.Parse("2019-08-29T08:48:09+00:00")));
+            Assert.IsTrue(Response.Data.Models[0].Assessments[0].Final.DetectedObjects.Equals(100));
+            Assert.IsTrue(Response.Data.Models[0].Assessments[0].Final.DetectionAccuracy.Equals(50));
+            Assert.IsTrue(Response.Data.Models[0].Assessments[0].Final.Label.Equals("OK"));
+            Assert.IsTrue(Response.Data.Models[0].Assessments[0].Final.Result.Equals("good"));
+            Assert.IsNull(Response.Data.Models[0].Assessments[0].FinishedDate);
+            Assert.IsTrue(Response.Data.Models[0].Assessments[0].ImageId.Equals(1001));
+            Assert.IsTrue(Response.Data.Models[0].Assessments[0].ModelId.Equals(1000));
 
-        //    //Assert.IsFalse(Response.Data.ConfirmedAssessment);
-
-        //    //Assert.IsTrue(Response.Data.Images.Count.Equals(1));
-        //    //Assert.IsTrue(Response.Data.Images[0].Annotations.Count.Equals(18));
-        //    //Assert.IsNotNull(Response.Data.Images[0].ExifMetadata);
-
-        //    //Assert.IsTrue(Response.Data.ManualAssessment.AssessmentResult.Equals("test defect"));
-        //    //Assert.IsTrue(Response.Data.ManualAssessment.DetectedObjects.Equals(0));
-        //    //Assert.IsNull(Response.Data.ManualAssessment.DetectionAccuracy);
-        //    //Assert.IsFalse((bool)Response.Data.ManualAssessment.Good);
-        //    //Assert.IsTrue((bool)Response.Data.ManualAssessment.OverrideAssessment);
-
-        //    Console.WriteLine("Success End");
-        //}
+            Console.WriteLine("GetItemPredictSuccess End");
+        }
 
         [TestMethod]
         public void FailedItemIdDoesNotExist()
