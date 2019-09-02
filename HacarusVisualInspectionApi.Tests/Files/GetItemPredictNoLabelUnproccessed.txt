@@ -1,0 +1,109 @@
+﻿{
+    "data": {
+        "active": true,
+        "created_at": "2019-08-29T04:19:46+00:00",
+        "default_image": "5d0e87d0227a3c334d5224541fa14b560f54cf36",
+        "description": null,
+        "finished_date": null,
+        "images": [
+            {
+                "content_type": "image/jpeg",
+                "defect_counted": 0,
+                "exif_metadata": {
+                    "ApertureValue": [
+                        149,
+                        32
+                    ],
+                    "ColorSpace": 1,
+                    "ComponentsConfiguration": "\u0001\u0002\u0003\u0000",
+                    "CompressedBitsPerPixel": [
+                        5,
+                        1
+                    ],
+                    "CustomRendered": 0,
+                    "DateTime": "2003:12:14 12:01:44",
+                    "DateTimeDigitized": "2003:12:14 12:01:44",
+                    "DateTimeOriginal": "2003:12:14 12:01:44",
+                    "DigitalZoomRatio": [
+                        2272,
+                        2272
+                    ],
+                    "ExifImageHeight": 1704,
+                    "ExifImageWidth": 2272,
+                    "ExifInteroperabilityOffset": 1416,
+                    "ExifOffset": 196,
+                    "ExifVersion": "0220",
+                    "ExposureBiasValue": [
+                        0,
+                        3
+                    ],
+                    "ExposureMode": 0,
+                    "ExposureTime": [
+                        1,
+                        500
+                    ],
+                    "FNumber": [
+                        49,
+                        10
+                    ],
+                    "FileSource": "\u0003",
+                    "Flash": 24,
+                    "FlashPixVersion": "0100",
+                    "FocalLength": [
+                        682,
+                        32
+                    ],
+                    "FocalPlaneResolutionUnit": 2,
+                    "FocalPlaneXResolution": [
+                        2272000,
+                        280
+                    ],
+                    "FocalPlaneYResolution": [
+                        1704000,
+                        210
+                    ],
+                    "Make": "Canon",
+                    "MaxApertureValue": [
+                        194698,
+                        65536
+                    ],
+                    "MeteringMode": 2,
+                    "Model": "Canon PowerShot S40",
+                    "Orientation": 1,
+                    "ResolutionUnit": 2,
+                    "SceneCaptureType": 0,
+                    "SensingMethod": 2,
+                    "ShutterSpeedValue": [
+                        287,
+                        32
+                    ],
+                    "UserComment": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+                    "WhiteBalance": 0,
+                    "XResolution": [
+                        180,
+                        1
+                    ],
+                    "YCbCrPositioning": 1,
+                    "YResolution": [
+                        180,
+                        1
+                    ]
+                },
+                "file_size": 32764,
+                "height": 360,
+                "image_id": 1025,
+                "is_raw_uploaded": true,
+                "position": "RIGHT",
+                "processed": false,
+                "raw_url": "5d0e87d0227a3c334d5224541fa14b560f54cf36",
+                "url": "5d0e87d0227a3c334d5224541fa14b560f54cf36",
+                "width": 480
+            }
+        ],
+        "is_training_data": false,
+        "item_id": "Canon_PowerShot_S40",
+        "models": [],
+        "override": null,
+        "status": "done"
+    }
+}
