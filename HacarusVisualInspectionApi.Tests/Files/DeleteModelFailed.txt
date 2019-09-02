@@ -1,0 +1,10 @@
+﻿{
+    "errors": {
+        "detail": "No model found",
+        "source": {
+            "pointer": "/api/v1/model?"
+        },
+        "status": 404,
+        "title": ""
+    }
+}

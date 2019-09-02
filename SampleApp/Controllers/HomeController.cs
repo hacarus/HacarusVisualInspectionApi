@@ -250,6 +250,22 @@ namespace SampleApp.Controllers
 
 
         [HttpPost]
+        public IActionResult DeleteModels(
+            string deleteModels, string modelIdsServe
+        )
+        {
+            GenericResponse Result = VisualInspection.DeleteModels(new string[] { modelIdsServe });
+
+                ViewData["HttpResponse"] = "Status code: " + (int)Result.HttpResponse.StatusCode + " " + Result.HttpResponse.StatusCode;
+                ViewData["StringMessage"] = Result.HttpResponse.Content;
+                ViewBag.BearerAvailable = VisualInspection.IsAuthorized;
+                ViewBag.Active = "deleteModels";
+            return Index();
+        }
+
+
+
+        [HttpPost]
         public IActionResult GetItem(
             string getItem, string itemId
         )
@@ -315,7 +331,7 @@ namespace SampleApp.Controllers
 
                 if (ModelsResponse != null && ModelsResponse.Data != null)
                 {
-                    ViewBag.Models = ModelsResponse.Data;
+                    ViewBag.Models = Array.FindAll(ModelsResponse.Data.ToArray(), (ModelData Model) => Model.Active);
                     Console.Write(ModelsResponse.Data.Count);
                 }
 

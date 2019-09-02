@@ -1,4 +1,4 @@
-@{
+﻿@{
     ViewData["Title"] = "Visual Inspection - SDK Demo";
 }
 <h2>@ViewData["Title"]</h2>
@@ -151,52 +151,6 @@ Content-Type:application/json</pre>
                 </div>
                 <form asp-controller="Home" asp-action="GetModels" method="post">
                     <button type="submit" name="getModels" class="btn btn-primary">Try it!</button>
-                </form>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading" data-toggle="collapse" data-target="#deletemodels-form">Delete Models</div>
-            <div class="panel-body @(ViewBag.Active != "deleteModels" ? " collapse" : "" )" id="deletemodels-form">
-                <div class="request-item">
-                    Endpoint:
-                    <div class="endpoint-container">
-                        <span class="method">DELETE</span>
-                        <span class="endpoint">/api/v1/model</span>
-                    </div>
-                </div>
-                <div class="request-item">
-                    Headers:
-                    <pre>
-Authorization:Token [[token]]
-Content-Type:application/json</pre>
-                </div>
-                <div class="request-item">
-                    Body:
-                    <div class="json-container">
-                        <div class="json">
-                            {
-                            "model_ids" : [1000]
-                            }
-                        </div>
-                    </div>
-                </div>
-                <div class="request-item">
-                    C#:
-                    <pre><code class="cs csharp">//Use ModelIds to pass an array of model ids you want to delete
-DeleteResponse Response = VisualInspection.DeleteModels(ModelIds);
-</code></pre>
-                </div>
-                <form asp-controller="Home" asp-action="DeleteModels" method="post">
-                    <div class="form-group">
-                        <label for="modelIdsServe">Model ID</label>
-                        <select id="modelIdsServe" name="modelIdsServe" class="form-control">
-                            @foreach (HacarusVisualInspectionApi.Models.ModelData item in ViewBag.Models)
-                    {
-                        <option value="@item.ModelId">@item.ModelId</option>
-            }
-                        </select>
-                    </div>
-                    <button type="submit" name="deleteModels" class="btn btn-primary">Try it!</button>
                 </form>
             </div>
         </div>
@@ -479,31 +433,6 @@ PredictResponse Response = VisualInspection.Serve(ItemIds, "ModelId");
                                class="form-control" value="" placeholder="Notes" />
                     </div>
                     <button type="submit" name="addAnnotation" class="btn btn-primary">Try it!</button>
-                </form>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading" data-toggle="collapse" data-target="#getworkers-form">Get Workers</div>
-            <div class="panel-body @(ViewBag.Active != "getWorkers" ? " collapse" : "" )" id="getworkers-form">
-                <div class="request-item">
-                    Endpoint:
-                    <div class="endpoint-container">
-                        <span class="method">GET</span>
-                        <span class="endpoint">/api/v1/workers</span>
-                    </div>
-                </div>
-                <div class="request-item">
-                    Headers:
-                    <pre>
-Authorization:Token [[token]]
-Content-Type:application/json</pre>
-                </div>
-                <div class="request-item">
-                    C#:
-                    <pre><code class="cs csharp">WorkersResponse Response = VisualInspection.GetWorkers();</code></pre>
-                </div>
-                <form asp-controller="Home" asp-action="GetWorkers" method="post">
-                    <button type="submit" name="getWorkers" class="btn btn-primary">Try it!</button>
                 </form>
             </div>
         </div>

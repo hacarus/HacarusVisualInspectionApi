@@ -21,8 +21,7 @@
   <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
     <PackageReference Include="RestSharp" Version="106.6.9" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
-    <PackageReference Include="Microsoft.TargetingPack.NETFramework.v4.6.1"
-                        Version="1.0.1" ExcludeAssets="All" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.TargetingPack.NETFramework.v4.6.1" Version="1.0.1" ExcludeAssets="All" PrivateAssets="All" />
     <!-- <PackageReference Include="NuGet.Build.Packaging" Version="0.2.2" /> -->
   </ItemGroup>
 
