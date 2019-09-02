@@ -93,7 +93,7 @@ namespace HacarusVisualInspectionApi.Models
         public bool Processed { get; set; }
 
         [JsonProperty("uploaded")]
-        public bool Uploaded { get; set; }
+        public bool? Uploaded { get; set; }
 
         [JsonProperty("width")]
         public long Width { get; set; }

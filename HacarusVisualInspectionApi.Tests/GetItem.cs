@@ -52,7 +52,7 @@ namespace HacarusVisualInspectionApi.Tests
             Assert.IsTrue(Response.Data.Images[0].Key.Equals("key123"));
             Assert.IsNull(Response.Data.Images[0].Position);
             Assert.IsTrue(Response.Data.Images[0].Processed);
-            Assert.IsTrue(Response.Data.Images[0].Uploaded);
+            Assert.IsTrue((bool)Response.Data.Images[0].Uploaded);
             Assert.IsTrue(Response.Data.Images[0].Width.Equals(759));
 
             Assert.IsTrue((bool)Response.Data.IsTrainingData);
