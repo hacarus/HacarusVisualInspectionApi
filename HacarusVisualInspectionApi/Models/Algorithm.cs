@@ -26,6 +26,31 @@ namespace HacarusVisualInspectionApi.Models
 
         [JsonProperty("value")]
         public string Value { get; set; }
+
+        public bool ShouldSerializeCreatedAt()
+        {
+            return false;
+        }
+
+        public bool ShouldSerializeDataType()
+        {
+            return false;
+        }
+
+        public bool ShouldSerializeModelParameter()
+        {
+            return false;
+        }
+
+        public bool ShouldSerializeName()
+        {
+            return false;
+        }
+
+        public bool ShouldSerializeUpdatedAt()
+        {
+            return false;
+        }
     }
 
     public class Algorithm

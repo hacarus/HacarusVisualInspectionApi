@@ -378,6 +378,64 @@ PredictResponse Response = VisualInspection.Serve(ItemIds, "ModelId");
                 </form>
             </div>
         </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" data-toggle="collapse" data-target="#addannotation-form">Add Annotation</div>
+            <div class="panel-body @(ViewBag.Active != "addAnnotation" ? " collapse" : "" )" id="addannotation-form">
+                <div class="request-item">
+                    Endpoint:
+                    <div class="endpoint-container">
+                        <span class="method">POST</span>
+                        <span class="endpoint">/api/v1/image/:imageId/annotation</span>
+                    </div>
+                </div>
+                <div class="request-item">
+                    Headers:
+                    <pre>
+    Authorization:Token [[token]]
+    Content-Type:application/json</pre>
+                </div>
+                <div class="request-item">
+                    C#:
+                    <pre><code class="cs csharp">
+        //Create a list of Annotation objects as paramater
+        GenericResponse Response = VisualInspection.AddAnnotation(annotations, "ImageId");
+    </code></pre>
+                </div>
+                <form asp-controller="Home" asp-action="AddAnnotation" method="post">
+                    <div class="form-group">
+                        <label for="imageId">Image ID</label>
+                        <input type="text" name="imageId" id="imageId"
+                               class="form-control" value="" placeholder="Image ID" />
+                    </div>
+                    <div class="form-group">
+                        <label for="xMin">X Min</label>
+                        <input type="text" name="xMin" id="xMin"
+                               class="form-control" value="" placeholder="X Min" />
+                    </div>
+                    <div class="form-group">
+                        <label for="xMax">X Max</label>
+                        <input type="text" name="xMax" id="xMax"
+                               class="form-control" value="" placeholder="X Max" />
+                    </div>
+                    <div class="form-group">
+                        <label for="yMin">Y Min</label>
+                        <input type="text" name="yMin" id="yMin"
+                               class="form-control" value="" placeholder="Y Min" />
+                    </div>
+                    <div class="form-group">
+                        <label for="yMax">Y Max</label>
+                        <input type="text" name="yMax" id="yMax"
+                               class="form-control" value="" placeholder="Y Max" />
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">Notes</label>
+                        <input type="text" name="notes" id="notes"
+                               class="form-control" value="" placeholder="Notes" />
+                    </div>
+                    <button type="submit" name="addAnnotation" class="btn btn-primary">Try it!</button>
+                </form>
+            </div>
+        </div>
         }
     </div>
     <div class="col-lg-6 col-md-4 col-xs-12" id="json-return">

@@ -1,0 +1,10 @@
+﻿{
+    "errors": {
+        "detail": null,
+        "source": {
+            "pointer": "/api/v1/image/10/annotation?"
+        },
+        "status": 400,
+        "title": "Cannot find image"
+    }
+}

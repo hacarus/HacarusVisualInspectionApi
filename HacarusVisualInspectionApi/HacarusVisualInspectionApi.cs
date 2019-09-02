@@ -44,12 +44,10 @@ namespace HacarusVisualInspectionApi
             return APIService.Instance.ActivateLicense(licenseFile);
         }
 
-
         public ItemsResponse GetItems()
         {
             return APIService.Instance.GetItems();
         }
-
 
         public VersionResponse GetVersionNumber()
         {
@@ -83,14 +81,20 @@ namespace HacarusVisualInspectionApi
             return APIService.Instance.Upload(files, null, false);
         }
 
-        public PredictResponse Serve(string[] itemIds, int? modelId = null)
+        public PredictResponse Serve(string[] itemIds, string modelId = "")
         {
             return APIService.Instance.Serve(itemIds, modelId);
         }
 
-        public ItemResponse GetItem(string itemId)
+        public ItemResponse GetItem(string itemId, bool showAnnotations = false, bool showAssessments = false)
         {
-            return APIService.Instance.GetItem(itemId);
+            return APIService.Instance.GetItem(itemId, showAnnotations, showAssessments);
         }
+
+        public GenericResponse SetAnnotations(Annotation[] annotations, string imageId)
+        {
+            return APIService.Instance.SetAnnotations(annotations, imageId);
+        }
+
     }
 }
