@@ -78,7 +78,7 @@ namespace HacarusVisualInspectionApi.Models
         public int? FileSize { get; set; }
 
         [JsonProperty("height")]
-        public long Height { get; set; }
+        public long? Height { get; set; }
 
         [JsonProperty("image_id")]
         public long ImageId { get; set; }
@@ -96,7 +96,7 @@ namespace HacarusVisualInspectionApi.Models
         public bool? Uploaded { get; set; }
 
         [JsonProperty("width")]
-        public long Width { get; set; }
+        public long? Width { get; set; }
 
         [JsonProperty("is_raw_uploaded")]
         public bool? IsRawUploaded { get; set; }

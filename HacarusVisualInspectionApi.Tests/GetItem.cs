@@ -47,13 +47,13 @@ namespace HacarusVisualInspectionApi.Tests
             Assert.IsNotNull(Response.Data.Images[0].ExifMetadata);
             Assert.IsTrue(Response.Data.Images[0].FileName.Equals("IMG-1006-OK-T.JPG"));
             Assert.IsTrue(Response.Data.Images[0].FileSize.Equals(143697));
-            Assert.IsTrue(Response.Data.Images[0].Height.Equals(719));
+            Assert.IsTrue(((long)Response.Data.Images[0].Height).Equals(719));
             Assert.IsTrue(Response.Data.Images[0].ImageId.Equals(1023));
             Assert.IsTrue(Response.Data.Images[0].Key.Equals("key123"));
             Assert.IsNull(Response.Data.Images[0].Position);
             Assert.IsTrue(Response.Data.Images[0].Processed);
             Assert.IsTrue((bool)Response.Data.Images[0].Uploaded);
-            Assert.IsTrue(Response.Data.Images[0].Width.Equals(759));
+            Assert.IsTrue(((long)Response.Data.Images[0].Width).Equals(759));
 
             Assert.IsTrue((bool)Response.Data.IsTrainingData);
             Assert.IsTrue(Response.Data.ItemId.Equals("IMG-1006-OK-T"));
@@ -101,14 +101,14 @@ namespace HacarusVisualInspectionApi.Tests
             Assert.IsTrue(Response.Data.Images[0].Defects.Equals(0));
             Assert.IsNotNull(Response.Data.Images[0].ExifMetadata);
             Assert.IsTrue(Response.Data.Images[0].FileSize.Equals(32764));
-            Assert.IsTrue(Response.Data.Images[0].Height.Equals(360));
+            Assert.IsTrue(((long)Response.Data.Images[0].Height).Equals(360));
             Assert.IsTrue(Response.Data.Images[0].ImageId.Equals(1025));
             Assert.IsTrue((bool)Response.Data.Images[0].IsRawUploaded);
             Assert.IsTrue(Response.Data.Images[0].Position.Equals("RIGHT"));
             Assert.IsFalse(Response.Data.Images[0].Processed);
             Assert.IsTrue(Response.Data.Images[0].RawUrl.Equals("5d0e87d0227a3c334d5224541fa14b560f54cf36"));
             Assert.IsTrue(Response.Data.Images[0].Url.Equals("5d0e87d0227a3c334d5224541fa14b560f54cf36"));
-            Assert.IsTrue(Response.Data.Images[0].Width.Equals(480));
+            Assert.IsTrue(((long)Response.Data.Images[0].Width).Equals(480));
 
             Assert.IsTrue(Response.Data.Images[0].ExifMetadata.ApertureValue.Count.Equals(2));
             Assert.IsNotNull(Response.Data.Images[0].ExifMetadata);
@@ -116,17 +116,6 @@ namespace HacarusVisualInspectionApi.Tests
             Assert.IsTrue(Response.Data.ItemId.Equals("Canon_PowerShot_S40"));
             Assert.IsNull(Response.Data.Override);
             Assert.IsTrue(Response.Data.Status.Equals("done"));
-
-
-            //IMAGES TEST
-            //ANNOTATION TEST
-            //OVERRIDE IS NULL
-            //DETECTED OBJECTS IS NULL
-            //Training
-            //Predict
-            //METADATA
-            //POsition
-            //predict predicted
 
             Console.WriteLine("SuccessPredictNoLabelNotProccess End");
         }
