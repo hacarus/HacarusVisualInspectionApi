@@ -160,7 +160,7 @@ namespace HacarusVisualInspectionApi
         }
 
 
-        public PredictResponse Serve(string[] itemIds, int? modelId = null)
+        public PredictResponse Serve(string[] itemIds, string modelId = "")
         {
             var Request = new RestRequest("v1/serve", Method.POST);
             Request.AddHeader("Accept-Language", this.Language);
@@ -179,11 +179,13 @@ namespace HacarusVisualInspectionApi
             return ResponseObject;
         }
 
-        public ItemResponse GetItem(string itemId)
+        public ItemResponse GetItem(string itemId, bool showAnnotations, bool showAssessments)
         {
             var Request = new RestRequest("v1/item/" + itemId, Method.GET);
             Request.AddHeader("Accept-Language", this.Language);
             Request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
+            Request.AddParameter("show_annotations", showAnnotations);
+            Request.AddParameter("show_assessments", showAssessments);
             var predictResponse = this.Client.Execute(Request);
             ItemResponse ResponseObject = JsonConvert.DeserializeObject<ItemResponse>(predictResponse.Content);
             ResponseObject.HttpResponse = predictResponse;

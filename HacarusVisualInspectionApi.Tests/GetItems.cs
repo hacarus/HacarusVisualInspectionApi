@@ -35,7 +35,7 @@ namespace HacarusVisualInspectionApi.Tests
             Assert.IsTrue(Response.Data.Summary.PredictStats[0].AdjustedCount.Equals(0));
             Assert.IsTrue(Response.Data.Summary.PredictStats[0].ConfirmedCount.Equals(0));
             Assert.IsTrue(Response.Data.Summary.PredictStats[0].DoneCount.Equals(6));
-            Assert.IsTrue(Response.Data.Summary.PredictStats[0].ModelId.Equals(1000));
+            Assert.IsTrue(Response.Data.Summary.PredictStats[0].ModelId.Equals("1000"));
             Assert.IsTrue(Response.Data.Summary.Title.Equals("Car Project"));
             Assert.IsTrue(Response.Data.Summary.TrainingStats.NgCount.Equals(0));
             Assert.IsTrue(Response.Data.Summary.TrainingStats.OkCount.Equals(1));
@@ -94,7 +94,7 @@ namespace HacarusVisualInspectionApi.Tests
             Assert.IsNotNull(Response.Data.Predict[0].Models[0].Aggregate);
             Assert.IsTrue(Response.Data.Predict[0].Models[0].Aggregate.DetectedObjects.Equals(2));
             Assert.IsTrue(Response.Data.Predict[0].Models[0].Aggregate.Label.Equals("NG"));
-            Assert.IsTrue(Response.Data.Predict[0].Models[0].ModelId.Equals(1000));
+            Assert.IsTrue(Response.Data.Predict[0].Models[0].ModelId.Equals("1000"));
             Assert.IsNotNull(Response.Data.Predict[0].Models[0].Assessments);
             Assert.IsTrue(Response.Data.Predict[0].Models[0].Assessments.Length.Equals(2));
             Assert.IsTrue(Response.Data.Predict[0].Models[0].Assessments[0].Annotations.Length.Equals(0));
@@ -110,7 +110,7 @@ namespace HacarusVisualInspectionApi.Tests
             Assert.IsTrue(Response.Data.Predict[0].Models[0].Assessments[0].Final.Result.Equals("good"));
             Assert.IsNull(Response.Data.Predict[0].Models[0].Assessments[0].FinishedDate);
             Assert.IsTrue(Response.Data.Predict[0].Models[0].Assessments[0].ImageId.Equals(1001));
-            Assert.IsTrue(Response.Data.Predict[0].Models[0].Assessments[0].ModelId.Equals(1000));
+            Assert.IsTrue(Response.Data.Predict[0].Models[0].Assessments[0].ModelId.Equals("1000"));
 
             Console.WriteLine("SuccessPredictWithModel End");
         }

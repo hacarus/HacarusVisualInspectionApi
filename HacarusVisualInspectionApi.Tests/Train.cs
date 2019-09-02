@@ -26,7 +26,7 @@ namespace HacarusVisualInspectionApi.Tests
             Assert.IsFalse(Response.Data.ContextDefault);
             Assert.IsTrue(Response.Data.ContextId.Equals(1000));
             Assert.IsTrue(Response.Data.CreatedAt.Equals(DateTime.Parse("2019-06-11T01:26:08Z").ToUniversalTime()));
-            Assert.IsTrue(Response.Data.ModelId.Equals(270));
+            Assert.IsTrue(Response.Data.ModelId.Equals("270"));
             Assert.IsTrue(Response.Data.Name.Equals("6/11/19 10:26:07 AM"));
             Assert.IsTrue(Response.Data.Status.Equals("creating"));
             Assert.IsTrue(Response.Data.UpdatedAt.Equals(DateTime.Parse("2019-06-11T10:26:07Z").ToUniversalTime()));

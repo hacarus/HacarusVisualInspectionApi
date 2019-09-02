@@ -160,7 +160,7 @@ namespace HacarusVisualInspectionApi.Tests
             Assert.IsNotNull(Response.Data.Models[0].Aggregate);
             Assert.IsTrue(Response.Data.Models[0].Aggregate.DetectedObjects.Equals(2));
             Assert.IsTrue(Response.Data.Models[0].Aggregate.Label.Equals("NG"));
-            Assert.IsTrue(Response.Data.Models[0].ModelId.Equals(1000));
+            Assert.IsTrue(Response.Data.Models[0].ModelId.Equals("1000"));
             Assert.IsNotNull(Response.Data.Models[0].Assessments);
             Assert.IsTrue(Response.Data.Models[0].Assessments.Length.Equals(2));
             Assert.IsTrue(Response.Data.Models[0].Assessments[0].Annotations.Length.Equals(0));
@@ -176,7 +176,7 @@ namespace HacarusVisualInspectionApi.Tests
             Assert.IsTrue(Response.Data.Models[0].Assessments[0].Final.Result.Equals("good"));
             Assert.IsNull(Response.Data.Models[0].Assessments[0].FinishedDate);
             Assert.IsTrue(Response.Data.Models[0].Assessments[0].ImageId.Equals(1001));
-            Assert.IsTrue(Response.Data.Models[0].Assessments[0].ModelId.Equals(1000));
+            Assert.IsTrue(Response.Data.Models[0].Assessments[0].ModelId.Equals("1000"));
 
             Console.WriteLine("GetItemPredictSuccess End");
         }

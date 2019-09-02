@@ -241,7 +241,7 @@ namespace HacarusVisualInspectionApi.Models
         public Assessment[] Assessments { get; set; }
 
         [JsonProperty("model_id")]
-        public long ModelId { get; set; }
+        public string ModelId { get; set; }
     }
 
     public class Aggregate
@@ -277,6 +277,6 @@ namespace HacarusVisualInspectionApi.Models
         public long ImageId { get; set; }
 
         [JsonProperty("model_id")]
-        public long ModelId { get; set; }
+        public string ModelId { get; set; }
     }
 }

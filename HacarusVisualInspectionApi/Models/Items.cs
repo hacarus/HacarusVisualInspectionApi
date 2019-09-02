@@ -55,6 +55,6 @@ namespace HacarusVisualInspectionApi.Models
         public long DoneCount { get; set; }
 
         [JsonProperty("model_id")]
-        public long ModelId { get; set; }
+        public string ModelId { get; set; }
     }
 }

@@ -220,7 +220,7 @@ namespace SampleApp.Controllers
 
         [HttpPost]
         public IActionResult Serve(
-            string serve, string itemIdServe, int modelIdServe
+            string serve, string itemIdServe, string modelIdServe
         )
         {
             PredictResponse Result = VisualInspection.Serve(new string[] { itemIdServe }, modelIdServe);
@@ -239,7 +239,7 @@ namespace SampleApp.Controllers
             string getItem, string itemId
         )
         {
-            ItemResponse Result = VisualInspection.GetItem(itemId);
+            ItemResponse Result = VisualInspection.GetItem(itemId, true, true);
 
             ViewData["HttpResponse"] = "Status code: " + (int)Result.HttpResponse.StatusCode + " " + Result.HttpResponse.StatusCode;
             ViewData["StringMessage"] = Result.HttpResponse.Content;

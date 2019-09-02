@@ -22,7 +22,7 @@ namespace HacarusVisualInspectionApi.Models
         public DateTime CreatedAt { get; set; }
 
         [JsonProperty("model_id")]
-        public int ModelId { get; set; }
+        public string ModelId { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
