@@ -1,0 +1,2 @@
+dotnet build HacarusVisualInspectionApi
+dotnet restore
