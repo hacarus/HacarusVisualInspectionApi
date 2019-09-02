@@ -158,24 +158,24 @@ ja:
   getItemsMessage: "
   <ul>
     <li>
-      Retrieves list of uploaded items grouped by training and predict
+      学習(`training`)と予測(`predict`)グループ化されたアップロードデータの一覧を取得します。
       <ul>
         <li>
-          `training`: Items to be used for training
+          `training`: 学習に使用するデータ
         </li>
         <li>
-          `predict`: Uploaded items that can be predicted
+          `predict`: アップロード済みのデータのうち、推論用のもの
         </li>
       </ul>
     </li>
     <li>
-      To know the results, check for the key `models` then look for the model you want to check. 
+      結果を知るには、modelsのキーを確認し、確認したいモデルを調べます。
     </li>
     <li>
-      Use the `aggregated` key and look for `label` to know the prediction result. 
+      予測の結果を分かるため、aggregatedのキーを使用し、labelを調べます。
     </li>
     <li>
-      Use `assessment` key to check individual image result
+      各画像の結果を確認するには、assessmentのキーを使用します。
     </li>
   </ul>
   "
@@ -215,17 +215,17 @@ ja:
     </li>
   </ul>
   "
-  deleteModels: "Delete Models"
+  deleteModels: "モデルを削除する"
   deleteModelsMessage: "
   <ul>
     <li>
-      Delete models
+      モデルを削除する
     </li>
     <li>
-      Model that is currently active (`default_context` is `true`) cannot be deleted
+      現在アクティブなモデル(`default_context` is `true`)を削除できません。
     </li>
     <li>
-      To check the result, use the `%{getModels}` method and check for key `status` of each item
+      結果を確認するには、`%{getModels}` メソッドを利用し、各データのキーstatusをチェックして下ださい
     </li>
   </ul>
   "
@@ -301,17 +301,17 @@ ja:
   error400: "400 BadRequest:"
   invalidFile: "ファイル名かファイル形の無効。"
   noImage: "アップロード用の画像が送信されていません。"
-  setAnnotations: "Set Annotations"
+  setAnnotations: "注釈をセットする"
   setAnnotationsMessage: "
   <ul>
     <li>
-      Use this method to set annotations to an image
+      このメソッドを使用し、画像に注釈をセットします。
     </li>
     <li>
-      Use array of Annotation and `image_id` as parameters
+      注釈の配列とimage_idをパラメータとして使用します。
     </li>
     <li>
-      To get all annotations, use 'GetItem' method
+      注釈を全部取得するには、`GetItem`メソッドを使用します。
     </li>
   </ul>
   "
@@ -362,17 +362,17 @@ ja:
   "
   itemDoesNotExists: "送信されたデータとデータIDは存在していません。"
   noModel: "推論に使用できるモデルがないか、使用可能なモデルのステータスがのfailedです。 Trainメソッドを使用し、新しいモデルを作成してください。"
-  getProcesses: "Get Processes"
+  getProcesses: "プロセスを取得する"
   getProcessesMessage: "
   <ul>
     <li>
-      Get list of ongoing processes grouped by process type
+      プロセス種類でグループされているのプロセス中の一覧を取得する。
       <ul>
         <li>
-          `predicting`: contains a list of model ids being used on ongoing predictions
+          `predicting`: 予測中に利用されているモデルIDの一覧が含まれています。
         </li>
         <li>
-          `training`: contains a list of algorithm ids being used on ongoing trainings
+          `training`: トレーニング中に利用されているアルゴリズムIDの一覧が含まれています。
         </li>
       </ul>
     </li>
