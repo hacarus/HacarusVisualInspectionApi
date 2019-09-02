@@ -158,31 +158,24 @@ ja:
   getItemsMessage: "
   <ul>
     <li>
-      学習、推論、およびアーカイブ別に分類したアップロード済みアイテムのリストを取得します。
+      Retrieves list of uploaded items grouped by training and predict
       <ul>
         <li>
-          `training`: 学習に使用するデータ
-          <ul>
-            <li>
-              データが`%{true}`（good）、`%{false}`（defect）、または`%{null}`（ラベルなし）のいずれかにラベル付けされているかをgoodというキーで知ることができます。
-            </li>
-          </ul>
+          `training`: Items to be used for training
         </li>
         <li>
-          `predict`: アップロード済みのデータのうち、推論用のもの
-          <ul>
-            <li>
-             推論結果を確認するには、`good`と`status`のキーを確認してください。
-            </li>
-          </ul>
-        </li>
-        <li>
-          `archived`: アーカイブ済みデータ（将来実装予定の機能、現在使用されていません）
+          `predict`: Uploaded items that can be predicted
         </li>
       </ul>
     </li>
     <li>
-      `override_assessment`および`confirm_assessment`はUI（ユーザインタフェース）固有のものであり、SDKを使用している場合は無視できます。
+      To know the results, check for the key `models` then look for the model you want to check. 
+    </li>
+    <li>
+      Use the `aggregated` key and look for `label` to know the prediction result. 
+    </li>
+    <li>
+      Use `assessment` key to check individual image result
     </li>
   </ul>
   "
@@ -222,6 +215,21 @@ ja:
     </li>
   </ul>
   "
+  deleteModels: "Delete Models"
+  deleteModelsMessage: "
+  <ul>
+    <li>
+      Delete models
+    </li>
+    <li>
+      Model that is currently active (`default_context` is `true`) cannot be deleted
+    </li>
+    <li>
+      To check the result, use the `%{getModels}` method and check for key `status` of each item
+    </li>
+  </ul>
+  "
+  modelDoesNotExist: "Model with model id sent does not exist"
   train: "学習"
   algorithmParameter: "アルゴリズムパラメータ"
   trainMessage: "
@@ -293,6 +301,21 @@ ja:
   error400: "400 BadRequest:"
   invalidFile: "ファイル名かファイル形の無効。"
   noImage: "アップロード用の画像が送信されていません。"
+  setAnnotations: "Set Annotations"
+  setAnnotationsMessage: "
+  <ul>
+    <li>
+      Use this method to set annotations to an image
+    </li>
+    <li>
+      Use array of Annotation and `image_id` as parameters
+    </li>
+    <li>
+      To get all annotations, use 'GetItem' method
+    </li>
+  </ul>
+  "
+  imageIdDoesNotExist: "Image id does not exist"
   getItem: "特定のデータを取得する"
   getItemMessage: "
   <ul>
@@ -339,6 +362,22 @@ ja:
   "
   itemDoesNotExists: "送信されたデータとデータIDは存在していません。"
   noModel: "推論に使用できるモデルがないか、使用可能なモデルのステータスがのfailedです。 Trainメソッドを使用し、新しいモデルを作成してください。"
+  getProcesses: "Get Processes"
+  getProcessesMessage: "
+  <ul>
+    <li>
+      Get list of ongoing processes grouped by process type
+      <ul>
+        <li>
+          `predicting`: contains a list of model ids being used on ongoing predictions
+        </li>
+        <li>
+          `training`: contains a list of algorithm ids being used on ongoing trainings
+        </li>
+      </ul>
+    </li>
+  </ul>
+  "
   genericErrors: "一般的なエラー"
   errorUnauthorized: "メソッドを呼び出すときにまだ承認されていないエラーです。エラーを遭遇する場合、最初に`%{authorize}`メソッドを呼び出してください。"
   errorNoLicense: "メソッドを呼び出すが、ライセンスがまだアクティベートされていないか期限切れになっているときのエラーです。 遭遇したら、最初に`%{activateLicense}`メソッドを呼び出してください。"
