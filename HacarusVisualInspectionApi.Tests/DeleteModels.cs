@@ -18,7 +18,7 @@ namespace HacarusVisualInspectionApi.Tests
             var Client = MockGenerator.MockRestClient<PredictResponse>(HttpStatusCode.OK, JsonString);
             HacarusVisualInspection VisualInspection = new HacarusVisualInspection(Client);
 
-            DeleteResponse Response = VisualInspection.DeleteModels(new string[] { "1000" });
+            GenericResponse Response = VisualInspection.DeleteModels(new string[] { "1000" });
             Assert.IsNotNull(Response);
             Assert.IsNotNull(Response.HttpResponse);
             Assert.IsNotNull(Response.Data);
@@ -35,7 +35,7 @@ namespace HacarusVisualInspectionApi.Tests
             var JsonString = File.ReadAllText("../../../Files/DeleteModelFailed.txt");
             var Client = MockGenerator.MockRestClient<UploadResponse>(HttpStatusCode.NotFound, JsonString);
             HacarusVisualInspection VisualInspection = new HacarusVisualInspection(Client);
-            DeleteResponse Response = VisualInspection.DeleteModels(new string[] { "1001" });
+            GenericResponse Response = VisualInspection.DeleteModels(new string[] { "1001" });
             Assert.IsNotNull(Response);
             Assert.IsNotNull(Response.HttpResponse);
             Assert.IsNotNull(Response.Errors);

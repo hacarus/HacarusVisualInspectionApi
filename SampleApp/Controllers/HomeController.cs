@@ -103,6 +103,21 @@ namespace SampleApp.Controllers
         }
 
         [HttpPost]
+        public IActionResult GetWorkers(
+            string getWorkers
+        )
+        {
+            WorkersResponse Result = VisualInspection.GetWorkers();
+
+            ViewData["HttpResponse"] = "Status code: " + (int)Result.HttpResponse.StatusCode + " " + Result.HttpResponse.StatusCode;
+            ViewData["StringMessage"] = Result.HttpResponse.Content;
+            ViewBag.BearerAvailable = VisualInspection.IsAuthorized;
+            ViewBag.Active = "getWorkers";
+
+            return Index();
+        }
+
+        [HttpPost]
         public IActionResult GetAlgorithms(
             string getAlgorithms
         )
@@ -239,7 +254,7 @@ namespace SampleApp.Controllers
             string deleteModels, string modelIdsServe
         )
         {
-                DeleteResponse Result = VisualInspection.DeleteModels(new string[] { modelIdsServe });
+            GenericResponse Result = VisualInspection.DeleteModels(new string[] { modelIdsServe });
 
                 ViewData["HttpResponse"] = "Status code: " + (int)Result.HttpResponse.StatusCode + " " + Result.HttpResponse.StatusCode;
                 ViewData["StringMessage"] = Result.HttpResponse.Content;
@@ -316,7 +331,7 @@ namespace SampleApp.Controllers
 
                 if (ModelsResponse != null && ModelsResponse.Data != null)
                 {
-                    ViewBag.Models = ModelsResponse.Data;
+                    ViewBag.Models = Array.FindAll(ModelsResponse.Data.ToArray(), (ModelData Model) => Model.Active);
                     Console.Write(ModelsResponse.Data.Count);
                 }
 

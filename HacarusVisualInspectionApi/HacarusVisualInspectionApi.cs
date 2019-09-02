@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using HacarusVisualInspectionApi.Models;
 using RestSharp;
@@ -86,11 +86,6 @@ namespace HacarusVisualInspectionApi
             return APIService.Instance.Serve(itemIds, modelId);
         }
 
-        public DeleteResponse DeleteModels(string[] modelIds)
-        {
-            return APIService.Instance.DeleteModels(modelIds);
-        }
-
         public ItemResponse GetItem(string itemId, bool showAnnotations = false, bool showAssessments = false)
         {
             return APIService.Instance.GetItem(itemId, showAnnotations, showAssessments);
@@ -101,5 +96,15 @@ namespace HacarusVisualInspectionApi
             return APIService.Instance.SetAnnotations(annotations, imageId);
         }
 
+
+        public WorkersResponse GetWorkers()
+        {
+            return APIService.Instance.GetWorkers();
+        }
+
+        public GenericResponse DeleteModels(string[] modelIds)
+        {
+            return APIService.Instance.DeleteModels(modelIds);
+        }
     }
 }
