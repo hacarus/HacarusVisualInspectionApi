@@ -1,57 +1,123 @@
 ﻿{
     "data": {
-        "archived": [],
         "predict": [
             {
-            "assessment": "Upload specific status",
-            "confirmed_assessment": false,
-            "date": "Wed, 19 Jun 2019 05:03:09 GMT",
-            "default_image": "https://hacarus-saas-data.s3.amazonaws.com/raw/bc8a33dde2b0f45e2d6340083b5e153f59e33a42",
-            "description": null,
-            "detected_objects": 0,
-            "detection_accuracy": 0,
-            "finished_date": "Wed, 19 Jun 2019 07:24:42 GMT",
-            "good": true,
-            "is_training_data": false,
-            "item_id": "0001",
-            "label": "Job id is 0001",
-            "override_assessment": true,
-            "status": "done",
-            "thumbnail_image": "https://hacarus-saas-data.s3.amazonaws.com/thumbnail/bc8a33dde2b0f45e2d6340083b5e153f59e33a42"
+                "active": true,
+                "created_at": "2018-10-30T13:24:57+00:00",
+                "default_image": null,
+                "description": null,
+                "finished_date": "2018-10-30T14:03:01+00:00",
+                "is_training_data": false,
+                "item_id": "1001",
+                "models": [
+                    {
+                        "aggregate": {
+                            "detected_objects": 2,
+                            "label": "NG"
+                        },
+                        "assessments": [
+                            {
+                                "annotations": [],
+                                "computed": {
+                                    "detected_objects": 100,
+                                    "detection_accuracy": 50,
+                                    "label": "OK",
+                                    "result": "good"
+                                },
+                                "confirmed": false,
+                                "created_at": "2019-08-29T08:48:09+00:00",
+                                "final": {
+                                    "detected_objects": 100,
+                                    "detection_accuracy": 50,
+                                    "label": "OK",
+                                    "result": "good"
+                                },
+                                "finished_date": null,
+                                "image_id": 1001,
+                                "model_id": 1000
+                            },
+                            {
+                                "annotations": [],
+                                "computed": {
+                                    "detected_objects": 100,
+                                    "detection_accuracy": 50,
+                                    "label": "OK",
+                                    "result": "good"
+                                },
+                                "confirmed": false,
+                                "created_at": "2019-08-29T08:48:09+00:00",
+                                "final": {
+                                    "detected_objects": 100,
+                                    "detection_accuracy": 50,
+                                    "label": "OK",
+                                    "result": "good"
+                                },
+                                "finished_date": null,
+                                "image_id": 1002,
+                                "model_id": 1000
+                            }
+                        ],
+                        "model_id": 1000
+                    }
+                ],
+                "override": null,
+                "status": "done",
+                "thumbnail_image": null
+            },
+            {
+                "active": true,
+                "created_at": "2018-10-30T09:43:04+00:00",
+                "default_image": null,
+                "description": null,
+                "finished_date": "2018-10-30T13:59:39+00:00",
+                "is_training_data": false,
+                "item_id": "1000",
+                "models": [],
+                "override": {
+                    "detected_objects": 30,
+                    "detection_accuracy": 99,
+                    "label": "OK",
+                    "result": "This is an overriden result! YEEY!"
+                },
+                "status": "done",
+                "thumbnail_image": null
             }
         ],
         "summary": {
-            "adjusted": 0,
-            "analysed": 0,
-            "archived_defects": 0,
-            "assessment": "Bad Product",
-            "confirmed": 0,
-            "defects_detected": 0,
-            "detection_accuracy": 0,
-            "items_archived": 0,
-            "items_for_review": 0,
-            "title": "Context #1",
-            "training": {
-                "defect": 0,
-                "good": 1
+            "predict_stats": [
+                {
+                    "NG_count": 2,
+                    "OK_count": 4,
+                    "accuracy": 0,
+                    "adjusted_count": 0,
+                    "confirmed_count": 0,
+                    "done_count": 6,
+                    "model_id": 1000
+                }
+            ],
+            "title": "Car Project",
+            "training_stats": {
+                "NG_count": 0,
+                "OK_count": 1
             }
         },
         "training": [
             {
-            "assessment": null,
-            "confirmed_assessment": true,
-            "date": "Mon, 10 Jun 2019 08:22:02 GMT",
-            "default_image": "https://hacarus-saas-data.s3.amazonaws.com/raw/b21d29f794e781e12f466a1fcc1bf1a1596e5320",
-            "description": null,
-            "detected_objects": 0,
-            "finished_date": null,
-            "good": null,
-            "is_training_data": true,
-            "item_id": "T1-22-01",
-            "label": "Job id is T1-22-01",
-            "override_assessment": true,
-            "status": "pending",
-            "thumbnail_image": "https://hacarus-saas-data.s3.amazonaws.com/thumbnail/b21d29f794e781e12f466a1fcc1bf1a1596e5320"
+                "active": true,
+                "created_at": "2019-08-29T01:04:10+00:00",
+                "default_image": "http://127.0.0.1:8080/raw/1eb4ecce4c2d0783964a771034805e290af70082",
+                "description": null,
+                "finished_date": null,
+                "is_training_data": true,
+                "item_id": "IMG-1006-OK-T",
+                "override": {
+                    "detected_objects": null,
+                    "detection_accuracy": null,
+                    "label": "OK",
+                    "result": "Upload specific status"
+                },
+                "status": "done",
+                "thumbnail_image": "http://127.0.0.1:8080/thumbnail/1eb4ecce4c2d0783964a771034805e290af70082"
             }
         ]
     }

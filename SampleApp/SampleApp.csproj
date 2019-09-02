@@ -12,15 +12,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\uploads\" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Remove="wwwroot\uploads\IMG_4268.jpg" />
     <Content Remove="wwwroot\uploads\IMG-1002-OK-T.JPG" />
+    <Content Remove="wwwroot\uploads\Class10_small.zip" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="HacarusVisualInspectionApi">
-      <HintPath>..\HacarusVisualInspectionApi\bin\Debug\netstandard2.0\HacarusVisualInspectionApi.dll</HintPath>
+      <HintPath>..\HacarusVisualInspectionApi\obj\Debug\netstandard2.0\HacarusVisualInspectionApi.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>

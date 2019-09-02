@@ -5,16 +5,19 @@ using Newtonsoft.Json;
 namespace HacarusVisualInspectionApi.Models
 {
 
-    public class Item
+    public partial class ItemResponse : Response
     {
-        [JsonProperty("assessment")]
-        public string Assessment { get; set; }
+        [JsonProperty("data")]
+        public Item Data { get; set; }
+    }
 
-        [JsonProperty("confirmed_assessment")]
-        public bool ConfirmedAssessment { get; set; }
+    public partial class Item
+    {
+        [JsonProperty("active")]
+        public bool Active { get; set; }
 
-        [JsonProperty("date")]
-        public DateTime Date { get; set; }
+        [JsonProperty("created_at")]
+        public DateTime CreatedAt { get; set; }
 
         [JsonProperty("default_image")]
         public string DefaultImage { get; set; }
@@ -22,102 +25,147 @@ namespace HacarusVisualInspectionApi.Models
         [JsonProperty("description")]
         public string Description { get; set; }
 
-        [JsonProperty("detected_objects")]
-        public int DetectedObjects { get; set; }
-
-        [JsonProperty("detection_accuracy")]
-        public double DetectionAccuracy { get; set; }
-
         [JsonProperty("finished_date")]
         public DateTime? FinishedDate { get; set; }
 
-        [JsonProperty("good")]
-        public bool? Good { get; set; }
+        [JsonProperty("images")]
+        public Image[] Images { get; set; }
 
         [JsonProperty("is_training_data")]
-        public bool IsTrainingData { get; set; }
+        public bool? IsTrainingData { get; set; }
 
         [JsonProperty("item_id")]
         public string ItemId { get; set; }
 
-        [JsonProperty("label")]
-        public string Label { get; set; }
-
-        [JsonProperty("override_assessment")]
-        public bool OverrideAssessment { get; set; }
+        [JsonProperty("override")]
+        public Override Override { get; set; }
 
         [JsonProperty("status")]
         public string Status { get; set; }
 
         [JsonProperty("thumbnail_image")]
         public string ThumbnailImage { get; set; }
+    
+        [JsonProperty("models")]
+        public Model[] Models { get; set; }
+
     }
 
-    public class TrainingCount
+    public partial class Image
     {
-        [JsonProperty("defect")]
-        public int Defect { get; set; }
+        [JsonProperty("annotations")]
+        public Annotation[] Annotations { get; set; }
 
-        [JsonProperty("good")]
-        public int Good { get; set; }
+        [JsonProperty("batch_id")]
+        public string BatchId { get; set; }
+
+        [JsonProperty("content_type")]
+        public string ContentType { get; set; }
+
+        [JsonProperty("created_at")]
+        public DateTime CreatedAt { get; set; }
+
+        [JsonProperty("defects")]
+        public long Defects { get; set; }
+
+        [JsonProperty("exif_metadata")]
+        public ExifMetadata ExifMetadata { get; set; }
+
+        [JsonProperty("file_name")]
+        public string FileName { get; set; }
+
+        [JsonProperty("file_size")]
+        public int? FileSize { get; set; }
+
+        [JsonProperty("height")]
+        public long? Height { get; set; }
+
+        [JsonProperty("image_id")]
+        public long ImageId { get; set; }
+
+        [JsonProperty("key")]
+        public string Key { get; set; }
+
+        [JsonProperty("position")]
+        public string Position { get; set; }
+
+        [JsonProperty("processed")]
+        public bool Processed { get; set; }
+
+        [JsonProperty("uploaded")]
+        public bool? Uploaded { get; set; }
+
+        [JsonProperty("width")]
+        public long? Width { get; set; }
+
+        [JsonProperty("is_raw_uploaded")]
+        public bool? IsRawUploaded { get; set; }
+
+        [JsonProperty("raw_url")]
+        public string RawUrl { get; set; }
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
     }
 
-    public class Summary
+    public partial class Annotation
     {
-        [JsonProperty("adjusted")]
-        public int Adjusted { get; set; }
+        [JsonProperty("annotation_id")]
+        public int AnnotationId { get; set; }
 
-        [JsonProperty("analysed")]
-        public int Analysed { get; set; }
+        [JsonProperty("created_at")]
+        public DateTime CreatedAt { get; set; }
 
-        [JsonProperty("archived_defects")]
-        public int ArchivedDefects { get; set; }
+        [JsonProperty("for_training")]
+        public bool ForTraining { get; set; }
 
-        [JsonProperty("assessment")]
-        public string Assessment { get; set; }
+        [JsonProperty("notes")]
+        public string Notes { get; set; }
 
-        [JsonProperty("confirmed")]
-        public int Confirmed { get; set; }
+        [JsonProperty("x_max")]
+        public int XMax { get; set; }
 
-        [JsonProperty("defects_detected")]
-        public int DefectsDetected { get; set; }
+        [JsonProperty("x_min")]
+        public int XMin { get; set; }
 
-        [JsonProperty("detection_accuracy")]
-        public double DetectionAccuracy { get; set; }
+        [JsonProperty("y_max")]
+        public int YMax { get; set; }
 
-        [JsonProperty("items_archived")]
-        public int ItemsArchived { get; set; }
+        [JsonProperty("y_min")]
+        public int YMin { get; set; }
 
-        [JsonProperty("items_for_review")]
-        public int ItemsForReview { get; set; }
 
-        [JsonProperty("title")]
-        public string Title { get; set; }
+        public Annotation() { }
+        public Annotation(
+            int xMin,
+            int xMax,
+            int yMin,
+            int yMax,
+            string notes)
+        {
+            XMin = xMin;
+            XMax = xMax;
+            YMin = yMin;
+            YMax = yMax;
+            Notes = notes;
+        }
 
-        [JsonProperty("training")]
-        public TrainingCount Training { get; set; }
+        public bool ShouldSerializeAnnotationId()
+        {
+            return false;
+        }
+
+        public bool ShouldSerializeCreatedAt()
+        {
+            return false;
+        }
+
+        public bool ShouldSerializeForTraining()
+        {
+            return false;
+        }
     }
 
-    public class ItemsData
-    {
-        [JsonProperty("archived")]
-        public List<Item> Archived { get; set; }
-
-        [JsonProperty("predict")]
-        public List<Item> Predict { get; set; }
-
-        [JsonProperty("summary")]
-        public Summary Summary { get; set; }
-
-        [JsonProperty("training")]
-        public List<Item> Training { get; set; }
-    }
-
-    public class ItemsResponse: Response
-    {
-        [JsonProperty("data")]
-        public ItemsData Data { get; set; }
-    }
 
     public class ExifMetadata
     {
@@ -167,124 +215,68 @@ namespace HacarusVisualInspectionApi.Models
         public List<int> YResolution { get; set; }
     }
 
-    public class Annotation
+
+    public class Override
     {
-        [JsonProperty("annotation_id")]
-        public int AnnotationId { get; set; }
-
-        [JsonProperty("created_at")]
-        public DateTime CreatedAt { get; set; }
-
-        [JsonProperty("image_id")]
-        public int ImageId { get; set; }
-
-        [JsonProperty("notes")]
-        public string Notes { get; set; }
-
-        [JsonProperty("x_max")]
-        public double XMax { get; set; }
-
-        [JsonProperty("x_min")]
-        public double XMin { get; set; }
-
-        [JsonProperty("y_max")]
-        public double YMax { get; set; }
-
-        [JsonProperty("y_min")]
-        public double YMin { get; set; }
-    }
-
-        public class Image
-    {
-        [JsonProperty("annotations")]
-        public List<Annotation> Annotations { get; set; }
-
-        [JsonProperty("content_type")]
-        public string ContentType { get; set; }
-
-        [JsonProperty("defect_counted")]
-        public int DefectCounted { get; set; }
-
-        [JsonProperty("exif_metadata")]
-        public ExifMetadata ExifMetadata { get; set; }
-
-        [JsonProperty("file_size")]
-        public int FileSize { get; set; }
-
-        [JsonProperty("height")]
-        public int Height { get; set; }
-
-        [JsonProperty("image_id")]
-        public int ImageId { get; set; }
-
-        [JsonProperty("is_raw_uploaded")]
-        public bool IsRawUploaded { get; set; }
-
-        [JsonProperty("position")]
-        public string Position { get; set; }
-
-        [JsonProperty("processed")]
-        public bool Processed { get; set; }
-
-        [JsonProperty("raw_url")]
-        public string RawUrl { get; set; }
-
-        [JsonProperty("url")]
-        public string Url { get; set; }
-
-        [JsonProperty("width")]
-        public int Width { get; set; }
-    }
-
-    public class Assessment
-    {
-        [JsonProperty("assessment_result")]
-        public string AssessmentResult { get; set; }
-
         [JsonProperty("detected_objects")]
         public int? DetectedObjects { get; set; }
 
         [JsonProperty("detection_accuracy")]
-        public double? DetectionAccuracy { get; set; }
-
-        [JsonProperty("good")]
-        public bool? Good { get; set; }
-
-        [JsonProperty("override_assessment")]
-        public bool? OverrideAssessment { get; set; }
-    }
-
-
-    public class ItemData
-    {
-        [JsonProperty("computed_assessment")]
-        public Assessment ComputedAssessment { get; set; }
-
-        [JsonProperty("confirmed_assessment")]
-        public bool ConfirmedAssessment { get; set; }
-
-        [JsonProperty("images")]
-        public List<Image> Images { get; set; }
-
-        [JsonProperty("is_training_data")]
-        public bool IsTrainingData { get; set; }
-
-        [JsonProperty("item_id")]
-        public string ItemId { get; set; }
+        public int? DetectionAccuracy { get; set; }
 
         [JsonProperty("label")]
         public string Label { get; set; }
 
-        [JsonProperty("manual_assessment")]
-        public Assessment ManualAssessment { get; set; }
-
-        [JsonProperty("status")]
-        public string Status { get; set; }
+        [JsonProperty("result")]
+        public string Result { get; set; }
     }
 
-    public class ItemResponse: Response
+
+    public class Model
     {
-        [JsonProperty("data")]
-        public ItemData Data { get; set; }
+        [JsonProperty("aggregate")]
+        public Aggregate Aggregate { get; set; }
+
+        [JsonProperty("assessments")]
+        public Assessment[] Assessments { get; set; }
+
+        [JsonProperty("model_id")]
+        public string ModelId { get; set; }
+    }
+
+    public class Aggregate
+    {
+        [JsonProperty("detected_objects")]
+        public long DetectedObjects { get; set; }
+
+        [JsonProperty("label")]
+        public string Label { get; set; }
+    }
+
+    public class Assessment
+    {
+        [JsonProperty("annotations")]
+        public Annotation[] Annotations { get; set; }
+
+        [JsonProperty("computed")]
+        public Override Computed { get; set; }
+
+        [JsonProperty("confirmed")]
+        public bool Confirmed { get; set; }
+
+        [JsonProperty("created_at")]
+        public DateTime CreatedAt { get; set; }
+
+        [JsonProperty("final")]
+        public Override Final { get; set; }
+
+        [JsonProperty("finished_date")]
+        public DateTime? FinishedDate { get; set; }
+
+        [JsonProperty("image_id")]
+        public long ImageId { get; set; }
+
+        [JsonProperty("model_id")]
+        public string ModelId { get; set; }
     }
 }

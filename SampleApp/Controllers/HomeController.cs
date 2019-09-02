@@ -15,7 +15,7 @@ namespace SampleApp.Controllers
     public class HomeController : Controller
     {
         private readonly IHostingEnvironment Environment;
-        private readonly HacarusVisualInspection VisualInspection = new HacarusVisualInspection();
+        private readonly HacarusVisualInspection VisualInspection = new HacarusVisualInspection("http://127.0.0.1:3000/api");
         public static string AccessToken;
         public static string CurrentContextId;
 
@@ -220,7 +220,7 @@ namespace SampleApp.Controllers
 
         [HttpPost]
         public IActionResult Serve(
-            string serve, string itemIdServe, int modelIdServe
+            string serve, string itemIdServe, string modelIdServe
         )
         {
             PredictResponse Result = VisualInspection.Serve(new string[] { itemIdServe }, modelIdServe);
@@ -239,23 +239,12 @@ namespace SampleApp.Controllers
             string deleteModels, string modelIdsServe
         )
         {
-            try
-            {
-                int modelId = Int32.Parse(modelIdsServe);
-                DeleteResponse Result = VisualInspection.DeleteModels(new int[] { modelId });
+                DeleteResponse Result = VisualInspection.DeleteModels(new string[] { modelIdsServe });
 
                 ViewData["HttpResponse"] = "Status code: " + (int)Result.HttpResponse.StatusCode + " " + Result.HttpResponse.StatusCode;
                 ViewData["StringMessage"] = Result.HttpResponse.Content;
                 ViewBag.BearerAvailable = VisualInspection.IsAuthorized;
                 ViewBag.Active = "deleteModels";
-            }
-            catch (FormatException)
-            {
-                ViewData["HttpResponse"] = "Invalid input";
-                ViewData["StringMessage"] = "Model id should be integer";
-                ViewBag.BearerAvailable = VisualInspection.IsAuthorized;
-                ViewBag.Active = "deleteModels";
-            }
             return Index();
         }
 
@@ -266,7 +255,7 @@ namespace SampleApp.Controllers
             string getItem, string itemId
         )
         {
-            ItemResponse Result = VisualInspection.GetItem(itemId);
+            ItemResponse Result = VisualInspection.GetItem(itemId, true, true);
 
             ViewData["HttpResponse"] = "Status code: " + (int)Result.HttpResponse.StatusCode + " " + Result.HttpResponse.StatusCode;
             ViewData["StringMessage"] = Result.HttpResponse.Content;
@@ -275,6 +264,28 @@ namespace SampleApp.Controllers
 
             return Index();
         }
+
+
+        [HttpPost]
+        public IActionResult AddAnnotation(
+            string addAnnotation, string imageId,
+            int xMin, int xMax,
+            int yMin, int yMax,
+            string notes
+        )
+        {
+
+            Annotation NewAnnotation = new Annotation(xMin, xMax, yMin, yMax, notes);
+            GenericResponse Result = VisualInspection.SetAnnotations(new Annotation[] { NewAnnotation }, imageId);
+
+            ViewData["HttpResponse"] = "Status code: " + (int)Result.HttpResponse.StatusCode + " " + Result.HttpResponse.StatusCode;
+            ViewData["StringMessage"] = Result.HttpResponse.Content;
+            ViewBag.BearerAvailable = VisualInspection.IsAuthorized;
+            ViewBag.Active = "addAnnotation";
+
+            return Index();
+        }
+
 
         public IActionResult Index()
         {
@@ -294,7 +305,7 @@ namespace SampleApp.Controllers
                 {
                     ViewBag.TrainingItems = TrainingResponse.Data.Training;
                     ViewBag.PredictItems = TrainingResponse.Data.Predict;
-                    Console.Write(TrainingResponse.Data.Training.Count);
+                    //Console.Write(TrainingResponse.Data.Training.Count);
                 }
 
                 if (AlgorithmResponse != null && AlgorithmResponse.Data != null)

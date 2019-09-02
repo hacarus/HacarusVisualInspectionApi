@@ -160,14 +160,14 @@ namespace HacarusVisualInspectionApi
         }
 
 
-        public PredictResponse Serve(string[] item_ids, int? modelId = null)
+        public PredictResponse Serve(string[] itemIds, string modelId = "")
         {
             var Request = new RestRequest("v1/serve", Method.POST);
             Request.AddHeader("Accept-Language", this.Language);
             Request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
             var predictParameters = new
             {
-                item_ids,
+                item_ids = itemIds,
                 model_id = modelId
             };
 
@@ -179,7 +179,7 @@ namespace HacarusVisualInspectionApi
             return ResponseObject;
         }
 
-        public DeleteResponse DeleteModels(int[] model_ids)
+        public DeleteResponse DeleteModels(string[] model_ids)
         {
             var Request = new RestRequest("v1/model", Method.DELETE);
             Request.AddHeader("Accept-Language", this.Language);
@@ -197,14 +197,33 @@ namespace HacarusVisualInspectionApi
             return ResponseObject;
         }
 
-        public ItemResponse GetItem(string item_id)
+        public ItemResponse GetItem(string itemId, bool showAnnotations, bool showAssessments)
         {
-            var Request = new RestRequest("v1/item/" + item_id, Method.GET);
+            var Request = new RestRequest("v1/item/" + itemId, Method.GET);
             Request.AddHeader("Accept-Language", this.Language);
             Request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
-            var response = this.Client.Execute(Request);
-            ItemResponse ResponseObject = JsonConvert.DeserializeObject<ItemResponse>(response.Content);
-            ResponseObject.HttpResponse = response;
+            Request.AddParameter("show_annotations", showAnnotations);
+            Request.AddParameter("show_assessments", showAssessments);
+            var Response = this.Client.Execute(Request);
+            ItemResponse ResponseObject = JsonConvert.DeserializeObject<ItemResponse>(Response.Content);
+            ResponseObject.HttpResponse = Response;
+            return ResponseObject;
+        }
+
+        public GenericResponse SetAnnotations(Annotation[] annotations, string imageId)
+        {
+            var Request = new RestRequest("v1/image/" + imageId + "/annotation", Method.POST);
+            Request.AddHeader("Authorization", string.Format("Bearer {0}", this.AccessToken));
+            Request.AddHeader("Accept-Language", this.Language);
+            var RequestParameters = new
+            {
+                annotations
+            };
+            var Json = JsonConvert.SerializeObject(RequestParameters);
+            Request.AddJsonBody(Json);
+            var Response = this.Client.Execute(Request);
+            GenericResponse ResponseObject = JsonConvert.DeserializeObject<GenericResponse>(Response.Content);
+            ResponseObject.HttpResponse = Response;
             return ResponseObject;
         }
     }
