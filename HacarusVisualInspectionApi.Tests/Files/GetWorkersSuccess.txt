@@ -1,0 +1,6 @@
+﻿{
+  "data": {
+    "predicting": ["predicting1"], 
+    "training": ["training1"]
+  }
+}
