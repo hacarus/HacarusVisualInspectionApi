@@ -15,22 +15,30 @@ namespace HacarusVisualInspectionApi.Tests
             var JsonString = File.ReadAllText("../../../Files/TrainSuccess.txt");
             var Client = MockGenerator.MockRestClient<ModelResponse>(HttpStatusCode.OK, JsonString);
             HacarusVisualInspection VisualInspection = new HacarusVisualInspection(Client);
-            ModelResponse Response = VisualInspection.Train("OC", "6/11/19 10:26:07 AM", new string[] { "iItemID" }, new AlgorithmParameter[] { });
+            TrainResponse Response = VisualInspection.Train("OC", "6/11/19 10:26:07 AM", new string[] { "iItemID" }, new AlgorithmParameter[] { });
             Assert.IsNotNull(Response);
             Assert.IsNotNull(Response.HttpResponse);
             Assert.IsNotNull(Response.Data);
             Assert.IsNull(Response.Errors);
             Assert.IsTrue(Response.HttpResponse.StatusCode.Equals(HttpStatusCode.OK));
             Assert.IsFalse(Response.Data.Active);
-            Assert.IsTrue(Response.Data.AlgorithmId.Equals("OC"));
-            Assert.IsFalse(Response.Data.ContextDefault);
-            Assert.IsTrue(Response.Data.ContextId.Equals(1000));
-            Assert.IsTrue(Response.Data.CreatedAt.Equals(DateTime.Parse("2019-06-11T01:26:08Z").ToUniversalTime()));
-            Assert.IsTrue(Response.Data.ModelId.Equals("270"));
-            Assert.IsTrue(Response.Data.Name.Equals("6/11/19 10:26:07 AM"));
+            Assert.IsTrue(Response.Data.AlgorithmId.Equals("RF"));
+            Assert.IsTrue(Response.Data.AlgorithmType.Equals("unsupervised"));
+            Assert.IsTrue(Response.Data.ContextDefault);
+            Assert.IsTrue(Response.Data.ContextId.Equals(1033));
+            Assert.IsTrue(Response.Data.CreatedAt.Equals(DateTime.Parse("2019-09-09T10:05:32Z").ToUniversalTime()));
+            Assert.IsTrue(Response.Data.ModelId.Equals("c5e77995-1036-5a54-9e8a-edd450362802"));
+            Assert.IsNull(Response.Data.ImageUrl);
+            Assert.IsTrue(Response.Data.Name.Equals("rgi1"));
+            Assert.IsTrue(Response.Data.Name.Equals("rgi1"));
+            Assert.IsTrue(Response.Data.NgImgCount.Equals(0));
+            Assert.IsTrue(Response.Data.OkImgCount.Equals(0));
+            Assert.IsNull(Response.Data.Recall);
+            Assert.IsNull(Response.Data.Precision);
             Assert.IsTrue(Response.Data.Status.Equals("creating"));
-            Assert.IsTrue(Response.Data.UpdatedAt.Equals(DateTime.Parse("2019-06-11T10:26:07Z").ToUniversalTime()));
-            Assert.IsTrue(Response.Data.Version.Equals("model-2019061101:26:07"));
+            Assert.IsNull(Response.Data.StatusText);
+            Assert.IsTrue(Response.Data.UpdatedAt.Equals(DateTime.Parse("2019-09-09T10:05:32Z").ToUniversalTime()));
+            Assert.IsTrue(Response.Data.Version.Equals("0.3.3-1568023532.1785076"));
             Console.WriteLine("Success End");
         }
 
@@ -41,7 +49,7 @@ namespace HacarusVisualInspectionApi.Tests
             var JsonString = File.ReadAllText("../../../Files/TrainFailedInvalidId.txt");
             var Client = MockGenerator.MockRestClient<ModelResponse>(HttpStatusCode.Forbidden, JsonString);
             HacarusVisualInspection VisualInspection = new HacarusVisualInspection(Client);
-            ModelResponse Response = VisualInspection.Train("OC", "6/11/19 10:26:07 AM", new string[] { "InvalidItemID" }, new AlgorithmParameter[] { });
+            TrainResponse Response = VisualInspection.Train("OC", "6/11/19 10:26:07 AM", new string[] { "InvalidItemID" }, new AlgorithmParameter[] { });
             Assert.IsNotNull(Response);
             Assert.IsNotNull(Response.HttpResponse);
             Assert.IsNotNull(Response.Errors);

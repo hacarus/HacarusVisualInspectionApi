@@ -5,13 +5,13 @@ using Newtonsoft.Json;
 namespace HacarusVisualInspectionApi.Models
 {
 
-    public partial class ItemResponse : Response
+    public class ItemResponse : Response
     {
         [JsonProperty("data")]
         public Item Data { get; set; }
     }
 
-    public partial class Item
+    public class Item
     {
         [JsonProperty("active")]
         public bool Active { get; set; }
@@ -51,7 +51,7 @@ namespace HacarusVisualInspectionApi.Models
 
     }
 
-    public partial class Image
+    public class Image
     {
         [JsonProperty("annotations")]
         public Annotation[] Annotations { get; set; }
@@ -108,7 +108,7 @@ namespace HacarusVisualInspectionApi.Models
         public string Url { get; set; }
     }
 
-    public partial class Annotation
+    public class Annotation
     {
         [JsonProperty("annotation_id")]
         public int AnnotationId { get; set; }

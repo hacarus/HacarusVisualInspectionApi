@@ -64,7 +64,7 @@ namespace HacarusVisualInspectionApi
             return APIService.Instance.GetModels();
         }
 
-        public ModelResponse Train(string algorithmId, string modelName, string[] itemIds, AlgorithmParameter[] algorithmParameters)
+        public TrainResponse Train(string algorithmId, string modelName, string[] itemIds, AlgorithmParameter[] algorithmParameters)
         {
             return APIService.Instance.Train(algorithmId, modelName, itemIds, algorithmParameters);
         }

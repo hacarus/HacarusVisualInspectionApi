@@ -34,7 +34,7 @@ namespace HacarusVisualInspectionApi.Models
         public Stats TrainingStats { get; set; }
     }
 
-    public  class Stats
+    public class Stats
     {
         [JsonProperty("NG_count")]
         public long NgCount { get; set; }

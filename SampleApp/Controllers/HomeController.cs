@@ -15,7 +15,7 @@ namespace SampleApp.Controllers
     public class HomeController : Controller
     {
         private readonly IHostingEnvironment Environment;
-        private readonly HacarusVisualInspection VisualInspection = new HacarusVisualInspection("http://127.0.0.1:3000/api");
+        private readonly HacarusVisualInspection VisualInspection = new HacarusVisualInspection("https://sdd-demo.hacarus.com/api");
         public static string AccessToken;
         public static string CurrentContextId;
 
@@ -166,7 +166,7 @@ namespace SampleApp.Controllers
                 name = DateTime.Now.ToString();
             }
 
-            ModelResponse Result = VisualInspection.Train(algorithmId, name, itemIds.ToArray(), new AlgorithmParameter[] { AlgorithmParameter });
+            TrainResponse Result = VisualInspection.Train(algorithmId, name, itemIds.ToArray(), new AlgorithmParameter[] { AlgorithmParameter });
 
             Console.WriteLine("IFFFF " + itemIds.Count);
 

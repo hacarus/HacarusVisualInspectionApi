@@ -3,13 +3,13 @@ using Newtonsoft.Json;
 
 namespace HacarusVisualInspectionApi.Models
 {
-    public partial class WorkersResponse : Response
+    public class WorkersResponse : Response
     {
         [JsonProperty("data")]
-        public Data Data { get; set; }
+        public WorkerData Data { get; set; }
     }
 
-    public partial class Data
+    public class WorkerData
     {
         [JsonProperty("predicting")]
         public string[] Predicting { get; set; }
