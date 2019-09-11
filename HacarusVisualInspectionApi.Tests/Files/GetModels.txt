@@ -1,14 +1,54 @@
 ﻿{
-    "data": [
-        {
-            "active": true,
-            "algorithm_id": "OC",
-            "context_default": false,
-            "created_at": "2019-06-10T08:28:16Z",
-            "model_id": 269,
-            "name": "Test-20190610-01",
-            "status": "active",
-            "version": "model-2019061008:28:16"
+  "data": [
+    {
+      "active": false, 
+      "algorithm_id": "AE", 
+      "algorithm_type": "unsupervised", 
+      "context_default": false, 
+      "created_at": "2019-09-09T03:23:37Z", 
+      "image_url": null, 
+      "model_id": "b2b99239-bdf4-5616-a531-f50546e8e32a", 
+      "name": "aci1", 
+      "ng_img_count": 0, 
+      "ok_img_count": 0, 
+      "stats": {
+        "precision": {
+          "computed": null, 
+          "projected": null
+        }, 
+        "recall": {
+          "computed": null, 
+          "projected": null
         }
-    ]
+      }, 
+      "status": "failed", 
+      "status_text": "Malformed parameters detected. Please check parameters before training!", 
+      "version": "0.3.3-1567999416.8217766"
+    }, 
+    {
+      "active": true, 
+      "algorithm_id": "IF", 
+      "algorithm_type": "unsupervised", 
+      "context_default": false, 
+      "created_at": "2019-09-09T02:28:02Z", 
+      "image_url": "https://hacarus-saas-data.s3.amazonaws.com/thumbnail/bf879bb9e18ac516dbe4747999bc415587d68eb1", 
+      "model_id": "7cb127ae-79e2-5bf0-bf72-ac178f464c4c", 
+      "name": "hgi1", 
+      "ng_img_count": 4, 
+      "ok_img_count": 9, 
+      "stats": {
+        "precision": {
+          "computed": 0.0, 
+          "projected": 0.3077000000
+        }, 
+        "recall": {
+          "computed": 0.0, 
+          "projected": 1.0000000000
+        }
+      }, 
+      "status": "active", 
+      "status_text": null, 
+      "version": "0.3.3-1567996081.5101113"
+    }
+  ]
 }

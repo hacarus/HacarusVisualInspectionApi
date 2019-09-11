@@ -117,7 +117,7 @@ namespace HacarusVisualInspectionApi
         }
 
 
-        public ModelResponse Train(string algorithmId, string modelName, string[] itemIds, AlgorithmParameter[] algorithmParameters)
+        public TrainResponse Train(string algorithmId, string modelName, string[] itemIds, AlgorithmParameter[] algorithmParameters)
         {
             var Request = new RestRequest("v1/train", Method.POST);
             Request.AddHeader("Accept-Language", this.Language);
@@ -133,7 +133,7 @@ namespace HacarusVisualInspectionApi
             var Json = JsonConvert.SerializeObject(Parameters);
             Request.AddJsonBody(Json);
             var Response = this.Client.Execute(Request);
-            ModelResponse ResponseObject = JsonConvert.DeserializeObject<ModelResponse>(Response.Content);
+            TrainResponse ResponseObject = JsonConvert.DeserializeObject<TrainResponse>(Response.Content);
             ResponseObject.HttpResponse = Response;
             return ResponseObject;
         }
