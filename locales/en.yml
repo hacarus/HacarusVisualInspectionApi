@@ -84,7 +84,7 @@ To get started, you need the following:
         Use the created model to predict the items for prediction.
       </li>
       <li>
-        Sample images for evaluation are available for download here: <a href='https://drive.google.com/file/d/1Zg*gCX9gxxYjEau9j29oe0hDBuppDosh/view'>Metal Plates</a> and <a href='https://drive.google.com/file/d/1oRvEfeDfa3seEn0rFXRa1IgTUyzg0hxv/view'>Wood Blocks</a>
+        Sample images for evaluation are available for download here: <a href='https://drive.google.com/open?id=1D736spz0rSOMgp9V71BEYtKH31Sxn1ud'>Metal Plates</a> and <a href='https://drive.google.com/open?id=14fnv6d9Cq9suUdoH57RntSuE_mh21fQg'>Wood Blocks</a>
         <ul>
           <li>
             Contains good and defect images and a list of parameters you may use to create a model.
