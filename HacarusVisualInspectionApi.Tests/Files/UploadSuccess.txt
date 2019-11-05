@@ -1,7 +1,0 @@
-﻿{
-    "data": {
-        "item_ids": [
-            "NewItem"
-        ]
-    }
-}
