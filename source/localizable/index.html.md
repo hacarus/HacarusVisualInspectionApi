@@ -390,6 +390,55 @@ t(:getModelsMessage, serve: 'serve', true: 'True')
 ]
 ```
 
+## t(:deleteModels)
+
+```csharp
+//Use ModelIds to pass an array of model ids you want to delete
+PredictResponse Response = VisualInspection.DeleteModels(ModelIds);
+```
+
+```python
+# Use model_ids to pass an array of model ids you want to delete
+response = sdk.delete_models(model_ids)
+```
+
+<div class="hacarus-content-list lang-specific csharp">
+t(:deleteModelsMessage, getModels: 'GetModels')
+</div>
+
+<div class="hacarus-content-list lang-specific python">
+t(:deleteModelsMessage, getModels: 'get_models')
+</div>
+
+> **t(:sampleResponse)**
+
+```json
+{
+    "status": "ok"
+}
+```
+
+> **t(:possibleErrors)**
+<br/>
+> *t(:error404)* t(:modelDoesNotExist)
+
+```csharp
+{
+    "errors": {
+        "detail": "No model found",
+        "source": {
+            "pointer": "/api/v1/model?"
+        },
+        "status": 404,
+        "title": ""
+    }
+}
+```
+
+```python
+hacarus_visual_inspection.errors.APIError: Cannot find models (404)
+```
+
 ## t(:train)
 
 ```csharp
@@ -557,6 +606,58 @@ hacarus_visual_inspection.errors.APIError: Invalid filename 2019-05-24 at 3.27.1
 
 ```python
 hacarus_visual_inspection.errors.APIError: No images to upload (400)
+```
+
+## t(:setAnnotations)
+
+```csharp
+//Set integer values for YMin, XMax, YMin, YMax
+Annotation NewAnnotation = new Annotation(YMin, XMax, YMin, YMax, Notes);
+UploadResponse Response = VisualInspection.SetAnnotations(new Annotation[] { NewAnnotation }, ImageId);
+```
+
+```python
+filenames = ['images1.tif', 'tests/images2.tif']
+is_good = True
+sdk.set_annotations(annotations, image_id)
+```
+
+<div class="hacarus-content-list lang-specific csharp">
+t(:setAnnotationsMessage)
+</div>
+
+<div class="hacarus-content-list lang-specific python">
+t(:setAnnotationsMessage)
+</div>
+
+> **t(:sampleResponse)**
+
+```json
+{
+    "item_ids": [
+        "IMG6760_U"
+    ]
+}
+```
+
+> **t(:possibleErrors)**
+> *t(:error400)*</b> t(:imageIdDoesNotExist)
+
+```csharp
+{
+    "errors": {
+        "detail": null,
+        "source": {
+            "pointer": "/api/v1/image/10/annotation?"
+        },
+        "status": 404,
+        "title": "Cannot find image"
+    }
+}
+```
+
+```python
+hacarus_visual_inspection.errors.APIError: Cannot find image (404)
 ```
 
 ## t(:getItem)
@@ -753,6 +854,34 @@ hacarus_visual_inspection.errors.APIError: Cannot find items (404)
 ```python
 hacarus_visual_inspection.errors.APIError: There is no available model (400)
 ```
+
+## t(:getProcesses)
+
+```csharp
+PredictResponse Response = VisualInspection.GetProcesses();
+```
+
+```python
+response = sdk.get_processes(item_ids, "model_id")
+```
+
+<div class="hacarus-content-list lang-specific csharp">
+t(:getProcessesMessage)
+</div>
+
+<div class="hacarus-content-list lang-specific python">
+t(:getProcessesMessage)
+</div>
+
+> **t(:sampleResponse)**
+
+```json
+{
+    "predicting": ["predicting_model"],
+    "training": ["training_algorithm"]
+}
+```
+
 
 #t(:algorithmsWithVersion)
 

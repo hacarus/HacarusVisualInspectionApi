@@ -159,31 +159,24 @@ To get started, you need the following:
   getItemsMessage: "
   <ul>
     <li>
-      Retrieves list of uploaded items grouped by training, predict, and archived
+      Retrieves list of uploaded items grouped by training and predict
       <ul>
         <li>
           `training`: Items to be used for training
-          <ul>
-            <li>
-              Check for key `good` to know if item is labeled as `%{true}`(good), `%{false}`(defect) or `%{null}` (unlabeled)
-            </li>
-          </ul>
         </li>
         <li>
           `predict`: Uploaded items that can be predicted
-          <ul>
-            <li>
-              To check for labels and results, check for the keys `good` and `status`
-            </li>
-          </ul>
-        </li>
-        <li>
-          `archived`: Achived items (Future feature, currently not in use)
         </li>
       </ul>
     </li>
     <li>
-      `override_assessment` and `confirmed_assessment` are specific to UI and can be ignored when working with the SDK
+      To know the results, check for the key `models` then look for the model you want to check. 
+    </li>
+    <li>
+      Use the `aggregated` key and look for `label` to know the prediction result. 
+    </li>
+    <li>
+      Use `assessment` key to check individual image result
     </li>
   </ul>
   "
@@ -223,6 +216,21 @@ To get started, you need the following:
     </li>
   </ul>
   "
+  deleteModels: "Delete Models"
+  deleteModelsMessage: "
+  <ul>
+    <li>
+      Delete models
+    </li>
+    <li>
+      Model that is currently active (`default_context` is `true`) cannot be deleted
+    </li>
+    <li>
+      To check the result, use the `%{getModels}` method and check for key `status` of each item
+    </li>
+  </ul>
+  "
+  modelDoesNotExist: "Model with model id sent does not exist"
   train: "Train"
   algorithmParamter: "algorithm parameter"
   trainMessage: "
@@ -294,6 +302,21 @@ To get started, you need the following:
   error400: "400 BadRequest:"
   invalidFile: "Invalid file name or file type"
   noImage: "No image sent for upload"
+  setAnnotations: "Set Annotations"
+  setAnnotationsMessage: "
+  <ul>
+    <li>
+      Use this method to set annotations to an image
+    </li>
+    <li>
+      Use array of Annotation and `image_id` as parameters
+    </li>
+    <li>
+      To get all annotations, use 'GetItem' method
+    </li>
+  </ul>
+  "
+  imageIdDoesNotExist: "Image id does not exist"
   getItem: "Get Specific Item"
   getItemMessage: "
   <ul>
@@ -307,19 +330,13 @@ To get started, you need the following:
       Important keys:
       <ul>
         <li>
-          `computed_assessment`: result of the prediction
+          To know the results, check for the key `models` then look for the model you want to check. 
         </li>
         <li>
-          `annotations`: contains list of annotations generated when `%{serve}` method is called
+          Use the `aggregated` key and look for `label` to know the prediction result. 
         </li>
         <li>
-          `raw_url`: url of your uploaded file
-        </li>
-        <li>
-          `url`: processed file with defect annotations (green boxes)
-        </li>
-        <li>
-          `status`: status of the item. It can be `pending`(not yet predicted or being predicted) or `done`(predicted)
+          Use `assessment` key to check individual image result
         </li>
       </ul>
     </li>
@@ -340,6 +357,22 @@ To get started, you need the following:
   "
   itemDoesNotExists: "Item with item id sent does not exist"
   noModel: "No model available to use for prediction or available models have `failed` status. Create a new model by using `Train` method."
+  getProcesses: "Get Processes"
+  getProcessesMessage: "
+  <ul>
+    <li>
+      Get list of ongoing processes grouped by process type
+      <ul>
+        <li>
+          `predicting`: contains a list of model ids being used on ongoing predictions
+        </li>
+        <li>
+          `training`: contains a list of algorithm ids being used on ongoing trainings
+        </li>
+      </ul>
+    </li>
+  </ul>
+  "
   genericErrors: "Generic Errors"
   errorUnauthorized: "Error when calling a method but not yet authorized. When encounted, please call `%{authorize}` method first."
   errorNoLicense: "Error when calling a method but license is not yet activated or expired. When encounted, please call `%{activateLicense}` method first."

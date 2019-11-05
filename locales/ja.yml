@@ -158,31 +158,24 @@ ja:
   getItemsMessage: "
   <ul>
     <li>
-      学習、推論、およびアーカイブ別に分類したアップロード済みアイテムのリストを取得します。
+      学習(`training`)と予測(`predict`)グループ化されたアップロードデータの一覧を取得します。
       <ul>
         <li>
           `training`: 学習に使用するデータ
-          <ul>
-            <li>
-              データが`%{true}`（good）、`%{false}`（defect）、または`%{null}`（ラベルなし）のいずれかにラベル付けされているかをgoodというキーで知ることができます。
-            </li>
-          </ul>
         </li>
         <li>
           `predict`: アップロード済みのデータのうち、推論用のもの
-          <ul>
-            <li>
-             推論結果を確認するには、`good`と`status`のキーを確認してください。
-            </li>
-          </ul>
-        </li>
-        <li>
-          `archived`: アーカイブ済みデータ（将来実装予定の機能、現在使用されていません）
         </li>
       </ul>
     </li>
     <li>
-      `override_assessment`および`confirm_assessment`はUI（ユーザインタフェース）固有のものであり、SDKを使用している場合は無視できます。
+      結果を知るには、modelsのキーを確認し、確認したいモデルを調べます。
+    </li>
+    <li>
+      予測の結果を分かるため、aggregatedのキーを使用し、labelを調べます。
+    </li>
+    <li>
+      各画像の結果を確認するには、assessmentのキーを使用します。
     </li>
   </ul>
   "
@@ -222,6 +215,21 @@ ja:
     </li>
   </ul>
   "
+  deleteModels: "モデルを削除する"
+  deleteModelsMessage: "
+  <ul>
+    <li>
+      モデルを削除する
+    </li>
+    <li>
+      現在アクティブなモデル(`default_context` is `true`)を削除できません。
+    </li>
+    <li>
+      結果を確認するには、`%{getModels}` メソッドを利用し、各データのキーstatusをチェックして下ださい
+    </li>
+  </ul>
+  "
+  modelDoesNotExist: "Model with model id sent does not exist"
   train: "学習"
   algorithmParameter: "アルゴリズムパラメータ"
   trainMessage: "
@@ -293,6 +301,21 @@ ja:
   error400: "400 BadRequest:"
   invalidFile: "ファイル名かファイル形の無効。"
   noImage: "アップロード用の画像が送信されていません。"
+  setAnnotations: "注釈をセットする"
+  setAnnotationsMessage: "
+  <ul>
+    <li>
+      このメソッドを使用し、画像に注釈をセットします。
+    </li>
+    <li>
+      注釈の配列とimage_idをパラメータとして使用します。
+    </li>
+    <li>
+      注釈を全部取得するには、`GetItem`メソッドを使用します。
+    </li>
+  </ul>
+  "
+  imageIdDoesNotExist: "Image id does not exist"
   getItem: "特定のデータを取得する"
   getItemMessage: "
   <ul>
@@ -339,6 +362,22 @@ ja:
   "
   itemDoesNotExists: "送信されたデータとデータIDは存在していません。"
   noModel: "推論に使用できるモデルがないか、使用可能なモデルのステータスがのfailedです。 Trainメソッドを使用し、新しいモデルを作成してください。"
+  getProcesses: "プロセスを取得する"
+  getProcessesMessage: "
+  <ul>
+    <li>
+      プロセス種類でグループされているのプロセス中の一覧を取得する。
+      <ul>
+        <li>
+          `predicting`: 予測中に利用されているモデルIDの一覧が含まれています。
+        </li>
+        <li>
+          `training`: トレーニング中に利用されているアルゴリズムIDの一覧が含まれています。
+        </li>
+      </ul>
+    </li>
+  </ul>
+  "
   genericErrors: "一般的なエラー"
   errorUnauthorized: "メソッドを呼び出すときにまだ承認されていないエラーです。エラーを遭遇する場合、最初に`%{authorize}`メソッドを呼び出してください。"
   errorNoLicense: "メソッドを呼び出すが、ライセンスがまだアクティベートされていないか期限切れになっているときのエラーです。 遭遇したら、最初に`%{activateLicense}`メソッドを呼び出してください。"
