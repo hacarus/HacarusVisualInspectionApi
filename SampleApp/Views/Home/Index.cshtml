@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewData["Title"] = "Visual Inspection - SDK Demo";
 }
 <h2>@ViewData["Title"]</h2>
@@ -23,362 +23,260 @@
             </div>
         </div>
         @if (ViewBag.BearerAvailable)
-        {
-        <div class="panel panel-default">
-            <div class="panel-heading" data-toggle="collapse" data-target="#activatelicense-form">Activate License</div>
-            <div class="panel-body @(ViewBag.Active != "activateLicense" ? " collapse" : "" )" id="activatelicense-form">
-                <div class="request-item">
-                    Endpoint:
-                    <div class="endpoint-container">
-                        <span class="method">POST</span>
-                        <span class="endpoint">/api/v1/license</span>
+                {
+                <div class="panel panel-default">
+                    <div class="panel-heading" data-toggle="collapse" data-target="#activatelicense-form">Activate License</div>
+                    <div class="panel-body @(ViewBag.Active != "activateLicense" ? " collapse" : "" )" id="activatelicense-form">
+                        <form asp-controller="Home" asp-action="ActivateLicense" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label>License File</label><br />
+                                <input type="file" name="licenseFile" />
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <div class="request-item">
-                    Headers:
-                    <pre>
-Authorization:Token [[token]]
-Content-Type:application/json</pre>
-                </div>
-                <div class="request-item">
-                    C#:
-                    <pre><code class="cs csharp">var LicenseFile = new FileModel("PathToFile", "ContentType");
-UploadResponse Response = VisualInspection.ActivateLicense(LicenseFile);
-</code></pre>
-                </div>
-                <form asp-controller="Home" asp-action="ActivateLicense" method="post" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label>License File</label><br />
-                        <input type="file" name="licenseFile" />
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading" data-toggle="collapse" data-target="#getVersionNumber-form">Get Version Number</div>
-            <div class="panel-body @(ViewBag.Active != "getVersionNumber" ? " collapse" : "" )" id="getVersionNumber-form">
-                <div class="request-item">
-                    Endpoint:
-                    <div class="endpoint-container">
-                        <span class="method">GET</span>
-                        <span class="endpoint">/api/auth/app_version</span>
+                <div class="panel panel-default">
+                    <div class="panel-heading" data-toggle="collapse" data-target="#getVersionNumber-form">Get Version Number</div>
+                    <div class="panel-body @(ViewBag.Active != "getVersionNumber" ? " collapse" : "" )" id="getVersionNumber-form">
+                        <form asp-controller="Home" asp-action="GetVersionNumber" method="post">
+                            <button type="submit" name="getVersionNumber" class="btn btn-primary">Try it!</button>
+                        </form>
                     </div>
                 </div>
-                <div class="request-item">
-                    Headers:
-                    <pre>
-Authorization:Token [[token]]
-Content-Type:application/json</pre>
-                </div>
-                <div class="request-item">
-                    C#:
-                    <pre><code class="cs csharp">VersionResponse Response = VisualInspection.GetVersionNumber();</code></pre>
-                </div>
-                <form asp-controller="Home" asp-action="GetVersionNumber" method="post">
-                    <button type="submit" name="getVersionNumber" class="btn btn-primary">Try it!</button>
-                </form>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading" data-toggle="collapse" data-target="#getitems-form">Get Items</div>
-            <div class="panel-body @(ViewBag.Active != "getItems" ? " collapse" : "" )" id="getitems-form">
-                <div class="request-item">
-                    Endpoint:
-                    <div class="endpoint-container">
-                        <span class="method">GET</span>
-                        <span class="endpoint">/api/v1/items</span>
+                <div class="panel panel-default">
+                    <div class="panel-heading" data-toggle="collapse" data-target="#getcontext-form">Get Context Info</div>
+                    <div class="panel-body @(ViewBag.Active != "getContext" ? " collapse" : "" )" id="getcontext-form">
+                        <form asp-controller="Home" asp-action="GetContext" method="post">
+                            <button type="submit" name="getContext" class="btn btn-primary">Try it!</button>
+                        </form>
                     </div>
                 </div>
-                <div class="request-item">
-                    Headers:
-                    <pre>
-Authorization:Token [[token]]
-Content-Type:application/json</pre>
-                </div>
-                <div class="request-item">
-                    C#:
-                    <pre><code class="cs csharp">ItemsResponse Response = VisualInspection.GetItems();</code></pre>
-                </div>
-                <form asp-controller="Home" asp-action="GetItems" method="post">
-                    <button type="submit" name="getItems" class="btn btn-primary">Try it!</button>
-                </form>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading" data-toggle="collapse" data-target="#getalgorithms-form">Get Algorithms</div>
-            <div class="panel-body @(ViewBag.Active != "getAlgorithms" ? " collapse" : "" )" id="getalgorithms-form">
-                <div class="request-item">
-                    Endpoint:
-                    <div class="endpoint-container">
-                        <span class="method">GET</span>
-                        <span class="endpoint">/api/v1/algorithms</span>
+                <div class="panel panel-default">
+                    <div class="panel-heading" data-toggle="collapse" data-target="#getpredictionitems-form">Get Prediction Items</div>
+                    <div class="panel-body @(ViewBag.Active != "getPredictionItems" ? " collapse" : "" )" id="getpredictionitems-form">
+                        <form asp-controller="Home" asp-action="GetPredictionItems" method="post">
+                            <button type="submit" name="getPredictionItems" class="btn btn-primary">Try it!</button>
+                        </form>
                     </div>
                 </div>
-                <div class="request-item">
-                    Headers:
-                    <pre>
-Authorization:Token [[token]]
-Content-Type:application/json</pre>
-                </div>
-                <div class="request-item">
-                    C#:
-                    <pre><code class="cs csharp">AlgorithmResponse Response = VisualInspection.GetAlgorithms();</code></pre>
-                </div>
-                <form asp-controller="Home" asp-action="GetAlgorithms" method="post">
-                    <button type="submit" name="getAlgorithms" class="btn btn-primary">Try it!</button>
-                </form>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading" data-toggle="collapse" data-target="#getmodels-form">Get Models</div>
-            <div class="panel-body @(ViewBag.Active != "getModels" ? " collapse" : "" )" id="getmodels-form">
-                <div class="request-item">
-                    Endpoint:
-                    <div class="endpoint-container">
-                        <span class="method">GET</span>
-                        <span class="endpoint">/api/v1/models</span>
+                <div class="panel panel-default">
+                    <div class="panel-heading" data-toggle="collapse" data-target="#gettrainingitems-form">Get Training Items</div>
+                    <div class="panel-body @(ViewBag.Active != "getTrainingItems" ? " collapse" : "" )" id="gettrainingitems-form">
+                        <form asp-controller="Home" asp-action="GetTrainingItems" method="post">
+                            <button type="submit" name="getTrainingItems" class="btn btn-primary">Try it!</button>
+                        </form>
                     </div>
                 </div>
-                <div class="request-item">
-                    Headers:
-                    <pre>
-Authorization:Token [[token]]
-Content-Type:application/json</pre>
-                </div>
-                <div class="request-item">
-                    C#:
-                    <pre><code class="cs csharp">ModelsResponse Response = VisualInspection.GetModels();</code></pre>
-                </div>
-                <form asp-controller="Home" asp-action="GetModels" method="post">
-                    <button type="submit" name="getModels" class="btn btn-primary">Try it!</button>
-                </form>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading" data-toggle="collapse" data-target="#train-form">Train</div>
-            <div class="panel-body @(ViewBag.Active != "train" ? " collapse" : "" )" id="train-form">
-                <div class="request-item">
-                    Endpoint:
-                    <div class="endpoint-container">
-                        <span class="method">POST</span>
-                        <span class="endpoint">/api/v1/train</span>
+                <div class="panel panel-default">
+                    <div class="panel-heading" data-toggle="collapse" data-target="#getalgorithms-form">Get Algorithms</div>
+                    <div class="panel-body @(ViewBag.Active != "getAlgorithms" ? " collapse" : "" )" id="getalgorithms-form">
+                        <form asp-controller="Home" asp-action="GetAlgorithms" method="post">
+                            <button type="submit" name="getAlgorithms" class="btn btn-primary">Try it!</button>
+                        </form>
                     </div>
                 </div>
-                <div class="request-item">
-                    Headers:
-                    <pre>
-Authorization:Token [[token]]
-Content-Type:application/json</pre>
-                </div>
-                <div class="request-item">
-                    Body:
-                    <div class="json-container">
-                        <div class="json">
-                            {
-                            "algorithm_id": "OC",
-                            "name" : "12345",
-                            "item_ids": ["NG-06-01"]
-                            }
-                        </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" data-toggle="collapse" data-target="#getmodels-form">Get Models</div>
+                    <div class="panel-body @(ViewBag.Active != "getModels" ? " collapse" : "" )" id="getmodels-form"> 
+                        <form asp-controller="Home" asp-action="GetModels" method="post">
+                            <button type="submit" name="getModels" class="btn btn-primary">Try it!</button>
+                        </form>
                     </div>
                 </div>
-                <div class="request-item">
-                    C#:
-                    <pre><code class="cs csharp">//ID of the algorithm you want to use
-var AlgorithmId = "OC";
-//Name of your model
-var ModelName = "ModelName";
-//Array of of item ids to use for training the model
-var ItemIds = new string[] { "ItemId" };
-//Algorithm parameter you want to adjust and use for training the model
-AlgorithmParameter AlgorithmParameter = new AlgorithmParameter();
-algorithmParameter.AlgorithmParameterId = 221;
-algorithmParameter.Value = "50";
-
-ModelResponse Reponse = VisualInspection.Train(AlgorithmId, ModelName, ItemIds, new AlgorithmParameter[] { AlgorithmParameter });
-</code></pre>
+                <div class="panel panel-default">
+                    <div class="panel-heading" data-toggle="collapse" data-target="#deletemodels-form">Delete Models</div>
+                    <div class="panel-body @(ViewBag.Active != "deleteModels" ? " collapse" : "" )" id="deletemodels-form">
+                        <form asp-controller="Home" asp-action="DeleteModels" method="post">
+                            <div class="form-group">
+                                <label for="modelIdsServe">Model ID</label>
+                                <select id="modelIdsServe" name="modelIdsServe" class="form-control">
+                                    @foreach (SpectroSdk.Model.Model item in ViewBag.Models)
+    {
+                                <option value="@item.ModelId">@item.Name</option>
+}
+                                </select>
+                            </div>
+                            <button type="submit" name="deleteModels" class="btn btn-primary">Try it!</button>
+                        </form>
+                    </div>
                 </div>
-                <form asp-controller="Home" asp-action="Train" method="post">
-                    <div class="form-group">
-                        <label for="algorithmId">Algorithm</label>
-                        <select id="algorithmId" name="algorithmId" class="form-control">
-                            @foreach (HacarusVisualInspectionApi.Models.Algorithm algo in ViewBag.Algorithms)
-                            {
-                            <option value="@algo.AlgorithmId">@algo.Name</option>
-                            }
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="algorithmName">Name</label>
-                        <input type="text" name="name" id="algorithmName"
-                               class="form-control" value="" placeholder="Model Name" />
-                    </div>
-                    <div class="form-group">
-                        <label for="itemIds">Item IDs</label>
-                        <select id="itemIds" name="itemIds" class="form-control" multiple>
-                            @foreach (HacarusVisualInspectionApi.Models.Item item in ViewBag.TrainingItems)
-                            {
+                <div class="panel panel-default">
+                    <div class="panel-heading" data-toggle="collapse" data-target="#train-form">Train</div>
+                    <div class="panel-body @(ViewBag.Active != "train" ? " collapse" : "" )" id="train-form">
+                        <form asp-controller="Home" asp-action="Train" method="post">
+                            <div class="form-group">
+                                <label for="algorithmId">Algorithm</label>
+                                <select id="algorithmId" name="algorithmId" class="form-control">
+                                    @foreach (SpectroSdk.Model.Algorithm algo in ViewBag.Algorithms)
+    {
+                                <option value="@algo.AlgorithmId">@algo.Name</option>
+}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="algorithmName">Name</label>
+                                <input type="text" name="name" id="algorithmName"
+                                       class="form-control" value="" placeholder="Model Name" />
+                            </div>
+                            <div class="form-group">
+                                <label for="itemIds">Item IDs</label>
+                                <select id="itemIds" name="itemIds" class="form-control" multiple>
+                                    @foreach (SpectroSdk.Model.Item item in ViewBag.TrainingItems)
+    {
                                 <option value="@item.ItemId"> @item.ItemId </option>
-                            }
-                        </select>
-                    </div>
-                    <button type="submit" name="train" class="btn btn-primary">Try it!</button>
-                </form>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading" data-toggle="collapse" data-target="#additem-form">Add Item</div>
-            <div class="panel-body @(ViewBag.Active != "upload" ? " collapse" : "" )" id="additem-form">
-                <div class="request-item">
-                    Endpoint:
-                    <div class="endpoint-container">
-                        <span class="method">POST</span>
-                        <span class="endpoint">/api/v1/upload</span>
+}
+                                </select>
+                            </div>
+                            <button type="submit" name="train" class="btn btn-primary">Try it!</button>
+                        </form>
                     </div>
                 </div>
-                <div class="request-item">
-                    Headers:
-                    <pre>
-Authorization:Token [[token]]
-Content-Type:application/json</pre>
-                </div>
-                <div class="request-item">
-                    Body:
-                    <div class="json-container">
-                        <div class="json">
-                            {
-                            "training": "true",
-                            "good": "true"
-                            }
-                        </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" data-toggle="collapse" data-target="#additem-form">Add Item</div>
+                    <div class="panel-body @(ViewBag.Active != "upload" ? " collapse" : "" )" id="additem-form">
+                        <form asp-controller="Home" asp-action="Upload" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label>Training Image</label><br />
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" name="training" value="true"> Use for training
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label>Label</label><br/>
+                                <label class="radio-inline">
+                                    <input type="radio" name="good" id="inlineRadio1" value="true"> Good
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="good" id="inlineRadio2" value="false"> Defect
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label>Images</label><br/>
+                                <input type="file" name="files" multiple />
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <div class="request-item">
-                    C#:
-                    <pre><code class="cs csharp">UploadResponse Response = VisualInspection.Upload(Files, IsGood);
-or
-UploadResponse Response = VisualInspection.Upload(Files);
-</code></pre>
-                </div>
-                <form asp-controller="Home" asp-action="Upload" method="post" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label>Training Image</label><br />
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="training" value="true"> Use for training
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label>Label</label><br/>
-                        <label class="radio-inline">
-                            <input type="radio" name="good" id="inlineRadio1" value="true"> Good
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="good" id="inlineRadio2" value="false"> Defect
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label>Images</label><br/>
-                        <input type="file" name="files" multiple />
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading" data-toggle="collapse" data-target="#getitem-form">Get Specific Item</div>
-            <div class="panel-body @(ViewBag.Active != "getItem" ? " collapse" : "" )" id="getitem-form">
-                <div class="request-item">
-                    Endpoint:
-                    <div class="endpoint-container">
-                        <span class="method">GET</span>
-                        <span class="endpoint">/api/v1/item/:itemId</span>
+                <div class="panel panel-default">
+                    <div class="panel-heading" data-toggle="collapse" data-target="#getitem-form">Get Specific Item</div>
+                    <div class="panel-body @(ViewBag.Active != "getItem" ? " collapse" : "" )" id="getitem-form">
+                        <form asp-controller="Home" asp-action="GetItem" method="post">
+                            <div class="form-group">
+                                <label for="itemId">Item ID</label>
+                                <select id="itemId" name="itemId" class="form-control">
+                                    @foreach (SpectroSdk.Model.Item item in ViewBag.TrainingItems)
+    {
+                                <option value="@item.ItemId">@item.ItemId</option>
+}
+                                    @foreach (SpectroSdk.Model.Item item in ViewBag.PredictItems)
+    {
+                                <option value="@item.ItemId">@item.ItemId</option>
+}
+                                </select>
+                            </div>
+                            <button type="submit" name="getItem" class="btn btn-primary">Try it!</button>
+                        </form>
                     </div>
                 </div>
-                <div class="request-item">
-                    Headers:
-                    <pre>
-Authorization:Token [[token]]
-Content-Type:application/json</pre>
-                </div>
-                <div class="request-item">
-                    C#:
-                    <pre><code class="cs csharp">//Set a specific ItemId to get detailed information about the item
-ItemResponse Response = VisualInspection.GetItem("ItemId");
-</code></pre>
-                </div>
-                <form asp-controller="Home" asp-action="GetItem" method="post">
-                    <div class="form-group">
-                        <label for="itemId">Item ID</label>
-                        <select id="itemId" name="itemId" class="form-control">
-                            @foreach (HacarusVisualInspectionApi.Models.Item item in ViewBag.TrainingItems)
-                            {
-                            <option value="@item.ItemId">@item.ItemId</option>
-                            }
-                            @foreach (HacarusVisualInspectionApi.Models.Item item in ViewBag.PredictItems)
-                            {
-                            <option value="@item.ItemId">@item.ItemId</option>
-                            }
-                        </select>
-                    </div>
-                    <button type="submit" name="getItem" class="btn btn-primary">Try it!</button>
-                </form>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading" data-toggle="collapse" data-target="#predict-form">Predict</div>
-            <div class="panel-body @(ViewBag.Active != "predict" ? " collapse" : "" )" id="predict-form">
-                <div class="request-item">
-                    Endpoint:
-                    <div class="endpoint-container">
-                        <span class="method">POST</span>
-                        <span class="endpoint">/api/v1/serve</span>
+                <div class="panel panel-default">
+                    <div class="panel-heading" data-toggle="collapse" data-target="#predict-form">Predict</div>
+                    <div class="panel-body @(ViewBag.Active != "predict" ? " collapse" : "" )" id="predict-form">
+                        <form asp-controller="Home" asp-action="Serve" method="post">
+                            <div class="form-group">
+                                <label for="itemIdServe">Item ID</label>
+                                <select id="itemIdServe" name="itemIdServe" class="form-control">
+                                    @foreach (SpectroSdk.Model.Item item in ViewBag.PredictItems)
+    {
+                                <option value="@item.ItemId">@item.ItemId</option>
+}
+                                </select>
+                                <label for="modelIdServe">Model</label>
+                                <select id="modelIdServe" name="modelIdServe" class="form-control">
+                                    @foreach (SpectroSdk.Model.Model item in ViewBag.Models)
+    {
+                                <option value="@item.ModelId">@item.Name</option>
+}
+                                </select>
+                            </div>
+                            <button type="submit" name="serve" class="btn btn-primary">Try it!</button>
+                        </form>
                     </div>
                 </div>
-                <div class="request-item">
-                    Headers:
-                    <pre>
-Authorization:Token [[token]]
-Content-Type:application/json</pre>
-                </div>
-                <div class="request-item">
-                    Body:
-                    <div class="json-container">
-                        <div class="json">
-                            {
-                            "item_ids" : ["NG-06-01"],
-                            "model_id" : "ModelId"
-                            }
-                        </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" data-toggle="collapse" data-target="#addannotation-form">Add Annotation</div>
+                    <div class="panel-body @(ViewBag.Active != "addAnnotation" ? " collapse" : "" )" id="addannotation-form">
+                        <form asp-controller="Home" asp-action="AddAnnotation" method="post">
+                            <div class="form-group">
+                                <label for="imageId">Image ID</label>
+                                <input type="text" name="imageId" id="imageId"
+                                       class="form-control" value="" placeholder="Image ID" />
+                            </div>
+                            <div class="form-group">
+                                <label for="xMin">X Min</label>
+                                <input type="text" name="xMin" id="xMin"
+                                       class="form-control" value="" placeholder="X Min" />
+                            </div>
+                            <div class="form-group">
+                                <label for="xMax">X Max</label>
+                                <input type="text" name="xMax" id="xMax"
+                                       class="form-control" value="" placeholder="X Max" />
+                            </div>
+                            <div class="form-group">
+                                <label for="yMin">Y Min</label>
+                                <input type="text" name="yMin" id="yMin"
+                                       class="form-control" value="" placeholder="Y Min" />
+                            </div>
+                            <div class="form-group">
+                                <label for="yMax">Y Max</label>
+                                <input type="text" name="yMax" id="yMax"
+                                       class="form-control" value="" placeholder="Y Max" />
+                            </div>
+                            <div class="form-group">
+                                <label for="notes">Notes</label>
+                                <input type="text" name="notes" id="notes"
+                                       class="form-control" value="" placeholder="Notes" />
+                            </div>
+                            <button type="submit" name="addAnnotation" class="btn btn-primary">Try it!</button>
+                        </form>
                     </div>
                 </div>
-                <div class="request-item">
-                    C#:
-                    <pre><code class="cs csharp">//Use ItemIds to pass an array of item ids you want to set for prediction
-//You may use a specific model for prediction by setting a ModelId value. This is optional. If not set, the active/default model will be used.
-PredictResponse Response = VisualInspection.Serve(ItemIds, "ModelId");
-</code></pre>
-                </div>
-                <form asp-controller="Home" asp-action="Serve" method="post">
-                    <div class="form-group">
-                        <label for="itemIdServe">Item ID</label>
-                        <select id="itemIdServe" name="itemIdServe" class="form-control">
-                            @foreach (HacarusVisualInspectionApi.Models.Item item in ViewBag.PredictItems)
-                            {
-                            <option value="@item.ItemId">@item.ItemId</option>
-                            }
-                        </select>
-                        <label for="modelIdServe">Model</label>
-                        <select id="modelIdServe" name="modelIdServe" class="form-control">
-                            @foreach (HacarusVisualInspectionApi.Models.ModelData item in ViewBag.Models)
-                            {
-                            <option value="@item.ModelId">@item.Name</option>
-                            }
-                        </select>
+                <div class="panel panel-default">
+                    <div class="panel-heading" data-toggle="collapse" data-target="#getworkers-form">Get Workers</div>
+                    <div class="panel-body @(ViewBag.Active != "getWorkers" ? " collapse" : "" )" id="getworkers-form">
+                        <form asp-controller="Home" asp-action="GetWorkers" method="post">
+                            <button type="submit" name="getWorkers" class="btn btn-primary">Try it!</button>
+                        </form>
                     </div>
-                    <button type="submit" name="serve" class="btn btn-primary">Try it!</button>
-                </form>
-            </div>
-        </div>
-        }
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" data-toggle="collapse" data-target="#importmodels-form">Import Models</div>
+                    <div class="panel-body @(ViewBag.Active != "importModels" ? " collapse" : "" )" id="importmodels-form">
+                        <form asp-controller="Home" asp-action="ImportModels" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label>License File</label><br />
+                                <input type="file" name="models" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" data-toggle="collapse" data-target="#exportmodels-form">Export Models</div>
+                    <div class="panel-body @(ViewBag.Active != "exportModels" ? " collapse" : "" )" id="exportmodels-form">
+                        <form asp-controller="Home" asp-action="ExportModels" method="post">
+                            <div class="form-group">
+                                <label for="modelIdsExport">Model ID</label>
+                                <select id="modelIdsExport" name="modelIdsExport" class="form-control">
+                                    @foreach (SpectroSdk.Model.Model item in ViewBag.Models)
+    {
+                                <option value="@item.ModelId">@item.Name</option>
+}
+                                </select>
+                            </div>
+                            <button type="submit" name="exportModels" class="btn btn-primary">Try it!</button>
+                        </form>
+                    </div>
+                </div>
+                }
     </div>
     <div class="col-lg-6 col-md-4 col-xs-12" id="json-return">
         <pre class="hide hidden">@ViewData["Message"]</pre>
