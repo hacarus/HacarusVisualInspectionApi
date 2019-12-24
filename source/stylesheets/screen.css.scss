@@ -163,17 +163,6 @@ html, body {
     color: $nav-active-parent-text;
   }
 
-  .toc-list-h2 {
-    display: none;
-    background-color: $nav-subitem-bg;
-    font-weight: 500;
-  }
-
-  .toc-h2 {
-    padding-left: $nav-padding + $nav-indent;
-    font-size: 12px;
-  }
-
   .toc-list-h3 {
     display: none;
     background-color: $nav-subitem-bg;
@@ -191,6 +180,17 @@ html, body {
 
   .toc-h4 {
     padding-left: $nav-padding + $nav-padding + $nav-padding + $nav-indent;
+    font-size: 12px;
+  }
+
+  .toc-list-h2 {
+    display: none;
+    background-color: $nav-subitem-bg;
+    font-weight: 500;
+  }
+
+  .toc-h2 {
+    padding-left: $nav-padding + $nav-indent;
     font-size: 12px;
   }
 
@@ -359,12 +359,9 @@ html, body {
     padding-left: $main-padding + 15px;
   }
 
-  & > h1,
-  & > h2,
-  & > h3,
-  & > h4,
-  & > div {
-    clear: both;
+  // the div is the tocify hidden div for placeholding stuff
+  &>h1, &>h2, &>div {
+    clear:both;
   }
 
   h1 {
@@ -665,15 +662,6 @@ html, body {
   clear: inherit!important;
 }
 
-.hacarus-content-list {
-  padding: 0px;
-  padding-right: 28px;
-  margin-right: 50%;
-  box-sizing: border-box;
-  line-height: 1.6;
-  clear: inherit!important;
-}
-
 .hacarus-content code {
   font-family: monospace;
   white-space: pre;
@@ -691,11 +679,11 @@ html, body {
 }
 
 @media (max-width: 700px) {
-  .hacarus-content, .hacarus-content-list {
+  .hacarus-content {
     margin-right: 0;
   }
 }
 
 .hacarus-table {
-  margin-right: 0px!important;
+  margin-right: 0px !important;
 }

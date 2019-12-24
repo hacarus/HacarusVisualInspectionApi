@@ -82,7 +82,7 @@ ja:
         作成済みのモデルを用いてデータを推論します。
       </li>
       <li>
-        サンプル画像はこちらからダウンロードすることができます。（<a href='https://drive.google.com/file/d/1Zg*gCX9gxxYjEau9j29oe0hDBuppDosh/view'>Metal Plates</a>、<a href='https://drive.google.com/file/d/1oRvEfeDfa3seEn0rFXRa1IgTUyzg0hxv/view'>Wood Blocks</a>）
+        サンプル画像はこちらからダウンロードすることができます。（<a href='https://drive.google.com/open?id=1D736spz0rSOMgp9V71BEYtKH31Sxn1ud'>Metal Plates</a>、<a href='https://drive.google.com/open?id=14fnv6d9Cq9suUdoH57RntSuE_mh21fQg'>Wood Blocks</a>）
         <ul>
           <li>
             モデルの作成に使用できる良品と不良品の画像とパラメータの一覧が含まれています。

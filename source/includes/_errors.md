@@ -1,7 +1,6 @@
 
 # t(:genericErrors)
-
-## 401 Unauthorized
+> t(:errorUnauthorized)
 
 ```csharp
 {
@@ -19,17 +18,8 @@
 ```python
 hacarus_visual_inspection.errors.APIError: No permission to access this resource! (401)
 ```
-
-<div class="hacarus-content lang-specific csharp">
-t(:errorUnauthorized, authorize: 'Authorize')
-</div>
-
-<div class="hacarus-content lang-specific python">
-t(:errorUnauthorized, authorize: 'authorize')
-</div>
-
-
-## 403 Forbidden
+ 
+> t(:errorNoLicense)
 
 ```csharp
 {
@@ -46,15 +36,6 @@ t(:errorUnauthorized, authorize: 'authorize')
 ```python
 hacarus_visual_inspection.errors.APIError: Invalid license! (403)
 ```
-
-<div class="hacarus-content lang-specific csharp">
-t(:errorNoLicense, activateLicense: 'ActivateLicense')
-</div>
-
-<div class="hacarus-content lang-specific python">
-t(:errorNoLicense, activateLicense: 'activate_license')
-</div>
-
 
 <!-- 
 # Errors

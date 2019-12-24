@@ -24,7 +24,9 @@ under the License.
 %>
 <%
   t_reg = /t\(([^\)]+)\)/
-  current_page.data.title = current_page.data.title.gsub(t_reg){|t| eval(t)}
+  if current_page.data.title.present?
+    current_page.data.title = current_page.data.title.gsub(t_reg){|t| eval(t)}
+  end
   page_content = page_content.gsub(t_reg){|t| eval(t)}
 %>
 
