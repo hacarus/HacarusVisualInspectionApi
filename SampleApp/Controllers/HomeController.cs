@@ -6,22 +6,30 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using SampleApp.Models;
-using HacarusVisualInspectionApi;
-using HacarusVisualInspectionApi.Models;
+//using SampleApp.Models;
+//using HacarusVisualInspectionApi;
+//using HacarusVisualInspectionApi.Models;
+using Hacarus.SpectroSdk.Api;
+using Hacarus.SpectroSdk.Client;
+using Hacarus.SpectroSdk.Model;
 
 namespace SampleApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IHostingEnvironment Environment;
-        private readonly HacarusVisualInspection VisualInspection = new HacarusVisualInspection();
+        private readonly IHostingEnvironment IHEnvironment;
         public static string AccessToken;
         public static string CurrentContextId;
+        private static SpectroApi SpectroInstance = new SpectroApi("https://sdd-local.hacarus.com");
+        private static ModelsApi ModelsInstance = new ModelsApi("https://sdd-local.hacarus.com");
+        private static AlgorithmsApi AlgorithmsInstance = new AlgorithmsApi("https://sdd-local.hacarus.com");
+        private static ItemsApi ItemsInstance = new ItemsApi("https://sdd-local.hacarus.com");
+
+
 
         public HomeController(IHostingEnvironment environment)
         {
-            Environment = environment;
+            IHEnvironment = environment;
         }
 
         [HttpPost]
@@ -29,44 +37,70 @@ namespace SampleApp.Controllers
             string loginClient, string clientId, string clientSecret
         )
         {
-            AccessTokenResponse Result = VisualInspection.Authorize(clientId, clientSecret);
-            ViewData["HttpResponse"] = "Status code: " + (int)Result.HttpResponse.StatusCode + " " + Result.HttpResponse.StatusCode;
-            ViewData["StringMessage"] = Result.HttpResponse.Content;
-            ViewBag.BearerAvailable = VisualInspection.IsAuthorized;
+            try
+            {
+                LoginParams loginParams = new LoginParams(
+                    clientId: clientId,
+                    clientSecret: clientSecret,
+                    grantType: "client_credentials"
+                );
+                var Result = SpectroInstance.Login(loginParams);
+                Debug.WriteLine(Result);
+                var ConfigurationInstance = new Configuration();
+                ConfigurationInstance.AccessToken = Result.AccessToken;
+                SpectroInstance.Configuration = ConfigurationInstance;
+                ModelsInstance.Configuration = ConfigurationInstance;
+                AlgorithmsInstance.Configuration = ConfigurationInstance;
+                ItemsInstance.Configuration = ConfigurationInstance;
+                ViewData["StringMessage"] = Result.ToJson();
+                ViewBag.BearerAvailable = SpectroInstance.Configuration.AccessToken != null;
+            }
+            catch (ApiException e)
+            {
+                ViewData["HttpResponse"] = e.ErrorCode;
+                ViewData["StringMessage"] = ((BaseError)e.ErrorContent).Errors.Title + ": "
+                                + ((BaseError)e.ErrorContent).Errors.Detail;
+            }
 
             return Index();
         }
 
         [HttpPost]
         public async Task<IActionResult> ActivateLicense(
-            IFormFile licenseFile
+            IFormFile LicenseFile
         )
         {
-            var Uploads = Path.Combine(Environment.WebRootPath, "uploads");
+            var Uploads = Path.Combine(IHEnvironment.WebRootPath, "uploads");
             if (!Directory.Exists(Uploads))
             {
                 Directory.CreateDirectory(Uploads);
             }
-            var file = new FileModel();
-            if (licenseFile.Length > 0)
+
+            if (LicenseFile.Length > 0)
             {
-                using (var fileStream = new FileStream(Path.Combine(Uploads, licenseFile.FileName), FileMode.Create))
+                var FStream = new FileStream(Path.Combine(Uploads, LicenseFile.FileName), FileMode.Create);
+                LicenseFile.CopyTo(FStream);
+                FStream.Seek(0, SeekOrigin.Begin);
+                try
                 {
-                    await licenseFile.CopyToAsync(fileStream);
-                    file.FileName = Path.Combine(Uploads, licenseFile.FileName);
-                    file.ContentType = licenseFile.ContentType;
+                    var Result = ModelsInstance.ImportModels(FStream);
+                    ViewData["StringMessage"] = Result.ToJson();
+                    ViewBag.BearerAvailable = SpectroInstance.Configuration.AccessToken != null;
+                    ViewBag.Active = "activateLicense";
                 }
+                catch (ApiException e)
+                {
+                    ViewData["HttpResponse"] = e.ErrorCode;
+                    ViewData["StringMessage"] = ((BaseError)e.ErrorContent).Errors.Title + ": "
+                                    + ((BaseError)e.ErrorContent).Errors.Detail;
 
-                LicenseResponse Result = VisualInspection.ActivateLicense(file);
-
-                ViewData["HttpResponse"] = "Status code: " + Result.HttpResponse.StatusCode;
-                ViewData["StringMessage"] = Result.HttpResponse.Content;
-
+                }
+                finally
+                {
+                    FStream.Close();
+                }
             }
 
-
-            ViewBag.BearerAvailable = VisualInspection.IsAuthorized;
-            ViewBag.Active = "activateLicense";
 
             return Index();
         }
@@ -77,27 +111,108 @@ namespace SampleApp.Controllers
         public IActionResult GetVersionNumber(
         )
         {
-            VersionResponse Result = VisualInspection.GetVersionNumber();
-
-            ViewData["HttpResponse"] = "Status code: " + (int)Result.HttpResponse.StatusCode + " " + Result.HttpResponse.StatusCode;
-            ViewData["StringMessage"] = Result.HttpResponse.Content;
-            ViewBag.BearerAvailable = VisualInspection.IsAuthorized;
-            ViewBag.Active = "getVersionNumber";
+            //try
+            //{
+            //    var Result = Instance.GetVersion();
+            //    ViewData["StringMessage"] = Result.ToJson();
+            //    ViewBag.BearerAvailable = Instance.Configuration.AccessToken != null;
+            //    ViewBag.Active = "getVersionNumber";
+            //}
+            //catch (ApiException e)
+            //{
+            //    ViewData["HttpResponse"] = e.ErrorCode;
+            //    ViewData["StringMessage"] = e.Message;
+            //}
 
             return Index();
         }
 
         [HttpPost]
-        public IActionResult GetItems(
-            string getItems
+        public IActionResult GetContext()
+        {
+            //try
+            //{
+            //    var Result = Instance.GetContext();
+            //    ViewData["StringMessage"] = Result.ToJson();
+            //    ViewBag.BearerAvailable = Instance.Configuration.AccessToken != null;
+            //    ViewBag.Active = "getItems";
+            //}
+            //catch (ApiException e)
+            //{
+            //    ViewData["HttpResponse"] = e.ErrorCode;
+            //    ViewData["StringMessage"] = e.Message;
+            //}
+
+
+
+            return Index();
+        }
+
+        [HttpPost]
+        public IActionResult GetPredictionItems(
+            string modelId
+       )
+        {
+            try
+            {
+                var Result = ItemsInstance.GetItemsByType(itemType: "prediction", count: 10, page: 1, modelId: modelId);
+                ViewData["StringMessage"] = Result.ToJson();
+                ViewBag.PredictionItems = Result.Data.Items;
+                ViewBag.BearerAvailable = SpectroInstance.Configuration.AccessToken != null;
+                ViewBag.Active = "getPredictionItems";
+            }
+            catch (ApiException e)
+            {
+                ViewData["HttpResponse"] = e.ErrorCode;
+                ViewData["StringMessage"] = e.Message;
+            }
+
+
+
+            return Index();
+        }
+
+        [HttpPost]
+        public IActionResult GetTrainingItems(
+            string modelId
+      )
+        {
+            try
+            {
+                var Result = ItemsInstance.GetItemsByType(itemType: "training", count: 10, page: 1, modelId: modelId);
+                ViewData["StringMessage"] = Result.ToJson();
+                ViewBag.TrainingItems = Result.Data.Items;
+                ViewBag.BearerAvailable = SpectroInstance.Configuration.AccessToken != null;
+                ViewBag.Active = "getTrainingItems";
+            }
+            catch (ApiException e)
+            {
+                ViewData["HttpResponse"] = e.ErrorCode;
+                ViewData["StringMessage"] = e.Message;
+            }
+
+
+
+            return Index();
+        }
+
+        [HttpPost]
+        public IActionResult GetWorkers(
+            string getWorkers
         )
         {
-            ItemsResponse Result = VisualInspection.GetItems();
-
-            ViewData["HttpResponse"] = "Status code: " + (int)Result.HttpResponse.StatusCode + " " + Result.HttpResponse.StatusCode;
-            ViewData["StringMessage"] = Result.HttpResponse.Content;
-            ViewBag.BearerAvailable = VisualInspection.IsAuthorized;
-            ViewBag.Active = "getItems";
+            //try
+            //{
+            //    var Result = SpectroInstance.GetWorkers();
+            //    ViewData["StringMessage"] = Result.ToJson();
+            //    ViewBag.BearerAvailable = Instance.Configuration.AccessToken != null;
+            //    ViewBag.Active = "getWorkers";
+            //}
+            //catch (ApiException e)
+            //{
+            //    ViewData["HttpResponse"] = e.ErrorCode;
+            //    ViewData["StringMessage"] = e.Message;
+            //}
 
             return Index();
         }
@@ -107,12 +222,19 @@ namespace SampleApp.Controllers
             string getAlgorithms
         )
         {
-            AlgorithmResponse Result = VisualInspection.GetAlgorithms();
-
-            ViewData["HttpResponse"] = "Status code: " + (int)Result.HttpResponse.StatusCode + " " + Result.HttpResponse.StatusCode;
-            ViewData["StringMessage"] = Result.HttpResponse.Content;
-            ViewBag.BearerAvailable = VisualInspection.IsAuthorized;
-            ViewBag.Active = "getAlgorithms";
+            try
+            {
+                var Result = AlgorithmsInstance.GetAlgorithms();
+                ViewData["StringMessage"] = Result.ToJson();
+                ViewBag.BearerAvailable = SpectroInstance.Configuration.AccessToken != null;
+                ViewBag.Active = "getAlgorithms";
+            }
+            catch(ApiException e)
+            {
+                ViewData["HttpResponse"] = e.ErrorCode;
+                ViewData["StringMessage"] = ((BaseError)e.ErrorContent).Errors.Title + ": "
+                                + ((BaseError)e.ErrorContent).Errors.Detail;
+            }
 
             return Index();
         }
@@ -122,12 +244,19 @@ namespace SampleApp.Controllers
             string getAlgorithms
         )
         {
-            ModelsResponse Result = VisualInspection.GetModels();
-
-            ViewData["HttpResponse"] = "Status code: " + (int)Result.HttpResponse.StatusCode + " " + Result.HttpResponse.StatusCode;
-            ViewData["StringMessage"] = Result.HttpResponse.Content;
-            ViewBag.BearerAvailable = VisualInspection.IsAuthorized;
-            ViewBag.Active = "getModels";
+            try
+            {
+                var Result = ModelsInstance.GetModels();
+                ViewData["StringMessage"] = Result.ToJson();
+                ViewBag.BearerAvailable = SpectroInstance.Configuration.AccessToken != null;
+                ViewBag.Active = "getModels";
+            }
+            catch (ApiException e)
+            {
+                ViewData["HttpResponse"] = e.ErrorCode;
+                ViewData["StringMessage"] = ((BaseError)e.ErrorContent).Errors.Title + ": "
+                                + ((BaseError)e.ErrorContent).Errors.Detail;
+            }
 
             return Index();
         }
@@ -137,9 +266,7 @@ namespace SampleApp.Controllers
             string train, string name, string algorithmId, List<string> itemIds
         )
         {
-            AlgorithmParameter AlgorithmParameter = new AlgorithmParameter();
-            AlgorithmParameter.AlgorithmParameterId = 221;
-            AlgorithmParameter.Value = "50";
+            var AlgorithmParameter = new OverrideParam(value: "[88,88]", algorithmParameterId: 919);
 
             if (string.IsNullOrEmpty(algorithmId))
             {
@@ -151,14 +278,21 @@ namespace SampleApp.Controllers
                 name = DateTime.Now.ToString();
             }
 
-            ModelResponse Result = VisualInspection.Train(algorithmId, name, itemIds.ToArray(), new AlgorithmParameter[] { AlgorithmParameter });
-
+            try
+            {
+                var Params = new TrainRequest(overrideParams: new List<OverrideParam> { AlgorithmParameter }, itemIds: itemIds, name: name);
+                var Result = AlgorithmsInstance.Train(algorithmId: algorithmId, trainRequest: Params);
+                ViewData["StringMessage"] = Result.ToJson();
+                ViewBag.BearerAvailable = SpectroInstance.Configuration.AccessToken != null;
+                ViewBag.Active = "train";
+            }
+            catch (ApiException e)
+            {
+                ViewData["HttpResponse"] = e.ErrorCode;
+                ViewData["StringMessage"] = ((BaseError)e.ErrorContent).Errors.Title + ": "
+                                + ((BaseError)e.ErrorContent).Errors.Message[0].Errors[0];
+            }
             Console.WriteLine("IFFFF " + itemIds.Count);
-
-            ViewData["HttpResponse"] = "Status code: " + (int)Result.HttpResponse.StatusCode + " " + Result.HttpResponse.StatusCode;
-            ViewData["StringMessage"] = Result.HttpResponse.Content;
-            ViewBag.BearerAvailable = VisualInspection.IsAuthorized;
-            ViewBag.Active = "train";
 
             return Index();
         }
@@ -168,25 +302,10 @@ namespace SampleApp.Controllers
             string upload, string good, string training, ICollection<IFormFile> files
         )
         {
-            var Uploads = Path.Combine(Environment.WebRootPath, "uploads");
+            var Uploads = Path.Combine(IHEnvironment.WebRootPath, "uploads");
             if (!Directory.Exists(Uploads))
             {
                 Directory.CreateDirectory(Uploads);
-            }
-
-
-            List<FileModel> FileNames = new List<FileModel>();
-            foreach (var FileObject in files)
-            {
-                if (FileObject.Length > 0)
-                {
-                    using (var FileStream = new FileStream(Path.Combine(Uploads, FileObject.FileName), FileMode.Create))
-                    {
-                        await FileObject.CopyToAsync(FileStream);
-                        var image = new FileModel(Path.Combine(Uploads, FileObject.FileName), FileObject.ContentType);
-                        FileNames.Add(image);
-                    }
-                }
             }
 
             bool? IsGood = null;
@@ -199,39 +318,93 @@ namespace SampleApp.Controllers
                 IsGood = good.Equals("true");
             }
 
-            if (isTraining)
+            List<System.IO.Stream> List = new List<System.IO.Stream>();
+            foreach (var FileObject in files)
             {
-                UploadResponse Result = VisualInspection.Upload(FileNames, (bool)IsGood);
-                ViewData["HttpResponse"] = "Status code: " + (int)Result.HttpResponse.StatusCode + " " + Result.HttpResponse.StatusCode;
-                ViewData["StringMessage"] = Result.HttpResponse.Content;
+                if (FileObject.Length > 0)
+                {
+                    var fStream = new FileStream(Path.Combine(Uploads, FileObject.FileName), FileMode.Create);
+                    FileObject.CopyTo(fStream);
+                    fStream.Seek(0, SeekOrigin.Begin);
+                    List.Add(fStream);
+                }
             }
-            else
+            try
             {
-                UploadResponse Result = VisualInspection.Upload(FileNames);
-                ViewData["HttpResponse"] = "Status code: " + (int)Result.HttpResponse.StatusCode + " " + Result.HttpResponse.StatusCode;
-                ViewData["StringMessage"] = Result.HttpResponse.Content;
-            }                                                                                                                                                                                                                                                                                                                                                           
+                var Result = ItemsInstance.AddItem(
+                    training: isTraining,
+                    files: List,
+                    good: IsGood
+                );
+                ViewData["StringMessage"] = Result.ToJson();
+                ViewBag.BearerAvailable = SpectroInstance.Configuration.AccessToken != null;
+                ViewBag.Active = "upload";
+            }
+            catch (ApiException e)
+            {
+                ViewData["HttpResponse"] = e.ErrorCode;
+                ViewData["StringMessage"] = ((BaseError)e.ErrorContent).Errors.Title + ": "
+                                + ((BaseError)e.ErrorContent).Errors.Detail;
 
-            ViewBag.BearerAvailable = VisualInspection.IsAuthorized;
-            ViewBag.Active = "upload";
+            }
+            finally
+            {
+                foreach (var stream in List)
+                {
+                    stream.Close();
+                }
+            }
 
             return Index();
         }
 
         [HttpPost]
         public IActionResult Serve(
-            string serve, string itemIdServe, int modelIdServe
+            string serve, string itemIdServe, string modelIdServe
         )
         {
-            PredictResponse Result = VisualInspection.Serve(new string[] { itemIdServe }, modelIdServe);
+            try
+            {
+                var Params = new Predict(new List<string> { itemIdServe });
+                var Result = ModelsInstance.PredictItems(modelId: modelIdServe, predict: Params);
+                ViewData["StringMessage"] = Result.ToJson();
+                ViewBag.BearerAvailable = SpectroInstance.Configuration.AccessToken != null;
+                ViewBag.Active = "serve";
+            }
+            catch (ApiException e)
+            {
+                ViewData["HttpResponse"] = e.ErrorCode;
+                ViewData["StringMessage"] = ((BaseError)e.ErrorContent).Errors.Title + ": "
+                                + ((BaseError)e.ErrorContent).Errors.Detail;
+            }
 
-            ViewData["HttpResponse"] = "Status code: " + (int)Result.HttpResponse.StatusCode + " " + Result.HttpResponse.StatusCode;
-            ViewData["StringMessage"] = Result.HttpResponse.Content;
-            ViewBag.BearerAvailable = VisualInspection.IsAuthorized;
-            ViewBag.Active = "serve";
 
             return Index();
         }
+
+
+        [HttpPost]
+        public IActionResult DeleteModels(
+            string deleteModels, string modelIdsServe
+        )
+        {
+            try
+            {
+                var Result = ModelsInstance.DeleteModels(new List<string> { modelIdsServe });
+                ViewData["StringMessage"] = Result.ToJson();
+                ViewBag.BearerAvailable = SpectroInstance.Configuration.AccessToken != null;
+                ViewBag.Active = "deleteModels";
+            }
+            catch (ApiException e)
+            {
+                ViewData["HttpResponse"] = e.ErrorCode;
+                ViewData["StringMessage"] = ((BaseError)e.ErrorContent).Errors.Title + ": "
+                                + ((BaseError)e.ErrorContent).Errors.Detail;
+            }
+
+            return Index();
+        }
+
 
 
         [HttpPost]
@@ -239,78 +412,222 @@ namespace SampleApp.Controllers
             string getItem, string itemId
         )
         {
-            ItemResponse Result = VisualInspection.GetItem(itemId);
+            try
+            {
+                var Result = ItemsInstance.GetItemById(itemId, true, true, null);
+                ViewData["StringMessage"] = Result.ToJson();
+                ViewBag.BearerAvailable = SpectroInstance.Configuration.AccessToken != null;
+                ViewBag.Active = "getItem";
+            }
+            catch (ApiException e)
+            {
+                ViewData["HttpResponse"] = e.ErrorCode;
+                ViewData["StringMessage"] = ((BaseError)e.ErrorContent).Errors.Title + ": "
+                                + ((BaseError)e.ErrorContent).Errors.Detail;
+            }
 
-            ViewData["HttpResponse"] = "Status code: " + (int)Result.HttpResponse.StatusCode + " " + Result.HttpResponse.StatusCode;
-            ViewData["StringMessage"] = Result.HttpResponse.Content;
-            ViewBag.BearerAvailable = VisualInspection.IsAuthorized;
-            ViewBag.Active = "getItem";
+            return Index();
+        }
+
+
+        [HttpPost]
+        public IActionResult AddAnnotation(
+            string addAnnotation, string itemId,
+            int xMin, int xMax,
+            int yMin, int yMax,
+            string notes
+        )
+        {
+            try
+            {
+                var Params = new AnnotateItemRequest(new List<RequestAnnotation> { new RequestAnnotation(xMax, xMin, yMax, yMin, 0, notes) });
+                //var Result = 
+                ItemsInstance.Annotate(itemId: itemId, annotateItemRequest: Params);
+                ViewData["StringMessage"] = "success";
+                    //Result.ToJson();
+                ViewBag.BearerAvailable = SpectroInstance.Configuration.AccessToken != null;
+                ViewBag.Active = "addAnnotation";
+            }
+            catch (ApiException e)
+            {
+                ViewData["HttpResponse"] = e.ErrorCode;
+                ViewData["StringMessage"] = ((BaseError)e.ErrorContent).Errors.Title + ": "
+                                + ((BaseError)e.ErrorContent).Errors.Detail;
+            }
+
+            return Index();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ImportModels(
+            IFormFile Models
+        )
+        {
+            var Uploads = Path.Combine(IHEnvironment.WebRootPath, "uploads");
+            if (!Directory.Exists(Uploads))
+            {
+                Directory.CreateDirectory(Uploads);
+            }
+
+            if (Models.Length > 0)
+            {
+                var FStream = new FileStream(Path.Combine(Uploads, Models.FileName), FileMode.Create);
+                Models.CopyTo(FStream);
+                FStream.Seek(0, SeekOrigin.Begin);
+                try
+                {
+                    var Result = ModelsInstance.ImportModels(FStream);
+                    ViewData["StringMessage"] = Result.ToJson();
+                    ViewBag.BearerAvailable = SpectroInstance.Configuration.AccessToken != null;
+                    ViewBag.Active = "importModels";
+                }
+                catch (ApiException e)
+                {
+                    ViewData["HttpResponse"] = e.ErrorCode;
+                    ViewData["StringMessage"] = ((BaseError)e.ErrorContent).Errors.Title + ": "
+                                    + ((BaseError)e.ErrorContent).Errors.Detail;
+
+                }
+                finally
+                {
+                    FStream.Close();
+                }
+            }
+
+           
+            return Index();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ExportModels(
+            List<string> modelIdsExport
+        )
+        {
+            try {
+                var Params = new ModelIdsQuery(modelIdsExport);
+                var Result = ModelsInstance.ExportModelsWithId(Params);
+
+                string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory),
+                               "model.zip");
+
+                var fileStream = System.IO.File.Create(fileName);
+                Result.Seek(0, SeekOrigin.Begin);
+                Result.CopyTo(fileStream);
+                fileStream.Close();
+
+                ViewData["StringMessage"] = "Download started.";
+                using (var fileStream2 = System.IO.File.Create(fileName))
+                {
+                    Result.Seek(0, SeekOrigin.Begin);
+                    Result.CopyTo(fileStream2);
+                }
+
+                ViewData["StringMessage"] = "Successfully saved to Desktop.";
+                ViewBag.BearerAvailable = SpectroInstance.Configuration.AccessToken != null;
+                ViewBag.Active = "exportModels";
+            }
+            catch (ApiException e)
+            {
+                ViewData["HttpResponse"] = e.ErrorCode;
+                ViewData["StringMessage"] = ((BaseError)e.ErrorContent).Errors.Title + ": "
+                                + ((BaseError)e.ErrorContent).Errors.Detail;
+            }
+
 
             return Index();
         }
 
         public IActionResult Index()
         {
-            ViewBag.BearerAvailable = VisualInspection.IsAuthorized;
-            ViewBag.Algorithms = new List<Algorithm>();
+            ViewBag.BearerAvailable = SpectroInstance.Configuration.AccessToken != null;
+            ViewBag.Algorithms = new List<AlgorithmWithParameter>();
             ViewBag.TrainingItems = new List<Item>();
             ViewBag.PredictItems = new List<Item>();
-            ViewBag.Models = new List<ModelData>();
+            ViewBag.Models = new List<HModel>();
 
             if (ViewBag.BearerAvailable)
             {
-                var AlgorithmResponse = VisualInspection.GetAlgorithms();
-                var TrainingResponse = VisualInspection.GetItems();
-                ModelsResponse ModelsResponse = VisualInspection.GetModels();
-                Console.Write("START IFFF");
-                if (TrainingResponse != null && TrainingResponse.Data != null)
-                {
-                    ViewBag.TrainingItems = TrainingResponse.Data.Training;
-                    ViewBag.PredictItems = TrainingResponse.Data.Predict;
-                    Console.Write(TrainingResponse.Data.Training.Count);
-                }
 
-                if (AlgorithmResponse != null && AlgorithmResponse.Data != null)
-                {
+                try
+                {   
+                    var AlgorithmResponse = AlgorithmsInstance.GetAlgorithms();
                     ViewBag.Algorithms = AlgorithmResponse.Data;
-                    Console.Write(AlgorithmResponse.Data.Count);
+                    Debug.WriteLine(AlgorithmResponse.Data.Count);
                 }
-
-                if (ModelsResponse != null && ModelsResponse.Data != null)
+                catch (ApiException e)
                 {
-                    ViewBag.Models = ModelsResponse.Data;
-                    Console.Write(ModelsResponse.Data.Count);
+                    //ViewData["HttpResponse"] = e.ErrorContent;
+                    //ViewData["StringMessage"] = e.ErrorCode;
+                    Debug.WriteLine(e);
                 }
 
-                Console.Write("END IFFF");
-            }
+                try
+                {
+                    var ItemsResponse = ItemsInstance.GetItemsByType(itemType: "prediction", count: 10, page: 1);
+                    ViewBag.PredictItems = ItemsResponse.Data.Items ;
+                }
+                catch (ApiException e)
+                {
+                    //ViewData["HttpResponse"] = e.ErrorContent;
+                    //ViewData["StringMessage"] = e.ErrorCode;
+                    Debug.WriteLine(e);
+                }
 
-            // Console.Write("END INDEX "+ ViewBag.Algorithms.Count);
+                try
+                {
+                    var ItemsResponse = ItemsInstance.GetItemsByType(itemType: "training", count: 10, page: 1);
+                    ViewBag.TrainingItems = ItemsResponse.Data.Items;
+                }
+                catch (ApiException e)
+                {
+                    Debug.WriteLine(e);
+                    //ViewData["HttpResponse"] = e.ErrorContent;
+                    //ViewData["StringMessage"] = e.ErrorCode;
+                }
+
+                try
+                {
+                    var ModelsResponse = ModelsInstance.GetModels();
+                    ViewBag.Models = Array.FindAll(ModelsResponse.Data.ToArray(), (HModel Model) => (bool)Model.Active);
+                    Debug.WriteLine("ModelsResponse");
+                    Debug.WriteLine(ModelsResponse);
+                    //Console.Write(ModelsResponse.Data);
+                    //Console.Write(ModelsResponse.Data.Count);
+                }
+                catch (ApiException e)
+                {
+                    Debug.WriteLine(e);
+                    //ViewData["HttpResponse"] = e.ErrorContent;
+                    //ViewData["StringMessage"] = e.ErrorCode;
+                }
+            }
+            Console.Write("END INDEX "+ ViewBag.Algorithms.Count);
 
             return View("Index");
         }
 
-        public IActionResult ClientCredential()
-        {
-            return View();
-        }
 
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
+        //public IActionResult ClientCredential()
+        //{
+        //    return View();
+        //}
 
-            return View();
-        }
+        //public IActionResult Contact()
+        //{
+        //    ViewData["Message"] = "Your contact page.";
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+        //    return View();
+        //}
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        //public IActionResult Privacy()
+        //{
+        //    return View();
+        //}
+
+        //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        //public IActionResult Error()
+        //{
+        //    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        //}
     }
 }

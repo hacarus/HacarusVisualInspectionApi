@@ -1,8 +1,0 @@
-﻿{
-    "data": {
-        "item_ids": [
-            "NewItem"
-        ],
-        "model_version": "model-2019061101:26:07"
-    }    
-}
