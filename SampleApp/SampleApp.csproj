@@ -10,7 +10,6 @@
     <PackageReference Include="CompareNETObjects" Version="4.63.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Razor" Version="2.1.0" />
-    <PackageReference Include="SpectroSdk" Version="1.0.0-beta" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,5 +24,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\uploads\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\Downloads\SpectroSdk 7\src\Hacarus.SpectroSdk\Hacarus.SpectroSdk.csproj" />
   </ItemGroup>
 </Project>

@@ -11,12 +11,12 @@
                     <div class="form-group">
                         <label for="clientId">Client ID</label>
                         <input type="text" name="clientId" id="clientId"
-                               class="form-control" value="" />
+                               class="form-control" value="837bde13b6762e8b22f22dd8fdbf89c1" />
                     </div>
                     <div class="form-group">
                         <label for="clientSecret">Client Secret</label>
                         <input type="text" name="clientSecret" id="clientSecret"
-                               class="form-control" value="" />
+                               class="form-control" value="895621cd10defeef881716ed0d372c7220010292fbfcb289" />
                     </div>
                     <button type="submit" name="loginClient" class="pull-right btn btn-primary">Get access token</button>
                 </form>
@@ -90,7 +90,7 @@
                             <div class="form-group">
                                 <label for="modelIdsServe">Model ID</label>
                                 <select id="modelIdsServe" name="modelIdsServe" class="form-control">
-                                    @foreach (SpectroSdk.Model.Model item in ViewBag.Models)
+                                    @foreach (Hacarus.SpectroSdk.Model.HModel item in ViewBag.Models)
     {
                                 <option value="@item.ModelId">@item.Name</option>
 }
@@ -107,7 +107,7 @@
                             <div class="form-group">
                                 <label for="algorithmId">Algorithm</label>
                                 <select id="algorithmId" name="algorithmId" class="form-control">
-                                    @foreach (SpectroSdk.Model.Algorithm algo in ViewBag.Algorithms)
+                                    @foreach (Hacarus.SpectroSdk.Model.AlgorithmWithParameter algo in ViewBag.Algorithms)
     {
                                 <option value="@algo.AlgorithmId">@algo.Name</option>
 }
@@ -121,7 +121,7 @@
                             <div class="form-group">
                                 <label for="itemIds">Item IDs</label>
                                 <select id="itemIds" name="itemIds" class="form-control" multiple>
-                                    @foreach (SpectroSdk.Model.Item item in ViewBag.TrainingItems)
+                                    @foreach (Hacarus.SpectroSdk.Model.Item item in ViewBag.TrainingItems)
     {
                                 <option value="@item.ItemId"> @item.ItemId </option>
 }
@@ -164,11 +164,11 @@
                             <div class="form-group">
                                 <label for="itemId">Item ID</label>
                                 <select id="itemId" name="itemId" class="form-control">
-                                    @foreach (SpectroSdk.Model.Item item in ViewBag.TrainingItems)
+                                    @foreach (Hacarus.SpectroSdk.Model.Item item in ViewBag.TrainingItems)
     {
                                 <option value="@item.ItemId">@item.ItemId</option>
 }
-                                    @foreach (SpectroSdk.Model.Item item in ViewBag.PredictItems)
+                                    @foreach (Hacarus.SpectroSdk.Model.Item item in ViewBag.PredictItems)
     {
                                 <option value="@item.ItemId">@item.ItemId</option>
 }
@@ -185,14 +185,14 @@
                             <div class="form-group">
                                 <label for="itemIdServe">Item ID</label>
                                 <select id="itemIdServe" name="itemIdServe" class="form-control">
-                                    @foreach (SpectroSdk.Model.Item item in ViewBag.PredictItems)
+                                    @foreach (Hacarus.SpectroSdk.Model.Item item in ViewBag.PredictItems)
     {
                                 <option value="@item.ItemId">@item.ItemId</option>
 }
                                 </select>
                                 <label for="modelIdServe">Model</label>
                                 <select id="modelIdServe" name="modelIdServe" class="form-control">
-                                    @foreach (SpectroSdk.Model.Model item in ViewBag.Models)
+                                    @foreach (Hacarus.SpectroSdk.Model.HModel item in ViewBag.Models)
     {
                                 <option value="@item.ModelId">@item.Name</option>
 }
@@ -207,9 +207,9 @@
                     <div class="panel-body @(ViewBag.Active != "addAnnotation" ? " collapse" : "" )" id="addannotation-form">
                         <form asp-controller="Home" asp-action="AddAnnotation" method="post">
                             <div class="form-group">
-                                <label for="imageId">Image ID</label>
-                                <input type="text" name="imageId" id="imageId"
-                                       class="form-control" value="" placeholder="Image ID" />
+                                <label for="itemId">Item ID</label>
+                                <input type="text" name="itemId" id="itemId"
+                                       class="form-control" value="" placeholder="Item ID" />
                             </div>
                             <div class="form-group">
                                 <label for="xMin">X Min</label>
@@ -266,7 +266,7 @@
                             <div class="form-group">
                                 <label for="modelIdsExport">Model ID</label>
                                 <select id="modelIdsExport" name="modelIdsExport" class="form-control">
-                                    @foreach (SpectroSdk.Model.Model item in ViewBag.Models)
+                                    @foreach (Hacarus.SpectroSdk.Model.HModel item in ViewBag.Models)
     {
                                 <option value="@item.ModelId">@item.Name</option>
 }
