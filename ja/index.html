@@ -5875,6 +5875,11 @@ jwt, oauth2
 <li>アノテーション不要の教師なし学習アルゴリズム。</li>
 <li>画像の局所的な部分に注目し、正常画像から逸脱しているかどうか判定する。</li>
 </ul></li>
+<li>Pattern Matching
+
+<ul>
+<li>Classical pattern matching algorithm which compares an image against a golden image.</li>
+</ul></li>
 </ul>
 <h2 id='t-algorithmdetails'>アルゴリズム詳細</h2><h3 id='t-algo1i'>Reconstructor Inspection</h3>
 <p>正常画像のみから学習するアノテーション不要の教師なし学習モデル。正常な入力画像に対して辞書学習を行う。推論時には新たな画像に対して、再構成誤差を計算し、その大小に基づいて異常検知を行う。これによって、画像の全体的なテクスチャに注目し、正常画像から逸脱しているかどうかを判定することができる。画像の位置合わせや、画像のサイズなどは特に気にしなくてもよい。
@@ -5883,7 +5888,7 @@ jwt, oauth2
 <p>正常画像のみから学習するアノテーション不要の教師なし学習モデル。画像の局所的な部分の特徴に注目し、正常画像から逸脱しているかどうかを判定する。使用する際は多少の位置ズレは許容するが、基本的には全て位置合わせをする必要があり、画像サイズも統一しておかなければいけない。大幅な位置ズレや、回転に対しては誤分類の原因になる。
  <table class="hacarus-table"> <thead> <tr class="tableizer-firstrow"> <td><strong>パラメータ<strong></td> <td><strong>変数名<strong></td> <td><strong>型 : 範囲<strong></td> <td><strong>既定値<strong></td> <td><strong>計算時間への影響<strong></td> <td><strong>精度への影響<strong></td> <td><strong>備考<strong></td> </tr> </thead> <tbody> <tr><td>最小の検査サイズ</td><td>min_inspection_size</td><td>(int, int) : 0~height, 0~width</td><td>(32, 32)</td><td>大 -> 大</td><td>-</td><td>(16, 16) or (32,32) or (64,64) が経験的によい。</td></tr> <tr><td>最小の検査サイズ幅</td><td>min_inspection_step</td><td>int : [1, inf]</td><td>16</td><td>大 -> 小</td><td>大 -> 小</td><td>min_inspection_sizeの1/2か1/4が望ましい</td></tr> <tr><td>検知領域の異常度の閾値</td><td>threshold</td><td>float : [0, inf]</td><td>0.001</td><td>-</td><td>-</td><td>大きすぎるとほとんど正常、小さすぎるとほとんど異常</td></tr> <tr><td>無視される外周からの幅</td><td>ignore_outer</td><td>(int, int) : 0~height, 0~width</td><td>(0,0)</td><td>-</td><td>-</td><td>"外周からの無視する領域の幅 画像の縦, 横のピクセル数までの値にする。"</td></tr> <tr><td>最小の検知サイズ</td><td>min_detected_area</td><td>Float : [1, inf]</td><td>0</td><td>-</td><td>-</td><td>検出される矩形の面積の下限</td></tr> </tbody> </table> </p>
 <h3 id='t-algo3i'>Pattern Matching</h3>
-<p>Classical pattern matching algorithm which compares an image against a golden image. We calculate the golden image from “OK” images (good samples, without defects, no annotation required) and compare it to reference. Hence, the position alignment is required (position variation is not allowed), and the size of all images must be the same. Misalignment and rotation might be a cause of misclassification.
+<p>We calculate the golden image from “OK” images (good samples, without defects, no annotation required) and compare it to reference. Hence, the position alignment is required (position variation is not allowed), and the size of all images must be the same. Misalignment and rotation might be a cause of misclassification.
  <table class="hacarus-table"> <thead> <tr> <td><strong>Parameter</strong></td> <td><strong>Variable name</strong></td> <td><strong>Type: Range</strong></td> <td><strong>Default</strong></td> <td><strong>Impact on processing time</strong></td> <td><strong>Impact on accuracy</strong></td> <td><strong>Remarks</strong></td> </tr> </thead> <tbody> <tr> <td>Minimum inspection size	</td> <td>min_inspection_size</td> <td>(int, int) : 0~height, 0~width</td> <td>(16, 16)</td> <td>large -> large</td> <td>-</td> <td>(16, 16) or (32, 32) or (64, 64) are empirically good.</td> </tr> <tr> <td>Minimum inspection step size</td> <td>min_inspection_step</td> <td>int : [1, inf]</td> <td>4</td> <td>large -> small</td> <td></td> <td>Half or quarter of min_inspection_size is desirable.</td> </tr> <tr> <td>Threshold of anomaly</td> <td>threshold</td> <td>float : [0, inf]	0.1</td> <td>-</td> <td>large->more tolerant</td> <td></td> <td></td> </tr> <tr> <td>Width from the perimeter to be ignored</td> <td>ignore_outer</td> <td>(int, int) : 0~height, 0~width</td> <td>(0,0)</td> <td>-</td> <td>-</td> <td>The width of the ignored area from the perimeter. Use values up to the number of vertical and horizontal pixels in the image.</td> </tr> <tr> <td>Minimum detection size</td> <td>min_detected_area</td> <td>float : [1, inf]</td> <td>0</td> <td>-</td> <td>-</td> <td>Threshold of area of detected rectangle</td> </tr>
 </tbody></table> </p>
 <h1 id='sdk-playground'>SDK Playground</h1>
