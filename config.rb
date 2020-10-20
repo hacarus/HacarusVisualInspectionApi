@@ -57,4 +57,8 @@ set :port, 4567
 
 helpers do
   require './lib/toc_data.rb'
+  def translate_fallback(key, fallback = nil)
+    fallback ||= key
+    I18n.t(key, default: fallback)
+  end
 end
