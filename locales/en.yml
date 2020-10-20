@@ -345,7 +345,7 @@ To get started, you need the following:
   errorNoLicense: "Error when calling a method but license is not yet activated or expired. When encounted, please call `%{activateLicense}` method first."
   enLink: "./"
   jaLink: "./ja"
-  algorithmsWithVersion: Algorithm V0.5.1
+  algorithmsWithVersion: Algorithm V0.7.6
   algorithmOverview: Algorithm overview
   algorithmOverview1: Reconstructor Inspection
   algorithmOverview1i: "An unsupervised learning model that learns only from “OK” images (good samples, without defects, no annotation required)."
@@ -353,6 +353,8 @@ To get started, you need the following:
   algorithmOverview2: Local Pattern Inspection
   algorithmOverview2i: "An unsupervised learning model that learns only from “OK” images (good samples, without defects, no annotation required)."
   algorithmOverview2ii: The model can learn local structure of images.
+  algorithmOverview3: 'Pattern Matching'
+  algorithmOverview3i: 'Classical pattern matching algorithm which compares an image against a golden image.'
   algorithmDetails: "Algorithm details"
   algo1i: "Reconstructor Inspection"
   algo1iText: "An unsupervised learning model that learns only from “OK” images (good samples, without defects, annotations). At the time of prediction, a reconstruction error is calculated and abnormality defection is performed based on the magnitude. The model can learn global texture of images."
@@ -406,7 +408,7 @@ Misalignment and rotation might be a cause of misclassification."
 </tbody></table>
 '
   algo3i: 'Pattern Matching'
-  algo3iText: "Classical pattern matching algorithm which compares an image against a golden image. We calculate the golden image from “OK” images (good samples, without defects, no annotation required) and compare it to reference. Hence, the position alignment is required (position variation is not allowed), and the size of all images must be the same. Misalignment and rotation might be a cause of misclassification."
+  algo3iText: "We calculate the golden image from “OK” images (good samples, without defects, no annotation required) and compare it to reference. Hence, the position alignment is required (position variation is not allowed), and the size of all images must be the same. Misalignment and rotation might be a cause of misclassification."
   algo3iTable: '
 <table class="hacarus-table">
 <thead>
