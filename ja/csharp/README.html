@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      /*! ADAPTED
+    Typeplate : Starter Kit
+    URL ........... http://typeplate.com
+    Version ....... 3.0.2
+    Github ........ https://github.com/typeplate/starter-kit
+    Authors ....... Dennis Gaebel (@gryghostvisuals) & Zachary Kain (@zakkain)
+    License ....... Creative Commmons Attribution 3.0
+    License URL ... https://github.com/typeplate/starter-kit/blob/master/license.txt
+    */
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        text-rendering: optimizeLegibility;
+        line-height: 1;
+        margin-top: 0;
+        color: #222;
+      }
+
+      blockquote + figcaption cite {
+        display: block;
+        font-size: inherit;
+        text-align: right;
+      }
+
+      body {
+        word-wrap: break-word;
+      }
+
+      pre code {
+        word-wrap: normal;
+      }
+
+      body {
+        -webkit-hyphens: auto;
+        -ms-hyphens: auto;
+        hyphens: auto;
+        color: #444;
+      }
+
+      h1 {
+        font-size: 2em;
+        /* 2*16 = 32 */
+      }
+
+      h2 {
+        font-size: 1.5em;
+        /* 1.5*16 = 24 */
+      }
+
+      h3 {
+        font-size: 1.17em;
+        /* 1.17*16 = 18.72 */
+      }
+
+      h4 {
+        font-size: 1em;
+        /* 1*16 = 16 */
+      }
+
+      h5 {
+        font-size: 0.83em;
+        /* 0.83*16 = 13.28 */
+      }
+
+      h6 {
+        font-size: 0.75em;
+        /* 0.75*16 = 12 */
+      }
+
+      h1 {
+        margin: 2.42424rem 0 1.454544rem;
+      }
+
+      h2 {
+        margin: 2.0202rem 0 1.21212rem;
+      }
+
+      h3 {
+        margin: 1.61616rem 0 1rem;
+      }
+
+      h4 {
+        margin: 1.21212rem 0 1;
+      }
+
+      h5 {
+        margin: 0.80808rem 0;
+      }
+
+      h6 {
+        margin: 0.70707rem 0;
+      }
+
+      p {
+        margin: auto auto 1.5rem;
+      }
+
+      small {
+        font-size: 65%;
+      }
+
+      input,
+      abbr,
+      acronym,
+      blockquote,
+      code,
+      kbd,
+      q,
+      samp,
+      var {
+        -webkit-hyphens: none;
+        -ms-hyphens: none;
+        hyphens: none;
+      }
+
+      pre {
+        white-space: pre;
+      }
+
+      pre code {
+        white-space: -moz-pre-wrap;
+        white-space: pre-wrap;
+      }
+
+      code {
+        white-space: pre;
+        font-family: SF Mono, Consolas, Dejavu Sans Mono, Menlo, monospace;
+      }
+
+      abbr {
+        -webkit-font-variant: small-caps;
+        -moz-font-variant: small-caps;
+        -ms-font-variant: small-caps;
+        font-variant: small-caps;
+        font-weight: 600;
+        text-transform: lowercase;
+        color: gray;
+      }
+
+      abbr[title]:hover {
+        cursor: help;
+      }
+
+      /* FROM http://purecss.io/layouts/side-menu/  adapted to remove pure classes*/
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+          "Segoe UI Symbol";
+        color: #444;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: auto;
+      }
+
+      code,
+      pre {
+        background-color: #f5f5f5;
+        color: #444;
+        border-radius: 2px;
+        text-shadow: 0px 1px 0px white;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+      }
+
+      pre code {
+        border: none;
+        box-shadow: none;
+      }
+
+      pre {
+        padding: 0.5em;
+      }
+
+      code {
+        display: inline-block;
+        padding: 0 0.5em;
+        line-height: 1.4;
+        font-size: 0.9em;
+      }
+
+      table {
+        border-spacing: 0;
+        margin-bottom: 1.5rem;
+      }
+
+      table th,
+      table td {
+        padding: 0.3em 0.7em;
+      }
+
+      table th {
+        background-color: #f4f4f4;
+        border-bottom: 2px solid #444;
+      }
+
+      table td {
+        border: 1px solid #f5f5f5;
+      }
+
+      /* Add transition to containers so they can push in and out. */
+
+      #layout,
+      #menu,
+      .menu-link {
+        transition: all 0.2s ease-out;
+      }
+
+      /* This is the parent `<div>` that contains the menu and the content area. */
+
+      #layout {
+        position: relative;
+        padding-left: 0;
+      }
+
+      #layout.active #menu {
+        left: 250px;
+        width: 250px;
+      }
+
+      #layout.active .menu-link {
+        left: 250px;
+      }
+
+      /* The content `<div>` is where all your content goes. */
+
+      .content {
+        margin: 50px auto;
+        padding: 0 2em;
+        max-width: 80ex;
+        line-height: 1.6em;
+      }
+
+      /*
+      The `#menu` `<div>` is the parent `<div>` that contains the menu that
+      appears on the left side of the page.
+      */
+
+      #menu {
+        margin-left: -250px;
+        /* "#menu" width */
+        width: 250px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 1000;
+        /* so the menu or its navicon stays above all content */
+        background: #f4f4f4;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        font-size: 0.9em;
+      }
+
+      @media print {
+        #menu,
+        .menu-link {
+          display: none !important;
+        }
+      }
+
+      a,
+      a * {
+        text-decoration: none;
+        color: #2483cc;
+      }
+
+      a:visited {
+        text-decoration: none;
+        color: #2483cc;
+      }
+
+      /* All anchors inside the menu should be styled like this. */
+
+      #menu a {
+        display: block;
+        padding: 0.5em 0.5em;
+      }
+
+      #menu a:first-letter {
+        text-transform: capitalize;
+      }
+
+      #menu ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 1em 0.5em;
+      }
+
+      #menu ul ul {
+        margin-top: 0.5em;
+        margin-left: 0.5em;
+        border-left: 4px solid rgba(255, 255, 255, 0.5);
+      }
+
+      /* Change color of the anchor links on hover/focus. */
+
+      #menu li a:hover,
+      #menu li a:focus {
+        background: rgba(255, 255, 255, 0.4);
+      }
+
+      /* This styles the selected menu item `<li>`. */
+
+      #menu li a.active {
+        background: rgba(0, 0, 0, 0.05);
+      }
+
+      /* This styles a link within a selected menu item `<li>`. */
+
+      #menu li a.active {
+        color: #222;
+      }
+
+      /* This styles the menu heading. */
+
+      #menu li.heading {
+        font-size: 0.9em;
+        text-transform: uppercase;
+        color: #000;
+      }
+
+      #menu li.heading > * {
+        padding: 0.5em;
+        display: block;
+      }
+
+      #menu li.heading a {
+        color: #0c68af;
+      }
+
+      /* -- Dynamic Button For Responsive Menu -------------------------------------*/
+
+      /*
+      `.menu-link` represents the responsive menu toggle that shows/hides on
+      small screens.
+      */
+
+      .menu-link {
+        position: fixed;
+        display: block;
+        /* show this only on small screens */
+        top: 0;
+        left: 0;
+        /* "#menu width" */
+        font-size: 10px;
+        /* change this value to increase/decrease button size */
+        z-index: 10;
+        width: 2em;
+        height: auto;
+        padding: 1.6em 1.2em;
+        border-radius: 0 2px 2px 0;
+      }
+
+      .menu-link:hover {
+        background: #f4f4f4;
+      }
+
+      .menu-link span {
+        position: relative;
+        display: block;
+      }
+
+      .menu-link span,
+      .menu-link span:before,
+      .menu-link span:after {
+        background-color: #555;
+        width: 100%;
+        height: 0.2em;
+        border-radius: 1em;
+      }
+
+      .menu-link span:before,
+      .menu-link span:after {
+        position: absolute;
+        margin-top: -0.6em;
+        content: " ";
+      }
+
+      .menu-link span:after {
+        margin-top: 0.6em;
+      }
+
+      /* Hides the menu at `48em`, but modify this based on your app's needs. */
+
+      @media (min-width: 48em) {
+        .header,
+        .content {
+          padding-left: 2em;
+          padding-right: 2em;
+        }
+
+        #layout {
+          padding-left: 250px;
+          /* left col width "#menu" */
+          left: 0;
+        }
+        #menu {
+          left: 250px;
+        }
+
+        .menu-link {
+          position: fixed;
+          left: 250px;
+          display: none;
+        }
+
+        #layout.active .menu-link {
+          left: 250px;
+        }
+      }
+
+      @media (max-width: 48em) {
+        /* Only apply this when the window is small. Otherwise, the following case results in extra padding on the left:
+         * Make the window small.
+         * Tap the menu to trigger the active state.
+         * Make the window large again.
+         */
+        #layout.active {
+          position: relative;
+          left: 250px;
+        }
+      }
+
+      /* Heading anchors and permalinks */
+      h1[id],
+      h2[id],
+      h3[id],
+      h4[id],
+      h5[id],
+      h6[id] {
+        position: relative;
+      }
+      .heading-anchor-permalink {
+        /* Position the permalink to the left of the title */
+        position: absolute;
+        right: 100%;
+        /* Add some spacing as padding to not lose the hover */
+        padding-right: 0.6rem;
+        /* Make it only visible on heading hover, see below */
+        opacity: 0;
+      }
+      h1[id]:hover .heading-anchor-permalink,
+      h2[id]:hover .heading-anchor-permalink,
+      h3[id]:hover .heading-anchor-permalink,
+      h4[id]:hover .heading-anchor-permalink,
+      h5[id]:hover .heading-anchor-permalink,
+      h6[id]:hover .heading-anchor-permalink {
+        opacity: 0.5;
+      }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+  </head>
+
+  <body>
+    <div id="layout">
+      <!-- Menu toggle -->
+      <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+      </a>
+      <nav id="menu">
+        <ul>
+<li><a class="active" href="README.html">README</a></li>
+<li class="heading"><span>docs</span></li>
+<ul>
+<li><a class="" href="docs/AddItemRequest.html">AddItemRequest</a></li>
+<li><a class="" href="docs/AddItemResponse.html">AddItemResponse</a></li>
+<li><a class="" href="docs/AddItemResponseWrapper.html">AddItemResponseWrapper</a></li>
+<li><a class="" href="docs/AlgorithmParameter.html">AlgorithmParameter</a></li>
+<li><a class="" href="docs/AlgorithmWithParameter.html">AlgorithmWithParameter</a></li>
+<li><a class="" href="docs/AlgorithmWithParameterListWrapper.html">AlgorithmWithParameterListWrapper</a></li>
+<li><a class="" href="docs/AlgorithmWithParameterWrapper.html">AlgorithmWithParameterWrapper</a></li>
+<li><a class="" href="docs/AlgorithmsApi.html">AlgorithmsApi</a></li>
+<li><a class="" href="docs/AnnotateItemRequest.html">AnnotateItemRequest</a></li>
+<li><a class="" href="docs/Annotation.html">Annotation</a></li>
+<li><a class="" href="docs/AssessmentItem.html">AssessmentItem</a></li>
+<li><a class="" href="docs/AssessmentItem1.html">AssessmentItem1</a></li>
+<li><a class="" href="docs/BaseError.html">BaseError</a></li>
+<li><a class="" href="docs/Error.html">Error</a></li>
+<li><a class="" href="docs/ErrorSource.html">ErrorSource</a></li>
+<li><a class="" href="docs/GetItemsResponse.html">GetItemsResponse</a></li>
+<li><a class="" href="docs/GetItemsResponseWrapper.html">GetItemsResponseWrapper</a></li>
+<li><a class="" href="docs/HModel.html">HModel</a></li>
+<li><a class="" href="docs/HModelListWrapper.html">HModelListWrapper</a></li>
+<li><a class="" href="docs/HModelPrecision.html">HModelPrecision</a></li>
+<li><a class="" href="docs/HModelStats.html">HModelStats</a></li>
+<li><a class="" href="docs/HModelWrapper.html">HModelWrapper</a></li>
+<li><a class="" href="docs/ImportModels.html">ImportModels</a></li>
+<li><a class="" href="docs/InspectionTarget.html">InspectionTarget</a></li>
+<li><a class="" href="docs/InspectionTargetListWrapper.html">InspectionTargetListWrapper</a></li>
+<li><a class="" href="docs/InspectionTargetWrapper.html">InspectionTargetWrapper</a></li>
+<li><a class="" href="docs/Item.html">Item</a></li>
+<li><a class="" href="docs/ItemImageMeta.html">ItemImageMeta</a></li>
+<li><a class="" href="docs/ItemWrapper.html">ItemWrapper</a></li>
+<li><a class="" href="docs/ItemsApi.html">ItemsApi</a></li>
+<li><a class="" href="docs/KeyValueError.html">KeyValueError</a></li>
+<li><a class="" href="docs/License.html">License</a></li>
+<li><a class="" href="docs/LicenseHashResponse.html">LicenseHashResponse</a></li>
+<li><a class="" href="docs/LicenseHashResponseWrapper.html">LicenseHashResponseWrapper</a></li>
+<li><a class="" href="docs/LicenseResponse.html">LicenseResponse</a></li>
+<li><a class="" href="docs/LicenseResponseWrapper.html">LicenseResponseWrapper</a></li>
+<li><a class="" href="docs/LoginParams.html">LoginParams</a></li>
+<li><a class="" href="docs/LoginResponse.html">LoginResponse</a></li>
+<li><a class="" href="docs/ModelIdsQuery.html">ModelIdsQuery</a></li>
+<li><a class="" href="docs/ModelIdsQueryWrapper.html">ModelIdsQueryWrapper</a></li>
+<li><a class="" href="docs/ModelsApi.html">ModelsApi</a></li>
+<li><a class="" href="docs/OverrideParam.html">OverrideParam</a></li>
+<li><a class="" href="docs/Predict.html">Predict</a></li>
+<li><a class="" href="docs/PredictItemsResponse.html">PredictItemsResponse</a></li>
+<li><a class="" href="docs/PredictItemsResponseWrapper.html">PredictItemsResponseWrapper</a></li>
+<li><a class="" href="docs/Preprocessing.html">Preprocessing</a></li>
+<li><a class="" href="docs/RequestAnnotation.html">RequestAnnotation</a></li>
+<li><a class="" href="docs/TargetsApi.html">TargetsApi</a></li>
+<li><a class="" href="docs/TokenApi.html">TokenApi</a></li>
+<li><a class="" href="docs/TrainRequest.html">TrainRequest</a></li>
+<li><a class="" href="docs/UtilsApi.html">UtilsApi</a></li>
+</ul>
+</ul>
+      </nav>
+      <article id="main" class="content">
+        <h1 id="hacarus.spectrosdk---the-c%23-library-for-the-spectro">Hacarus.SpectroSdk - the C# library for the Spectro <a class="heading-anchor-permalink" href="#hacarus.spectrosdk---the-c%23-library-for-the-spectro" aria-hidden="true">#</a></h1>
+<p>No description provided (generated by Openapi Generator <a href="https://github.com/openapitools/openapi-generator">https://github.com/openapitools/openapi-generator</a>)</p>
+<p>This C# SDK is automatically generated by the <a href="https://openapi-generator.tech">OpenAPI Generator</a> project:</p>
+<ul>
+<li>API version: 1</li>
+<li>SDK version: 0.1.1</li>
+<li>Build package: org.openapitools.codegen.languages.CSharpNetCoreClientCodegen</li>
+</ul>
+<p><a name="frameworks-supported"></a></p>
+<h2 id="frameworks-supported">Frameworks supported <a class="heading-anchor-permalink" href="#frameworks-supported" aria-hidden="true">#</a></h2>
+<ul>
+<li>.NET Core &gt;=1.0</li>
+<li>.NET Framework &gt;=4.6</li>
+<li>Mono/Xamarin &gt;=vNext</li>
+</ul>
+<p><a name="dependencies"></a></p>
+<h2 id="dependencies">Dependencies <a class="heading-anchor-permalink" href="#dependencies" aria-hidden="true">#</a></h2>
+<ul>
+<li><a href="https://www.nuget.org/packages/RestSharp">RestSharp</a> - 106.6.7 or later</li>
+<li><a href="https://www.nuget.org/packages/Newtonsoft.Json/">Json.NET</a> - 12.0.1 or later</li>
+<li><a href="https://www.nuget.org/packages/JsonSubTypes/">JsonSubTypes</a> - 1.5.2 or later</li>
+<li><a href="https://www.nuget.org/packages/CompareNETObjects">CompareNETObjects</a> - 4.57.0 or later</li>
+<li><a href="https://www.nuget.org/packages/System.ComponentModel.Annotations">System.ComponentModel.Annotations</a> - 4.5.0 or later</li>
+</ul>
+<p>The DLLs included in the package may not be the latest version. We recommend using <a href="https://docs.nuget.org/consume/installing-nuget">NuGet</a> to obtain the latest version of the packages:</p>
+<pre><code>Install-Package RestSharp
+Install-Package Newtonsoft.Json
+Install-Package JsonSubTypes
+Install-Package System.ComponentModel.Annotations
+Install-Package CompareNETObjects
+</code></pre>
+<p>NOTE: RestSharp versions greater than 105.1.0 have a bug which causes file uploads to fail. See <a href="https://github.com/restsharp/RestSharp/issues/742">RestSharp#742</a></p>
+<p><a name="installation"></a></p>
+<h2 id="installation">Installation <a class="heading-anchor-permalink" href="#installation" aria-hidden="true">#</a></h2>
+<p>Generate the DLL using your preferred tool (e.g. <code>dotnet build</code>)</p>
+<p>Then include the DLL (under the <code>bin</code> folder) in the C# project, and use the namespaces:</p>
+<pre><code class="language-csharp">using Hacarus.SpectroSdk.Api;
+using Hacarus.SpectroSdk.Client;
+using Hacarus.SpectroSdk.Model;
+</code></pre>
+<p><a name="getting-started"></a></p>
+<h2 id="getting-started">Getting Started <a class="heading-anchor-permalink" href="#getting-started" aria-hidden="true">#</a></h2>
+<pre><code class="language-csharp">using System.Collections.Generic;
+using System.Diagnostics;
+using Hacarus.SpectroSdk.Api;
+using Hacarus.SpectroSdk.Client;
+using Hacarus.SpectroSdk.Model;
+
+namespace Example
+{
+    public class Example
+    {
+        public static void Main()
+        {
+
+            Configuration.Default.BasePath = &quot;https://spectro-demo.hacarus.com&quot;;
+            // Configure HTTP basic authorization: jwt
+            Configuration.Default.Username = &quot;YOUR_USERNAME&quot;;
+            Configuration.Default.Password = &quot;YOUR_PASSWORD&quot;;
+            // Configure OAuth2 access token for authorization: oauth2
+            Configuration.Default.AccessToken = &quot;YOUR_ACCESS_TOKEN&quot;;
+
+            var apiInstance = new AlgorithmsApi(Configuration.Default);
+            var algorithmId = algorithmId_example;  // string | 
+
+            try
+            {
+                // Get Algorithm by ID
+                AlgorithmWithParameterWrapper result = apiInstance.GetAlgorithmById(algorithmId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException e)
+            {
+                Debug.Print(&quot;Exception when calling AlgorithmsApi.GetAlgorithmById: &quot; + e.Message );
+                Debug.Print(&quot;Status Code: &quot;+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+
+        }
+    }
+}
+</code></pre>
+<p><a name="documentation-for-api-endpoints"></a></p>
+<h2 id="documentation-for-api-endpoints">Documentation for API Endpoints <a class="heading-anchor-permalink" href="#documentation-for-api-endpoints" aria-hidden="true">#</a></h2>
+<p>All URIs are relative to <em><a href="https://spectro-demo.hacarus.com">https://spectro-demo.hacarus.com</a></em></p>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Method</th>
+<th>HTTP request</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>AlgorithmsApi</em></td>
+<td><a href="docs/AlgorithmsApi.html#getalgorithmbyid"><strong>GetAlgorithmById</strong></a></td>
+<td><strong>GET</strong> /api/v1/algorithms/{algorithm_id}</td>
+<td>Get Algorithm by ID</td>
+</tr>
+<tr>
+<td><em>AlgorithmsApi</em></td>
+<td><a href="docs/AlgorithmsApi.html#getalgorithms"><strong>GetAlgorithms</strong></a></td>
+<td><strong>GET</strong> /api/v1/algorithms/</td>
+<td>Get List of Algorithms</td>
+</tr>
+<tr>
+<td><em>AlgorithmsApi</em></td>
+<td><a href="docs/AlgorithmsApi.html#train"><strong>Train</strong></a></td>
+<td><strong>POST</strong> /api/v1/algorithms/{algorithm_id}/train</td>
+<td>Train</td>
+</tr>
+<tr>
+<td><em>ItemsApi</em></td>
+<td><a href="docs/ItemsApi.html#additem"><strong>AddItem</strong></a></td>
+<td><strong>POST</strong> /api/v1/items/</td>
+<td>Add Item</td>
+</tr>
+<tr>
+<td><em>ItemsApi</em></td>
+<td><a href="docs/ItemsApi.html#annotate"><strong>Annotate</strong></a></td>
+<td><strong>PATCH</strong> /api/v1/items/{item_id}</td>
+<td></td>
+</tr>
+<tr>
+<td><em>ItemsApi</em></td>
+<td><a href="docs/ItemsApi.html#getitembyid"><strong>GetItemById</strong></a></td>
+<td><strong>GET</strong> /api/v1/items/{item_id}</td>
+<td>Get Item by Id</td>
+</tr>
+<tr>
+<td><em>ItemsApi</em></td>
+<td><a href="docs/ItemsApi.html#getitemsbytype"><strong>GetItemsByType</strong></a></td>
+<td><strong>GET</strong> /api/v1/items/</td>
+<td>Get List of Items</td>
+</tr>
+<tr>
+<td><em>ModelsApi</em></td>
+<td><a href="docs/ModelsApi.html#deletemodels"><strong>DeleteModels</strong></a></td>
+<td><strong>DELETE</strong> /api/v1/models/</td>
+<td>Delete Models</td>
+</tr>
+<tr>
+<td><em>ModelsApi</em></td>
+<td><a href="docs/ModelsApi.html#exportmodelswithid"><strong>ExportModelsWithId</strong></a></td>
+<td><strong>POST</strong> /api/v1/models/export</td>
+<td>Export models</td>
+</tr>
+<tr>
+<td><em>ModelsApi</em></td>
+<td><a href="docs/ModelsApi.html#getmodelbyid"><strong>GetModelById</strong></a></td>
+<td><strong>GET</strong> /api/v1/models/{model_id}</td>
+<td>Get Model by ID</td>
+</tr>
+<tr>
+<td><em>ModelsApi</em></td>
+<td><a href="docs/ModelsApi.html#getmodels"><strong>GetModels</strong></a></td>
+<td><strong>GET</strong> /api/v1/models/</td>
+<td>Get List of Models</td>
+</tr>
+<tr>
+<td><em>ModelsApi</em></td>
+<td><a href="docs/ModelsApi.html#importmodels"><strong>ImportModels</strong></a></td>
+<td><strong>POST</strong> /api/v1/models/import</td>
+<td>Import models</td>
+</tr>
+<tr>
+<td><em>ModelsApi</em></td>
+<td><a href="docs/ModelsApi.html#predictitems"><strong>PredictItems</strong></a></td>
+<td><strong>POST</strong> /api/v1/models/{model_id}/predict</td>
+<td>Predict Items</td>
+</tr>
+<tr>
+<td><em>TargetsApi</em></td>
+<td><a href="docs/TargetsApi.html#getinspectiontargetbyid"><strong>GetInspectionTargetById</strong></a></td>
+<td><strong>GET</strong> /api/v1/targets/{target_id}</td>
+<td>Get Inspection Target by ID</td>
+</tr>
+<tr>
+<td><em>TargetsApi</em></td>
+<td><a href="docs/TargetsApi.html#getinspectiontargets"><strong>GetInspectionTargets</strong></a></td>
+<td><strong>GET</strong> /api/v1/targets/</td>
+<td>Get List of Inpection Targets</td>
+</tr>
+<tr>
+<td><em>TargetsApi</em></td>
+<td><a href="docs/TargetsApi.html#getmodelresults"><strong>GetModelResults</strong></a></td>
+<td><strong>POST</strong> /api/v1/targets/model/results</td>
+<td></td>
+</tr>
+<tr>
+<td><em>TargetsApi</em></td>
+<td><a href="docs/TargetsApi.html#setinspectiontargetbyid"><strong>SetInspectionTargetById</strong></a></td>
+<td><strong>POST</strong> /api/v1/targets/{target_id}</td>
+<td>Set Default Inspection Target by ID</td>
+</tr>
+<tr>
+<td><em>TokenApi</em></td>
+<td><a href="docs/TokenApi.html#login"><strong>Login</strong></a></td>
+<td><strong>POST</strong> /api/auth/token</td>
+<td>Authorization</td>
+</tr>
+<tr>
+<td><em>UtilsApi</em></td>
+<td><a href="docs/UtilsApi.html#gethashid"><strong>GetHashId</strong></a></td>
+<td><strong>POST</strong> /api/v1/utils/node_hash</td>
+<td></td>
+</tr>
+<tr>
+<td><em>UtilsApi</em></td>
+<td><a href="docs/UtilsApi.html#getlogs"><strong>GetLogs</strong></a></td>
+<td><strong>POST</strong> /api/v1/utils/debug</td>
+<td></td>
+</tr>
+<tr>
+<td><em>UtilsApi</em></td>
+<td><a href="docs/UtilsApi.html#setlicense"><strong>SetLicense</strong></a></td>
+<td><strong>POST</strong> /api/v1/utils/</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="documentation-for-models"></a></p>
+<h2 id="documentation-for-models">Documentation for Models <a class="heading-anchor-permalink" href="#documentation-for-models" aria-hidden="true">#</a></h2>
+<ul>
+<li><a href="docs/AddItemRequest.html">Model.AddItemRequest</a></li>
+<li><a href="docs/AddItemResponse.html">Model.AddItemResponse</a></li>
+<li><a href="docs/AddItemResponseWrapper.html">Model.AddItemResponseWrapper</a></li>
+<li><a href="docs/AlgorithmParameter.html">Model.AlgorithmParameter</a></li>
+<li><a href="docs/AlgorithmWithParameter.html">Model.AlgorithmWithParameter</a></li>
+<li><a href="docs/AlgorithmWithParameterListWrapper.html">Model.AlgorithmWithParameterListWrapper</a></li>
+<li><a href="docs/AlgorithmWithParameterWrapper.html">Model.AlgorithmWithParameterWrapper</a></li>
+<li><a href="docs/AnnotateItemRequest.html">Model.AnnotateItemRequest</a></li>
+<li><a href="docs/Annotation.html">Model.Annotation</a></li>
+<li><a href="docs/AssessmentItem.html">Model.AssessmentItem</a></li>
+<li><a href="docs/AssessmentItem1.html">Model.AssessmentItem1</a></li>
+<li><a href="docs/BaseError.html">Model.BaseError</a></li>
+<li><a href="docs/Error.html">Model.Error</a></li>
+<li><a href="docs/ErrorSource.html">Model.ErrorSource</a></li>
+<li><a href="docs/GetItemsResponse.html">Model.GetItemsResponse</a></li>
+<li><a href="docs/GetItemsResponseWrapper.html">Model.GetItemsResponseWrapper</a></li>
+<li><a href="docs/HModel.html">Model.HModel</a></li>
+<li><a href="docs/HModelListWrapper.html">Model.HModelListWrapper</a></li>
+<li><a href="docs/HModelPrecision.html">Model.HModelPrecision</a></li>
+<li><a href="docs/HModelStats.html">Model.HModelStats</a></li>
+<li><a href="docs/HModelWrapper.html">Model.HModelWrapper</a></li>
+<li><a href="docs/ImportModels.html">Model.ImportModels</a></li>
+<li><a href="docs/InspectionTarget.html">Model.InspectionTarget</a></li>
+<li><a href="docs/InspectionTargetListWrapper.html">Model.InspectionTargetListWrapper</a></li>
+<li><a href="docs/InspectionTargetWrapper.html">Model.InspectionTargetWrapper</a></li>
+<li><a href="docs/Item.html">Model.Item</a></li>
+<li><a href="docs/ItemImageMeta.html">Model.ItemImageMeta</a></li>
+<li><a href="docs/ItemWrapper.html">Model.ItemWrapper</a></li>
+<li><a href="docs/KeyValueError.html">Model.KeyValueError</a></li>
+<li><a href="docs/License.html">Model.License</a></li>
+<li><a href="docs/LicenseHashResponse.html">Model.LicenseHashResponse</a></li>
+<li><a href="docs/LicenseHashResponseWrapper.html">Model.LicenseHashResponseWrapper</a></li>
+<li><a href="docs/LicenseResponse.html">Model.LicenseResponse</a></li>
+<li><a href="docs/LicenseResponseWrapper.html">Model.LicenseResponseWrapper</a></li>
+<li><a href="docs/LoginParams.html">Model.LoginParams</a></li>
+<li><a href="docs/LoginResponse.html">Model.LoginResponse</a></li>
+<li><a href="docs/ModelIdsQuery.html">Model.ModelIdsQuery</a></li>
+<li><a href="docs/ModelIdsQueryWrapper.html">Model.ModelIdsQueryWrapper</a></li>
+<li><a href="docs/OverrideParam.html">Model.OverrideParam</a></li>
+<li><a href="docs/Predict.html">Model.Predict</a></li>
+<li><a href="docs/PredictItemsResponse.html">Model.PredictItemsResponse</a></li>
+<li><a href="docs/PredictItemsResponseWrapper.html">Model.PredictItemsResponseWrapper</a></li>
+<li><a href="docs/Preprocessing.html">Model.Preprocessing</a></li>
+<li><a href="docs/RequestAnnotation.html">Model.RequestAnnotation</a></li>
+<li><a href="docs/TrainRequest.html">Model.TrainRequest</a></li>
+</ul>
+<p><a name="documentation-for-authorization"></a></p>
+<h2 id="documentation-for-authorization">Documentation for Authorization <a class="heading-anchor-permalink" href="#documentation-for-authorization" aria-hidden="true">#</a></h2>
+<p><a name="jwt"></a></p>
+<h3 id="jwt">jwt <a class="heading-anchor-permalink" href="#jwt" aria-hidden="true">#</a></h3>
+<ul>
+<li><strong>Type</strong>: HTTP basic authentication</li>
+</ul>
+<p><a name="oauth2"></a></p>
+<h3 id="oauth2">oauth2 <a class="heading-anchor-permalink" href="#oauth2" aria-hidden="true">#</a></h3>
+<ul>
+<li><strong>Type</strong>: OAuth</li>
+<li><strong>Flow</strong>: application</li>
+<li><strong>Authorization URL</strong>:</li>
+<li><strong>Scopes</strong>:
+<ul>
+<li>all: all scopes</li>
+</ul>
+</li>
+</ul>
+
+      </article>
+    </div>
+    <script>
+      // Load contents.json if you need it
+    </script>
+    <script>
+      // FROM http://purecss.io/js/ui.js
+      (function(window, document) {
+        var layout = document.getElementById("layout"),
+          menu = document.getElementById("menu"),
+          menuLink = document.getElementById("menuLink");
+
+        function toggleClass(element, className) {
+          var classes = element.className.split(/\s+/),
+            length = classes.length,
+            i = 0;
+
+          for (; i < length; i++) {
+            if (classes[i] === className) {
+              classes.splice(i, 1);
+              break;
+            }
+          }
+          // The className is not found
+          if (length === classes.length) {
+            classes.push(className);
+          }
+
+          element.className = classes.join(" ");
+        }
+
+        menuLink.onclick = function(e) {
+          var active = "active";
+
+          e.preventDefault();
+          toggleClass(layout, active);
+          toggleClass(menu, active);
+          toggleClass(menuLink, active);
+        };
+      })(this, this.document);
+    </script>
+  </body>
+</html>
