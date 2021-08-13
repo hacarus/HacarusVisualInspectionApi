@@ -852,7 +852,7 @@
               </ul>
           </li>
           <li>
-            <a href="#t-algorithmswithversion" class="toc-h1 toc-link" data-title="Algorithm V0.7.6">Algorithm V0.7.6</a>
+            <a href="#t-algorithmswithversion" class="toc-h1 toc-link" data-title="Algorithm V0.7.21">Algorithm V0.7.21</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#t-algorithmoverview" class="toc-h2 toc-link" data-title="Algorithm overview">Algorithm overview</a>
@@ -868,6 +868,9 @@
                           </li>
                           <li>
                             <a href="#t-algo3i" class="toc-h3 toc-link" data-title="Pattern Matching">Pattern Matching</a>
+                        </li>
+                          <li>
+                            <a href="#t-algo4i" class="toc-h3 toc-link" data-title="Patch Sample Inspection">Patch Sample Inspection (beta)</a>
                           </li>
                       </ul>
                   </li>
@@ -5879,6 +5882,11 @@ jwt, oauth2
 <ul>
 <li>Classical pattern matching algorithm which compares an image against a golden image.</li>
 </ul></li>
+<li>Patch Sample Inspection
+
+<ul>
+<li>An unsupervised learning model that learns only from “OK” images (good samples, without defects, no annotation required).</li>
+</ul></li>
 </ul>
 <h2 id='t-algorithmdetails'>Algorithm details</h2><h3 id='t-algo1i'>Reconstructor Inspection</h3>
 <p>An unsupervised learning model that learns only from “OK” images (good samples, without defects, annotations). At the time of prediction, a reconstruction error is calculated and abnormality defection is performed based on the magnitude. The model can learn global texture of images.
@@ -5889,6 +5897,9 @@ jwt, oauth2
 <h3 id='t-algo3i'>Pattern Matching</h3>
 <p>We calculate the golden image from “OK” images (good samples, without defects, no annotation required) and compare it to reference. Hence, the position alignment is required (position variation is not allowed), and the size of all images must be the same. Misalignment and rotation might be a cause of misclassification.
  <table class="hacarus-table"> <thead> <tr> <td><strong>Parameter</strong></td> <td><strong>Variable name</strong></td> <td><strong>Type: Range</strong></td> <td><strong>Default</strong></td> <td><strong>Impact on processing time</strong></td> <td><strong>Impact on accuracy</strong></td> <td><strong>Remarks</strong></td> </tr> </thead> <tbody> <tr> <td>Minimum inspection size	</td> <td>min_inspection_size</td> <td>(int, int) : 0~height, 0~width</td> <td>(16, 16)</td> <td>large -> large</td> <td>-</td> <td>(16, 16) or (32, 32) or (64, 64) are empirically good.</td> </tr> <tr> <td>Minimum inspection step size</td> <td>min_inspection_step</td> <td>int : [1, inf]</td> <td>4</td> <td>large -> small</td> <td></td> <td>Half or quarter of min_inspection_size is desirable.</td> </tr> <tr> <td>Threshold of anomaly</td> <td>threshold</td> <td>float : [0, inf]	0.1</td> <td>-</td> <td>large->more tolerant</td> <td></td> <td></td> </tr> <tr> <td>Width from the perimeter to be ignored</td> <td>ignore_outer</td> <td>(int, int) : 0~height, 0~width</td> <td>(0,0)</td> <td>-</td> <td>-</td> <td>The width of the ignored area from the perimeter. Use values up to the number of vertical and horizontal pixels in the image.</td> </tr> <tr> <td>Minimum detection size</td> <td>min_detected_area</td> <td>float : [1, inf]</td> <td>0</td> <td>-</td> <td>-</td> <td>Threshold of area of detected rectangle</td> </tr>
+<h3 id='t-algo4i'>Patch Sample Inspection</h3>
+<p>We calculate the golden image from “OK” images (good samples, without defects, no annotation required) and compare it to reference. Hence, the position alignment is required (position variation is not allowed), and the size of all images must be the same. Misalignment and rotation might be a cause of misclassification.
+ <table class="hacarus-table"> <thead> <tr> <td><strong>Parameter</strong></td> <td><strong>Variable name</strong></td> <td><strong>Type: Range</strong></td> <td><strong>Default</strong></td> <td><strong>Impact on processing time</strong></td> <td><strong>Impact on accuracy</strong></td> <td><strong>Remarks</strong></td> </tr> </thead> <tbody> <tr> <td>Minimum inspection size	</td> <td>min_inspection_size</td> <td>(int, int) : 0~height, 0~width</td> <td>(16, 16)</td> <td>large -> large</td> <td>-</td> <td>(16, 16) or (32, 32) or (64, 64) are empirically good.</td> </tr> <tr> <td>Minimum inspection step size</td> <td>min_inspection_step</td> <td>int : [1, inf]</td> <td>4</td> <td>large -> small</td> <td></td> <td>Half or quarter of min_inspection_size is desirable.</td> </tr> <tr> <td>Threshold of anomaly</td> <td>threshold</td> <td>float : [0, inf]	0.1</td> <td>-</td> <td>large->more tolerant</td> <td></td> <td></td> </tr> <tr> <td>Width from the perimeter to be ignored</td> <td>ignore_outer</td> <td>(int, int) : 0~height, 0~width</td> <td>(0,0)</td> <td>-</td> <td>-</td> <td>The width of the ignored area from the perimeter. Use values up to the number of vertical and horizontal pixels in the image.</td> </tr> <tr> <td>Minimum detection size</td> <td>min_detected_area</td> <td>float : [1, inf]</td> <td>0</td> <td>-</td> <td>-</td> <td>Threshold of area of detected rectangle</td> </tr>
 </tbody></table> </p>
 <h1 id='sdk-playground'>SDK Playground</h1>
 
@@ -5896,11 +5907,11 @@ jwt, oauth2
 
 <h1 id='c-sdk'>C# SDK</h1>
 
-<p><a href="/csharp/README.html" target="_blank">Open</a></p>
+<p><a href="/HacarusVisualInspectionApi/csharp/README.html" target="_blank">Open</a></p>
 
 <h1 id='python-sdk'>Python SDK</h1>
 
-<p><a href="/python/README.html" target="_blank">Open</a></p>
+<p><a href="/HacarusVisualInspectionApi/python/README.html" target="_blank">Open</a></p>
 
       </div>
       <div class="dark-box">
