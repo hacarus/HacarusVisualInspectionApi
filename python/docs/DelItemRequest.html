@@ -214,6 +214,10 @@
       #layout,
       #menu,
       .menu-link {
+        -webkit-transition: all 0.2s ease-out;
+        -moz-transition: all 0.2s ease-out;
+        -ms-transition: all 0.2s ease-out;
+        -o-transition: all 0.2s ease-out;
         transition: all 0.2s ease-out;
       }
 
@@ -489,6 +493,7 @@
 <li><a class="" href="AssessmentItem.html">AssessmentItem</a></li>
 <li><a class="" href="AssessmentItem1.html">AssessmentItem1</a></li>
 <li><a class="" href="BaseError.html">BaseError</a></li>
+<li><a class="active" href="DelItemRequest.html">DelItemRequest</a></li>
 <li><a class="" href="Error.html">Error</a></li>
 <li><a class="" href="ErrorSource.html">ErrorSource</a></li>
 <li><a class="" href="GetItemsResponse.html">GetItemsResponse</a></li>
@@ -523,79 +528,16 @@
 <li><a class="" href="PredictItemsResponseWrapper.html">PredictItemsResponseWrapper</a></li>
 <li><a class="" href="Preprocessing.html">Preprocessing</a></li>
 <li><a class="" href="RequestAnnotation.html">RequestAnnotation</a></li>
+<li><a class="" href="SpectroApi.html">SpectroApi</a></li>
 <li><a class="" href="TargetsApi.html">TargetsApi</a></li>
-<li><a class="active" href="TokenApi.html">TokenApi</a></li>
 <li><a class="" href="TrainRequest.html">TrainRequest</a></li>
 <li><a class="" href="UtilsApi.html">UtilsApi</a></li>
 </ul>
 </ul>
       </nav>
       <article id="main" class="content">
-        <h1 id="hacarus.spectrosdk.api.tokenapi">Hacarus.SpectroSdk.Api.TokenApi <a class="heading-anchor-permalink" href="#hacarus.spectrosdk.api.tokenapi" aria-hidden="true">#</a></h1>
-<p>All URIs are relative to <em><a href="https://spectro-demo.hacarus.com">https://spectro-demo.hacarus.com</a></em></p>
-<table>
-<thead>
-<tr>
-<th>Method</th>
-<th>HTTP request</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="TokenApi.html#login"><strong>Login</strong></a></td>
-<td><strong>POST</strong> /api/auth/token</td>
-<td>Authorization</td>
-</tr>
-</tbody>
-</table>
-<p><a name="login"></a></p>
-<h1 id="login"><strong>Login</strong> <a class="heading-anchor-permalink" href="#login" aria-hidden="true">#</a></h1>
-<blockquote>
-<p>LoginResponse Login (LoginParams loginParams)</p>
-</blockquote>
-<p>Authorization</p>
-<p>Returns the access token</p>
-<h3 id="example">Example <a class="heading-anchor-permalink" href="#example" aria-hidden="true">#</a></h3>
-<pre><code class="language-csharp">using System.Collections.Generic;
-using System.Diagnostics;
-using Hacarus.SpectroSdk.Api;
-using Hacarus.SpectroSdk.Client;
-using Hacarus.SpectroSdk.Model;
-
-namespace Example
-{
-    public class LoginExample
-    {
-        public static void Main()
-        {
-            Configuration.Default.BasePath = &quot;https://spectro-demo.hacarus.com&quot;;
-            // Configure HTTP basic authorization: jwt
-            Configuration.Default.Username = &quot;YOUR_USERNAME&quot;;
-            Configuration.Default.Password = &quot;YOUR_PASSWORD&quot;;
-            // Configure OAuth2 access token for authorization: oauth2
-            Configuration.Default.AccessToken = &quot;YOUR_ACCESS_TOKEN&quot;;
-
-            var apiInstance = new TokenApi(Configuration.Default);
-            var loginParams = new LoginParams(); // LoginParams | 
-
-            try
-            {
-                // Authorization
-                LoginResponse result = apiInstance.Login(loginParams);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print(&quot;Exception when calling TokenApi.Login: &quot; + e.Message );
-                Debug.Print(&quot;Status Code: &quot;+ e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-</code></pre>
-<h3 id="parameters">Parameters <a class="heading-anchor-permalink" href="#parameters" aria-hidden="true">#</a></h3>
+        <h1 id="delitemrequest" tabindex="-1">DelItemRequest <a class="heading-anchor-permalink" href="#delitemrequest">#</a></h1>
+<h2 id="properties" tabindex="-1">Properties <a class="heading-anchor-permalink" href="#properties">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -607,45 +549,14 @@ namespace Example
 </thead>
 <tbody>
 <tr>
-<td><strong>loginParams</strong></td>
-<td><a href="LoginParams.html"><strong>LoginParams</strong></a></td>
+<td><strong>item_ids</strong></td>
+<td><strong>list[str]</strong></td>
 <td></td>
-<td></td>
+<td>[optional]</td>
 </tr>
 </tbody>
 </table>
-<h3 id="return-type">Return type <a class="heading-anchor-permalink" href="#return-type" aria-hidden="true">#</a></h3>
-<p><a href="LoginResponse.html"><strong>LoginResponse</strong></a></p>
-<h3 id="authorization">Authorization <a class="heading-anchor-permalink" href="#authorization" aria-hidden="true">#</a></h3>
-<p><a href="../README.html#jwt">jwt</a>, <a href="../README.html#oauth2">oauth2</a></p>
-<h3 id="http-request-headers">HTTP request headers <a class="heading-anchor-permalink" href="#http-request-headers" aria-hidden="true">#</a></h3>
-<ul>
-<li><strong>Content-Type</strong>: application/json</li>
-<li><strong>Accept</strong>: application/json</li>
-</ul>
-<h3 id="http-response-details">HTTP response details <a class="heading-anchor-permalink" href="#http-response-details" aria-hidden="true">#</a></h3>
-<table>
-<thead>
-<tr>
-<th>Status code</th>
-<th>Description</th>
-<th>Response headers</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>200</strong></td>
-<td>Successful login</td>
-<td>-</td>
-</tr>
-<tr>
-<td><strong>0</strong></td>
-<td>default error handler</td>
-<td>-</td>
-</tr>
-</tbody>
-</table>
-<p><a href="#">[Back to top]</a> <a href="../README.html#documentation-for-api-endpoints">[Back to API list]</a> <a href="../README.html#documentation-for-models">[Back to Model list]</a> <a href="../README.html">[Back to README]</a></p>
+<p><a href="../README.html#documentation-for-models">[Back to Model list]</a> <a href="../README.html#documentation-for-api-endpoints">[Back to API list]</a> <a href="../README.html">[Back to README]</a></p>
 
       </article>
     </div>
