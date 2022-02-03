@@ -214,10 +214,6 @@
       #layout,
       #menu,
       .menu-link {
-        -webkit-transition: all 0.2s ease-out;
-        -moz-transition: all 0.2s ease-out;
-        -ms-transition: all 0.2s ease-out;
-        -o-transition: all 0.2s ease-out;
         transition: all 0.2s ease-out;
       }
 
@@ -493,7 +489,6 @@
 <li><a class="" href="AssessmentItem.html">AssessmentItem</a></li>
 <li><a class="" href="AssessmentItem1.html">AssessmentItem1</a></li>
 <li><a class="" href="BaseError.html">BaseError</a></li>
-<li><a class="" href="DelItemRequest.html">DelItemRequest</a></li>
 <li><a class="" href="Error.html">Error</a></li>
 <li><a class="" href="ErrorSource.html">ErrorSource</a></li>
 <li><a class="" href="GetItemsResponse.html">GetItemsResponse</a></li>
@@ -528,15 +523,15 @@
 <li><a class="" href="PredictItemsResponseWrapper.html">PredictItemsResponseWrapper</a></li>
 <li><a class="" href="Preprocessing.html">Preprocessing</a></li>
 <li><a class="" href="RequestAnnotation.html">RequestAnnotation</a></li>
-<li><a class="" href="SpectroApi.html">SpectroApi</a></li>
 <li><a class="" href="TargetsApi.html">TargetsApi</a></li>
+<li><a class="" href="TokenApi.html">TokenApi</a></li>
 <li><a class="" href="TrainRequest.html">TrainRequest</a></li>
 <li><a class="active" href="UtilsApi.html">UtilsApi</a></li>
 </ul>
 </ul>
       </nav>
       <article id="main" class="content">
-        <h1 id="openapi_client.utilsapi" tabindex="-1">openapi_client.UtilsApi <a class="heading-anchor-permalink" href="#openapi_client.utilsapi">#</a></h1>
+        <h1 id="hacarus.spectrosdk.utilsapi">Hacarus.SpectroSdk.UtilsApi <a class="heading-anchor-permalink" href="#hacarus.spectrosdk.utilsapi" aria-hidden="true">#</a></h1>
 <p>All URIs are relative to <em><a href="https://spectro-demo.hacarus.com">https://spectro-demo.hacarus.com</a></em></p>
 <table>
 <thead>
@@ -564,22 +559,22 @@
 </tr>
 </tbody>
 </table>
-<h1 id="get_hash_id" tabindex="-1"><strong>get_hash_id</strong> <a class="heading-anchor-permalink" href="#get_hash_id">#</a></h1>
+<h1 id="get_hash_id"><strong>get_hash_id</strong> <a class="heading-anchor-permalink" href="#get_hash_id" aria-hidden="true">#</a></h1>
 <blockquote>
 <p>LicenseHashResponseWrapper get_hash_id()</p>
 </blockquote>
-<h3 id="example" tabindex="-1">Example <a class="heading-anchor-permalink" href="#example">#</a></h3>
+<h3 id="example">Example <a class="heading-anchor-permalink" href="#example" aria-hidden="true">#</a></h3>
 <ul>
 <li>Bearer (JWT) Authentication (jwt):</li>
 </ul>
 <pre><code class="language-python">from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import Hacarus.SpectroSdk
+from Hacarus.SpectroSdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://spectro-demo.hacarus.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = Hacarus.SpectroSdk.Configuration(
     host = &quot;https://spectro-demo.hacarus.com&quot;
 )
 
@@ -589,20 +584,20 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): jwt
-configuration = openapi_client.Configuration(
+configuration = Hacarus.SpectroSdk.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = openapi_client.Configuration(
+configuration = Hacarus.SpectroSdk.Configuration(
     host = &quot;https://spectro-demo.hacarus.com&quot;
 )
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with Hacarus.SpectroSdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.UtilsApi(api_client)
+    api_instance = Hacarus.SpectroSdk.UtilsApi(api_client)
     
     try:
         api_response = api_instance.get_hash_id()
@@ -615,12 +610,12 @@ with openapi_client.ApiClient(configuration) as api_client:
 </ul>
 <pre><code class="language-python">from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import Hacarus.SpectroSdk
+from Hacarus.SpectroSdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://spectro-demo.hacarus.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = Hacarus.SpectroSdk.Configuration(
     host = &quot;https://spectro-demo.hacarus.com&quot;
 )
 
@@ -630,20 +625,20 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): jwt
-configuration = openapi_client.Configuration(
+configuration = Hacarus.SpectroSdk.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = openapi_client.Configuration(
+configuration = Hacarus.SpectroSdk.Configuration(
     host = &quot;https://spectro-demo.hacarus.com&quot;
 )
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with Hacarus.SpectroSdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.UtilsApi(api_client)
+    api_instance = Hacarus.SpectroSdk.UtilsApi(api_client)
     
     try:
         api_response = api_instance.get_hash_id()
@@ -651,18 +646,18 @@ with openapi_client.ApiClient(configuration) as api_client:
     except ApiException as e:
         print(&quot;Exception when calling UtilsApi-&gt;get_hash_id: %s\n&quot; % e)
 </code></pre>
-<h3 id="parameters" tabindex="-1">Parameters <a class="heading-anchor-permalink" href="#parameters">#</a></h3>
+<h3 id="parameters">Parameters <a class="heading-anchor-permalink" href="#parameters" aria-hidden="true">#</a></h3>
 <p>This endpoint does not need any parameter.</p>
-<h3 id="return-type" tabindex="-1">Return type <a class="heading-anchor-permalink" href="#return-type">#</a></h3>
+<h3 id="return-type">Return type <a class="heading-anchor-permalink" href="#return-type" aria-hidden="true">#</a></h3>
 <p><a href="LicenseHashResponseWrapper.html"><strong>LicenseHashResponseWrapper</strong></a></p>
-<h3 id="authorization" tabindex="-1">Authorization <a class="heading-anchor-permalink" href="#authorization">#</a></h3>
+<h3 id="authorization">Authorization <a class="heading-anchor-permalink" href="#authorization" aria-hidden="true">#</a></h3>
 <p><a href="../README.html#jwt">jwt</a>, <a href="../README.html#oauth2">oauth2</a></p>
-<h3 id="http-request-headers" tabindex="-1">HTTP request headers <a class="heading-anchor-permalink" href="#http-request-headers">#</a></h3>
+<h3 id="http-request-headers">HTTP request headers <a class="heading-anchor-permalink" href="#http-request-headers" aria-hidden="true">#</a></h3>
 <ul>
 <li><strong>Content-Type</strong>: Not defined</li>
 <li><strong>Accept</strong>: application/json</li>
 </ul>
-<h3 id="http-response-details" tabindex="-1">HTTP response details <a class="heading-anchor-permalink" href="#http-response-details">#</a></h3>
+<h3 id="http-response-details">HTTP response details <a class="heading-anchor-permalink" href="#http-response-details" aria-hidden="true">#</a></h3>
 <table>
 <thead>
 <tr>
@@ -685,22 +680,22 @@ with openapi_client.ApiClient(configuration) as api_client:
 </tbody>
 </table>
 <p><a href="#">[Back to top]</a> <a href="../README.html#documentation-for-api-endpoints">[Back to API list]</a> <a href="../README.html#documentation-for-models">[Back to Model list]</a> <a href="../README.html">[Back to README]</a></p>
-<h1 id="get_logs" tabindex="-1"><strong>get_logs</strong> <a class="heading-anchor-permalink" href="#get_logs">#</a></h1>
+<h1 id="get_logs"><strong>get_logs</strong> <a class="heading-anchor-permalink" href="#get_logs" aria-hidden="true">#</a></h1>
 <blockquote>
 <p>file get_logs()</p>
 </blockquote>
-<h3 id="example-1" tabindex="-1">Example <a class="heading-anchor-permalink" href="#example-1">#</a></h3>
+<h3 id="example-2">Example <a class="heading-anchor-permalink" href="#example-2" aria-hidden="true">#</a></h3>
 <ul>
 <li>Bearer (JWT) Authentication (jwt):</li>
 </ul>
 <pre><code class="language-python">from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import Hacarus.SpectroSdk
+from Hacarus.SpectroSdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://spectro-demo.hacarus.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = Hacarus.SpectroSdk.Configuration(
     host = &quot;https://spectro-demo.hacarus.com&quot;
 )
 
@@ -710,20 +705,20 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): jwt
-configuration = openapi_client.Configuration(
+configuration = Hacarus.SpectroSdk.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = openapi_client.Configuration(
+configuration = Hacarus.SpectroSdk.Configuration(
     host = &quot;https://spectro-demo.hacarus.com&quot;
 )
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with Hacarus.SpectroSdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.UtilsApi(api_client)
+    api_instance = Hacarus.SpectroSdk.UtilsApi(api_client)
     
     try:
         api_response = api_instance.get_logs()
@@ -736,12 +731,12 @@ with openapi_client.ApiClient(configuration) as api_client:
 </ul>
 <pre><code class="language-python">from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import Hacarus.SpectroSdk
+from Hacarus.SpectroSdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://spectro-demo.hacarus.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = Hacarus.SpectroSdk.Configuration(
     host = &quot;https://spectro-demo.hacarus.com&quot;
 )
 
@@ -751,20 +746,20 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): jwt
-configuration = openapi_client.Configuration(
+configuration = Hacarus.SpectroSdk.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = openapi_client.Configuration(
+configuration = Hacarus.SpectroSdk.Configuration(
     host = &quot;https://spectro-demo.hacarus.com&quot;
 )
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with Hacarus.SpectroSdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.UtilsApi(api_client)
+    api_instance = Hacarus.SpectroSdk.UtilsApi(api_client)
     
     try:
         api_response = api_instance.get_logs()
@@ -772,18 +767,18 @@ with openapi_client.ApiClient(configuration) as api_client:
     except ApiException as e:
         print(&quot;Exception when calling UtilsApi-&gt;get_logs: %s\n&quot; % e)
 </code></pre>
-<h3 id="parameters-1" tabindex="-1">Parameters <a class="heading-anchor-permalink" href="#parameters-1">#</a></h3>
+<h3 id="parameters-2">Parameters <a class="heading-anchor-permalink" href="#parameters-2" aria-hidden="true">#</a></h3>
 <p>This endpoint does not need any parameter.</p>
-<h3 id="return-type-1" tabindex="-1">Return type <a class="heading-anchor-permalink" href="#return-type-1">#</a></h3>
+<h3 id="return-type-2">Return type <a class="heading-anchor-permalink" href="#return-type-2" aria-hidden="true">#</a></h3>
 <p><strong>file</strong></p>
-<h3 id="authorization-1" tabindex="-1">Authorization <a class="heading-anchor-permalink" href="#authorization-1">#</a></h3>
+<h3 id="authorization-2">Authorization <a class="heading-anchor-permalink" href="#authorization-2" aria-hidden="true">#</a></h3>
 <p><a href="../README.html#jwt">jwt</a>, <a href="../README.html#oauth2">oauth2</a></p>
-<h3 id="http-request-headers-1" tabindex="-1">HTTP request headers <a class="heading-anchor-permalink" href="#http-request-headers-1">#</a></h3>
+<h3 id="http-request-headers-2">HTTP request headers <a class="heading-anchor-permalink" href="#http-request-headers-2" aria-hidden="true">#</a></h3>
 <ul>
 <li><strong>Content-Type</strong>: Not defined</li>
 <li><strong>Accept</strong>: application/octet-stream</li>
 </ul>
-<h3 id="http-response-details-1" tabindex="-1">HTTP response details <a class="heading-anchor-permalink" href="#http-response-details-1">#</a></h3>
+<h3 id="http-response-details-2">HTTP response details <a class="heading-anchor-permalink" href="#http-response-details-2" aria-hidden="true">#</a></h3>
 <table>
 <thead>
 <tr>
@@ -801,22 +796,22 @@ with openapi_client.ApiClient(configuration) as api_client:
 </tbody>
 </table>
 <p><a href="#">[Back to top]</a> <a href="../README.html#documentation-for-api-endpoints">[Back to API list]</a> <a href="../README.html#documentation-for-models">[Back to Model list]</a> <a href="../README.html">[Back to README]</a></p>
-<h1 id="set_license" tabindex="-1"><strong>set_license</strong> <a class="heading-anchor-permalink" href="#set_license">#</a></h1>
+<h1 id="set_license"><strong>set_license</strong> <a class="heading-anchor-permalink" href="#set_license" aria-hidden="true">#</a></h1>
 <blockquote>
 <p>LicenseResponseWrapper set_license(license_data=license_data)</p>
 </blockquote>
-<h3 id="example-2" tabindex="-1">Example <a class="heading-anchor-permalink" href="#example-2">#</a></h3>
+<h3 id="example-3">Example <a class="heading-anchor-permalink" href="#example-3" aria-hidden="true">#</a></h3>
 <ul>
 <li>Bearer (JWT) Authentication (jwt):</li>
 </ul>
 <pre><code class="language-python">from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import Hacarus.SpectroSdk
+from Hacarus.SpectroSdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://spectro-demo.hacarus.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = Hacarus.SpectroSdk.Configuration(
     host = &quot;https://spectro-demo.hacarus.com&quot;
 )
 
@@ -826,20 +821,20 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): jwt
-configuration = openapi_client.Configuration(
+configuration = Hacarus.SpectroSdk.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = openapi_client.Configuration(
+configuration = Hacarus.SpectroSdk.Configuration(
     host = &quot;https://spectro-demo.hacarus.com&quot;
 )
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with Hacarus.SpectroSdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.UtilsApi(api_client)
+    api_instance = Hacarus.SpectroSdk.UtilsApi(api_client)
     license_data = '/path/to/file' # file |  (optional)
 
     try:
@@ -853,12 +848,12 @@ with openapi_client.ApiClient(configuration) as api_client:
 </ul>
 <pre><code class="language-python">from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import Hacarus.SpectroSdk
+from Hacarus.SpectroSdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://spectro-demo.hacarus.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = Hacarus.SpectroSdk.Configuration(
     host = &quot;https://spectro-demo.hacarus.com&quot;
 )
 
@@ -868,20 +863,20 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (JWT): jwt
-configuration = openapi_client.Configuration(
+configuration = Hacarus.SpectroSdk.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = openapi_client.Configuration(
+configuration = Hacarus.SpectroSdk.Configuration(
     host = &quot;https://spectro-demo.hacarus.com&quot;
 )
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with Hacarus.SpectroSdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.UtilsApi(api_client)
+    api_instance = Hacarus.SpectroSdk.UtilsApi(api_client)
     license_data = '/path/to/file' # file |  (optional)
 
     try:
@@ -890,7 +885,7 @@ with openapi_client.ApiClient(configuration) as api_client:
     except ApiException as e:
         print(&quot;Exception when calling UtilsApi-&gt;set_license: %s\n&quot; % e)
 </code></pre>
-<h3 id="parameters-2" tabindex="-1">Parameters <a class="heading-anchor-permalink" href="#parameters-2">#</a></h3>
+<h3 id="parameters-3">Parameters <a class="heading-anchor-permalink" href="#parameters-3" aria-hidden="true">#</a></h3>
 <table>
 <thead>
 <tr>
@@ -909,16 +904,16 @@ with openapi_client.ApiClient(configuration) as api_client:
 </tr>
 </tbody>
 </table>
-<h3 id="return-type-2" tabindex="-1">Return type <a class="heading-anchor-permalink" href="#return-type-2">#</a></h3>
+<h3 id="return-type-3">Return type <a class="heading-anchor-permalink" href="#return-type-3" aria-hidden="true">#</a></h3>
 <p><a href="LicenseResponseWrapper.html"><strong>LicenseResponseWrapper</strong></a></p>
-<h3 id="authorization-2" tabindex="-1">Authorization <a class="heading-anchor-permalink" href="#authorization-2">#</a></h3>
+<h3 id="authorization-3">Authorization <a class="heading-anchor-permalink" href="#authorization-3" aria-hidden="true">#</a></h3>
 <p><a href="../README.html#jwt">jwt</a>, <a href="../README.html#oauth2">oauth2</a></p>
-<h3 id="http-request-headers-2" tabindex="-1">HTTP request headers <a class="heading-anchor-permalink" href="#http-request-headers-2">#</a></h3>
+<h3 id="http-request-headers-3">HTTP request headers <a class="heading-anchor-permalink" href="#http-request-headers-3" aria-hidden="true">#</a></h3>
 <ul>
 <li><strong>Content-Type</strong>: multipart/form-data</li>
 <li><strong>Accept</strong>: application/json</li>
 </ul>
-<h3 id="http-response-details-2" tabindex="-1">HTTP response details <a class="heading-anchor-permalink" href="#http-response-details-2">#</a></h3>
+<h3 id="http-response-details-3">HTTP response details <a class="heading-anchor-permalink" href="#http-response-details-3" aria-hidden="true">#</a></h3>
 <table>
 <thead>
 <tr>

@@ -214,10 +214,6 @@
       #layout,
       #menu,
       .menu-link {
-        -webkit-transition: all 0.2s ease-out;
-        -moz-transition: all 0.2s ease-out;
-        -ms-transition: all 0.2s ease-out;
-        -o-transition: all 0.2s ease-out;
         transition: all 0.2s ease-out;
       }
 
@@ -493,7 +489,6 @@
 <li><a class="" href="AssessmentItem.html">AssessmentItem</a></li>
 <li><a class="" href="AssessmentItem1.html">AssessmentItem1</a></li>
 <li><a class="" href="BaseError.html">BaseError</a></li>
-<li><a class="" href="DelItemRequest.html">DelItemRequest</a></li>
 <li><a class="" href="Error.html">Error</a></li>
 <li><a class="" href="ErrorSource.html">ErrorSource</a></li>
 <li><a class="" href="GetItemsResponse.html">GetItemsResponse</a></li>
@@ -528,16 +523,16 @@
 <li><a class="" href="PredictItemsResponseWrapper.html">PredictItemsResponseWrapper</a></li>
 <li><a class="" href="Preprocessing.html">Preprocessing</a></li>
 <li><a class="" href="RequestAnnotation.html">RequestAnnotation</a></li>
-<li><a class="" href="SpectroApi.html">SpectroApi</a></li>
 <li><a class="" href="TargetsApi.html">TargetsApi</a></li>
+<li><a class="" href="TokenApi.html">TokenApi</a></li>
 <li><a class="" href="TrainRequest.html">TrainRequest</a></li>
 <li><a class="" href="UtilsApi.html">UtilsApi</a></li>
 </ul>
 </ul>
       </nav>
       <article id="main" class="content">
-        <h1 id="algorithmparameter" tabindex="-1">AlgorithmParameter <a class="heading-anchor-permalink" href="#algorithmparameter">#</a></h1>
-<h2 id="properties" tabindex="-1">Properties <a class="heading-anchor-permalink" href="#properties">#</a></h2>
+        <h1 id="algorithmparameter">AlgorithmParameter <a class="heading-anchor-permalink" href="#algorithmparameter" aria-hidden="true">#</a></h1>
+<h2 id="properties">Properties <a class="heading-anchor-permalink" href="#properties" aria-hidden="true">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -549,16 +544,16 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>algorithm_parameter_id</strong></td>
-<td><strong>int</strong></td>
+<td><strong>data_type</strong></td>
+<td><strong>str</strong></td>
 <td></td>
 <td>[optional]</td>
 </tr>
 <tr>
-<td><strong>value</strong></td>
+<td><strong>name</strong></td>
 <td><strong>str</strong></td>
 <td></td>
-<td>[optional]</td>
+<td></td>
 </tr>
 <tr>
 <td><strong>display_name</strong></td>
@@ -567,13 +562,25 @@
 <td>[optional]</td>
 </tr>
 <tr>
-<td><strong>range_upper</strong></td>
+<td><strong>created_at</strong></td>
+<td><strong>datetime</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>range_lower</strong></td>
 <td><strong>str</strong></td>
 <td></td>
 <td>[optional]</td>
 </tr>
 <tr>
-<td><strong>range_lower</strong></td>
+<td><strong>algorithm_parameter_id</strong></td>
+<td><strong>int</strong></td>
+<td></td>
+<td>[optional]</td>
+</tr>
+<tr>
+<td><strong>range_upper</strong></td>
 <td><strong>str</strong></td>
 <td></td>
 <td>[optional]</td>
@@ -585,14 +592,8 @@
 <td></td>
 </tr>
 <tr>
-<td><strong>name</strong></td>
+<td><strong>value</strong></td>
 <td><strong>str</strong></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong>model_parameter</strong></td>
-<td><strong>bool</strong></td>
 <td></td>
 <td>[optional]</td>
 </tr>
@@ -603,16 +604,10 @@
 <td></td>
 </tr>
 <tr>
-<td><strong>data_type</strong></td>
-<td><strong>str</strong></td>
+<td><strong>model_parameter</strong></td>
+<td><strong>bool</strong></td>
 <td></td>
 <td>[optional]</td>
-</tr>
-<tr>
-<td><strong>created_at</strong></td>
-<td><strong>datetime</strong></td>
-<td></td>
-<td></td>
 </tr>
 </tbody>
 </table>
