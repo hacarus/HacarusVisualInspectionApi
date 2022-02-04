@@ -214,6 +214,10 @@
       #layout,
       #menu,
       .menu-link {
+        -webkit-transition: all 0.2s ease-out;
+        -moz-transition: all 0.2s ease-out;
+        -ms-transition: all 0.2s ease-out;
+        -o-transition: all 0.2s ease-out;
         transition: all 0.2s ease-out;
       }
 
@@ -489,6 +493,7 @@
 <li><a class="" href="AssessmentItem.html">AssessmentItem</a></li>
 <li><a class="" href="AssessmentItem1.html">AssessmentItem1</a></li>
 <li><a class="" href="BaseError.html">BaseError</a></li>
+<li><a class="" href="DelItemRequest.html">DelItemRequest</a></li>
 <li><a class="" href="Error.html">Error</a></li>
 <li><a class="" href="ErrorSource.html">ErrorSource</a></li>
 <li><a class="" href="GetItemsResponse.html">GetItemsResponse</a></li>
@@ -523,16 +528,16 @@
 <li><a class="" href="PredictItemsResponseWrapper.html">PredictItemsResponseWrapper</a></li>
 <li><a class="" href="Preprocessing.html">Preprocessing</a></li>
 <li><a class="" href="RequestAnnotation.html">RequestAnnotation</a></li>
+<li><a class="" href="SpectroApi.html">SpectroApi</a></li>
 <li><a class="" href="TargetsApi.html">TargetsApi</a></li>
-<li><a class="" href="TokenApi.html">TokenApi</a></li>
 <li><a class="" href="TrainRequest.html">TrainRequest</a></li>
 <li><a class="" href="UtilsApi.html">UtilsApi</a></li>
 </ul>
 </ul>
       </nav>
       <article id="main" class="content">
-        <h1 id="hacarus.spectrosdk.model.hmodel">Hacarus.SpectroSdk.Model.HModel <a class="heading-anchor-permalink" href="#hacarus.spectrosdk.model.hmodel" aria-hidden="true">#</a></h1>
-<h2 id="properties">Properties <a class="heading-anchor-permalink" href="#properties" aria-hidden="true">#</a></h2>
+        <h1 id="org.openapitools.model.hmodel" tabindex="-1">Org.OpenAPITools.Model.HModel <a class="heading-anchor-permalink" href="#org.openapitools.model.hmodel">#</a></h1>
+<h2 id="properties" tabindex="-1">Properties <a class="heading-anchor-permalink" href="#properties">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -544,56 +549,8 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>Name</strong></td>
-<td><strong>string</strong></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong>Version</strong></td>
-<td><strong>string</strong></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong>Recall</strong></td>
-<td><strong>decimal?</strong></td>
-<td></td>
-<td>[optional]</td>
-</tr>
-<tr>
 <td><strong>Status</strong></td>
 <td><strong>string</strong></td>
-<td></td>
-<td>[optional]</td>
-</tr>
-<tr>
-<td><strong>Stats</strong></td>
-<td><a href="HModelStats.html"><strong>HModelStats</strong></a></td>
-<td></td>
-<td>[optional]</td>
-</tr>
-<tr>
-<td><strong>ImageUrl</strong></td>
-<td><strong>string</strong></td>
-<td></td>
-<td>[optional]</td>
-</tr>
-<tr>
-<td><strong>NgImgCount</strong></td>
-<td><strong>int</strong></td>
-<td></td>
-<td>[optional]</td>
-</tr>
-<tr>
-<td><strong>TrainingTime</strong></td>
-<td><strong>int?</strong></td>
-<td></td>
-<td>[optional]</td>
-</tr>
-<tr>
-<td><strong>OkImgCount</strong></td>
-<td><strong>int</strong></td>
 <td></td>
 <td>[optional]</td>
 </tr>
@@ -604,20 +561,44 @@
 <td>[optional]</td>
 </tr>
 <tr>
-<td><strong>StatusText</strong></td>
-<td><strong>string</strong></td>
-<td></td>
-<td>[optional]</td>
-</tr>
-<tr>
-<td><strong>Precision</strong></td>
+<td><strong>Recall</strong></td>
 <td><strong>decimal?</strong></td>
 <td></td>
 <td>[optional]</td>
 </tr>
 <tr>
-<td><strong>CreatedAt</strong></td>
-<td><strong>DateTime</strong></td>
+<td><strong>TrainingTime</strong></td>
+<td><strong>int?</strong></td>
+<td></td>
+<td>[optional]</td>
+</tr>
+<tr>
+<td><strong>AlgorithmType</strong></td>
+<td><strong>string</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>ImageUrl</strong></td>
+<td><strong>string</strong></td>
+<td></td>
+<td>[optional]</td>
+</tr>
+<tr>
+<td><strong>ContextId</strong></td>
+<td><strong>int</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Stats</strong></td>
+<td><a href="HModelStats.html"><strong>HModelStats</strong></a></td>
+<td></td>
+<td>[optional]</td>
+</tr>
+<tr>
+<td><strong>Version</strong></td>
+<td><strong>string</strong></td>
 <td></td>
 <td></td>
 </tr>
@@ -628,19 +609,13 @@
 <td></td>
 </tr>
 <tr>
-<td><strong>ContextId</strong></td>
+<td><strong>OkImgCount</strong></td>
 <td><strong>int</strong></td>
 <td></td>
-<td></td>
+<td>[optional]</td>
 </tr>
 <tr>
-<td><strong>AlgorithmType</strong></td>
-<td><strong>string</strong></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong>AlgorithmId</strong></td>
+<td><strong>Name</strong></td>
 <td><strong>string</strong></td>
 <td></td>
 <td></td>
@@ -651,9 +626,41 @@
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td><strong>NgImgCount</strong></td>
+<td><strong>int</strong></td>
+<td></td>
+<td>[optional]</td>
+</tr>
+<tr>
+<td><strong>Precision</strong></td>
+<td><strong>decimal?</strong></td>
+<td></td>
+<td>[optional]</td>
+</tr>
+<tr>
+<td><strong>AlgorithmId</strong></td>
+<td><strong>string</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>CreatedAt</strong></td>
+<td><strong>DateTime</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>StatusText</strong></td>
+<td><strong>string</strong></td>
+<td></td>
+<td>[optional]</td>
+</tr>
 </tbody>
 </table>
-<p><a href="../README.html#documentation-for-models">[Back to Model list]</a> <a href="../README.html#documentation-for-api-endpoints">[Back to API list]</a> <a href="../README.html">[Back to README]</a></p>
+<p><a href="../README.html#documentation-for-models">[Back to Model list]</a>
+<a href="../README.html#documentation-for-api-endpoints">[Back to API list]</a>
+<a href="../README.html">[Back to README]</a></p>
 
       </article>
     </div>

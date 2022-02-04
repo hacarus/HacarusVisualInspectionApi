@@ -526,9 +526,9 @@
 <li><a class="" href="Predict.html">Predict</a></li>
 <li><a class="" href="PredictItemsResponse.html">PredictItemsResponse</a></li>
 <li><a class="" href="PredictItemsResponseWrapper.html">PredictItemsResponseWrapper</a></li>
-<li><a class="active" href="Preprocessing.html">Preprocessing</a></li>
+<li><a class="" href="Preprocessing.html">Preprocessing</a></li>
 <li><a class="" href="RequestAnnotation.html">RequestAnnotation</a></li>
-<li><a class="" href="SpectroApi.html">SpectroApi</a></li>
+<li><a class="active" href="SpectroApi.html">SpectroApi</a></li>
 <li><a class="" href="TargetsApi.html">TargetsApi</a></li>
 <li><a class="" href="TrainRequest.html">TrainRequest</a></li>
 <li><a class="" href="UtilsApi.html">UtilsApi</a></li>
@@ -536,8 +536,69 @@
 </ul>
       </nav>
       <article id="main" class="content">
-        <h1 id="preprocessing" tabindex="-1">Preprocessing <a class="heading-anchor-permalink" href="#preprocessing">#</a></h1>
-<h2 id="properties" tabindex="-1">Properties <a class="heading-anchor-permalink" href="#properties">#</a></h2>
+        <h1 id="org.openapitools.api.spectroapi" tabindex="-1">Org.OpenAPITools.Api.SpectroApi <a class="heading-anchor-permalink" href="#org.openapitools.api.spectroapi">#</a></h1>
+<p>All URIs are relative to <em><a href="https://spectro-demo.hacarus.com">https://spectro-demo.hacarus.com</a></em></p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>HTTP request</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SpectroApi.html#login"><strong>Login</strong></a></td>
+<td><strong>POST</strong> /api/auth/token</td>
+<td>Authorization</td>
+</tr>
+</tbody>
+</table>
+<h2 id="login" tabindex="-1">Login <a class="heading-anchor-permalink" href="#login">#</a></h2>
+<blockquote>
+<p>LoginResponse Login (LoginParams loginParams)</p>
+</blockquote>
+<p>Authorization</p>
+<p>Returns the access token</p>
+<h3 id="example" tabindex="-1">Example <a class="heading-anchor-permalink" href="#example">#</a></h3>
+<pre><code class="language-csharp">using System.Collections.Generic;
+using System.Diagnostics;
+using Org.OpenAPITools.Api;
+using Org.OpenAPITools.Client;
+using Org.OpenAPITools.Model;
+
+namespace Example
+{
+    public class LoginExample
+    {
+        public static void Main()
+        {
+            Configuration.Default.BasePath = &quot;https://spectro-demo.hacarus.com&quot;;
+            // Configure HTTP bearer authorization: jwt
+            Configuration.Default.AccessToken = &quot;YOUR_ACCESS_TOKEN&quot;;
+            // Configure OAuth2 access token for authorization: oauth2
+            Configuration.Default.AccessToken = &quot;YOUR_ACCESS_TOKEN&quot;;
+
+            var apiInstance = new SpectroApi(Configuration.Default);
+            var loginParams = new LoginParams(); // LoginParams | 
+
+            try
+            {
+                // Authorization
+                LoginResponse result = apiInstance.Login(loginParams);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException e)
+            {
+                Debug.Print(&quot;Exception when calling SpectroApi.Login: &quot; + e.Message );
+                Debug.Print(&quot;Status Code: &quot;+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+</code></pre>
+<h3 id="parameters" tabindex="-1">Parameters <a class="heading-anchor-permalink" href="#parameters">#</a></h3>
 <table>
 <thead>
 <tr>
@@ -549,26 +610,48 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>config</strong></td>
-<td><strong>str</strong></td>
-<td></td>
-<td>[optional]</td>
-</tr>
-<tr>
-<td><strong>active</strong></td>
-<td><strong>bool</strong></td>
-<td></td>
-<td>[optional]</td>
-</tr>
-<tr>
-<td><strong>name</strong></td>
-<td><strong>str</strong></td>
+<td><strong>loginParams</strong></td>
+<td><a href="LoginParams.html"><strong>LoginParams</strong></a></td>
 <td></td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<p><a href="../README.html#documentation-for-models">[Back to Model list]</a> <a href="../README.html#documentation-for-api-endpoints">[Back to API list]</a> <a href="../README.html">[Back to README]</a></p>
+<h3 id="return-type" tabindex="-1">Return type <a class="heading-anchor-permalink" href="#return-type">#</a></h3>
+<p><a href="LoginResponse.html"><strong>LoginResponse</strong></a></p>
+<h3 id="authorization" tabindex="-1">Authorization <a class="heading-anchor-permalink" href="#authorization">#</a></h3>
+<p><a href="../README.html#jwt">jwt</a>, <a href="../README.html#oauth2">oauth2</a></p>
+<h3 id="http-request-headers" tabindex="-1">HTTP request headers <a class="heading-anchor-permalink" href="#http-request-headers">#</a></h3>
+<ul>
+<li><strong>Content-Type</strong>: application/json</li>
+<li><strong>Accept</strong>: application/json</li>
+</ul>
+<h3 id="http-response-details" tabindex="-1">HTTP response details <a class="heading-anchor-permalink" href="#http-response-details">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Status code</th>
+<th>Description</th>
+<th>Response headers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>200</strong></td>
+<td>Successful login</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>0</strong></td>
+<td>default error handler</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p><a href="#">[Back to top]</a>
+<a href="../README.html#documentation-for-api-endpoints">[Back to API list]</a>
+<a href="../README.html#documentation-for-models">[Back to Model list]</a>
+<a href="../README.html">[Back to README]</a></p>
 
       </article>
     </div>
