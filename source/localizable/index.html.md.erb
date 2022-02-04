@@ -23,19 +23,19 @@ t(:introductionMessage)
 
 Base URLs:
 
-* <a href="https://spectro-demo.hacarus.com/">https://spectro-demo.hacarus.com/</a>
+* <a href="https://sdd-api-staging.hacarus.com/">https://sdd-api-staging.hacarus.com/</a>
 
 * <a href="https://sdd-api.hacarus.com/">https://sdd-api.hacarus.com/</a>
 
-* <a href="https://spectro-local.hacarus.com/">https://spectro-local.hacarus.com/</a>
+* <a href="https://localhost:8080/">https://localhost:8080/</a>
 
 <%= partial "includes/initialization.html.md.erb" %>
 
 # Authentication
 
-- HTTP Authentication, scheme: bearer
+- HTTP Authentication, scheme: bearer 
 
-- oAuth2 authentication.
+- oAuth2 authentication. 
 
     - Flow: clientCredentials
 
@@ -44,75 +44,6 @@ Base URLs:
 |Scope|Scope Description|
 |---|---|
 |all|all scopes|
-
-<h1 id="spectro-token">Token</h1>
-
-Authentication operations
-
-## <%= translate_fallback('login') %>
-
-<a id="opIdlogin"></a>
-
-> Code samples
-
-```csharp
-LoginParams loginParams = new LoginParams(
-  clientId: "client id",
-  clientSecret: "client secret",
-  grantType: "client_credentials"
-);
-var resp = instance.Login(loginParams);
-
-```
-
-`POST /api/auth/token`
-
-*Authorization*
-
-<%= translate_fallback(
-  'loginMessage',
-  <<~HEREDOC
-    Returns the access token
-  HEREDOC
-) %>
-
-> Body parameter
-
-```json
-{
-  "grant_type": "client_credentials",
-  "client_secret": "client_secret",
-  "client_id": "client_id"
-}
-```
-
-<h3 id="login-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[LoginParams](#schemaloginparams)|true|none|
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "access_token": "access_token"
-}
-```
-
-<h3 id="login-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successful login|[LoginResponse](#schemaloginresponse)|
-|default|Default|default error handler|[BaseError](#schemabaseerror)|
-
-<aside class="warning">
-To perform this operation, you must be authenticated by means of one of the following methods:
-jwt, oauth2
-</aside>
 
 <h1 id="spectro-targets">targets</h1>
 
@@ -126,15 +57,15 @@ Inspection Target related operations
 
 ```shell
 # You can also use wget
-curl -X GET https://spectro-demo.hacarus.com/api/v1/targets/ \
+curl -X GET https://sdd-api-staging.hacarus.com/api/v1/targets/ \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
 ```
 
 ```http
-GET https://spectro-demo.hacarus.com/api/v1/targets/ HTTP/1.1
-Host: spectro-demo.hacarus.com
+GET https://sdd-api-staging.hacarus.com/api/v1/targets/ HTTP/1.1
+Host: sdd-api-staging.hacarus.com
 Accept: application/json
 
 ```
@@ -158,15 +89,15 @@ Accept: application/json
 {
   "data": [
     {
-      "target_id": 0,
-      "name": "string",
       "preprocessing": [
         {
-          "config": "string",
           "active": true,
-          "name": "string"
+          "name": "string",
+          "config": "string"
         }
-      ]
+      ],
+      "name": "string",
+      "target_id": 0
     }
   ]
 }
@@ -192,15 +123,15 @@ jwt, oauth2
 
 ```shell
 # You can also use wget
-curl -X GET https://spectro-demo.hacarus.com/api/v1/targets/{target_id} \
+curl -X GET https://sdd-api-staging.hacarus.com/api/v1/targets/{target_id} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
 ```
 
 ```http
-GET https://spectro-demo.hacarus.com/api/v1/targets/{target_id} HTTP/1.1
-Host: spectro-demo.hacarus.com
+GET https://sdd-api-staging.hacarus.com/api/v1/targets/{target_id} HTTP/1.1
+Host: sdd-api-staging.hacarus.com
 Accept: application/json
 
 ```
@@ -229,15 +160,15 @@ Accept: application/json
 ```json
 {
   "data": {
-    "target_id": 0,
-    "name": "string",
     "preprocessing": [
       {
-        "config": "string",
         "active": true,
-        "name": "string"
+        "name": "string",
+        "config": "string"
       }
-    ]
+    ],
+    "name": "string",
+    "target_id": 0
   }
 }
 ```
@@ -262,15 +193,15 @@ jwt, oauth2
 
 ```shell
 # You can also use wget
-curl -X POST https://spectro-demo.hacarus.com/api/v1/targets/{target_id} \
+curl -X POST https://sdd-api-staging.hacarus.com/api/v1/targets/{target_id} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
 ```
 
 ```http
-POST https://spectro-demo.hacarus.com/api/v1/targets/{target_id} HTTP/1.1
-Host: spectro-demo.hacarus.com
+POST https://sdd-api-staging.hacarus.com/api/v1/targets/{target_id} HTTP/1.1
+Host: sdd-api-staging.hacarus.com
 Accept: application/json
 
 ```
@@ -299,15 +230,15 @@ Accept: application/json
 ```json
 {
   "data": {
-    "target_id": 0,
-    "name": "string",
     "preprocessing": [
       {
-        "config": "string",
         "active": true,
-        "name": "string"
+        "name": "string",
+        "config": "string"
       }
-    ]
+    ],
+    "name": "string",
+    "target_id": 0
   }
 }
 ```
@@ -332,15 +263,15 @@ jwt, oauth2
 
 ```shell
 # You can also use wget
-curl -X POST https://spectro-demo.hacarus.com/api/v1/targets/model/results \
+curl -X POST https://sdd-api-staging.hacarus.com/api/v1/targets/model/results \
   -H 'Accept: application/octet-stream' \
   -H 'Authorization: Bearer {access-token}'
 
 ```
 
 ```http
-POST https://spectro-demo.hacarus.com/api/v1/targets/model/results HTTP/1.1
-Host: spectro-demo.hacarus.com
+POST https://sdd-api-staging.hacarus.com/api/v1/targets/model/results HTTP/1.1
+Host: sdd-api-staging.hacarus.com
 Accept: application/octet-stream
 
 ```
@@ -362,19 +293,19 @@ Accept: application/octet-stream
 ```json
 {
   "errors": {
-    "status": 0,
     "message": [
       {
+        "key": "string",
         "errors": [
           "string"
-        ],
-        "key": "string"
+        ]
       }
     ],
+    "status": 0,
+    "detail": "string",
     "source": {
       "pointer": "string"
     },
-    "detail": "string",
     "title": "string"
   }
 }
@@ -404,15 +335,15 @@ Algorithm related operations
 
 ```shell
 # You can also use wget
-curl -X GET https://spectro-demo.hacarus.com/api/v1/algorithms/ \
+curl -X GET https://sdd-api-staging.hacarus.com/api/v1/algorithms/ \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
 ```
 
 ```http
-GET https://spectro-demo.hacarus.com/api/v1/algorithms/ HTTP/1.1
-Host: spectro-demo.hacarus.com
+GET https://sdd-api-staging.hacarus.com/api/v1/algorithms/ HTTP/1.1
+Host: sdd-api-staging.hacarus.com
 Accept: application/json
 
 ```
@@ -443,30 +374,30 @@ Accept: application/json
 {
   "data": [
     {
-      "name": "string",
+      "type": "string",
+      "algorithm_id": "string",
       "version": "string",
+      "updated_at": "2022-02-04T16:50:28Z",
+      "file_name": "string",
       "class_name": "string",
       "parameters": [
         {
-          "data_type": "string",
-          "name": "string",
-          "display_name": "string",
-          "created_at": "2020-10-19T16:35:20Z",
-          "range_lower": "string",
-          "algorithm_parameter_id": 0,
-          "range_upper": "string",
-          "updated_at": "2020-10-19T16:35:20Z",
           "value": "string",
+          "data_type": "string",
           "algorithm_id": "string",
-          "model_parameter": true
+          "updated_at": "2022-02-04T16:50:28Z",
+          "algorithm_parameter_id": 0,
+          "display_name": "string",
+          "range_lower": "string",
+          "created_at": "2022-02-04T16:50:28Z",
+          "model_parameter": true,
+          "name": "string",
+          "range_upper": "string"
         }
       ],
-      "attribute": "string",
-      "updated_at": "2020-10-19T16:35:20Z",
-      "created_at": "2020-10-19T16:35:20Z",
-      "file_name": "string",
-      "algorithm_id": "string",
-      "type": "string"
+      "created_at": "2022-02-04T16:50:28Z",
+      "name": "string",
+      "attribute": "string"
     }
   ]
 }
@@ -492,15 +423,15 @@ jwt, oauth2
 
 ```shell
 # You can also use wget
-curl -X GET https://spectro-demo.hacarus.com/api/v1/algorithms/{algorithm_id} \
+curl -X GET https://sdd-api-staging.hacarus.com/api/v1/algorithms/{algorithm_id} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
 ```
 
 ```http
-GET https://spectro-demo.hacarus.com/api/v1/algorithms/{algorithm_id} HTTP/1.1
-Host: spectro-demo.hacarus.com
+GET https://sdd-api-staging.hacarus.com/api/v1/algorithms/{algorithm_id} HTTP/1.1
+Host: sdd-api-staging.hacarus.com
 Accept: application/json
 
 ```
@@ -529,30 +460,30 @@ Accept: application/json
 ```json
 {
   "data": {
-    "name": "string",
+    "type": "string",
+    "algorithm_id": "string",
     "version": "string",
+    "updated_at": "2022-02-04T16:50:28Z",
+    "file_name": "string",
     "class_name": "string",
     "parameters": [
       {
-        "data_type": "string",
-        "name": "string",
-        "display_name": "string",
-        "created_at": "2020-10-19T16:35:20Z",
-        "range_lower": "string",
-        "algorithm_parameter_id": 0,
-        "range_upper": "string",
-        "updated_at": "2020-10-19T16:35:20Z",
         "value": "string",
+        "data_type": "string",
         "algorithm_id": "string",
-        "model_parameter": true
+        "updated_at": "2022-02-04T16:50:28Z",
+        "algorithm_parameter_id": 0,
+        "display_name": "string",
+        "range_lower": "string",
+        "created_at": "2022-02-04T16:50:28Z",
+        "model_parameter": true,
+        "name": "string",
+        "range_upper": "string"
       }
     ],
-    "attribute": "string",
-    "updated_at": "2020-10-19T16:35:20Z",
-    "created_at": "2020-10-19T16:35:20Z",
-    "file_name": "string",
-    "algorithm_id": "string",
-    "type": "string"
+    "created_at": "2022-02-04T16:50:28Z",
+    "name": "string",
+    "attribute": "string"
   }
 }
 ```
@@ -577,7 +508,7 @@ jwt, oauth2
 
 ```shell
 # You can also use wget
-curl -X POST https://spectro-demo.hacarus.com/api/v1/algorithms/{algorithm_id}/train \
+curl -X POST https://sdd-api-staging.hacarus.com/api/v1/algorithms/{algorithm_id}/train \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
@@ -585,8 +516,8 @@ curl -X POST https://spectro-demo.hacarus.com/api/v1/algorithms/{algorithm_id}/t
 ```
 
 ```http
-POST https://spectro-demo.hacarus.com/api/v1/algorithms/{algorithm_id}/train HTTP/1.1
-Host: spectro-demo.hacarus.com
+POST https://sdd-api-staging.hacarus.com/api/v1/algorithms/{algorithm_id}/train HTTP/1.1
+Host: sdd-api-staging.hacarus.com
 Content-Type: application/json
 Accept: application/json
 
@@ -634,34 +565,34 @@ Accept: application/json
 ```json
 {
   "data": {
-    "name": "string",
+    "algorithm_type": "string",
+    "image_url": "string",
+    "algorithm_id": "string",
     "version": "string",
+    "ok_img_count": 0,
+    "precision": 0,
     "recall": 0,
-    "status": "string",
+    "status_text": "string",
+    "active": true,
+    "training_time": 0,
+    "updated_at": "2022-02-04T16:50:28Z",
+    "ng_img_count": 0,
+    "context_id": 0,
+    "model_id": "string",
     "stats": {
+      "accuracy": 0,
       "precision": {
-        "computed": 0,
-        "projected": 0
+        "projected": 0,
+        "computed": 0
       },
       "recall": {
-        "computed": 0,
-        "projected": 0
-      },
-      "accuracy": 0
+        "projected": 0,
+        "computed": 0
+      }
     },
-    "image_url": "string",
-    "ng_img_count": 0,
-    "training_time": 0,
-    "ok_img_count": 0,
-    "active": true,
-    "status_text": "string",
-    "precision": 0,
-    "created_at": "2020-10-19T16:35:20Z",
-    "updated_at": "2020-10-19T16:35:20Z",
-    "context_id": 0,
-    "algorithm_type": "string",
-    "algorithm_id": "string",
-    "model_id": "string"
+    "created_at": "2022-02-04T16:50:28Z",
+    "status": "string",
+    "name": "string"
   }
 }
 ```
@@ -691,15 +622,15 @@ Model related operations
 
 ```shell
 # You can also use wget
-curl -X GET https://spectro-demo.hacarus.com/api/v1/models/ \
+curl -X GET https://sdd-api-staging.hacarus.com/api/v1/models/ \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
 ```
 
 ```http
-GET https://spectro-demo.hacarus.com/api/v1/models/ HTTP/1.1
-Host: spectro-demo.hacarus.com
+GET https://sdd-api-staging.hacarus.com/api/v1/models/ HTTP/1.1
+Host: sdd-api-staging.hacarus.com
 Accept: application/json
 
 ```
@@ -729,34 +660,34 @@ Accept: application/json
 {
   "data": [
     {
-      "name": "string",
+      "algorithm_type": "string",
+      "image_url": "string",
+      "algorithm_id": "string",
       "version": "string",
+      "ok_img_count": 0,
+      "precision": 0,
       "recall": 0,
-      "status": "string",
+      "status_text": "string",
+      "active": true,
+      "training_time": 0,
+      "updated_at": "2022-02-04T16:50:28Z",
+      "ng_img_count": 0,
+      "context_id": 0,
+      "model_id": "string",
       "stats": {
+        "accuracy": 0,
         "precision": {
-          "computed": 0,
-          "projected": 0
+          "projected": 0,
+          "computed": 0
         },
         "recall": {
-          "computed": 0,
-          "projected": 0
-        },
-        "accuracy": 0
+          "projected": 0,
+          "computed": 0
+        }
       },
-      "image_url": "string",
-      "ng_img_count": 0,
-      "training_time": 0,
-      "ok_img_count": 0,
-      "active": true,
-      "status_text": "string",
-      "precision": 0,
-      "created_at": "2020-10-19T16:35:20Z",
-      "updated_at": "2020-10-19T16:35:20Z",
-      "context_id": 0,
-      "algorithm_type": "string",
-      "algorithm_id": "string",
-      "model_id": "string"
+      "created_at": "2022-02-04T16:50:28Z",
+      "status": "string",
+      "name": "string"
     }
   ]
 }
@@ -783,15 +714,15 @@ jwt, oauth2
 
 ```shell
 # You can also use wget
-curl -X DELETE https://spectro-demo.hacarus.com/api/v1/models/ \
+curl -X DELETE https://sdd-api-staging.hacarus.com/api/v1/models/ \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
 ```
 
 ```http
-DELETE https://spectro-demo.hacarus.com/api/v1/models/ HTTP/1.1
-Host: spectro-demo.hacarus.com
+DELETE https://sdd-api-staging.hacarus.com/api/v1/models/ HTTP/1.1
+Host: sdd-api-staging.hacarus.com
 Accept: application/json
 
 ```
@@ -848,15 +779,15 @@ jwt, oauth2
 
 ```shell
 # You can also use wget
-curl -X GET https://spectro-demo.hacarus.com/api/v1/models/{model_id} \
+curl -X GET https://sdd-api-staging.hacarus.com/api/v1/models/{model_id} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
 ```
 
 ```http
-GET https://spectro-demo.hacarus.com/api/v1/models/{model_id} HTTP/1.1
-Host: spectro-demo.hacarus.com
+GET https://sdd-api-staging.hacarus.com/api/v1/models/{model_id} HTTP/1.1
+Host: sdd-api-staging.hacarus.com
 Accept: application/json
 
 ```
@@ -885,34 +816,34 @@ Accept: application/json
 ```json
 {
   "data": {
-    "name": "string",
+    "algorithm_type": "string",
+    "image_url": "string",
+    "algorithm_id": "string",
     "version": "string",
+    "ok_img_count": 0,
+    "precision": 0,
     "recall": 0,
-    "status": "string",
+    "status_text": "string",
+    "active": true,
+    "training_time": 0,
+    "updated_at": "2022-02-04T16:50:28Z",
+    "ng_img_count": 0,
+    "context_id": 0,
+    "model_id": "string",
     "stats": {
+      "accuracy": 0,
       "precision": {
-        "computed": 0,
-        "projected": 0
+        "projected": 0,
+        "computed": 0
       },
       "recall": {
-        "computed": 0,
-        "projected": 0
-      },
-      "accuracy": 0
+        "projected": 0,
+        "computed": 0
+      }
     },
-    "image_url": "string",
-    "ng_img_count": 0,
-    "training_time": 0,
-    "ok_img_count": 0,
-    "active": true,
-    "status_text": "string",
-    "precision": 0,
-    "created_at": "2020-10-19T16:35:20Z",
-    "updated_at": "2020-10-19T16:35:20Z",
-    "context_id": 0,
-    "algorithm_type": "string",
-    "algorithm_id": "string",
-    "model_id": "string"
+    "created_at": "2022-02-04T16:50:28Z",
+    "status": "string",
+    "name": "string"
   }
 }
 ```
@@ -937,7 +868,7 @@ jwt, oauth2
 
 ```shell
 # You can also use wget
-curl -X POST https://spectro-demo.hacarus.com/api/v1/models/export \
+curl -X POST https://sdd-api-staging.hacarus.com/api/v1/models/export \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/zip' \
   -H 'Authorization: Bearer {access-token}'
@@ -945,8 +876,8 @@ curl -X POST https://spectro-demo.hacarus.com/api/v1/models/export \
 ```
 
 ```http
-POST https://spectro-demo.hacarus.com/api/v1/models/export HTTP/1.1
-Host: spectro-demo.hacarus.com
+POST https://sdd-api-staging.hacarus.com/api/v1/models/export HTTP/1.1
+Host: sdd-api-staging.hacarus.com
 Content-Type: application/json
 Accept: application/zip
 
@@ -988,19 +919,19 @@ Accept: application/zip
 ```json
 {
   "errors": {
-    "status": 0,
     "message": [
       {
+        "key": "string",
         "errors": [
           "string"
-        ],
-        "key": "string"
+        ]
       }
     ],
+    "status": 0,
+    "detail": "string",
     "source": {
       "pointer": "string"
     },
-    "detail": "string",
     "title": "string"
   }
 }
@@ -1026,7 +957,7 @@ jwt, oauth2
 
 ```shell
 # You can also use wget
-curl -X POST https://spectro-demo.hacarus.com/api/v1/models/import \
+curl -X POST https://sdd-api-staging.hacarus.com/api/v1/models/import \
   -H 'Content-Type: multipart/form-data' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
@@ -1034,8 +965,8 @@ curl -X POST https://spectro-demo.hacarus.com/api/v1/models/import \
 ```
 
 ```http
-POST https://spectro-demo.hacarus.com/api/v1/models/import HTTP/1.1
-Host: spectro-demo.hacarus.com
+POST https://sdd-api-staging.hacarus.com/api/v1/models/import HTTP/1.1
+Host: sdd-api-staging.hacarus.com
 Content-Type: multipart/form-data
 Accept: application/json
 
@@ -1073,34 +1004,34 @@ models: string
 {
   "data": [
     {
-      "name": "string",
+      "algorithm_type": "string",
+      "image_url": "string",
+      "algorithm_id": "string",
       "version": "string",
+      "ok_img_count": 0,
+      "precision": 0,
       "recall": 0,
-      "status": "string",
+      "status_text": "string",
+      "active": true,
+      "training_time": 0,
+      "updated_at": "2022-02-04T16:50:28Z",
+      "ng_img_count": 0,
+      "context_id": 0,
+      "model_id": "string",
       "stats": {
+        "accuracy": 0,
         "precision": {
-          "computed": 0,
-          "projected": 0
+          "projected": 0,
+          "computed": 0
         },
         "recall": {
-          "computed": 0,
-          "projected": 0
-        },
-        "accuracy": 0
+          "projected": 0,
+          "computed": 0
+        }
       },
-      "image_url": "string",
-      "ng_img_count": 0,
-      "training_time": 0,
-      "ok_img_count": 0,
-      "active": true,
-      "status_text": "string",
-      "precision": 0,
-      "created_at": "2020-10-19T16:35:20Z",
-      "updated_at": "2020-10-19T16:35:20Z",
-      "context_id": 0,
-      "algorithm_type": "string",
-      "algorithm_id": "string",
-      "model_id": "string"
+      "created_at": "2022-02-04T16:50:28Z",
+      "status": "string",
+      "name": "string"
     }
   ]
 }
@@ -1119,6 +1050,160 @@ To perform this operation, you must be authenticated by means of one of the foll
 jwt, oauth2
 </aside>
 
+## <%= translate_fallback('setModelPredictParameters') %>
+
+<a id="opIdsetModelPredictParameters"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://sdd-api-staging.hacarus.com/api/v1/models/{model_id}/update_predict_parameters \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```http
+POST https://sdd-api-staging.hacarus.com/api/v1/models/{model_id}/update_predict_parameters HTTP/1.1
+Host: sdd-api-staging.hacarus.com
+Content-Type: application/json
+Accept: application/json
+
+```
+
+`POST /api/v1/models/{model_id}/update_predict_parameters`
+
+*Set Prediction Parameters*
+
+<%= translate_fallback(
+  'setModelPredictParametersMessage',
+  <<~HEREDOC
+    Updates predict parameters
+  HEREDOC
+) %>
+
+> Body parameter
+
+```json
+{
+  "threshold": 0,
+  "ignore_outer": "string",
+  "min_detected_area": 0
+}
+```
+
+<h3 id="setmodelpredictparameters-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[UpdatePredictParameters](#schemaupdatepredictparameters)|true|none|
+|model_id|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "data": {
+    "threshold": 0,
+    "ignore_outer": "string",
+    "min_detected_area": 0
+  }
+}
+```
+
+<h3 id="setmodelpredictparameters-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|[UpdatePredictParametersResponseWrapper](#schemaupdatepredictparametersresponsewrapper)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Invalid parameters|[BaseError](#schemabaseerror)|
+|default|Default|Default error response|[BaseError](#schemabaseerror)|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+jwt, oauth2
+</aside>
+
+## <%= translate_fallback('setModelPredictCallback') %>
+
+<a id="opIdsetModelPredictCallback"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://sdd-api-staging.hacarus.com/api/v1/models/{model_id}/update_predict_callback \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```http
+POST https://sdd-api-staging.hacarus.com/api/v1/models/{model_id}/update_predict_callback HTTP/1.1
+Host: sdd-api-staging.hacarus.com
+Content-Type: application/json
+Accept: application/json
+
+```
+
+`POST /api/v1/models/{model_id}/update_predict_callback`
+
+*Set Prediction Callback URL*
+
+<%= translate_fallback(
+  'setModelPredictCallbackMessage',
+  <<~HEREDOC
+    Updates the callback URL for prediction. Once this endpoint has been set, a successful prediction will do a POST or GET operation to the callback URL with the data [PredictionItemCallbackResponse](#tocS_PredictionItemCallbackResponse)
+  HEREDOC
+) %>
+
+> Body parameter
+
+```json
+{
+  "callback_url": "string",
+  "callback_method": "string"
+}
+```
+
+<h3 id="setmodelpredictcallback-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[UpdatePredictCallback](#schemaupdatepredictcallback)|true|none|
+|model_id|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "data": {
+    "callback_url": "string",
+    "callback_method": "string"
+  }
+}
+```
+
+<h3 id="setmodelpredictcallback-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|[UpdatePredictCallbackResponseWrapper](#schemaupdatepredictcallbackresponsewrapper)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Invalid parameters|[BaseError](#schemabaseerror)|
+|default|Default|Default error response|[BaseError](#schemabaseerror)|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+jwt, oauth2
+</aside>
+
 ## <%= translate_fallback('predictItems') %>
 
 <a id="opIdpredictItems"></a>
@@ -1127,7 +1212,7 @@ jwt, oauth2
 
 ```shell
 # You can also use wget
-curl -X POST https://spectro-demo.hacarus.com/api/v1/models/{model_id}/predict \
+curl -X POST https://sdd-api-staging.hacarus.com/api/v1/models/{model_id}/predict \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
@@ -1135,8 +1220,8 @@ curl -X POST https://spectro-demo.hacarus.com/api/v1/models/{model_id}/predict \
 ```
 
 ```http
-POST https://spectro-demo.hacarus.com/api/v1/models/{model_id}/predict HTTP/1.1
-Host: spectro-demo.hacarus.com
+POST https://sdd-api-staging.hacarus.com/api/v1/models/{model_id}/predict HTTP/1.1
+Host: sdd-api-staging.hacarus.com
 Content-Type: application/json
 Accept: application/json
 
@@ -1177,10 +1262,10 @@ Accept: application/json
 ```json
 {
   "data": {
+    "model_version": "string",
     "item_ids": [
       "string"
-    ],
-    "model_version": "string"
+    ]
   }
 }
 ```
@@ -1190,7 +1275,9 @@ Accept: application/json
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|[PredictItemsResponseWrapper](#schemapredictitemsresponsewrapper)|
-|422|[Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)|Unprocessable Entity|[BaseError](#schemabaseerror)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|model_id not found|[BaseError](#schemabaseerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|item_id not found|[BaseError](#schemabaseerror)|
+|425|Unknown|The server is busy processing requests. Try again in a while.|[BaseError](#schemabaseerror)|
 |default|Default|Default error response|[BaseError](#schemabaseerror)|
 
 <aside class="warning">
@@ -1210,15 +1297,15 @@ Item related operations
 
 ```shell
 # You can also use wget
-curl -X GET https://spectro-demo.hacarus.com/api/v1/items/?item_type=string \
+curl -X GET https://sdd-api-staging.hacarus.com/api/v1/items/?item_type=string \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
 ```
 
 ```http
-GET https://spectro-demo.hacarus.com/api/v1/items/?item_type=string HTTP/1.1
-Host: spectro-demo.hacarus.com
+GET https://sdd-api-staging.hacarus.com/api/v1/items/?item_type=string HTTP/1.1
+Host: sdd-api-staging.hacarus.com
 Accept: application/json
 
 ```
@@ -1250,82 +1337,85 @@ Accept: application/json
 ```json
 {
   "data": {
+    "end_page": 0,
+    "current_page": 0,
     "count_per_page": 0,
     "items": [
       {
-        "images": [
-          {
-            "name": "string",
-            "file_size": 0,
-            "height": 0,
-            "url": "string",
-            "width": 0
-          }
-        ],
+        "active": true,
+        "is_training_data": true,
         "user_assessment": {
-          "images": [
-            {
-              "name": "string",
-              "file_size": 0,
-              "height": 0,
-              "url": "string",
-              "width": 0
-            }
-          ],
+          "result": "string",
           "annotations": [
             {
-              "notes": "string",
-              "annotation_id": 0,
-              "label": 0,
               "y_min": 0,
+              "x_max": 0,
               "y_max": 0,
+              "label": 0,
+              "defect_size": 0,
+              "created_at": "2022-02-04T16:50:28Z",
               "x_min": 0,
-              "created_at": "2020-10-19T16:35:20Z",
-              "x_max": 0
+              "annotation_id": 0,
+              "notes": "string"
             }
           ],
           "label": "string",
-          "result": "string"
+          "images": [
+            {
+              "url": "string",
+              "width": 0,
+              "file_size": 0,
+              "height": 0,
+              "name": "string"
+            }
+          ]
         },
-        "name": "string",
-        "is_training_data": true,
-        "status": "string",
-        "active": true,
+        "images": [
+          {
+            "url": "string",
+            "width": 0,
+            "file_size": 0,
+            "height": 0,
+            "name": "string"
+          }
+        ],
         "item_id": "string",
         "assessments": [
           {
-            "images": [
-              {
-                "name": "string",
-                "file_size": 0,
-                "height": 0,
-                "url": "string",
-                "width": 0
-              }
-            ],
-            "result": "string",
-            "label": "string",
-            "detected_objects": 0,
-            "detection_accuracy": 0,
             "annotations": [
               {
-                "notes": "string",
-                "annotation_id": 0,
-                "label": 0,
                 "y_min": 0,
+                "x_max": 0,
                 "y_max": 0,
+                "label": 0,
+                "defect_size": 0,
+                "created_at": "2022-02-04T16:50:28Z",
                 "x_min": 0,
-                "created_at": "2020-10-19T16:35:20Z",
-                "x_max": 0
+                "annotation_id": 0,
+                "notes": "string"
               }
             ],
-            "model_id": "string"
+            "label": "string",
+            "images": [
+              {
+                "url": "string",
+                "width": 0,
+                "file_size": 0,
+                "height": 0,
+                "name": "string"
+              }
+            ],
+            "anomaly_score": "string",
+            "model_id": "string",
+            "detected_objects": 0,
+            "detection_accuracy": 0,
+            "result": "string"
           }
-        ]
+        ],
+        "status": "string",
+        "name": "string"
       }
-    ],
-    "end_page": 0,
-    "current_page": 0
+    ]
   }
 }
 ```
@@ -1351,7 +1441,7 @@ jwt, oauth2
 
 ```shell
 # You can also use wget
-curl -X POST https://spectro-demo.hacarus.com/api/v1/items/ \
+curl -X POST https://sdd-api-staging.hacarus.com/api/v1/items/ \
   -H 'Content-Type: multipart/form-data' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
@@ -1359,8 +1449,8 @@ curl -X POST https://spectro-demo.hacarus.com/api/v1/items/ \
 ```
 
 ```http
-POST https://spectro-demo.hacarus.com/api/v1/items/ HTTP/1.1
-Host: spectro-demo.hacarus.com
+POST https://sdd-api-staging.hacarus.com/api/v1/items/ HTTP/1.1
+Host: sdd-api-staging.hacarus.com
 Content-Type: multipart/form-data
 Accept: application/json
 
@@ -1421,6 +1511,83 @@ To perform this operation, you must be authenticated by means of one of the foll
 jwt, oauth2
 </aside>
 
+## <%= translate_fallback('delItem') %>
+
+<a id="opIddelItem"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE https://sdd-api-staging.hacarus.com/api/v1/items/ \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```http
+DELETE https://sdd-api-staging.hacarus.com/api/v1/items/ HTTP/1.1
+Host: sdd-api-staging.hacarus.com
+Content-Type: application/json
+Accept: application/json
+
+```
+
+`DELETE /api/v1/items/`
+
+> Body parameter
+
+```json
+{
+  "item_ids": [
+    "string"
+  ]
+}
+```
+
+<h3 id="delitem-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[DelItemRequest](#schemadelitemrequest)|true|none|
+
+> Example responses
+
+> 422 Response
+
+```json
+{
+  "errors": {
+    "message": [
+      {
+        "key": "string",
+        "errors": [
+          "string"
+        ]
+      }
+    ],
+    "status": 0,
+    "detail": "string",
+    "source": {
+      "pointer": "string"
+    },
+    "title": "string"
+  }
+}
+```
+
+<h3 id="delitem-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|422|[Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)|Unprocessable Entity|[BaseError](#schemabaseerror)|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+jwt, oauth2
+</aside>
+
 ## <%= translate_fallback('getItemById') %>
 
 <a id="opIdgetItemById"></a>
@@ -1429,15 +1596,15 @@ jwt, oauth2
 
 ```shell
 # You can also use wget
-curl -X GET https://spectro-demo.hacarus.com/api/v1/items/{item_id} \
+curl -X GET https://sdd-api-staging.hacarus.com/api/v1/items/{item_id} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
 ```
 
 ```http
-GET https://spectro-demo.hacarus.com/api/v1/items/{item_id} HTTP/1.1
-Host: spectro-demo.hacarus.com
+GET https://sdd-api-staging.hacarus.com/api/v1/items/{item_id} HTTP/1.1
+Host: sdd-api-staging.hacarus.com
 Accept: application/json
 
 ```
@@ -1469,75 +1636,78 @@ Accept: application/json
 ```json
 {
   "data": {
-    "images": [
-      {
-        "name": "string",
-        "file_size": 0,
-        "height": 0,
-        "url": "string",
-        "width": 0
-      }
-    ],
+    "active": true,
+    "is_training_data": true,
     "user_assessment": {
-      "images": [
-        {
-          "name": "string",
-          "file_size": 0,
-          "height": 0,
-          "url": "string",
-          "width": 0
-        }
-      ],
+      "result": "string",
       "annotations": [
         {
-          "notes": "string",
-          "annotation_id": 0,
-          "label": 0,
           "y_min": 0,
+          "x_max": 0,
           "y_max": 0,
+          "label": 0,
+          "defect_size": 0,
+          "created_at": "2022-02-04T16:50:28Z",
           "x_min": 0,
-          "created_at": "2020-10-19T16:35:20Z",
-          "x_max": 0
+          "annotation_id": 0,
+          "notes": "string"
         }
       ],
       "label": "string",
-      "result": "string"
+      "images": [
+        {
+          "url": "string",
+          "width": 0,
+          "file_size": 0,
+          "height": 0,
+          "name": "string"
+        }
+      ]
     },
-    "name": "string",
-    "is_training_data": true,
-    "status": "string",
-    "active": true,
+    "images": [
+      {
+        "url": "string",
+        "width": 0,
+        "file_size": 0,
+        "height": 0,
+        "name": "string"
+      }
+    ],
     "item_id": "string",
     "assessments": [
       {
-        "images": [
-          {
-            "name": "string",
-            "file_size": 0,
-            "height": 0,
-            "url": "string",
-            "width": 0
-          }
-        ],
-        "result": "string",
-        "label": "string",
-        "detected_objects": 0,
-        "detection_accuracy": 0,
         "annotations": [
           {
-            "notes": "string",
-            "annotation_id": 0,
-            "label": 0,
             "y_min": 0,
+            "x_max": 0,
             "y_max": 0,
+            "label": 0,
+            "defect_size": 0,
+            "created_at": "2022-02-04T16:50:28Z",
             "x_min": 0,
-            "created_at": "2020-10-19T16:35:20Z",
-            "x_max": 0
+            "annotation_id": 0,
+            "notes": "string"
           }
         ],
-        "model_id": "string"
+        "label": "string",
+        "images": [
+          {
+            "url": "string",
+            "width": 0,
+            "file_size": 0,
+            "height": 0,
+            "name": "string"
+          }
+        ],
+        "anomaly_score": "string",
+        "model_id": "string",
+        "detected_objects": 0,
+        "detection_accuracy": 0,
+        "result": "string"
       }
-    ]
+    ],
+    "status": "string",
+    "name": "string"
   }
 }
 ```
@@ -1548,7 +1718,6 @@ Accept: application/json
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|[ItemWrapper](#schemaitemwrapper)|
 |422|[Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)|Unprocessable Entity|[BaseError](#schemabaseerror)|
-|default|Default|Default error response|[BaseError](#schemabaseerror)|
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -1563,7 +1732,7 @@ jwt, oauth2
 
 ```shell
 # You can also use wget
-curl -X PATCH https://spectro-demo.hacarus.com/api/v1/items/{item_id} \
+curl -X PATCH https://sdd-api-staging.hacarus.com/api/v1/items/{item_id} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
@@ -1571,8 +1740,8 @@ curl -X PATCH https://spectro-demo.hacarus.com/api/v1/items/{item_id} \
 ```
 
 ```http
-PATCH https://spectro-demo.hacarus.com/api/v1/items/{item_id} HTTP/1.1
-Host: spectro-demo.hacarus.com
+PATCH https://sdd-api-staging.hacarus.com/api/v1/items/{item_id} HTTP/1.1
+Host: sdd-api-staging.hacarus.com
 Content-Type: application/json
 Accept: application/json
 
@@ -1611,19 +1780,19 @@ Accept: application/json
 ```json
 {
   "errors": {
-    "status": 0,
     "message": [
       {
+        "key": "string",
         "errors": [
           "string"
-        ],
-        "key": "string"
+        ]
       }
     ],
+    "status": 0,
+    "detail": "string",
     "source": {
       "pointer": "string"
     },
-    "detail": "string",
     "title": "string"
   }
 }
@@ -1654,7 +1823,7 @@ Support and utility functions
 
 ```shell
 # You can also use wget
-curl -X POST https://spectro-demo.hacarus.com/api/v1/utils/ \
+curl -X POST https://sdd-api-staging.hacarus.com/api/v1/utils/ \
   -H 'Content-Type: multipart/form-data' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
@@ -1662,8 +1831,8 @@ curl -X POST https://spectro-demo.hacarus.com/api/v1/utils/ \
 ```
 
 ```http
-POST https://spectro-demo.hacarus.com/api/v1/utils/ HTTP/1.1
-Host: spectro-demo.hacarus.com
+POST https://sdd-api-staging.hacarus.com/api/v1/utils/ HTTP/1.1
+Host: sdd-api-staging.hacarus.com
 Content-Type: multipart/form-data
 Accept: application/json
 
@@ -1717,15 +1886,15 @@ jwt, oauth2
 
 ```shell
 # You can also use wget
-curl -X POST https://spectro-demo.hacarus.com/api/v1/utils/debug \
+curl -X POST https://sdd-api-staging.hacarus.com/api/v1/utils/debug \
   -H 'Accept: application/octet-stream' \
   -H 'Authorization: Bearer {access-token}'
 
 ```
 
 ```http
-POST https://spectro-demo.hacarus.com/api/v1/utils/debug HTTP/1.1
-Host: spectro-demo.hacarus.com
+POST https://sdd-api-staging.hacarus.com/api/v1/utils/debug HTTP/1.1
+Host: sdd-api-staging.hacarus.com
 Accept: application/octet-stream
 
 ```
@@ -1755,15 +1924,15 @@ jwt, oauth2
 
 ```shell
 # You can also use wget
-curl -X POST https://spectro-demo.hacarus.com/api/v1/utils/node_hash \
+curl -X POST https://sdd-api-staging.hacarus.com/api/v1/utils/node_hash \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
 ```
 
 ```http
-POST https://spectro-demo.hacarus.com/api/v1/utils/node_hash HTTP/1.1
-Host: spectro-demo.hacarus.com
+POST https://sdd-api-staging.hacarus.com/api/v1/utils/node_hash HTTP/1.1
+Host: sdd-api-staging.hacarus.com
 Accept: application/json
 
 ```
@@ -1794,6 +1963,76 @@ To perform this operation, you must be authenticated by means of one of the foll
 jwt, oauth2
 </aside>
 
+<h1 id="spectro-token">token</h1>
+
+API authentication operations
+
+## <%= translate_fallback('login') %>
+
+<a id="opIdlogin"></a>
+
+> Code samples
+
+```csharp
+LoginParams loginParams = new LoginParams(
+  clientId: "client id",
+  clientSecret: "client secret",
+  grantType: "client_credentials"
+);
+var resp = instance.Login(loginParams);
+
+```
+
+`POST /api/auth/token`
+
+*Authorization*
+
+<%= translate_fallback(
+  'loginMessage',
+  <<~HEREDOC
+    Returns the access token
+  HEREDOC
+) %>
+
+> Body parameter
+
+```json
+{
+  "grant_type": "client_credentials",
+  "client_secret": "client_secret",
+  "client_id": "client_id"
+}
+```
+
+<h3 id="login-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[LoginParams](#schemaloginparams)|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "access_token": "access_token"
+}
+```
+
+<h3 id="login-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successful login|[LoginResponse](#schemaloginresponse)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Invalid credentials|[BaseError](#schemabaseerror)|
+|default|Default|default error handler|[BaseError](#schemabaseerror)|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+jwt, oauth2
+</aside>
+
 # Schemas
 
 <h2 id="tocS_KeyValueError">KeyValueError</h2>
@@ -1805,10 +2044,10 @@ jwt, oauth2
 
 ```json
 {
+  "key": "string",
   "errors": [
     "string"
-  ],
-  "key": "string"
+  ]
 }
 
 ```
@@ -1817,8 +2056,8 @@ jwt, oauth2
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|errors|[string]|false|none|none|
 |key|string|false|none|Error key|
+|errors|[string]|false|none|none|
 
 <h2 id="tocS_ErrorSource">ErrorSource</h2>
 <!-- backwards compatibility -->
@@ -1849,19 +2088,19 @@ jwt, oauth2
 
 ```json
 {
-  "status": 0,
   "message": [
     {
+      "key": "string",
       "errors": [
         "string"
-      ],
-      "key": "string"
+      ]
     }
   ],
+  "status": 0,
+  "detail": "string",
   "source": {
     "pointer": "string"
   },
-  "detail": "string",
   "title": "string"
 }
 
@@ -1871,10 +2110,10 @@ jwt, oauth2
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|status|integer(int32)|false|none|Error status code|
 |message|[[KeyValueError](#schemakeyvalueerror)]|false|none|none|
-|source|[ErrorSource](#schemaerrorsource)|false|none|Error Source|
+|status|integer(int32)|false|none|Error status code|
 |detail|string|false|none|Error Details|
+|source|[ErrorSource](#schemaerrorsource)|false|none|Error Source|
 |title|string|false|none|Error Title|
 
 <h2 id="tocS_BaseError">BaseError</h2>
@@ -1887,19 +2126,19 @@ jwt, oauth2
 ```json
 {
   "errors": {
-    "status": 0,
     "message": [
       {
+        "key": "string",
         "errors": [
           "string"
-        ],
-        "key": "string"
+        ]
       }
     ],
+    "status": 0,
+    "detail": "string",
     "source": {
       "pointer": "string"
     },
-    "detail": "string",
     "title": "string"
   }
 }
@@ -1969,9 +2208,9 @@ login parameters
 
 ```json
 {
-  "config": "string",
   "active": true,
-  "name": "string"
+  "name": "string",
+  "config": "string"
 }
 
 ```
@@ -1980,9 +2219,9 @@ login parameters
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|config|string¦null|false|none|none|
 |active|boolean¦null|false|none|none|
 |name|string|true|none|none|
+|config|string¦null|false|none|none|
 
 <h2 id="tocS_InspectionTarget">InspectionTarget</h2>
 <!-- backwards compatibility -->
@@ -1993,15 +2232,15 @@ login parameters
 
 ```json
 {
-  "target_id": 0,
-  "name": "string",
   "preprocessing": [
     {
-      "config": "string",
       "active": true,
-      "name": "string"
+      "name": "string",
+      "config": "string"
     }
-  ]
+  ],
+  "name": "string",
+  "target_id": 0
 }
 
 ```
@@ -2010,9 +2249,9 @@ login parameters
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|target_id|integer(int32)|false|none|none|
-|name|string|false|none|none|
 |preprocessing|[[Preprocessing](#schemapreprocessing)]|false|none|none|
+|name|string|false|none|none|
+|target_id|integer(int32)|false|none|none|
 
 <h2 id="tocS_InspectionTargetListWrapper">InspectionTargetListWrapper</h2>
 <!-- backwards compatibility -->
@@ -2025,15 +2264,15 @@ login parameters
 {
   "data": [
     {
-      "target_id": 0,
-      "name": "string",
       "preprocessing": [
         {
-          "config": "string",
           "active": true,
-          "name": "string"
+          "name": "string",
+          "config": "string"
         }
-      ]
+      ],
+      "name": "string",
+      "target_id": 0
     }
   ]
 }
@@ -2056,15 +2295,15 @@ login parameters
 ```json
 {
   "data": {
-    "target_id": 0,
-    "name": "string",
     "preprocessing": [
       {
-        "config": "string",
         "active": true,
-        "name": "string"
+        "name": "string",
+        "config": "string"
       }
-    ]
+    ],
+    "name": "string",
+    "target_id": 0
   }
 }
 
@@ -2085,17 +2324,17 @@ login parameters
 
 ```json
 {
-  "data_type": "string",
-  "name": "string",
-  "display_name": "string",
-  "created_at": "2020-10-19T16:35:20Z",
-  "range_lower": "string",
-  "algorithm_parameter_id": 0,
-  "range_upper": "string",
-  "updated_at": "2020-10-19T16:35:20Z",
   "value": "string",
+  "data_type": "string",
   "algorithm_id": "string",
-  "model_parameter": true
+  "updated_at": "2022-02-04T16:50:28Z",
+  "algorithm_parameter_id": 0,
+  "display_name": "string",
+  "range_lower": "string",
+  "created_at": "2022-02-04T16:50:28Z",
+  "model_parameter": true,
+  "name": "string",
+  "range_upper": "string"
 }
 
 ```
@@ -2104,17 +2343,17 @@ login parameters
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|data_type|string|false|none|none|
-|name|string|true|none|none|
-|display_name|string¦null|false|none|none|
-|created_at|string(date-time)|true|none|none|
-|range_lower|string¦null|false|none|none|
-|algorithm_parameter_id|integer(int32)|false|none|none|
-|range_upper|string¦null|false|none|none|
-|updated_at|string(date-time)|true|none|none|
 |value|string¦null|false|none|none|
+|data_type|string|false|none|none|
 |algorithm_id|string|true|none|none|
+|updated_at|string(date-time)|true|none|none|
+|algorithm_parameter_id|integer(int32)|false|none|none|
+|display_name|string¦null|false|none|none|
+|range_lower|string¦null|false|none|none|
+|created_at|string(date-time)|true|none|none|
 |model_parameter|boolean¦null|false|none|none|
+|name|string|true|none|none|
+|range_upper|string¦null|false|none|none|
 
 <h2 id="tocS_AlgorithmWithParameter">AlgorithmWithParameter</h2>
 <!-- backwards compatibility -->
@@ -2125,30 +2364,30 @@ login parameters
 
 ```json
 {
-  "name": "string",
+  "type": "string",
+  "algorithm_id": "string",
   "version": "string",
+  "updated_at": "2022-02-04T16:50:28Z",
+  "file_name": "string",
   "class_name": "string",
   "parameters": [
     {
-      "data_type": "string",
-      "name": "string",
-      "display_name": "string",
-      "created_at": "2020-10-19T16:35:20Z",
-      "range_lower": "string",
-      "algorithm_parameter_id": 0,
-      "range_upper": "string",
-      "updated_at": "2020-10-19T16:35:20Z",
       "value": "string",
+      "data_type": "string",
       "algorithm_id": "string",
-      "model_parameter": true
+      "updated_at": "2022-02-04T16:50:28Z",
+      "algorithm_parameter_id": 0,
+      "display_name": "string",
+      "range_lower": "string",
+      "created_at": "2022-02-04T16:50:28Z",
+      "model_parameter": true,
+      "name": "string",
+      "range_upper": "string"
     }
   ],
-  "attribute": "string",
-  "updated_at": "2020-10-19T16:35:20Z",
-  "created_at": "2020-10-19T16:35:20Z",
-  "file_name": "string",
-  "algorithm_id": "string",
-  "type": "string"
+  "created_at": "2022-02-04T16:50:28Z",
+  "name": "string",
+  "attribute": "string"
 }
 
 ```
@@ -2157,16 +2396,16 @@ login parameters
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|name|string|true|none|none|
+|type|string|false|none|none|
+|algorithm_id|string|true|none|none|
 |version|string¦null|false|none|none|
+|updated_at|string(date-time)|true|none|none|
+|file_name|string|true|none|none|
 |class_name|string|true|none|none|
 |parameters|[[AlgorithmParameter](#schemaalgorithmparameter)]|false|none|none|
-|attribute|string|false|none|none|
-|updated_at|string(date-time)|true|none|none|
 |created_at|string(date-time)|true|none|none|
-|file_name|string|true|none|none|
-|algorithm_id|string|true|none|none|
-|type|string|false|none|none|
+|name|string|true|none|none|
+|attribute|string|false|none|none|
 
 <h2 id="tocS_AlgorithmWithParameterListWrapper">AlgorithmWithParameterListWrapper</h2>
 <!-- backwards compatibility -->
@@ -2179,30 +2418,30 @@ login parameters
 {
   "data": [
     {
-      "name": "string",
+      "type": "string",
+      "algorithm_id": "string",
       "version": "string",
+      "updated_at": "2022-02-04T16:50:28Z",
+      "file_name": "string",
       "class_name": "string",
       "parameters": [
         {
-          "data_type": "string",
-          "name": "string",
-          "display_name": "string",
-          "created_at": "2020-10-19T16:35:20Z",
-          "range_lower": "string",
-          "algorithm_parameter_id": 0,
-          "range_upper": "string",
-          "updated_at": "2020-10-19T16:35:20Z",
           "value": "string",
+          "data_type": "string",
           "algorithm_id": "string",
-          "model_parameter": true
+          "updated_at": "2022-02-04T16:50:28Z",
+          "algorithm_parameter_id": 0,
+          "display_name": "string",
+          "range_lower": "string",
+          "created_at": "2022-02-04T16:50:28Z",
+          "model_parameter": true,
+          "name": "string",
+          "range_upper": "string"
         }
       ],
-      "attribute": "string",
-      "updated_at": "2020-10-19T16:35:20Z",
-      "created_at": "2020-10-19T16:35:20Z",
-      "file_name": "string",
-      "algorithm_id": "string",
-      "type": "string"
+      "created_at": "2022-02-04T16:50:28Z",
+      "name": "string",
+      "attribute": "string"
     }
   ]
 }
@@ -2225,30 +2464,30 @@ login parameters
 ```json
 {
   "data": {
-    "name": "string",
+    "type": "string",
+    "algorithm_id": "string",
     "version": "string",
+    "updated_at": "2022-02-04T16:50:28Z",
+    "file_name": "string",
     "class_name": "string",
     "parameters": [
       {
-        "data_type": "string",
-        "name": "string",
-        "display_name": "string",
-        "created_at": "2020-10-19T16:35:20Z",
-        "range_lower": "string",
-        "algorithm_parameter_id": 0,
-        "range_upper": "string",
-        "updated_at": "2020-10-19T16:35:20Z",
         "value": "string",
+        "data_type": "string",
         "algorithm_id": "string",
-        "model_parameter": true
+        "updated_at": "2022-02-04T16:50:28Z",
+        "algorithm_parameter_id": 0,
+        "display_name": "string",
+        "range_lower": "string",
+        "created_at": "2022-02-04T16:50:28Z",
+        "model_parameter": true,
+        "name": "string",
+        "range_upper": "string"
       }
     ],
-    "attribute": "string",
-    "updated_at": "2020-10-19T16:35:20Z",
-    "created_at": "2020-10-19T16:35:20Z",
-    "file_name": "string",
-    "algorithm_id": "string",
-    "type": "string"
+    "created_at": "2022-02-04T16:50:28Z",
+    "name": "string",
+    "attribute": "string"
   }
 }
 
@@ -2322,8 +2561,8 @@ login parameters
 
 ```json
 {
-  "computed": 0,
-  "projected": 0
+  "projected": 0,
+  "computed": 0
 }
 
 ```
@@ -2332,8 +2571,8 @@ login parameters
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|computed|number¦null|false|none|none|
 |projected|number¦null|false|none|none|
+|computed|number¦null|false|none|none|
 
 <h2 id="tocS_HModelStats">HModelStats</h2>
 <!-- backwards compatibility -->
@@ -2344,15 +2583,15 @@ login parameters
 
 ```json
 {
+  "accuracy": 0,
   "precision": {
-    "computed": 0,
-    "projected": 0
+    "projected": 0,
+    "computed": 0
   },
   "recall": {
-    "computed": 0,
-    "projected": 0
-  },
-  "accuracy": 0
+    "projected": 0,
+    "computed": 0
+  }
 }
 
 ```
@@ -2361,9 +2600,9 @@ login parameters
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|accuracy|number¦null|false|none|none|
 |precision|[HModelPrecision](#schemahmodelprecision)|false|none|none|
 |recall|[HModelPrecision](#schemahmodelprecision)|false|none|none|
-|accuracy|number¦null|false|none|none|
 
 <h2 id="tocS_HModel">HModel</h2>
 <!-- backwards compatibility -->
@@ -2374,34 +2613,34 @@ login parameters
 
 ```json
 {
-  "name": "string",
+  "algorithm_type": "string",
+  "image_url": "string",
+  "algorithm_id": "string",
   "version": "string",
+  "ok_img_count": 0,
+  "precision": 0,
   "recall": 0,
-  "status": "string",
+  "status_text": "string",
+  "active": true,
+  "training_time": 0,
+  "updated_at": "2022-02-04T16:50:28Z",
+  "ng_img_count": 0,
+  "context_id": 0,
+  "model_id": "string",
   "stats": {
+    "accuracy": 0,
     "precision": {
-      "computed": 0,
-      "projected": 0
+      "projected": 0,
+      "computed": 0
     },
     "recall": {
-      "computed": 0,
-      "projected": 0
-    },
-    "accuracy": 0
+      "projected": 0,
+      "computed": 0
+    }
   },
-  "image_url": "string",
-  "ng_img_count": 0,
-  "training_time": 0,
-  "ok_img_count": 0,
-  "active": true,
-  "status_text": "string",
-  "precision": 0,
-  "created_at": "2020-10-19T16:35:20Z",
-  "updated_at": "2020-10-19T16:35:20Z",
-  "context_id": 0,
-  "algorithm_type": "string",
-  "algorithm_id": "string",
-  "model_id": "string"
+  "created_at": "2022-02-04T16:50:28Z",
+  "status": "string",
+  "name": "string"
 }
 
 ```
@@ -2410,24 +2649,24 @@ login parameters
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|name|string|true|none|none|
-|version|string|true|none|none|
-|recall|number¦null|false|none|none|
-|status|string|false|none|none|
-|stats|[HModelStats](#schemahmodelstats)|false|none|none|
-|image_url|string¦null|false|none|none|
-|ng_img_count|integer(int32)|false|none|none|
-|training_time|integer(int32)¦null|false|none|none|
-|ok_img_count|integer(int32)|false|none|none|
-|active|boolean¦null|false|none|none|
-|status_text|string¦null|false|none|none|
-|precision|number¦null|false|none|none|
-|created_at|string(date-time)|true|none|none|
-|updated_at|string(date-time)|true|none|none|
-|context_id|integer(int32)|true|none|none|
 |algorithm_type|string|true|none|none|
+|image_url|string¦null|false|none|none|
 |algorithm_id|string|true|none|none|
+|version|string|true|none|none|
+|ok_img_count|integer(int32)|false|none|none|
+|precision|number¦null|false|none|none|
+|recall|number¦null|false|none|none|
+|status_text|string¦null|false|none|none|
+|active|boolean¦null|false|none|none|
+|training_time|integer(int32)¦null|false|none|none|
+|updated_at|string(date-time)|true|none|none|
+|ng_img_count|integer(int32)|false|none|none|
+|context_id|integer(int32)|true|none|none|
 |model_id|string|true|none|none|
+|stats|[HModelStats](#schemahmodelstats)|false|none|none|
+|created_at|string(date-time)|true|none|none|
+|status|string|false|none|none|
+|name|string|true|none|none|
 
 <h2 id="tocS_HModelWrapper">HModelWrapper</h2>
 <!-- backwards compatibility -->
@@ -2439,34 +2678,34 @@ login parameters
 ```json
 {
   "data": {
-    "name": "string",
+    "algorithm_type": "string",
+    "image_url": "string",
+    "algorithm_id": "string",
     "version": "string",
+    "ok_img_count": 0,
+    "precision": 0,
     "recall": 0,
-    "status": "string",
+    "status_text": "string",
+    "active": true,
+    "training_time": 0,
+    "updated_at": "2022-02-04T16:50:28Z",
+    "ng_img_count": 0,
+    "context_id": 0,
+    "model_id": "string",
     "stats": {
+      "accuracy": 0,
       "precision": {
-        "computed": 0,
-        "projected": 0
+        "projected": 0,
+        "computed": 0
       },
       "recall": {
-        "computed": 0,
-        "projected": 0
-      },
-      "accuracy": 0
+        "projected": 0,
+        "computed": 0
+      }
     },
-    "image_url": "string",
-    "ng_img_count": 0,
-    "training_time": 0,
-    "ok_img_count": 0,
-    "active": true,
-    "status_text": "string",
-    "precision": 0,
-    "created_at": "2020-10-19T16:35:20Z",
-    "updated_at": "2020-10-19T16:35:20Z",
-    "context_id": 0,
-    "algorithm_type": "string",
-    "algorithm_id": "string",
-    "model_id": "string"
+    "created_at": "2022-02-04T16:50:28Z",
+    "status": "string",
+    "name": "string"
   }
 }
 
@@ -2489,34 +2728,34 @@ login parameters
 {
   "data": [
     {
-      "name": "string",
+      "algorithm_type": "string",
+      "image_url": "string",
+      "algorithm_id": "string",
       "version": "string",
+      "ok_img_count": 0,
+      "precision": 0,
       "recall": 0,
-      "status": "string",
+      "status_text": "string",
+      "active": true,
+      "training_time": 0,
+      "updated_at": "2022-02-04T16:50:28Z",
+      "ng_img_count": 0,
+      "context_id": 0,
+      "model_id": "string",
       "stats": {
+        "accuracy": 0,
         "precision": {
-          "computed": 0,
-          "projected": 0
+          "projected": 0,
+          "computed": 0
         },
         "recall": {
-          "computed": 0,
-          "projected": 0
-        },
-        "accuracy": 0
+          "projected": 0,
+          "computed": 0
+        }
       },
-      "image_url": "string",
-      "ng_img_count": 0,
-      "training_time": 0,
-      "ok_img_count": 0,
-      "active": true,
-      "status_text": "string",
-      "precision": 0,
-      "created_at": "2020-10-19T16:35:20Z",
-      "updated_at": "2020-10-19T16:35:20Z",
-      "context_id": 0,
-      "algorithm_type": "string",
-      "algorithm_id": "string",
-      "model_id": "string"
+      "created_at": "2022-02-04T16:50:28Z",
+      "status": "string",
+      "name": "string"
     }
   ]
 }
@@ -2595,6 +2834,145 @@ login parameters
 |---|---|---|---|---|
 |models|string(binary)|false|none|none|
 
+<h2 id="tocS_UpdatePredictParameters">UpdatePredictParameters</h2>
+<!-- backwards compatibility -->
+<a id="schemaupdatepredictparameters"></a>
+<a id="schema_UpdatePredictParameters"></a>
+<a id="tocSupdatepredictparameters"></a>
+<a id="tocsupdatepredictparameters"></a>
+
+```json
+{
+  "threshold": 0,
+  "ignore_outer": "string",
+  "min_detected_area": 0
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|threshold|number(float)|false|none|none|
+|ignore_outer|string|false|none|none|
+|min_detected_area|number(float)|false|none|none|
+
+<h2 id="tocS_UpdatePredictParametersResponse">UpdatePredictParametersResponse</h2>
+<!-- backwards compatibility -->
+<a id="schemaupdatepredictparametersresponse"></a>
+<a id="schema_UpdatePredictParametersResponse"></a>
+<a id="tocSupdatepredictparametersresponse"></a>
+<a id="tocsupdatepredictparametersresponse"></a>
+
+```json
+{
+  "threshold": 0,
+  "ignore_outer": "string",
+  "min_detected_area": 0
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|threshold|number(float)|false|none|none|
+|ignore_outer|string|false|none|none|
+|min_detected_area|number(float)|false|none|none|
+
+<h2 id="tocS_UpdatePredictParametersResponseWrapper">UpdatePredictParametersResponseWrapper</h2>
+<!-- backwards compatibility -->
+<a id="schemaupdatepredictparametersresponsewrapper"></a>
+<a id="schema_UpdatePredictParametersResponseWrapper"></a>
+<a id="tocSupdatepredictparametersresponsewrapper"></a>
+<a id="tocsupdatepredictparametersresponsewrapper"></a>
+
+```json
+{
+  "data": {
+    "threshold": 0,
+    "ignore_outer": "string",
+    "min_detected_area": 0
+  }
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|data|[UpdatePredictParametersResponse](#schemaupdatepredictparametersresponse)|false|none|none|
+
+<h2 id="tocS_UpdatePredictCallback">UpdatePredictCallback</h2>
+<!-- backwards compatibility -->
+<a id="schemaupdatepredictcallback"></a>
+<a id="schema_UpdatePredictCallback"></a>
+<a id="tocSupdatepredictcallback"></a>
+<a id="tocsupdatepredictcallback"></a>
+
+```json
+{
+  "callback_url": "string",
+  "callback_method": "string"
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|callback_url|string|false|none|The callback URL that SPECTRO will call to send prediction details after a prediction call has been completed.|
+|callback_method|string|false|none|The method in which the callback will be called. Valid values are 'post' and 'get'|
+
+<h2 id="tocS_UpdatePredictCallbackResponse">UpdatePredictCallbackResponse</h2>
+<!-- backwards compatibility -->
+<a id="schemaupdatepredictcallbackresponse"></a>
+<a id="schema_UpdatePredictCallbackResponse"></a>
+<a id="tocSupdatepredictcallbackresponse"></a>
+<a id="tocsupdatepredictcallbackresponse"></a>
+
+```json
+{
+  "callback_url": "string",
+  "callback_method": "string"
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|callback_url|string|false|none|none|
+|callback_method|string|false|none|none|
+
+<h2 id="tocS_UpdatePredictCallbackResponseWrapper">UpdatePredictCallbackResponseWrapper</h2>
+<!-- backwards compatibility -->
+<a id="schemaupdatepredictcallbackresponsewrapper"></a>
+<a id="schema_UpdatePredictCallbackResponseWrapper"></a>
+<a id="tocSupdatepredictcallbackresponsewrapper"></a>
+<a id="tocsupdatepredictcallbackresponsewrapper"></a>
+
+```json
+{
+  "data": {
+    "callback_url": "string",
+    "callback_method": "string"
+  }
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|data|[UpdatePredictCallbackResponse](#schemaupdatepredictcallbackresponse)|false|none|none|
+
 <h2 id="tocS_Predict">Predict</h2>
 <!-- backwards compatibility -->
 <a id="schemapredict"></a>
@@ -2626,10 +3004,10 @@ login parameters
 
 ```json
 {
+  "model_version": "string",
   "item_ids": [
     "string"
-  ],
-  "model_version": "string"
+  ]
 }
 
 ```
@@ -2638,8 +3016,8 @@ login parameters
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|item_ids|[string]|false|none|none|
 |model_version|string|false|none|none|
+|item_ids|[string]|false|none|none|
 
 <h2 id="tocS_PredictItemsResponseWrapper">PredictItemsResponseWrapper</h2>
 <!-- backwards compatibility -->
@@ -2651,10 +3029,10 @@ login parameters
 ```json
 {
   "data": {
+    "model_version": "string",
     "item_ids": [
       "string"
-    ],
-    "model_version": "string"
+    ]
   }
 }
 
@@ -2666,34 +3044,6 @@ login parameters
 |---|---|---|---|---|
 |data|[PredictItemsResponse](#schemapredictitemsresponse)|false|none|none|
 
-<h2 id="tocS_ItemImageMeta">ItemImageMeta</h2>
-<!-- backwards compatibility -->
-<a id="schemaitemimagemeta"></a>
-<a id="schema_ItemImageMeta"></a>
-<a id="tocSitemimagemeta"></a>
-<a id="tocsitemimagemeta"></a>
-
-```json
-{
-  "name": "string",
-  "file_size": 0,
-  "height": 0,
-  "url": "string",
-  "width": 0
-}
-
-```
-
-### Properties
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|name|string|false|none|none|
-|file_size|integer(int32)|false|none|none|
-|height|integer(int32)|false|none|none|
-|url|string|false|none|none|
-|width|integer(int32)|false|none|none|
-
 <h2 id="tocS_Annotation">Annotation</h2>
 <!-- backwards compatibility -->
 <a id="schemaannotation"></a>
@@ -2703,14 +3053,15 @@ login parameters
 
 ```json
 {
-  "notes": "string",
-  "annotation_id": 0,
-  "label": 0,
   "y_min": 0,
+  "x_max": 0,
   "y_max": 0,
+  "label": 0,
+  "defect_size": 0,
+  "created_at": "2022-02-04T16:50:28Z",
   "x_min": 0,
-  "created_at": "2020-10-19T16:35:20Z",
-  "x_max": 0
+  "annotation_id": 0,
+  "notes": "string"
 }
 
 ```
@@ -2719,14 +3070,43 @@ login parameters
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|notes|string¦null|false|none|none|
-|annotation_id|integer(int32)|false|none|none|
-|label|integer(int32)¦null|false|none|none|
 |y_min|number¦null|false|none|none|
-|y_max|number¦null|false|none|none|
-|x_min|number¦null|false|none|none|
-|created_at|string(date-time)|true|none|none|
 |x_max|number¦null|false|none|none|
+|y_max|number¦null|false|none|none|
+|label|integer(int32)¦null|false|none|none|
+|defect_size|number¦null|false|none|none|
+|created_at|string(date-time)|true|none|none|
+|x_min|number¦null|false|none|none|
+|annotation_id|integer(int32)|false|none|none|
+|notes|string¦null|false|none|none|
+
+<h2 id="tocS_ItemImageMeta">ItemImageMeta</h2>
+<!-- backwards compatibility -->
+<a id="schemaitemimagemeta"></a>
+<a id="schema_ItemImageMeta"></a>
+<a id="tocSitemimagemeta"></a>
+<a id="tocsitemimagemeta"></a>
+
+```json
+{
+  "url": "string",
+  "width": 0,
+  "file_size": 0,
+  "height": 0,
+  "name": "string"
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|url|string|false|none|none|
+|width|integer(int32)|false|none|none|
+|file_size|integer(int32)|false|none|none|
+|height|integer(int32)|false|none|none|
+|name|string|false|none|none|
 
 <h2 id="tocS_AssessmentItem">AssessmentItem</h2>
 <!-- backwards compatibility -->
@@ -2737,169 +3117,28 @@ login parameters
 
 ```json
 {
-  "images": [
-    {
-      "name": "string",
-      "file_size": 0,
-      "height": 0,
-      "url": "string",
-      "width": 0
-    }
-  ],
-  "annotations": [
-    {
-      "notes": "string",
-      "annotation_id": 0,
-      "label": 0,
-      "y_min": 0,
-      "y_max": 0,
-      "x_min": 0,
-      "created_at": "2020-10-19T16:35:20Z",
-      "x_max": 0
-    }
-  ],
-  "label": "string",
-  "result": "string"
-}
-
-```
-
-### Properties
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|images|[[ItemImageMeta](#schemaitemimagemeta)]|false|none|none|
-|annotations|[[Annotation](#schemaannotation)]|false|none|none|
-|label|string|false|none|none|
-|result|string|false|none|none|
-
-<h2 id="tocS_AssessmentItem1">AssessmentItem1</h2>
-<!-- backwards compatibility -->
-<a id="schemaassessmentitem1"></a>
-<a id="schema_AssessmentItem1"></a>
-<a id="tocSassessmentitem1"></a>
-<a id="tocsassessmentitem1"></a>
-
-```json
-{
-  "images": [
-    {
-      "name": "string",
-      "file_size": 0,
-      "height": 0,
-      "url": "string",
-      "width": 0
-    }
-  ],
   "result": "string",
-  "label": "string",
-  "detected_objects": 0,
-  "detection_accuracy": 0,
   "annotations": [
     {
-      "notes": "string",
-      "annotation_id": 0,
-      "label": 0,
       "y_min": 0,
+      "x_max": 0,
       "y_max": 0,
+      "label": 0,
+      "defect_size": 0,
+      "created_at": "2022-02-04T16:50:28Z",
       "x_min": 0,
-      "created_at": "2020-10-19T16:35:20Z",
-      "x_max": 0
+      "annotation_id": 0,
+      "notes": "string"
     }
   ],
-  "model_id": "string"
-}
-
-```
-
-### Properties
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|images|[[ItemImageMeta](#schemaitemimagemeta)]|false|none|none|
-|result|string|false|none|none|
-|label|string|false|none|none|
-|detected_objects|integer(int32)¦null|false|none|none|
-|detection_accuracy|integer(int32)¦null|false|none|none|
-|annotations|[[Annotation](#schemaannotation)]|false|none|none|
-|model_id|string|false|none|none|
-
-<h2 id="tocS_Item">Item</h2>
-<!-- backwards compatibility -->
-<a id="schemaitem"></a>
-<a id="schema_Item"></a>
-<a id="tocSitem"></a>
-<a id="tocsitem"></a>
-
-```json
-{
+  "label": "string",
   "images": [
     {
-      "name": "string",
+      "url": "string",
+      "width": 0,
       "file_size": 0,
       "height": 0,
-      "url": "string",
-      "width": 0
-    }
-  ],
-  "user_assessment": {
-    "images": [
-      {
-        "name": "string",
-        "file_size": 0,
-        "height": 0,
-        "url": "string",
-        "width": 0
-      }
-    ],
-    "annotations": [
-      {
-        "notes": "string",
-        "annotation_id": 0,
-        "label": 0,
-        "y_min": 0,
-        "y_max": 0,
-        "x_min": 0,
-        "created_at": "2020-10-19T16:35:20Z",
-        "x_max": 0
-      }
-    ],
-    "label": "string",
-    "result": "string"
-  },
-  "name": "string",
-  "is_training_data": true,
-  "status": "string",
-  "active": true,
-  "item_id": "string",
-  "assessments": [
-    {
-      "images": [
-        {
-          "name": "string",
-          "file_size": 0,
-          "height": 0,
-          "url": "string",
-          "width": 0
-        }
-      ],
-      "result": "string",
-      "label": "string",
-      "detected_objects": 0,
-      "detection_accuracy": 0,
-      "annotations": [
-        {
-          "notes": "string",
-          "annotation_id": 0,
-          "label": 0,
-          "y_min": 0,
-          "y_max": 0,
-          "x_min": 0,
-          "created_at": "2020-10-19T16:35:20Z",
-          "x_max": 0
-        }
-      ],
-      "model_id": "string"
+      "name": "string"
     }
   ]
 }
@@ -2910,14 +3149,162 @@ login parameters
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|result|string|false|none|none|
+|annotations|[[Annotation](#schemaannotation)]|false|none|none|
+|label|string|false|none|none|
 |images|[[ItemImageMeta](#schemaitemimagemeta)]|false|none|none|
-|user_assessment|[AssessmentItem](#schemaassessmentitem)|false|none|none|
-|name|string|false|none|none|
-|is_training_data|boolean|false|none|none|
-|status|string|false|none|none|
+
+<h2 id="tocS_AssessmentItem1">AssessmentItem1</h2>
+<!-- backwards compatibility -->
+<a id="schemaassessmentitem1"></a>
+<a id="schema_AssessmentItem1"></a>
+<a id="tocSassessmentitem1"></a>
+<a id="tocsassessmentitem1"></a>
+
+```json
+{
+  "annotations": [
+    {
+      "y_min": 0,
+      "x_max": 0,
+      "y_max": 0,
+      "label": 0,
+      "defect_size": 0,
+      "created_at": "2022-02-04T16:50:28Z",
+      "x_min": 0,
+      "annotation_id": 0,
+      "notes": "string"
+    }
+  ],
+  "label": "string",
+  "images": [
+    {
+      "url": "string",
+      "width": 0,
+      "file_size": 0,
+      "height": 0,
+      "name": "string"
+    }
+  ],
+  "anomaly_score": "string",
+  "model_id": "string",
+  "detected_objects": 0,
+  "detection_accuracy": 0,
+  "result": "string"
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|annotations|[[Annotation](#schemaannotation)]|false|none|none|
+|label|string|false|none|none|
+|images|[[ItemImageMeta](#schemaitemimagemeta)]|false|none|none|
+|anomaly_score|string|false|none|none|
+|model_id|string|false|none|none|
+|detected_objects|integer(int32)¦null|false|none|none|
+|detection_accuracy|integer(int32)¦null|false|none|none|
+|result|string|false|none|none|
+
+<h2 id="tocS_Item">Item</h2>
+<!-- backwards compatibility -->
+<a id="schemaitem"></a>
+<a id="schema_Item"></a>
+<a id="tocSitem"></a>
+<a id="tocsitem"></a>
+
+```json
+{
+  "active": true,
+  "is_training_data": true,
+  "user_assessment": {
+    "result": "string",
+    "annotations": [
+      {
+        "y_min": 0,
+        "x_max": 0,
+        "y_max": 0,
+        "label": 0,
+        "defect_size": 0,
+        "created_at": "2022-02-04T16:50:28Z",
+        "x_min": 0,
+        "annotation_id": 0,
+        "notes": "string"
+      }
+    ],
+    "label": "string",
+    "images": [
+      {
+        "url": "string",
+        "width": 0,
+        "file_size": 0,
+        "height": 0,
+        "name": "string"
+      }
+    ]
+  },
+  "images": [
+    {
+      "url": "string",
+      "width": 0,
+      "file_size": 0,
+      "height": 0,
+      "name": "string"
+    }
+  ],
+  "item_id": "string",
+  "assessments": [
+    {
+      "annotations": [
+        {
+          "y_min": 0,
+          "x_max": 0,
+          "y_max": 0,
+          "label": 0,
+          "defect_size": 0,
+          "created_at": "2022-02-04T16:50:28Z",
+          "x_min": 0,
+          "annotation_id": 0,
+          "notes": "string"
+        }
+      ],
+      "label": "string",
+      "images": [
+        {
+          "url": "string",
+          "width": 0,
+          "file_size": 0,
+          "height": 0,
+          "name": "string"
+        }
+      ],
+      "anomaly_score": "string",
+      "model_id": "string",
+      "detected_objects": 0,
+      "detection_accuracy": 0,
+      "result": "string"
+    }
+  ],
+  "status": "string",
+  "name": "string"
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |active|boolean|false|none|none|
+|is_training_data|boolean|false|none|none|
+|user_assessment|[AssessmentItem](#schemaassessmentitem)|false|none|none|
+|images|[[ItemImageMeta](#schemaitemimagemeta)]|false|none|none|
 |item_id|string|false|none|none|
 |assessments|[[AssessmentItem1](#schemaassessmentitem1)]|false|none|none|
+|status|string|false|none|none|
+|name|string|false|none|none|
 
 <h2 id="tocS_GetItemsResponse">GetItemsResponse</h2>
 <!-- backwards compatibility -->
@@ -2928,82 +3315,85 @@ login parameters
 
 ```json
 {
+  "end_page": 0,
+  "current_page": 0,
   "count_per_page": 0,
   "items": [
     {
-      "images": [
-        {
-          "name": "string",
-          "file_size": 0,
-          "height": 0,
-          "url": "string",
-          "width": 0
-        }
-      ],
+      "active": true,
+      "is_training_data": true,
       "user_assessment": {
-        "images": [
-          {
-            "name": "string",
-            "file_size": 0,
-            "height": 0,
-            "url": "string",
-            "width": 0
-          }
-        ],
+        "result": "string",
         "annotations": [
           {
-            "notes": "string",
-            "annotation_id": 0,
-            "label": 0,
             "y_min": 0,
+            "x_max": 0,
             "y_max": 0,
+            "label": 0,
+            "defect_size": 0,
+            "created_at": "2022-02-04T16:50:28Z",
             "x_min": 0,
-            "created_at": "2020-10-19T16:35:20Z",
-            "x_max": 0
+            "annotation_id": 0,
+            "notes": "string"
           }
         ],
         "label": "string",
-        "result": "string"
+        "images": [
+          {
+            "url": "string",
+            "width": 0,
+            "file_size": 0,
+            "height": 0,
+            "name": "string"
+          }
+        ]
       },
-      "name": "string",
-      "is_training_data": true,
-      "status": "string",
-      "active": true,
+      "images": [
+        {
+          "url": "string",
+          "width": 0,
+          "file_size": 0,
+          "height": 0,
+          "name": "string"
+        }
+      ],
       "item_id": "string",
       "assessments": [
         {
-          "images": [
-            {
-              "name": "string",
-              "file_size": 0,
-              "height": 0,
-              "url": "string",
-              "width": 0
-            }
-          ],
-          "result": "string",
-          "label": "string",
-          "detected_objects": 0,
-          "detection_accuracy": 0,
           "annotations": [
             {
-              "notes": "string",
-              "annotation_id": 0,
-              "label": 0,
               "y_min": 0,
+              "x_max": 0,
               "y_max": 0,
+              "label": 0,
+              "defect_size": 0,
+              "created_at": "2022-02-04T16:50:28Z",
               "x_min": 0,
-              "created_at": "2020-10-19T16:35:20Z",
-              "x_max": 0
+              "annotation_id": 0,
+              "notes": "string"
             }
           ],
-          "model_id": "string"
+          "label": "string",
+          "images": [
+            {
+              "url": "string",
+              "width": 0,
+              "file_size": 0,
+              "height": 0,
+              "name": "string"
+            }
+          ],
+          "anomaly_score": "string",
+          "model_id": "string",
+          "detected_objects": 0,
+          "detection_accuracy": 0,
+          "result": "string"
         }
-      ]
+      ],
+      "status": "string",
+      "name": "string"
     }
-  ],
-  "end_page": 0,
-  "current_page": 0
+  ]
 }
 
 ```
@@ -3012,10 +3402,10 @@ login parameters
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|count_per_page|integer(int32)|false|none|none|
-|items|[[Item](#schemaitem)]|false|none|none|
 |end_page|integer(int32)|false|none|none|
 |current_page|integer(int32)|false|none|none|
+|count_per_page|integer(int32)|false|none|none|
+|items|[[Item](#schemaitem)]|false|none|none|
 
 <h2 id="tocS_GetItemsResponseWrapper">GetItemsResponseWrapper</h2>
 <!-- backwards compatibility -->
@@ -3027,82 +3417,85 @@ login parameters
 ```json
 {
   "data": {
+    "end_page": 0,
+    "current_page": 0,
     "count_per_page": 0,
     "items": [
       {
-        "images": [
-          {
-            "name": "string",
-            "file_size": 0,
-            "height": 0,
-            "url": "string",
-            "width": 0
-          }
-        ],
+        "active": true,
+        "is_training_data": true,
         "user_assessment": {
-          "images": [
-            {
-              "name": "string",
-              "file_size": 0,
-              "height": 0,
-              "url": "string",
-              "width": 0
-            }
-          ],
+          "result": "string",
           "annotations": [
             {
-              "notes": "string",
-              "annotation_id": 0,
-              "label": 0,
               "y_min": 0,
+              "x_max": 0,
               "y_max": 0,
+              "label": 0,
+              "defect_size": 0,
+              "created_at": "2022-02-04T16:50:28Z",
               "x_min": 0,
-              "created_at": "2020-10-19T16:35:20Z",
-              "x_max": 0
+              "annotation_id": 0,
+              "notes": "string"
             }
           ],
           "label": "string",
-          "result": "string"
+          "images": [
+            {
+              "url": "string",
+              "width": 0,
+              "file_size": 0,
+              "height": 0,
+              "name": "string"
+            }
+          ]
         },
-        "name": "string",
-        "is_training_data": true,
-        "status": "string",
-        "active": true,
+        "images": [
+          {
+            "url": "string",
+            "width": 0,
+            "file_size": 0,
+            "height": 0,
+            "name": "string"
+          }
+        ],
         "item_id": "string",
         "assessments": [
           {
-            "images": [
-              {
-                "name": "string",
-                "file_size": 0,
-                "height": 0,
-                "url": "string",
-                "width": 0
-              }
-            ],
-            "result": "string",
-            "label": "string",
-            "detected_objects": 0,
-            "detection_accuracy": 0,
             "annotations": [
               {
-                "notes": "string",
-                "annotation_id": 0,
-                "label": 0,
                 "y_min": 0,
+                "x_max": 0,
                 "y_max": 0,
+                "label": 0,
+                "defect_size": 0,
+                "created_at": "2022-02-04T16:50:28Z",
                 "x_min": 0,
-                "created_at": "2020-10-19T16:35:20Z",
-                "x_max": 0
+                "annotation_id": 0,
+                "notes": "string"
               }
             ],
-            "model_id": "string"
+            "label": "string",
+            "images": [
+              {
+                "url": "string",
+                "width": 0,
+                "file_size": 0,
+                "height": 0,
+                "name": "string"
+              }
+            ],
+            "anomaly_score": "string",
+            "model_id": "string",
+            "detected_objects": 0,
+            "detection_accuracy": 0,
+            "result": "string"
           }
-        ]
+        ],
+        "status": "string",
+        "name": "string"
       }
-    ],
-    "end_page": 0,
-    "current_page": 0
+    ]
   }
 }
 
@@ -3113,6 +3506,198 @@ login parameters
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |data|[GetItemsResponse](#schemagetitemsresponse)|false|none|none|
+
+<h2 id="tocS_PredictionItemCallbackResponse">PredictionItemCallbackResponse</h2>
+<!-- backwards compatibility -->
+<a id="schemapredictionitemcallbackresponse"></a>
+<a id="schema_PredictionItemCallbackResponse"></a>
+<a id="tocSpredictionitemcallbackresponse"></a>
+<a id="tocspredictionitemcallbackresponse"></a>
+
+```json
+{
+  "items": [
+    {
+      "active": true,
+      "is_training_data": true,
+      "user_assessment": {
+        "result": "string",
+        "annotations": [
+          {
+            "y_min": 0,
+            "x_max": 0,
+            "y_max": 0,
+            "label": 0,
+            "defect_size": 0,
+            "created_at": "2022-02-04T16:50:28Z",
+            "x_min": 0,
+            "annotation_id": 0,
+            "notes": "string"
+          }
+        ],
+        "label": "string",
+        "images": [
+          {
+            "url": "string",
+            "width": 0,
+            "file_size": 0,
+            "height": 0,
+            "name": "string"
+          }
+        ]
+      },
+      "images": [
+        {
+          "url": "string",
+          "width": 0,
+          "file_size": 0,
+          "height": 0,
+          "name": "string"
+        }
+      ],
+      "item_id": "string",
+      "assessments": [
+        {
+          "annotations": [
+            {
+              "y_min": 0,
+              "x_max": 0,
+              "y_max": 0,
+              "label": 0,
+              "defect_size": 0,
+              "created_at": "2022-02-04T16:50:28Z",
+              "x_min": 0,
+              "annotation_id": 0,
+              "notes": "string"
+            }
+          ],
+          "label": "string",
+          "images": [
+            {
+              "url": "string",
+              "width": 0,
+              "file_size": 0,
+              "height": 0,
+              "name": "string"
+            }
+          ],
+          "anomaly_score": "string",
+          "model_id": "string",
+          "detected_objects": 0,
+          "detection_accuracy": 0,
+          "result": "string"
+        }
+      ],
+      "status": "string",
+      "name": "string"
+    }
+  ]
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|items|[[Item](#schemaitem)]|false|none|none|
+
+<h2 id="tocS_PredictionItemCallbackWrapper">PredictionItemCallbackWrapper</h2>
+<!-- backwards compatibility -->
+<a id="schemapredictionitemcallbackwrapper"></a>
+<a id="schema_PredictionItemCallbackWrapper"></a>
+<a id="tocSpredictionitemcallbackwrapper"></a>
+<a id="tocspredictionitemcallbackwrapper"></a>
+
+```json
+{
+  "data": {
+    "items": [
+      {
+        "active": true,
+        "is_training_data": true,
+        "user_assessment": {
+          "result": "string",
+          "annotations": [
+            {
+              "y_min": 0,
+              "x_max": 0,
+              "y_max": 0,
+              "label": 0,
+              "defect_size": 0,
+              "created_at": "2022-02-04T16:50:28Z",
+              "x_min": 0,
+              "annotation_id": 0,
+              "notes": "string"
+            }
+          ],
+          "label": "string",
+          "images": [
+            {
+              "url": "string",
+              "width": 0,
+              "file_size": 0,
+              "height": 0,
+              "name": "string"
+            }
+          ]
+        },
+        "images": [
+          {
+            "url": "string",
+            "width": 0,
+            "file_size": 0,
+            "height": 0,
+            "name": "string"
+          }
+        ],
+        "item_id": "string",
+        "assessments": [
+          {
+            "annotations": [
+              {
+                "y_min": 0,
+                "x_max": 0,
+                "y_max": 0,
+                "label": 0,
+                "defect_size": 0,
+                "created_at": "2022-02-04T16:50:28Z",
+                "x_min": 0,
+                "annotation_id": 0,
+                "notes": "string"
+              }
+            ],
+            "label": "string",
+            "images": [
+              {
+                "url": "string",
+                "width": 0,
+                "file_size": 0,
+                "height": 0,
+                "name": "string"
+              }
+            ],
+            "anomaly_score": "string",
+            "model_id": "string",
+            "detected_objects": 0,
+            "detection_accuracy": 0,
+            "result": "string"
+          }
+        ],
+        "status": "string",
+        "name": "string"
+      }
+    ]
+  }
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|data|[PredictionItemCallbackResponse](#schemapredictionitemcallbackresponse)|false|none|none|
 
 <h2 id="tocS_AddItemRequest">AddItemRequest</h2>
 <!-- backwards compatibility -->
@@ -3188,6 +3773,28 @@ login parameters
 |---|---|---|---|---|
 |data|[AddItemResponse](#schemaadditemresponse)|false|none|none|
 
+<h2 id="tocS_DelItemRequest">DelItemRequest</h2>
+<!-- backwards compatibility -->
+<a id="schemadelitemrequest"></a>
+<a id="schema_DelItemRequest"></a>
+<a id="tocSdelitemrequest"></a>
+<a id="tocsdelitemrequest"></a>
+
+```json
+{
+  "item_ids": [
+    "string"
+  ]
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|item_ids|[string]|false|none|none|
+
 <h2 id="tocS_ItemWrapper">ItemWrapper</h2>
 <!-- backwards compatibility -->
 <a id="schemaitemwrapper"></a>
@@ -3198,75 +3805,78 @@ login parameters
 ```json
 {
   "data": {
-    "images": [
-      {
-        "name": "string",
-        "file_size": 0,
-        "height": 0,
-        "url": "string",
-        "width": 0
-      }
-    ],
+    "active": true,
+    "is_training_data": true,
     "user_assessment": {
-      "images": [
-        {
-          "name": "string",
-          "file_size": 0,
-          "height": 0,
-          "url": "string",
-          "width": 0
-        }
-      ],
+      "result": "string",
       "annotations": [
         {
-          "notes": "string",
-          "annotation_id": 0,
-          "label": 0,
           "y_min": 0,
+          "x_max": 0,
           "y_max": 0,
+          "label": 0,
+          "defect_size": 0,
+          "created_at": "2022-02-04T16:50:28Z",
           "x_min": 0,
-          "created_at": "2020-10-19T16:35:20Z",
-          "x_max": 0
+          "annotation_id": 0,
+          "notes": "string"
         }
       ],
       "label": "string",
-      "result": "string"
+      "images": [
+        {
+          "url": "string",
+          "width": 0,
+          "file_size": 0,
+          "height": 0,
+          "name": "string"
+        }
+      ]
     },
-    "name": "string",
-    "is_training_data": true,
-    "status": "string",
-    "active": true,
+    "images": [
+      {
+        "url": "string",
+        "width": 0,
+        "file_size": 0,
+        "height": 0,
+        "name": "string"
+      }
+    ],
     "item_id": "string",
     "assessments": [
       {
-        "images": [
-          {
-            "name": "string",
-            "file_size": 0,
-            "height": 0,
-            "url": "string",
-            "width": 0
-          }
-        ],
-        "result": "string",
-        "label": "string",
-        "detected_objects": 0,
-        "detection_accuracy": 0,
         "annotations": [
           {
-            "notes": "string",
-            "annotation_id": 0,
-            "label": 0,
             "y_min": 0,
+            "x_max": 0,
             "y_max": 0,
+            "label": 0,
+            "defect_size": 0,
+            "created_at": "2022-02-04T16:50:28Z",
             "x_min": 0,
-            "created_at": "2020-10-19T16:35:20Z",
-            "x_max": 0
+            "annotation_id": 0,
+            "notes": "string"
           }
         ],
-        "model_id": "string"
+        "label": "string",
+        "images": [
+          {
+            "url": "string",
+            "width": 0,
+            "file_size": 0,
+            "height": 0,
+            "name": "string"
+          }
+        ],
+        "anomaly_score": "string",
+        "model_id": "string",
+        "detected_objects": 0,
+        "detection_accuracy": 0,
+        "result": "string"
       }
-    ]
+    ],
+    "status": "string",
+    "name": "string"
   }
 }
 

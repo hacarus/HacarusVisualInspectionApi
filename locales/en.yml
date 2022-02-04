@@ -345,7 +345,7 @@ To get started, you need the following:
   errorNoLicense: "Error when calling a method but license is not yet activated or expired. When encounted, please call `%{activateLicense}` method first."
   enLink: "./"
   jaLink: "./ja"
-  algorithmsWithVersion: Algorithm V0.7.6
+  algorithmsWithVersion: Algorithm V0.7.29
   algorithmOverview: Algorithm overview
   algorithmOverview1: Reconstructor Inspection
   algorithmOverview1i: "An unsupervised learning model that learns only from “OK” images (good samples, without defects, no annotation required)."
@@ -355,6 +355,8 @@ To get started, you need the following:
   algorithmOverview2ii: The model can learn local structure of images.
   algorithmOverview3: 'Pattern Matching'
   algorithmOverview3i: 'Classical pattern matching algorithm which compares an image against a golden image.'
+  algorithmOverview4: 'Patch Sample Inspection (Beta)'
+  algorithmOverview4i: 'An unsupervised learning model that learns only from “OK” images (good samples, without defects, no annotation required).'
   algorithmDetails: "Algorithm details"
   algo1i: "Reconstructor Inspection"
   algo1iText: "An unsupervised learning model that learns only from “OK” images (good samples, without defects, annotations). At the time of prediction, a reconstruction error is calculated and abnormality defection is performed based on the magnitude. The model can learn global texture of images."
@@ -372,15 +374,24 @@ To get started, you need the following:
  </tr>
 </thead>
 <tbody>
- <tr><td>Model size</td><td>train_size</td><td>int : [1, inf]</td><td>10000</td><td>large -> large</td><td>large -> large</td><td>&nbsp;</td></tr>
- <tr><td>Minimum inspection size</td><td>min_inspection_size</td><td>(int, int) : 0~height, 0~width</td><td>(8, 8)</td><td>large -> large</td><td>-</td><td>(4, 4) or (8, 8) or (16, 16) are empirically good.</td></tr>
- <tr><td>Minimum inspection step size</td><td>min_inspection_step</td><td>int : [1, inf]</td><td>4</td><td>large -> small</td><td>large -> small</td><td>"A divisor of min_inspection_size is desirable. 1 is the most computationally intensive, but the most efficient."</td></tr>
- <tr><td>Dimension of feature</td><td>n_components</td><td>int : [1, inf]</td><td>10</td><td>large -> large</td><td>large->more tolerant</td><td>If the dimension of the feature amount is large, even complex objects can be reconstructed.</td></tr>
- <tr><td>Number of algorithm iterations</td><td>max_iter</td><td>Int : [1, inf]</td><td>10</td><td>large -> large</td><td>-</td><td>If the amount is too small, the performance will be degraded, but if it is somewhat large, the performance will not change much. Number of algorithm iterations</td></tr>
- <tr><td>Reconstruction error threshold</td><td>reconstruct_thresh</td><td>float : [0, inf]</td><td>2</td><td>-</td><td>large->more tolerant</td><td>A threshold for reconstruction error, about 1.5 to 3 is empirically good</td></tr>
- <tr><td>Threshold of anomaly</td><td>threshold</td><td>float : [0, inf]</td><td>0.1</td><td>-</td><td>large->more tolerant</td><td>&nbsp;</td></tr>
- <tr><td>Width from the perimeter to be ignored</td><td>ignore_outer</td><td>(int, int) : 0~height, 0~width</td><td>(0,0)</td><td>-</td><td>-</td><td>"The width of the ignored area from the perimeter. Use values up to the number of vertical and horizontal pixels in the image."</td></tr>
- <tr><td>Minimum detection size</td><td>min_detected_area</td><td>Float : [1, inf]</td><td>0</td><td>-</td><td>-</td><td>Threshold of area of detected rectangle</td></tr>
+  <tr><td>Model size</td><td>train_size</td><td>int : [1, inf]</td><td>10000</td><td>large -> large</td><td>large -> large</td><td>&nbsp;</td></tr>
+  <tr><td>Minimum inspection size</td><td>min_inspection_size</td><td>(int, int) : 0~height, 0~width</td><td>(8, 8)</td><td>large -> large</td><td>-</td><td>(4, 4) or (8, 8) or (16, 16) are empirically good.</td></tr>
+  <tr><td>Minimum inspection step size</td><td>min_inspection_step</td><td>int : [1, inf]</td><td>4</td><td>large -> small</td><td>large -> small</td><td>"A divisor of min_inspection_size is desirable. 1 is the most computationally intensive, but the most efficient."</td></tr>
+  <tr><td>Dimension of feature</td><td>n_components</td><td>int : [1, inf]</td><td>10</td><td>large -> large</td><td>large->more tolerant</td><td>If the dimension of the feature amount is large, even complex objects can be reconstructed.</td></tr>
+  <tr><td>Number of algorithm iterations</td><td>max_iter</td><td>Int : [1, inf]</td><td>10</td><td>large -> large</td><td>-</td><td>If the amount is too small, the performance will be degraded, but if it is somewhat large, the performance will not change much. Number of algorithm iterations</td></tr>
+  <tr><td>Reconstruction error threshold</td><td>reconstruct_thresh</td><td>float : [0, inf]</td><td>2</td><td>-</td><td>large->more tolerant</td><td>A threshold for reconstruction error, about 1.5 to 3 is empirically good</td></tr>
+  <tr><td>Threshold of anomaly</td><td>threshold</td><td>float : [0, inf]</td><td>0.1</td><td>-</td><td>large->more tolerant</td><td>&nbsp;</td></tr>
+  <tr><td>Width from the perimeter to be ignored</td><td>ignore_outer</td><td>(int, int) : 0~height, 0~width</td><td>(0,0)</td><td>-</td><td>-</td><td>"The width of the ignored area from the perimeter. Use values up to the number of vertical and horizontal pixels in the image."</td></tr>
+  <tr><td>Minimum detection size</td><td>min_detected_area</td><td>Float : [1, inf]</td><td>0</td><td>-</td><td>-</td><td>Threshold of area of detected rectangle</td></tr>
+  <tr>
+    <td>Anomaly range</td>
+    <td>anomaly_range</td>
+    <td>(float, float) : 0 to 1, 0 to 1</td>
+    <td>(0, 1)</td>
+    <td>-</td>
+    <td>-</td>
+    <td>Range used to normalize the heatmap colors in heatmap images across results.</td>
+  </tr>
 </tbody></table>
 '
   algo2i: "Local Pattern Inspection"
@@ -400,11 +411,20 @@ Misalignment and rotation might be a cause of misclassification."
   </tr>
 </thead>
 <tbody>
- <tr><td>Minimum inspection size</td><td>min_inspection_size</td><td>(int, int) : 0~height, 0~width</td><td>(32, 32)</td><td>large -> large</td><td>-</td><td>(16, 16) or (32, 32) or (64, 64) are empirically good.</td></tr>
- <tr><td>Minimum inspection step size</td><td>min_inspection_step</td><td>int : [1, inf]</td><td>16</td><td>large -> small</td><td>large -> small</td><td>Half or quarter of min_inspection_size is desirable.</td></tr>
- <tr><td>Threshold of anomaly</td><td>threshold</td><td>float : [0, inf]</td><td>0.001</td><td>-</td><td>large->more tolerant</td><td>&nbsp;</td></tr>
- <tr><td>Width from the perimeter to be ignored</td><td>ignore_outer</td><td>(int, int) : 0~height, 0~width</td><td>(0,0)</td><td>-</td><td>-</td><td>"The width of the ignored area from the perimeter. Use values up to the number of vertical and horizontal pixels in the image."</td></tr>
- <tr><td>Minimum detection size</td><td>min_detected_area</td><td>Float : [1, inf]</td><td>0</td><td>-</td><td>-</td><td>Threshold of area of detected rectangle</td></tr>
+<tr><td>Minimum inspection size</td><td>min_inspection_size</td><td>(int, int) : 0~height, 0~width</td><td>(32, 32)</td><td>large -> large</td><td>-</td><td>(16, 16) or (32, 32) or (64, 64) are empirically good.</td></tr>
+<tr><td>Minimum inspection step size</td><td>min_inspection_step</td><td>int : [1, inf]</td><td>16</td><td>large -> small</td><td>large -> small</td><td>Half or quarter of min_inspection_size is desirable.</td></tr>
+<tr><td>Threshold of anomaly</td><td>threshold</td><td>float : [0, inf]</td><td>0.001</td><td>-</td><td>large->more tolerant</td><td>&nbsp;</td></tr>
+<tr><td>Width from the perimeter to be ignored</td><td>ignore_outer</td><td>(int, int) : 0~height, 0~width</td><td>(0,0)</td><td>-</td><td>-</td><td>"The width of the ignored area from the perimeter. Use values up to the number of vertical and horizontal pixels in the image."</td></tr>
+<tr><td>Minimum detection size</td><td>min_detected_area</td><td>Float : [1, inf]</td><td>0</td><td>-</td><td>-</td><td>Threshold of area of detected rectangle</td></tr>
+<tr>
+  <td>Anomaly range</td>
+  <td>anomaly_range</td>
+  <td>(float, float) : 0 to 1, 0 to 1</td>
+  <td>(0, 1)</td>
+  <td>-</td>
+  <td>-</td>
+  <td>Range used to normalize the heatmap colors in heatmap images across results.</td>
+</tr>
 </tbody></table>
 '
   algo3i: 'Pattern Matching'
@@ -468,6 +488,86 @@ Misalignment and rotation might be a cause of misclassification."
   <td>-</td>
   <td>Threshold of area of detected rectangle</td>
 </tr>
-
+<tr>
+  <td>Anomaly range</td>
+  <td>anomaly_range</td>
+  <td>(float, float) : 0 to 1, 0 to 1</td>
+  <td>(0, 1)</td>
+  <td>-</td>
+  <td>-</td>
+  <td>Range used to normalize the heatmap colors in heatmap images across results.</td>
+</tr>
+</tbody></table>
+'
+  algo4i: 'Pattern Sample Inspection (Beta)'
+  algo4iText: "An unsupervised learning model that learns only from “OK” images (good samples, without defects, no annotation required)."
+  algo4iTable: '
+<table class="hacarus-table">
+<thead>
+  <tr>
+    <td><strong>Parameter</strong></td>
+    <td><strong>Variable name</strong></td>
+    <td><strong>Type: Range</strong></td>
+    <td><strong>Default</strong></td>
+    <td><strong>Impact on processing time</strong></td>
+    <td><strong>Impact on accuracy</strong></td>
+    <td><strong>Remarks</strong></td>
+  </tr>
+</thead>
+<tbody>
+<tr>
+  <td>Model type</td>
+  <td>model_type</td>
+  <td>int : [0, 1]</td>
+  <td>0</td>
+  <td>small -> large</td>
+  <td>-</td>
+  <td>0 will use a small model. 1 will use a larger model.</td>
+</tr>
+<tr>
+   <td>Number of Features</td>
+   <td>num_features</td>
+   <td>int : n</td>
+   <td>100</td>
+   <td>large -> large</td>
+   <td>-</td>
+   <td>100-n are empirically good.</td>
+</tr>
+<tr>
+   <td>Threshold of anomaly</td>
+   <td>threshold</td>
+   <td>float : [0, inf]	0.1</td>
+   <td>-</td>
+   <td>large->more tolerant</td>
+   <td></td>
+   <td></td>
+</tr>
+<tr>
+   <td>Width from the perimeter to be ignored</td>
+   <td>ignore_outer</td>
+   <td>(int, int) : 0~height, 0~width</td>
+   <td>(0,0)</td>
+   <td>-</td>
+   <td>-</td>
+   <td>The width of the ignored area from the perimeter. Use values up to the number of vertical and horizontal pixels in the image.</td>
+</tr>
+<tr>
+   <td>Minimum detection size</td>
+   <td>min_detected_area</td>
+   <td>float : [1, inf]</td>
+   <td>0</td>
+   <td>-</td>
+   <td>-</td>
+   <td>Threshold area of detected rectangle</td>
+</tr>
+<tr>
+  <td>Anomaly range</td>
+  <td>anomaly_range</td>
+  <td>(float, float) : 0 to 1, 0 to 1</td>
+  <td>(0, 1)</td>
+  <td>-</td>
+  <td>-</td>
+  <td>Range used to normalize the heatmap colors in heatmap images across results.</td>
+</tr>
 </tbody></table>
 '

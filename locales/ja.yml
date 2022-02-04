@@ -352,6 +352,10 @@ ja:
   algorithmOverview2: Local Pattern Inspection
   algorithmOverview2i: アノテーション不要の教師なし学習アルゴリズム。
   algorithmOverview2ii: 画像の局所的な部分に注目し、正常画像から逸脱しているかどうか判定する。
+  algorithmOverview3: 'Pattern Matching'
+  algorithmOverview3i: 'Classical pattern matching algorithm which compares an image against a golden image.'
+  algorithmOverview4: 'Patch Sample Inspection (Beta)'
+  algorithmOverview4i: 'An unsupervised learning model that learns only from “OK” images (good samples, without defects, no annotation required).'
   algorithmDetails: アルゴリズム詳細
   algo1i: "Reconstructor Inspection"
   algo1iText: 正常画像のみから学習するアノテーション不要の教師なし学習モデル。正常な入力画像に対して辞書学習を行う。推論時には新たな画像に対して、再構成誤差を計算し、その大小に基づいて異常検知を行う。これによって、画像の全体的なテクスチャに注目し、正常画像から逸脱しているかどうかを判定することができる。画像の位置合わせや、画像のサイズなどは特に気にしなくてもよい。
@@ -404,4 +408,150 @@ ja:
  <tr><td>最小の検知サイズ</td><td>min_detected_area</td><td>Float : [1, inf]</td><td>0</td><td>-</td><td>-</td><td>検出される矩形の面積の下限</td></tr>
 </tbody>
 </table>
+'
+  algo3i: 'Pattern Matching'
+  algo3iText: "We calculate the golden image from “OK” images (good samples, without defects, no annotation required) and compare it to reference. Hence, the position alignment is required (position variation is not allowed), and the size of all images must be the same. Misalignment and rotation might be a cause of misclassification."
+  algo3iTable: '
+<table class="hacarus-table">
+<thead>
+  <tr>
+    <td><strong>Parameter</strong></td>
+    <td><strong>Variable name</strong></td>
+    <td><strong>Type: Range</strong></td>
+    <td><strong>Default</strong></td>
+    <td><strong>Impact on processing time</strong></td>
+    <td><strong>Impact on accuracy</strong></td>
+    <td><strong>Remarks</strong></td>
+  </tr>
+</thead>
+<tbody>
+<tr>
+  <td>Minimum inspection size	</td>
+  <td>min_inspection_size</td>
+  <td>(int, int) : 0~height, 0~width</td>
+  <td>(16, 16)</td>
+  <td>large -> large</td>
+  <td>-</td>
+  <td>(16, 16) or (32, 32) or (64, 64) are empirically good.</td>
+</tr>
+<tr>
+  <td>Minimum inspection step size</td>
+  <td>min_inspection_step</td>
+  <td>int : [1, inf]</td>
+  <td>4</td>
+  <td>large -> small</td>
+  <td></td>
+  <td>Half or quarter of min_inspection_size is desirable.</td>
+</tr>
+<tr>
+  <td>Threshold of anomaly</td>
+  <td>threshold</td>
+  <td>float : [0, inf]	0.1</td>
+  <td>-</td>
+  <td>large->more tolerant</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>Width from the perimeter to be ignored</td>
+  <td>ignore_outer</td>
+  <td>(int, int) : 0~height, 0~width</td>
+  <td>(0,0)</td>
+  <td>-</td>
+  <td>-</td>
+  <td>The width of the ignored area from the perimeter. Use values up to the number of vertical and horizontal pixels in the image.</td>
+</tr>
+<tr>
+  <td>Minimum detection size</td>
+  <td>min_detected_area</td>
+  <td>float : [1, inf]</td>
+  <td>0</td>
+  <td>-</td>
+  <td>-</td>
+  <td>Threshold of area of detected rectangle</td>
+</tr>
+<tr>
+   <td>Anomaly range</td>
+   <td>anomaly_range</td>
+   <td>float : [0, 1]</td>
+   <td>0</td>
+   <td>-</td>
+   <td>-</td>
+   <td>Used to normalize heatmap colors across results.</td>
+</tr>
+
+</tbody></table>
+'
+  algo4i: 'Pattern Sample Inspection (Beta)'
+  algo4iText: "An unsupervised learning model that learns only from “OK” images (good samples, without defects, no annotation required)."
+  algo4iTable: '
+<table class="hacarus-table">
+<thead>
+  <tr>
+    <td><strong>Parameter</strong></td>
+    <td><strong>Variable name</strong></td>
+    <td><strong>Type: Range</strong></td>
+    <td><strong>Default</strong></td>
+    <td><strong>Impact on processing time</strong></td>
+    <td><strong>Impact on accuracy</strong></td>
+    <td><strong>Remarks</strong></td>
+  </tr>
+</thead>
+<tbody>
+<tr>
+  <td>Model type</td>
+  <td>model_type</td>
+  <td>int : [0, 1]</td>
+  <td>0</td>
+  <td>small -> large</td>
+  <td>-</td>
+  <td>0 will use a small model. 1 will use a larger model.</td>
+</tr>
+<tr>
+   <td>Number of Features</td>
+   <td>num_features</td>
+   <td>int : n</td>
+   <td>100</td>
+   <td>large -> large</td>
+   <td>-</td>
+   <td>100-n are empirically good.</td>
+</tr>
+<tr>
+   <td>Threshold of anomaly</td>
+   <td>threshold</td>
+   <td>float : [0, inf]	0.1</td>
+   <td>-</td>
+   <td>large->more tolerant</td>
+   <td></td>
+   <td></td>
+</tr>
+<tr>
+   <td>Width from the perimeter to be ignored</td>
+   <td>ignore_outer</td>
+   <td>(int, int) : 0~height, 0~width</td>
+   <td>(0,0)</td>
+   <td>-</td>
+   <td>-</td>
+   <td>The width of the ignored area from the perimeter. Use values up to the number of vertical and horizontal pixels in the image.</td>
+</tr>
+<tr>
+   <td>Minimum detection size</td>
+   <td>min_detected_area</td>
+   <td>float : [1, inf]</td>
+   <td>0</td>
+   <td>-</td>
+   <td>-</td>
+   <td>Threshold area of detected rectangle</td>
+</tr>
+<tr>
+   <td>Anomaly range</td>
+   <td>anomaly_range</td>
+   <td>float : [0, 1]</td>
+   <td>0</td>
+   <td>-</td>
+   <td>-</td>
+   <td>Used to normalize heatmap colors across results.</td>
+</tr>
+
+</tbody></table>
 '

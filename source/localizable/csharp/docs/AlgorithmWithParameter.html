@@ -493,6 +493,7 @@
 <li><a class="" href="AssessmentItem.html">AssessmentItem</a></li>
 <li><a class="" href="AssessmentItem1.html">AssessmentItem1</a></li>
 <li><a class="" href="BaseError.html">BaseError</a></li>
+<li><a class="" href="DelItemRequest.html">DelItemRequest</a></li>
 <li><a class="" href="Error.html">Error</a></li>
 <li><a class="" href="ErrorSource.html">ErrorSource</a></li>
 <li><a class="" href="GetItemsResponse.html">GetItemsResponse</a></li>
@@ -525,17 +526,25 @@
 <li><a class="" href="Predict.html">Predict</a></li>
 <li><a class="" href="PredictItemsResponse.html">PredictItemsResponse</a></li>
 <li><a class="" href="PredictItemsResponseWrapper.html">PredictItemsResponseWrapper</a></li>
+<li><a class="" href="PredictionItemCallbackResponse.html">PredictionItemCallbackResponse</a></li>
+<li><a class="" href="PredictionItemCallbackWrapper.html">PredictionItemCallbackWrapper</a></li>
 <li><a class="" href="Preprocessing.html">Preprocessing</a></li>
 <li><a class="" href="RequestAnnotation.html">RequestAnnotation</a></li>
 <li><a class="" href="TargetsApi.html">TargetsApi</a></li>
 <li><a class="" href="TokenApi.html">TokenApi</a></li>
 <li><a class="" href="TrainRequest.html">TrainRequest</a></li>
+<li><a class="" href="UpdatePredictCallback.html">UpdatePredictCallback</a></li>
+<li><a class="" href="UpdatePredictCallbackResponse.html">UpdatePredictCallbackResponse</a></li>
+<li><a class="" href="UpdatePredictCallbackResponseWrapper.html">UpdatePredictCallbackResponseWrapper</a></li>
+<li><a class="" href="UpdatePredictParameters.html">UpdatePredictParameters</a></li>
+<li><a class="" href="UpdatePredictParametersResponse.html">UpdatePredictParametersResponse</a></li>
+<li><a class="" href="UpdatePredictParametersResponseWrapper.html">UpdatePredictParametersResponseWrapper</a></li>
 <li><a class="" href="UtilsApi.html">UtilsApi</a></li>
 </ul>
 </ul>
       </nav>
       <article id="main" class="content">
-        <h1 id="hacarus.spectrosdk.model.algorithmwithparameter">Hacarus.SpectroSdk.Model.AlgorithmWithParameter <a class="heading-anchor-permalink" href="#hacarus.spectrosdk.model.algorithmwithparameter" aria-hidden="true">#</a></h1>
+        <h1 id="algorithmwithparameter">AlgorithmWithParameter <a class="heading-anchor-permalink" href="#algorithmwithparameter" aria-hidden="true">#</a></h1>
 <h2 id="properties">Properties <a class="heading-anchor-permalink" href="#properties" aria-hidden="true">#</a></h2>
 <table>
 <thead>
@@ -548,63 +557,69 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>Name</strong></td>
-<td><strong>string</strong></td>
+<td><strong>algorithm_id</strong></td>
+<td><strong>str</strong></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><strong>Version</strong></td>
-<td><strong>string</strong></td>
+<td><strong>updated_at</strong></td>
+<td><strong>datetime</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>file_name</strong></td>
+<td><strong>str</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>class_name</strong></td>
+<td><strong>str</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>created_at</strong></td>
+<td><strong>datetime</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>name</strong></td>
+<td><strong>str</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>type</strong></td>
+<td><strong>str</strong></td>
 <td></td>
 <td>[optional]</td>
 </tr>
 <tr>
-<td><strong>ClassName</strong></td>
-<td><strong>string</strong></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong>Parameters</strong></td>
-<td><a href="AlgorithmParameter.html"><strong>List&lt;AlgorithmParameter&gt;</strong></a></td>
+<td><strong>version</strong></td>
+<td><strong>str, none_type</strong></td>
 <td></td>
 <td>[optional]</td>
 </tr>
 <tr>
-<td><strong>Attribute</strong></td>
-<td><strong>string</strong></td>
+<td><strong>parameters</strong></td>
+<td><a href="AlgorithmParameter.html"><strong>[AlgorithmParameter]</strong></a></td>
 <td></td>
 <td>[optional]</td>
 </tr>
 <tr>
-<td><strong>UpdatedAt</strong></td>
-<td><strong>DateTime</strong></td>
+<td><strong>attribute</strong></td>
+<td><strong>str</strong></td>
 <td></td>
-<td></td>
+<td>[optional]</td>
 </tr>
 <tr>
-<td><strong>CreatedAt</strong></td>
-<td><strong>DateTime</strong></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong>FileName</strong></td>
-<td><strong>string</strong></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong>AlgorithmId</strong></td>
-<td><strong>string</strong></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong>Type</strong></td>
-<td><strong>string</strong></td>
-<td></td>
+<td><strong>any string name</strong></td>
+<td><strong>bool, date, datetime, dict, float, int, list, str, none_type</strong></td>
+<td>any string name can be used but the value must be the correct type</td>
 <td>[optional]</td>
 </tr>
 </tbody>

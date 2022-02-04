@@ -493,6 +493,7 @@
 <li><a class="" href="AssessmentItem.html">AssessmentItem</a></li>
 <li><a class="" href="AssessmentItem1.html">AssessmentItem1</a></li>
 <li><a class="" href="BaseError.html">BaseError</a></li>
+<li><a class="" href="DelItemRequest.html">DelItemRequest</a></li>
 <li><a class="" href="Error.html">Error</a></li>
 <li><a class="" href="ErrorSource.html">ErrorSource</a></li>
 <li><a class="" href="GetItemsResponse.html">GetItemsResponse</a></li>
@@ -525,18 +526,26 @@
 <li><a class="" href="Predict.html">Predict</a></li>
 <li><a class="" href="PredictItemsResponse.html">PredictItemsResponse</a></li>
 <li><a class="" href="PredictItemsResponseWrapper.html">PredictItemsResponseWrapper</a></li>
+<li><a class="" href="PredictionItemCallbackResponse.html">PredictionItemCallbackResponse</a></li>
+<li><a class="" href="PredictionItemCallbackWrapper.html">PredictionItemCallbackWrapper</a></li>
 <li><a class="" href="Preprocessing.html">Preprocessing</a></li>
 <li><a class="" href="RequestAnnotation.html">RequestAnnotation</a></li>
 <li><a class="" href="TargetsApi.html">TargetsApi</a></li>
 <li><a class="" href="TokenApi.html">TokenApi</a></li>
 <li><a class="" href="TrainRequest.html">TrainRequest</a></li>
+<li><a class="" href="UpdatePredictCallback.html">UpdatePredictCallback</a></li>
+<li><a class="" href="UpdatePredictCallbackResponse.html">UpdatePredictCallbackResponse</a></li>
+<li><a class="" href="UpdatePredictCallbackResponseWrapper.html">UpdatePredictCallbackResponseWrapper</a></li>
+<li><a class="" href="UpdatePredictParameters.html">UpdatePredictParameters</a></li>
+<li><a class="" href="UpdatePredictParametersResponse.html">UpdatePredictParametersResponse</a></li>
+<li><a class="" href="UpdatePredictParametersResponseWrapper.html">UpdatePredictParametersResponseWrapper</a></li>
 <li><a class="" href="UtilsApi.html">UtilsApi</a></li>
 </ul>
 </ul>
       </nav>
       <article id="main" class="content">
-        <h1 id="hacarus.spectrosdk.api.algorithmsapi">Hacarus.SpectroSdk.Api.AlgorithmsApi <a class="heading-anchor-permalink" href="#hacarus.spectrosdk.api.algorithmsapi" aria-hidden="true">#</a></h1>
-<p>All URIs are relative to <em><a href="https://spectro-demo.hacarus.com">https://spectro-demo.hacarus.com</a></em></p>
+        <h1 id="hacarus.spectrosdk.algorithmsapi">Hacarus.SpectroSdk.AlgorithmsApi <a class="heading-anchor-permalink" href="#hacarus.spectrosdk.algorithmsapi" aria-hidden="true">#</a></h1>
+<p>All URIs are relative to <em><a href="https://sdd-api-staging.hacarus.com">https://sdd-api-staging.hacarus.com</a></em></p>
 <table>
 <thead>
 <tr>
@@ -547,67 +556,74 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="AlgorithmsApi.html#getalgorithmbyid"><strong>GetAlgorithmById</strong></a></td>
+<td><a href="AlgorithmsApi.html#get_algorithm_by_id"><strong>get_algorithm_by_id</strong></a></td>
 <td><strong>GET</strong> /api/v1/algorithms/{algorithm_id}</td>
 <td>Get Algorithm by ID</td>
 </tr>
 <tr>
-<td><a href="AlgorithmsApi.html#getalgorithms"><strong>GetAlgorithms</strong></a></td>
+<td><a href="AlgorithmsApi.html#get_algorithms"><strong>get_algorithms</strong></a></td>
 <td><strong>GET</strong> /api/v1/algorithms/</td>
 <td>Get List of Algorithms</td>
 </tr>
 <tr>
-<td><a href="AlgorithmsApi.html#train"><strong>Train</strong></a></td>
+<td><a href="AlgorithmsApi.html#train"><strong>train</strong></a></td>
 <td><strong>POST</strong> /api/v1/algorithms/{algorithm_id}/train</td>
 <td>Train</td>
 </tr>
 </tbody>
 </table>
-<p><a name="getalgorithmbyid"></a></p>
-<h1 id="getalgorithmbyid"><strong>GetAlgorithmById</strong> <a class="heading-anchor-permalink" href="#getalgorithmbyid" aria-hidden="true">#</a></h1>
+<h1 id="get_algorithm_by_id"><strong>get_algorithm_by_id</strong> <a class="heading-anchor-permalink" href="#get_algorithm_by_id" aria-hidden="true">#</a></h1>
 <blockquote>
-<p>AlgorithmWithParameterWrapper GetAlgorithmById (string algorithmId)</p>
+<p>AlgorithmWithParameterWrapper get_algorithm_by_id(algorithm_id)</p>
 </blockquote>
 <p>Get Algorithm by ID</p>
 <p>Get a single algorithm by ID</p>
 <h3 id="example">Example <a class="heading-anchor-permalink" href="#example" aria-hidden="true">#</a></h3>
-<pre><code class="language-csharp">using System.Collections.Generic;
-using System.Diagnostics;
-using Hacarus.SpectroSdk.Api;
-using Hacarus.SpectroSdk.Client;
-using Hacarus.SpectroSdk.Model;
+<ul>
+<li>Bearer (JWT) Authentication (jwt):</li>
+<li>OAuth Authentication (oauth2):</li>
+</ul>
+<pre><code class="language-python">import time
+import Hacarus.SpectroSdk
+from Hacarus.SpectroSdk.api import algorithms_api
+from Hacarus.SpectroSdk.model.base_error import BaseError
+from Hacarus.SpectroSdk.model.algorithm_with_parameter_wrapper import AlgorithmWithParameterWrapper
+from pprint import pprint
+# Defining the host is optional and defaults to https://sdd-api-staging.hacarus.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = Hacarus.SpectroSdk.Configuration(
+    host = &quot;https://sdd-api-staging.hacarus.com&quot;
+)
 
-namespace Example
-{
-    public class GetAlgorithmByIdExample
-    {
-        public static void Main()
-        {
-            Configuration.Default.BasePath = &quot;https://spectro-demo.hacarus.com&quot;;
-            // Configure HTTP basic authorization: jwt
-            Configuration.Default.Username = &quot;YOUR_USERNAME&quot;;
-            Configuration.Default.Password = &quot;YOUR_PASSWORD&quot;;
-            // Configure OAuth2 access token for authorization: oauth2
-            Configuration.Default.AccessToken = &quot;YOUR_ACCESS_TOKEN&quot;;
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-            var apiInstance = new AlgorithmsApi(Configuration.Default);
-            var algorithmId = algorithmId_example;  // string | 
+# Configure Bearer authorization (JWT): jwt
+configuration = Hacarus.SpectroSdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
-            try
-            {
-                // Get Algorithm by ID
-                AlgorithmWithParameterWrapper result = apiInstance.GetAlgorithmById(algorithmId);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print(&quot;Exception when calling AlgorithmsApi.GetAlgorithmById: &quot; + e.Message );
-                Debug.Print(&quot;Status Code: &quot;+ e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
+# Configure OAuth2 access token for authorization: oauth2
+configuration = Hacarus.SpectroSdk.Configuration(
+    host = &quot;https://sdd-api-staging.hacarus.com&quot;
+)
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Enter a context with an instance of the API client
+with Hacarus.SpectroSdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = algorithms_api.AlgorithmsApi(api_client)
+    algorithm_id = &quot;algorithm_id_example&quot; # str | 
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Get Algorithm by ID
+        api_response = api_instance.get_algorithm_by_id(algorithm_id)
+        pprint(api_response)
+    except Hacarus.SpectroSdk.ApiException as e:
+        print(&quot;Exception when calling AlgorithmsApi-&gt;get_algorithm_by_id: %s\n&quot; % e)
 </code></pre>
 <h3 id="parameters">Parameters <a class="heading-anchor-permalink" href="#parameters" aria-hidden="true">#</a></h3>
 <table>
@@ -621,8 +637,8 @@ namespace Example
 </thead>
 <tbody>
 <tr>
-<td><strong>algorithmId</strong></td>
-<td><strong>string</strong></td>
+<td><strong>algorithm_id</strong></td>
+<td><strong>str</strong></td>
 <td></td>
 <td></td>
 </tr>
@@ -660,50 +676,57 @@ namespace Example
 </tbody>
 </table>
 <p><a href="#">[Back to top]</a> <a href="../README.html#documentation-for-api-endpoints">[Back to API list]</a> <a href="../README.html#documentation-for-models">[Back to Model list]</a> <a href="../README.html">[Back to README]</a></p>
-<p><a name="getalgorithms"></a></p>
-<h1 id="getalgorithms"><strong>GetAlgorithms</strong> <a class="heading-anchor-permalink" href="#getalgorithms" aria-hidden="true">#</a></h1>
+<h1 id="get_algorithms"><strong>get_algorithms</strong> <a class="heading-anchor-permalink" href="#get_algorithms" aria-hidden="true">#</a></h1>
 <blockquote>
-<p>AlgorithmWithParameterListWrapper GetAlgorithms ()</p>
+<p>AlgorithmWithParameterListWrapper get_algorithms()</p>
 </blockquote>
 <p>Get List of Algorithms</p>
 <ul>   <li>     Returns list of available algorithms including parameters that can be used to create a model   </li>   <li>     Algorithm documentation available <a href='https://hacarus.github.io/HacarusVisualInspectionApi/#t-algorithmswithversion'>here</a>   </li> </ul>
 <h3 id="example-2">Example <a class="heading-anchor-permalink" href="#example-2" aria-hidden="true">#</a></h3>
-<pre><code class="language-csharp">using System.Collections.Generic;
-using System.Diagnostics;
-using Hacarus.SpectroSdk.Api;
-using Hacarus.SpectroSdk.Client;
-using Hacarus.SpectroSdk.Model;
+<ul>
+<li>Bearer (JWT) Authentication (jwt):</li>
+<li>OAuth Authentication (oauth2):</li>
+</ul>
+<pre><code class="language-python">import time
+import Hacarus.SpectroSdk
+from Hacarus.SpectroSdk.api import algorithms_api
+from Hacarus.SpectroSdk.model.algorithm_with_parameter_list_wrapper import AlgorithmWithParameterListWrapper
+from Hacarus.SpectroSdk.model.base_error import BaseError
+from pprint import pprint
+# Defining the host is optional and defaults to https://sdd-api-staging.hacarus.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = Hacarus.SpectroSdk.Configuration(
+    host = &quot;https://sdd-api-staging.hacarus.com&quot;
+)
 
-namespace Example
-{
-    public class GetAlgorithmsExample
-    {
-        public static void Main()
-        {
-            Configuration.Default.BasePath = &quot;https://spectro-demo.hacarus.com&quot;;
-            // Configure HTTP basic authorization: jwt
-            Configuration.Default.Username = &quot;YOUR_USERNAME&quot;;
-            Configuration.Default.Password = &quot;YOUR_PASSWORD&quot;;
-            // Configure OAuth2 access token for authorization: oauth2
-            Configuration.Default.AccessToken = &quot;YOUR_ACCESS_TOKEN&quot;;
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-            var apiInstance = new AlgorithmsApi(Configuration.Default);
+# Configure Bearer authorization (JWT): jwt
+configuration = Hacarus.SpectroSdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
-            try
-            {
-                // Get List of Algorithms
-                AlgorithmWithParameterListWrapper result = apiInstance.GetAlgorithms();
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print(&quot;Exception when calling AlgorithmsApi.GetAlgorithms: &quot; + e.Message );
-                Debug.Print(&quot;Status Code: &quot;+ e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
+# Configure OAuth2 access token for authorization: oauth2
+configuration = Hacarus.SpectroSdk.Configuration(
+    host = &quot;https://sdd-api-staging.hacarus.com&quot;
+)
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Enter a context with an instance of the API client
+with Hacarus.SpectroSdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = algorithms_api.AlgorithmsApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
+    try:
+        # Get List of Algorithms
+        api_response = api_instance.get_algorithms()
+        pprint(api_response)
+    except Hacarus.SpectroSdk.ApiException as e:
+        print(&quot;Exception when calling AlgorithmsApi-&gt;get_algorithms: %s\n&quot; % e)
 </code></pre>
 <h3 id="parameters-2">Parameters <a class="heading-anchor-permalink" href="#parameters-2" aria-hidden="true">#</a></h3>
 <p>This endpoint does not need any parameter.</p>
@@ -739,52 +762,71 @@ namespace Example
 </tbody>
 </table>
 <p><a href="#">[Back to top]</a> <a href="../README.html#documentation-for-api-endpoints">[Back to API list]</a> <a href="../README.html#documentation-for-models">[Back to Model list]</a> <a href="../README.html">[Back to README]</a></p>
-<p><a name="train"></a></p>
-<h1 id="train"><strong>Train</strong> <a class="heading-anchor-permalink" href="#train" aria-hidden="true">#</a></h1>
+<h1 id="train"><strong>train</strong> <a class="heading-anchor-permalink" href="#train" aria-hidden="true">#</a></h1>
 <blockquote>
-<p>HModelWrapper Train (string algorithmId, TrainRequest trainRequest)</p>
+<p>HModelWrapper train(algorithm_id, train_request)</p>
 </blockquote>
 <p>Train</p>
 <p>Train a model</p>
 <h3 id="example-3">Example <a class="heading-anchor-permalink" href="#example-3" aria-hidden="true">#</a></h3>
-<pre><code class="language-csharp">using System.Collections.Generic;
-using System.Diagnostics;
-using Hacarus.SpectroSdk.Api;
-using Hacarus.SpectroSdk.Client;
-using Hacarus.SpectroSdk.Model;
+<ul>
+<li>Bearer (JWT) Authentication (jwt):</li>
+<li>OAuth Authentication (oauth2):</li>
+</ul>
+<pre><code class="language-python">import time
+import Hacarus.SpectroSdk
+from Hacarus.SpectroSdk.api import algorithms_api
+from Hacarus.SpectroSdk.model.train_request import TrainRequest
+from Hacarus.SpectroSdk.model.base_error import BaseError
+from Hacarus.SpectroSdk.model.h_model_wrapper import HModelWrapper
+from pprint import pprint
+# Defining the host is optional and defaults to https://sdd-api-staging.hacarus.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = Hacarus.SpectroSdk.Configuration(
+    host = &quot;https://sdd-api-staging.hacarus.com&quot;
+)
 
-namespace Example
-{
-    public class TrainExample
-    {
-        public static void Main()
-        {
-            Configuration.Default.BasePath = &quot;https://spectro-demo.hacarus.com&quot;;
-            // Configure HTTP basic authorization: jwt
-            Configuration.Default.Username = &quot;YOUR_USERNAME&quot;;
-            Configuration.Default.Password = &quot;YOUR_PASSWORD&quot;;
-            // Configure OAuth2 access token for authorization: oauth2
-            Configuration.Default.AccessToken = &quot;YOUR_ACCESS_TOKEN&quot;;
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-            var apiInstance = new AlgorithmsApi(Configuration.Default);
-            var algorithmId = algorithmId_example;  // string | 
-            var trainRequest = new TrainRequest(); // TrainRequest | 
+# Configure Bearer authorization (JWT): jwt
+configuration = Hacarus.SpectroSdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
-            try
-            {
-                // Train
-                HModelWrapper result = apiInstance.Train(algorithmId, trainRequest);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print(&quot;Exception when calling AlgorithmsApi.Train: &quot; + e.Message );
-                Debug.Print(&quot;Status Code: &quot;+ e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
+# Configure OAuth2 access token for authorization: oauth2
+configuration = Hacarus.SpectroSdk.Configuration(
+    host = &quot;https://sdd-api-staging.hacarus.com&quot;
+)
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Enter a context with an instance of the API client
+with Hacarus.SpectroSdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = algorithms_api.AlgorithmsApi(api_client)
+    algorithm_id = &quot;algorithm_id_example&quot; # str | 
+    train_request = TrainRequest(
+        name=&quot;name_example&quot;,
+        item_ids=[
+            &quot;item_ids_example&quot;,
+        ],
+        override_params=[
+            OverrideParam(
+                algorithm_parameter_id=1,
+                value=&quot;value_example&quot;,
+            ),
+        ],
+    ) # TrainRequest | 
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Train
+        api_response = api_instance.train(algorithm_id, train_request)
+        pprint(api_response)
+    except Hacarus.SpectroSdk.ApiException as e:
+        print(&quot;Exception when calling AlgorithmsApi-&gt;train: %s\n&quot; % e)
 </code></pre>
 <h3 id="parameters-3">Parameters <a class="heading-anchor-permalink" href="#parameters-3" aria-hidden="true">#</a></h3>
 <table>
@@ -798,13 +840,13 @@ namespace Example
 </thead>
 <tbody>
 <tr>
-<td><strong>algorithmId</strong></td>
-<td><strong>string</strong></td>
+<td><strong>algorithm_id</strong></td>
+<td><strong>str</strong></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><strong>trainRequest</strong></td>
+<td><strong>train_request</strong></td>
 <td><a href="TrainRequest.html"><strong>TrainRequest</strong></a></td>
 <td></td>
 <td></td>
