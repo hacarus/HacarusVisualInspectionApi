@@ -214,10 +214,6 @@
       #layout,
       #menu,
       .menu-link {
-        -webkit-transition: all 0.2s ease-out;
-        -moz-transition: all 0.2s ease-out;
-        -ms-transition: all 0.2s ease-out;
-        -o-transition: all 0.2s ease-out;
         transition: all 0.2s ease-out;
       }
 
@@ -526,18 +522,26 @@
 <li><a class="" href="Predict.html">Predict</a></li>
 <li><a class="" href="PredictItemsResponse.html">PredictItemsResponse</a></li>
 <li><a class="" href="PredictItemsResponseWrapper.html">PredictItemsResponseWrapper</a></li>
+<li><a class="" href="PredictionItemCallbackResponse.html">PredictionItemCallbackResponse</a></li>
+<li><a class="" href="PredictionItemCallbackWrapper.html">PredictionItemCallbackWrapper</a></li>
 <li><a class="" href="Preprocessing.html">Preprocessing</a></li>
 <li><a class="" href="RequestAnnotation.html">RequestAnnotation</a></li>
-<li><a class="" href="SpectroApi.html">SpectroApi</a></li>
 <li><a class="" href="TargetsApi.html">TargetsApi</a></li>
+<li><a class="" href="TokenApi.html">TokenApi</a></li>
 <li><a class="" href="TrainRequest.html">TrainRequest</a></li>
+<li><a class="" href="UpdatePredictCallback.html">UpdatePredictCallback</a></li>
+<li><a class="" href="UpdatePredictCallbackResponse.html">UpdatePredictCallbackResponse</a></li>
+<li><a class="" href="UpdatePredictCallbackResponseWrapper.html">UpdatePredictCallbackResponseWrapper</a></li>
+<li><a class="" href="UpdatePredictParameters.html">UpdatePredictParameters</a></li>
+<li><a class="" href="UpdatePredictParametersResponse.html">UpdatePredictParametersResponse</a></li>
+<li><a class="" href="UpdatePredictParametersResponseWrapper.html">UpdatePredictParametersResponseWrapper</a></li>
 <li><a class="" href="UtilsApi.html">UtilsApi</a></li>
 </ul>
 </ul>
       </nav>
       <article id="main" class="content">
-        <h1 id="org.openapitools.model.assessmentitem1" tabindex="-1">Org.OpenAPITools.Model.AssessmentItem1 <a class="heading-anchor-permalink" href="#org.openapitools.model.assessmentitem1">#</a></h1>
-<h2 id="properties" tabindex="-1">Properties <a class="heading-anchor-permalink" href="#properties">#</a></h2>
+        <h1 id="assessmentitem1">AssessmentItem1 <a class="heading-anchor-permalink" href="#assessmentitem1" aria-hidden="true">#</a></h1>
+<h2 id="properties">Properties <a class="heading-anchor-permalink" href="#properties" aria-hidden="true">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -549,58 +553,62 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>Images</strong></td>
-<td><a href="ItemImageMeta.html"><strong>List&lt;ItemImageMeta&gt;</strong></a></td>
+<td><strong>annotations</strong></td>
+<td><a href="Annotation.html"><strong>[Annotation]</strong></a></td>
 <td></td>
 <td>[optional]</td>
 </tr>
 <tr>
-<td><strong>DetectedObjects</strong></td>
-<td><strong>int?</strong></td>
+<td><strong>label</strong></td>
+<td><strong>str</strong></td>
 <td></td>
 <td>[optional]</td>
 </tr>
 <tr>
-<td><strong>Annotations</strong></td>
-<td><a href="Annotation.html"><strong>List&lt;Annotation&gt;</strong></a></td>
+<td><strong>images</strong></td>
+<td><a href="ItemImageMeta.html"><strong>[ItemImageMeta]</strong></a></td>
 <td></td>
 <td>[optional]</td>
 </tr>
 <tr>
-<td><strong>ModelId</strong></td>
-<td><strong>string</strong></td>
+<td><strong>anomaly_score</strong></td>
+<td><strong>str</strong></td>
 <td></td>
 <td>[optional]</td>
 </tr>
 <tr>
-<td><strong>Label</strong></td>
-<td><strong>string</strong></td>
+<td><strong>model_id</strong></td>
+<td><strong>str</strong></td>
 <td></td>
 <td>[optional]</td>
 </tr>
 <tr>
-<td><strong>DetectionAccuracy</strong></td>
-<td><strong>int?</strong></td>
+<td><strong>detected_objects</strong></td>
+<td><strong>int, none_type</strong></td>
 <td></td>
 <td>[optional]</td>
 </tr>
 <tr>
-<td><strong>AnomalyScore</strong></td>
-<td><strong>string</strong></td>
+<td><strong>detection_accuracy</strong></td>
+<td><strong>int, none_type</strong></td>
 <td></td>
 <td>[optional]</td>
 </tr>
 <tr>
-<td><strong>Result</strong></td>
-<td><strong>string</strong></td>
+<td><strong>result</strong></td>
+<td><strong>str</strong></td>
 <td></td>
+<td>[optional]</td>
+</tr>
+<tr>
+<td><strong>any string name</strong></td>
+<td><strong>bool, date, datetime, dict, float, int, list, str, none_type</strong></td>
+<td>any string name can be used but the value must be the correct type</td>
 <td>[optional]</td>
 </tr>
 </tbody>
 </table>
-<p><a href="../README.html#documentation-for-models">[Back to Model list]</a>
-<a href="../README.html#documentation-for-api-endpoints">[Back to API list]</a>
-<a href="../README.html">[Back to README]</a></p>
+<p><a href="../README.html#documentation-for-models">[Back to Model list]</a> <a href="../README.html#documentation-for-api-endpoints">[Back to API list]</a> <a href="../README.html">[Back to README]</a></p>
 
       </article>
     </div>

@@ -489,6 +489,7 @@
 <li><a class="" href="AssessmentItem.html">AssessmentItem</a></li>
 <li><a class="" href="AssessmentItem1.html">AssessmentItem1</a></li>
 <li><a class="" href="BaseError.html">BaseError</a></li>
+<li><a class="" href="DelItemRequest.html">DelItemRequest</a></li>
 <li><a class="" href="Error.html">Error</a></li>
 <li><a class="" href="ErrorSource.html">ErrorSource</a></li>
 <li><a class="" href="GetItemsResponse.html">GetItemsResponse</a></li>
@@ -521,18 +522,26 @@
 <li><a class="" href="Predict.html">Predict</a></li>
 <li><a class="" href="PredictItemsResponse.html">PredictItemsResponse</a></li>
 <li><a class="" href="PredictItemsResponseWrapper.html">PredictItemsResponseWrapper</a></li>
+<li><a class="" href="PredictionItemCallbackResponse.html">PredictionItemCallbackResponse</a></li>
+<li><a class="" href="PredictionItemCallbackWrapper.html">PredictionItemCallbackWrapper</a></li>
 <li><a class="" href="Preprocessing.html">Preprocessing</a></li>
 <li><a class="" href="RequestAnnotation.html">RequestAnnotation</a></li>
 <li><a class="" href="TargetsApi.html">TargetsApi</a></li>
 <li><a class="active" href="TokenApi.html">TokenApi</a></li>
 <li><a class="" href="TrainRequest.html">TrainRequest</a></li>
+<li><a class="" href="UpdatePredictCallback.html">UpdatePredictCallback</a></li>
+<li><a class="" href="UpdatePredictCallbackResponse.html">UpdatePredictCallbackResponse</a></li>
+<li><a class="" href="UpdatePredictCallbackResponseWrapper.html">UpdatePredictCallbackResponseWrapper</a></li>
+<li><a class="" href="UpdatePredictParameters.html">UpdatePredictParameters</a></li>
+<li><a class="" href="UpdatePredictParametersResponse.html">UpdatePredictParametersResponse</a></li>
+<li><a class="" href="UpdatePredictParametersResponseWrapper.html">UpdatePredictParametersResponseWrapper</a></li>
 <li><a class="" href="UtilsApi.html">UtilsApi</a></li>
 </ul>
 </ul>
       </nav>
       <article id="main" class="content">
-        <h1 id="hacarus.spectrosdk.api.tokenapi">Hacarus.SpectroSdk.Api.TokenApi <a class="heading-anchor-permalink" href="#hacarus.spectrosdk.api.tokenapi" aria-hidden="true">#</a></h1>
-<p>All URIs are relative to <em><a href="https://spectro-demo.hacarus.com">https://spectro-demo.hacarus.com</a></em></p>
+        <h1 id="hacarus.spectrosdk.tokenapi">Hacarus.SpectroSdk.TokenApi <a class="heading-anchor-permalink" href="#hacarus.spectrosdk.tokenapi" aria-hidden="true">#</a></h1>
+<p>All URIs are relative to <em><a href="https://sdd-api-staging.hacarus.com">https://sdd-api-staging.hacarus.com</a></em></p>
 <table>
 <thead>
 <tr>
@@ -543,57 +552,69 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="TokenApi.html#login"><strong>Login</strong></a></td>
+<td><a href="TokenApi.html#login"><strong>login</strong></a></td>
 <td><strong>POST</strong> /api/auth/token</td>
 <td>Authorization</td>
 </tr>
 </tbody>
 </table>
-<p><a name="login"></a></p>
-<h1 id="login"><strong>Login</strong> <a class="heading-anchor-permalink" href="#login" aria-hidden="true">#</a></h1>
+<h1 id="login"><strong>login</strong> <a class="heading-anchor-permalink" href="#login" aria-hidden="true">#</a></h1>
 <blockquote>
-<p>LoginResponse Login (LoginParams loginParams)</p>
+<p>LoginResponse login(login_params)</p>
 </blockquote>
 <p>Authorization</p>
 <p>Returns the access token</p>
 <h3 id="example">Example <a class="heading-anchor-permalink" href="#example" aria-hidden="true">#</a></h3>
-<pre><code class="language-csharp">using System.Collections.Generic;
-using System.Diagnostics;
-using Hacarus.SpectroSdk.Api;
-using Hacarus.SpectroSdk.Client;
-using Hacarus.SpectroSdk.Model;
+<ul>
+<li>Bearer (JWT) Authentication (jwt):</li>
+<li>OAuth Authentication (oauth2):</li>
+</ul>
+<pre><code class="language-python">import time
+import Hacarus.SpectroSdk
+from Hacarus.SpectroSdk.api import token_api
+from Hacarus.SpectroSdk.model.login_params import LoginParams
+from Hacarus.SpectroSdk.model.base_error import BaseError
+from Hacarus.SpectroSdk.model.login_response import LoginResponse
+from pprint import pprint
+# Defining the host is optional and defaults to https://sdd-api-staging.hacarus.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = Hacarus.SpectroSdk.Configuration(
+    host = &quot;https://sdd-api-staging.hacarus.com&quot;
+)
 
-namespace Example
-{
-    public class LoginExample
-    {
-        public static void Main()
-        {
-            Configuration.Default.BasePath = &quot;https://spectro-demo.hacarus.com&quot;;
-            // Configure HTTP basic authorization: jwt
-            Configuration.Default.Username = &quot;YOUR_USERNAME&quot;;
-            Configuration.Default.Password = &quot;YOUR_PASSWORD&quot;;
-            // Configure OAuth2 access token for authorization: oauth2
-            Configuration.Default.AccessToken = &quot;YOUR_ACCESS_TOKEN&quot;;
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-            var apiInstance = new TokenApi(Configuration.Default);
-            var loginParams = new LoginParams(); // LoginParams | 
+# Configure Bearer authorization (JWT): jwt
+configuration = Hacarus.SpectroSdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
-            try
-            {
-                // Authorization
-                LoginResponse result = apiInstance.Login(loginParams);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print(&quot;Exception when calling TokenApi.Login: &quot; + e.Message );
-                Debug.Print(&quot;Status Code: &quot;+ e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
+# Configure OAuth2 access token for authorization: oauth2
+configuration = Hacarus.SpectroSdk.Configuration(
+    host = &quot;https://sdd-api-staging.hacarus.com&quot;
+)
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Enter a context with an instance of the API client
+with Hacarus.SpectroSdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = token_api.TokenApi(api_client)
+    login_params = LoginParams(
+        client_id=&quot;client_id_example&quot;,
+        client_secret=&quot;client_secret_example&quot;,
+        grant_type=&quot;grant_type_example&quot;,
+    ) # LoginParams | 
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Authorization
+        api_response = api_instance.login(login_params)
+        pprint(api_response)
+    except Hacarus.SpectroSdk.ApiException as e:
+        print(&quot;Exception when calling TokenApi-&gt;login: %s\n&quot; % e)
 </code></pre>
 <h3 id="parameters">Parameters <a class="heading-anchor-permalink" href="#parameters" aria-hidden="true">#</a></h3>
 <table>
@@ -607,7 +628,7 @@ namespace Example
 </thead>
 <tbody>
 <tr>
-<td><strong>loginParams</strong></td>
+<td><strong>login_params</strong></td>
 <td><a href="LoginParams.html"><strong>LoginParams</strong></a></td>
 <td></td>
 <td></td>
@@ -636,6 +657,11 @@ namespace Example
 <tr>
 <td><strong>200</strong></td>
 <td>Successful login</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>401</strong></td>
+<td>Invalid credentials</td>
 <td>-</td>
 </tr>
 <tr>

@@ -489,6 +489,7 @@
 <li><a class="" href="AssessmentItem.html">AssessmentItem</a></li>
 <li><a class="" href="AssessmentItem1.html">AssessmentItem1</a></li>
 <li><a class="" href="BaseError.html">BaseError</a></li>
+<li><a class="" href="DelItemRequest.html">DelItemRequest</a></li>
 <li><a class="" href="Error.html">Error</a></li>
 <li><a class="" href="ErrorSource.html">ErrorSource</a></li>
 <li><a class="" href="GetItemsResponse.html">GetItemsResponse</a></li>
@@ -521,17 +522,25 @@
 <li><a class="" href="Predict.html">Predict</a></li>
 <li><a class="" href="PredictItemsResponse.html">PredictItemsResponse</a></li>
 <li><a class="" href="PredictItemsResponseWrapper.html">PredictItemsResponseWrapper</a></li>
+<li><a class="" href="PredictionItemCallbackResponse.html">PredictionItemCallbackResponse</a></li>
+<li><a class="" href="PredictionItemCallbackWrapper.html">PredictionItemCallbackWrapper</a></li>
 <li><a class="" href="Preprocessing.html">Preprocessing</a></li>
 <li><a class="" href="RequestAnnotation.html">RequestAnnotation</a></li>
 <li><a class="" href="TargetsApi.html">TargetsApi</a></li>
 <li><a class="" href="TokenApi.html">TokenApi</a></li>
 <li><a class="" href="TrainRequest.html">TrainRequest</a></li>
+<li><a class="" href="UpdatePredictCallback.html">UpdatePredictCallback</a></li>
+<li><a class="" href="UpdatePredictCallbackResponse.html">UpdatePredictCallbackResponse</a></li>
+<li><a class="" href="UpdatePredictCallbackResponseWrapper.html">UpdatePredictCallbackResponseWrapper</a></li>
+<li><a class="" href="UpdatePredictParameters.html">UpdatePredictParameters</a></li>
+<li><a class="" href="UpdatePredictParametersResponse.html">UpdatePredictParametersResponse</a></li>
+<li><a class="" href="UpdatePredictParametersResponseWrapper.html">UpdatePredictParametersResponseWrapper</a></li>
 <li><a class="" href="UtilsApi.html">UtilsApi</a></li>
 </ul>
 </ul>
       </nav>
       <article id="main" class="content">
-        <h1 id="hacarus.spectrosdk.model.hmodel">Hacarus.SpectroSdk.Model.HModel <a class="heading-anchor-permalink" href="#hacarus.spectrosdk.model.hmodel" aria-hidden="true">#</a></h1>
+        <h1 id="hmodel">HModel <a class="heading-anchor-permalink" href="#hmodel" aria-hidden="true">#</a></h1>
 <h2 id="properties">Properties <a class="heading-anchor-permalink" href="#properties" aria-hidden="true">#</a></h2>
 <table>
 <thead>
@@ -544,112 +553,118 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>Name</strong></td>
-<td><strong>string</strong></td>
+<td><strong>algorithm_type</strong></td>
+<td><strong>str</strong></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><strong>Version</strong></td>
-<td><strong>string</strong></td>
+<td><strong>algorithm_id</strong></td>
+<td><strong>str</strong></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><strong>Recall</strong></td>
-<td><strong>decimal?</strong></td>
+<td><strong>version</strong></td>
+<td><strong>str</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>updated_at</strong></td>
+<td><strong>datetime</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>context_id</strong></td>
+<td><strong>int</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>model_id</strong></td>
+<td><strong>str</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>created_at</strong></td>
+<td><strong>datetime</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>name</strong></td>
+<td><strong>str</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>image_url</strong></td>
+<td><strong>str, none_type</strong></td>
 <td></td>
 <td>[optional]</td>
 </tr>
 <tr>
-<td><strong>Status</strong></td>
-<td><strong>string</strong></td>
+<td><strong>ok_img_count</strong></td>
+<td><strong>int</strong></td>
 <td></td>
 <td>[optional]</td>
 </tr>
 <tr>
-<td><strong>Stats</strong></td>
+<td><strong>precision</strong></td>
+<td><strong>float, none_type</strong></td>
+<td></td>
+<td>[optional]</td>
+</tr>
+<tr>
+<td><strong>recall</strong></td>
+<td><strong>float, none_type</strong></td>
+<td></td>
+<td>[optional]</td>
+</tr>
+<tr>
+<td><strong>status_text</strong></td>
+<td><strong>str, none_type</strong></td>
+<td></td>
+<td>[optional]</td>
+</tr>
+<tr>
+<td><strong>active</strong></td>
+<td><strong>bool, none_type</strong></td>
+<td></td>
+<td>[optional]</td>
+</tr>
+<tr>
+<td><strong>training_time</strong></td>
+<td><strong>int, none_type</strong></td>
+<td></td>
+<td>[optional]</td>
+</tr>
+<tr>
+<td><strong>ng_img_count</strong></td>
+<td><strong>int</strong></td>
+<td></td>
+<td>[optional]</td>
+</tr>
+<tr>
+<td><strong>stats</strong></td>
 <td><a href="HModelStats.html"><strong>HModelStats</strong></a></td>
 <td></td>
 <td>[optional]</td>
 </tr>
 <tr>
-<td><strong>ImageUrl</strong></td>
-<td><strong>string</strong></td>
+<td><strong>status</strong></td>
+<td><strong>str</strong></td>
 <td></td>
 <td>[optional]</td>
 </tr>
 <tr>
-<td><strong>NgImgCount</strong></td>
-<td><strong>int</strong></td>
-<td></td>
+<td><strong>any string name</strong></td>
+<td><strong>bool, date, datetime, dict, float, int, list, str, none_type</strong></td>
+<td>any string name can be used but the value must be the correct type</td>
 <td>[optional]</td>
-</tr>
-<tr>
-<td><strong>TrainingTime</strong></td>
-<td><strong>int?</strong></td>
-<td></td>
-<td>[optional]</td>
-</tr>
-<tr>
-<td><strong>OkImgCount</strong></td>
-<td><strong>int</strong></td>
-<td></td>
-<td>[optional]</td>
-</tr>
-<tr>
-<td><strong>Active</strong></td>
-<td><strong>bool?</strong></td>
-<td></td>
-<td>[optional]</td>
-</tr>
-<tr>
-<td><strong>StatusText</strong></td>
-<td><strong>string</strong></td>
-<td></td>
-<td>[optional]</td>
-</tr>
-<tr>
-<td><strong>Precision</strong></td>
-<td><strong>decimal?</strong></td>
-<td></td>
-<td>[optional]</td>
-</tr>
-<tr>
-<td><strong>CreatedAt</strong></td>
-<td><strong>DateTime</strong></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong>UpdatedAt</strong></td>
-<td><strong>DateTime</strong></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong>ContextId</strong></td>
-<td><strong>int</strong></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong>AlgorithmType</strong></td>
-<td><strong>string</strong></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong>AlgorithmId</strong></td>
-<td><strong>string</strong></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong>ModelId</strong></td>
-<td><strong>string</strong></td>
-<td></td>
-<td></td>
 </tr>
 </tbody>
 </table>

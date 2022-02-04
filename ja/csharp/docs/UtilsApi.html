@@ -489,6 +489,7 @@
 <li><a class="" href="AssessmentItem.html">AssessmentItem</a></li>
 <li><a class="" href="AssessmentItem1.html">AssessmentItem1</a></li>
 <li><a class="" href="BaseError.html">BaseError</a></li>
+<li><a class="" href="DelItemRequest.html">DelItemRequest</a></li>
 <li><a class="" href="Error.html">Error</a></li>
 <li><a class="" href="ErrorSource.html">ErrorSource</a></li>
 <li><a class="" href="GetItemsResponse.html">GetItemsResponse</a></li>
@@ -521,18 +522,26 @@
 <li><a class="" href="Predict.html">Predict</a></li>
 <li><a class="" href="PredictItemsResponse.html">PredictItemsResponse</a></li>
 <li><a class="" href="PredictItemsResponseWrapper.html">PredictItemsResponseWrapper</a></li>
+<li><a class="" href="PredictionItemCallbackResponse.html">PredictionItemCallbackResponse</a></li>
+<li><a class="" href="PredictionItemCallbackWrapper.html">PredictionItemCallbackWrapper</a></li>
 <li><a class="" href="Preprocessing.html">Preprocessing</a></li>
 <li><a class="" href="RequestAnnotation.html">RequestAnnotation</a></li>
 <li><a class="" href="TargetsApi.html">TargetsApi</a></li>
 <li><a class="" href="TokenApi.html">TokenApi</a></li>
 <li><a class="" href="TrainRequest.html">TrainRequest</a></li>
+<li><a class="" href="UpdatePredictCallback.html">UpdatePredictCallback</a></li>
+<li><a class="" href="UpdatePredictCallbackResponse.html">UpdatePredictCallbackResponse</a></li>
+<li><a class="" href="UpdatePredictCallbackResponseWrapper.html">UpdatePredictCallbackResponseWrapper</a></li>
+<li><a class="" href="UpdatePredictParameters.html">UpdatePredictParameters</a></li>
+<li><a class="" href="UpdatePredictParametersResponse.html">UpdatePredictParametersResponse</a></li>
+<li><a class="" href="UpdatePredictParametersResponseWrapper.html">UpdatePredictParametersResponseWrapper</a></li>
 <li><a class="active" href="UtilsApi.html">UtilsApi</a></li>
 </ul>
 </ul>
       </nav>
       <article id="main" class="content">
-        <h1 id="hacarus.spectrosdk.api.utilsapi">Hacarus.SpectroSdk.Api.UtilsApi <a class="heading-anchor-permalink" href="#hacarus.spectrosdk.api.utilsapi" aria-hidden="true">#</a></h1>
-<p>All URIs are relative to <em><a href="https://spectro-demo.hacarus.com">https://spectro-demo.hacarus.com</a></em></p>
+        <h1 id="hacarus.spectrosdk.utilsapi">Hacarus.SpectroSdk.UtilsApi <a class="heading-anchor-permalink" href="#hacarus.spectrosdk.utilsapi" aria-hidden="true">#</a></h1>
+<p>All URIs are relative to <em><a href="https://sdd-api-staging.hacarus.com">https://sdd-api-staging.hacarus.com</a></em></p>
 <table>
 <thead>
 <tr>
@@ -543,63 +552,70 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="UtilsApi.html#gethashid"><strong>GetHashId</strong></a></td>
+<td><a href="UtilsApi.html#get_hash_id"><strong>get_hash_id</strong></a></td>
 <td><strong>POST</strong> /api/v1/utils/node_hash</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="UtilsApi.html#getlogs"><strong>GetLogs</strong></a></td>
+<td><a href="UtilsApi.html#get_logs"><strong>get_logs</strong></a></td>
 <td><strong>POST</strong> /api/v1/utils/debug</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="UtilsApi.html#setlicense"><strong>SetLicense</strong></a></td>
+<td><a href="UtilsApi.html#set_license"><strong>set_license</strong></a></td>
 <td><strong>POST</strong> /api/v1/utils/</td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<p><a name="gethashid"></a></p>
-<h1 id="gethashid"><strong>GetHashId</strong> <a class="heading-anchor-permalink" href="#gethashid" aria-hidden="true">#</a></h1>
+<h1 id="get_hash_id"><strong>get_hash_id</strong> <a class="heading-anchor-permalink" href="#get_hash_id" aria-hidden="true">#</a></h1>
 <blockquote>
-<p>LicenseHashResponseWrapper GetHashId ()</p>
+<p>LicenseHashResponseWrapper get_hash_id()</p>
 </blockquote>
 <h3 id="example">Example <a class="heading-anchor-permalink" href="#example" aria-hidden="true">#</a></h3>
-<pre><code class="language-csharp">using System.Collections.Generic;
-using System.Diagnostics;
-using Hacarus.SpectroSdk.Api;
-using Hacarus.SpectroSdk.Client;
-using Hacarus.SpectroSdk.Model;
+<ul>
+<li>Bearer (JWT) Authentication (jwt):</li>
+<li>OAuth Authentication (oauth2):</li>
+</ul>
+<pre><code class="language-python">import time
+import Hacarus.SpectroSdk
+from Hacarus.SpectroSdk.api import utils_api
+from Hacarus.SpectroSdk.model.license_hash_response_wrapper import LicenseHashResponseWrapper
+from Hacarus.SpectroSdk.model.base_error import BaseError
+from pprint import pprint
+# Defining the host is optional and defaults to https://sdd-api-staging.hacarus.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = Hacarus.SpectroSdk.Configuration(
+    host = &quot;https://sdd-api-staging.hacarus.com&quot;
+)
 
-namespace Example
-{
-    public class GetHashIdExample
-    {
-        public static void Main()
-        {
-            Configuration.Default.BasePath = &quot;https://spectro-demo.hacarus.com&quot;;
-            // Configure HTTP basic authorization: jwt
-            Configuration.Default.Username = &quot;YOUR_USERNAME&quot;;
-            Configuration.Default.Password = &quot;YOUR_PASSWORD&quot;;
-            // Configure OAuth2 access token for authorization: oauth2
-            Configuration.Default.AccessToken = &quot;YOUR_ACCESS_TOKEN&quot;;
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-            var apiInstance = new UtilsApi(Configuration.Default);
+# Configure Bearer authorization (JWT): jwt
+configuration = Hacarus.SpectroSdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
-            try
-            {
-                LicenseHashResponseWrapper result = apiInstance.GetHashId();
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print(&quot;Exception when calling UtilsApi.GetHashId: &quot; + e.Message );
-                Debug.Print(&quot;Status Code: &quot;+ e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
+# Configure OAuth2 access token for authorization: oauth2
+configuration = Hacarus.SpectroSdk.Configuration(
+    host = &quot;https://sdd-api-staging.hacarus.com&quot;
+)
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Enter a context with an instance of the API client
+with Hacarus.SpectroSdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = utils_api.UtilsApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
+    try:
+        api_response = api_instance.get_hash_id()
+        pprint(api_response)
+    except Hacarus.SpectroSdk.ApiException as e:
+        print(&quot;Exception when calling UtilsApi-&gt;get_hash_id: %s\n&quot; % e)
 </code></pre>
 <h3 id="parameters">Parameters <a class="heading-anchor-permalink" href="#parameters" aria-hidden="true">#</a></h3>
 <p>This endpoint does not need any parameter.</p>
@@ -635,52 +651,57 @@ namespace Example
 </tbody>
 </table>
 <p><a href="#">[Back to top]</a> <a href="../README.html#documentation-for-api-endpoints">[Back to API list]</a> <a href="../README.html#documentation-for-models">[Back to Model list]</a> <a href="../README.html">[Back to README]</a></p>
-<p><a name="getlogs"></a></p>
-<h1 id="getlogs"><strong>GetLogs</strong> <a class="heading-anchor-permalink" href="#getlogs" aria-hidden="true">#</a></h1>
+<h1 id="get_logs"><strong>get_logs</strong> <a class="heading-anchor-permalink" href="#get_logs" aria-hidden="true">#</a></h1>
 <blockquote>
-<p>System.IO.Stream GetLogs ()</p>
+<p>file_type get_logs()</p>
 </blockquote>
 <h3 id="example-2">Example <a class="heading-anchor-permalink" href="#example-2" aria-hidden="true">#</a></h3>
-<pre><code class="language-csharp">using System.Collections.Generic;
-using System.Diagnostics;
-using Hacarus.SpectroSdk.Api;
-using Hacarus.SpectroSdk.Client;
-using Hacarus.SpectroSdk.Model;
+<ul>
+<li>Bearer (JWT) Authentication (jwt):</li>
+<li>OAuth Authentication (oauth2):</li>
+</ul>
+<pre><code class="language-python">import time
+import Hacarus.SpectroSdk
+from Hacarus.SpectroSdk.api import utils_api
+from pprint import pprint
+# Defining the host is optional and defaults to https://sdd-api-staging.hacarus.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = Hacarus.SpectroSdk.Configuration(
+    host = &quot;https://sdd-api-staging.hacarus.com&quot;
+)
 
-namespace Example
-{
-    public class GetLogsExample
-    {
-        public static void Main()
-        {
-            Configuration.Default.BasePath = &quot;https://spectro-demo.hacarus.com&quot;;
-            // Configure HTTP basic authorization: jwt
-            Configuration.Default.Username = &quot;YOUR_USERNAME&quot;;
-            Configuration.Default.Password = &quot;YOUR_PASSWORD&quot;;
-            // Configure OAuth2 access token for authorization: oauth2
-            Configuration.Default.AccessToken = &quot;YOUR_ACCESS_TOKEN&quot;;
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-            var apiInstance = new UtilsApi(Configuration.Default);
+# Configure Bearer authorization (JWT): jwt
+configuration = Hacarus.SpectroSdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
-            try
-            {
-                System.IO.Stream result = apiInstance.GetLogs();
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print(&quot;Exception when calling UtilsApi.GetLogs: &quot; + e.Message );
-                Debug.Print(&quot;Status Code: &quot;+ e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
+# Configure OAuth2 access token for authorization: oauth2
+configuration = Hacarus.SpectroSdk.Configuration(
+    host = &quot;https://sdd-api-staging.hacarus.com&quot;
+)
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Enter a context with an instance of the API client
+with Hacarus.SpectroSdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = utils_api.UtilsApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
+    try:
+        api_response = api_instance.get_logs()
+        pprint(api_response)
+    except Hacarus.SpectroSdk.ApiException as e:
+        print(&quot;Exception when calling UtilsApi-&gt;get_logs: %s\n&quot; % e)
 </code></pre>
 <h3 id="parameters-2">Parameters <a class="heading-anchor-permalink" href="#parameters-2" aria-hidden="true">#</a></h3>
 <p>This endpoint does not need any parameter.</p>
 <h3 id="return-type-2">Return type <a class="heading-anchor-permalink" href="#return-type-2" aria-hidden="true">#</a></h3>
-<p><strong>System.IO.Stream</strong></p>
+<p><strong>file_type</strong></p>
 <h3 id="authorization-2">Authorization <a class="heading-anchor-permalink" href="#authorization-2" aria-hidden="true">#</a></h3>
 <p><a href="../README.html#jwt">jwt</a>, <a href="../README.html#oauth2">oauth2</a></p>
 <h3 id="http-request-headers-2">HTTP request headers <a class="heading-anchor-permalink" href="#http-request-headers-2" aria-hidden="true">#</a></h3>
@@ -706,48 +727,56 @@ namespace Example
 </tbody>
 </table>
 <p><a href="#">[Back to top]</a> <a href="../README.html#documentation-for-api-endpoints">[Back to API list]</a> <a href="../README.html#documentation-for-models">[Back to Model list]</a> <a href="../README.html">[Back to README]</a></p>
-<p><a name="setlicense"></a></p>
-<h1 id="setlicense"><strong>SetLicense</strong> <a class="heading-anchor-permalink" href="#setlicense" aria-hidden="true">#</a></h1>
+<h1 id="set_license"><strong>set_license</strong> <a class="heading-anchor-permalink" href="#set_license" aria-hidden="true">#</a></h1>
 <blockquote>
-<p>LicenseResponseWrapper SetLicense (System.IO.Stream licenseData = null)</p>
+<p>LicenseResponseWrapper set_license()</p>
 </blockquote>
 <h3 id="example-3">Example <a class="heading-anchor-permalink" href="#example-3" aria-hidden="true">#</a></h3>
-<pre><code class="language-csharp">using System.Collections.Generic;
-using System.Diagnostics;
-using Hacarus.SpectroSdk.Api;
-using Hacarus.SpectroSdk.Client;
-using Hacarus.SpectroSdk.Model;
+<ul>
+<li>Bearer (JWT) Authentication (jwt):</li>
+<li>OAuth Authentication (oauth2):</li>
+</ul>
+<pre><code class="language-python">import time
+import Hacarus.SpectroSdk
+from Hacarus.SpectroSdk.api import utils_api
+from Hacarus.SpectroSdk.model.license_response_wrapper import LicenseResponseWrapper
+from Hacarus.SpectroSdk.model.base_error import BaseError
+from pprint import pprint
+# Defining the host is optional and defaults to https://sdd-api-staging.hacarus.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = Hacarus.SpectroSdk.Configuration(
+    host = &quot;https://sdd-api-staging.hacarus.com&quot;
+)
 
-namespace Example
-{
-    public class SetLicenseExample
-    {
-        public static void Main()
-        {
-            Configuration.Default.BasePath = &quot;https://spectro-demo.hacarus.com&quot;;
-            // Configure HTTP basic authorization: jwt
-            Configuration.Default.Username = &quot;YOUR_USERNAME&quot;;
-            Configuration.Default.Password = &quot;YOUR_PASSWORD&quot;;
-            // Configure OAuth2 access token for authorization: oauth2
-            Configuration.Default.AccessToken = &quot;YOUR_ACCESS_TOKEN&quot;;
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-            var apiInstance = new UtilsApi(Configuration.Default);
-            var licenseData = BINARY_DATA_HERE;  // System.IO.Stream |  (optional) 
+# Configure Bearer authorization (JWT): jwt
+configuration = Hacarus.SpectroSdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
-            try
-            {
-                LicenseResponseWrapper result = apiInstance.SetLicense(licenseData);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print(&quot;Exception when calling UtilsApi.SetLicense: &quot; + e.Message );
-                Debug.Print(&quot;Status Code: &quot;+ e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
+# Configure OAuth2 access token for authorization: oauth2
+configuration = Hacarus.SpectroSdk.Configuration(
+    host = &quot;https://sdd-api-staging.hacarus.com&quot;
+)
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Enter a context with an instance of the API client
+with Hacarus.SpectroSdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = utils_api.UtilsApi(api_client)
+    license_data = open('/path/to/file', 'rb') # file_type |  (optional)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        api_response = api_instance.set_license(license_data=license_data)
+        pprint(api_response)
+    except Hacarus.SpectroSdk.ApiException as e:
+        print(&quot;Exception when calling UtilsApi-&gt;set_license: %s\n&quot; % e)
 </code></pre>
 <h3 id="parameters-3">Parameters <a class="heading-anchor-permalink" href="#parameters-3" aria-hidden="true">#</a></h3>
 <table>
@@ -761,8 +790,8 @@ namespace Example
 </thead>
 <tbody>
 <tr>
-<td><strong>licenseData</strong></td>
-<td><strong>System.IO.Stream****System.IO.Stream</strong></td>
+<td><strong>license_data</strong></td>
+<td><strong>file_type</strong></td>
 <td></td>
 <td>[optional]</td>
 </tr>

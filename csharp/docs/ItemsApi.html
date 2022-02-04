@@ -214,10 +214,6 @@
       #layout,
       #menu,
       .menu-link {
-        -webkit-transition: all 0.2s ease-out;
-        -moz-transition: all 0.2s ease-out;
-        -ms-transition: all 0.2s ease-out;
-        -o-transition: all 0.2s ease-out;
         transition: all 0.2s ease-out;
       }
 
@@ -526,18 +522,26 @@
 <li><a class="" href="Predict.html">Predict</a></li>
 <li><a class="" href="PredictItemsResponse.html">PredictItemsResponse</a></li>
 <li><a class="" href="PredictItemsResponseWrapper.html">PredictItemsResponseWrapper</a></li>
+<li><a class="" href="PredictionItemCallbackResponse.html">PredictionItemCallbackResponse</a></li>
+<li><a class="" href="PredictionItemCallbackWrapper.html">PredictionItemCallbackWrapper</a></li>
 <li><a class="" href="Preprocessing.html">Preprocessing</a></li>
 <li><a class="" href="RequestAnnotation.html">RequestAnnotation</a></li>
-<li><a class="" href="SpectroApi.html">SpectroApi</a></li>
 <li><a class="" href="TargetsApi.html">TargetsApi</a></li>
+<li><a class="" href="TokenApi.html">TokenApi</a></li>
 <li><a class="" href="TrainRequest.html">TrainRequest</a></li>
+<li><a class="" href="UpdatePredictCallback.html">UpdatePredictCallback</a></li>
+<li><a class="" href="UpdatePredictCallbackResponse.html">UpdatePredictCallbackResponse</a></li>
+<li><a class="" href="UpdatePredictCallbackResponseWrapper.html">UpdatePredictCallbackResponseWrapper</a></li>
+<li><a class="" href="UpdatePredictParameters.html">UpdatePredictParameters</a></li>
+<li><a class="" href="UpdatePredictParametersResponse.html">UpdatePredictParametersResponse</a></li>
+<li><a class="" href="UpdatePredictParametersResponseWrapper.html">UpdatePredictParametersResponseWrapper</a></li>
 <li><a class="" href="UtilsApi.html">UtilsApi</a></li>
 </ul>
 </ul>
       </nav>
       <article id="main" class="content">
-        <h1 id="org.openapitools.api.itemsapi" tabindex="-1">Org.OpenAPITools.Api.ItemsApi <a class="heading-anchor-permalink" href="#org.openapitools.api.itemsapi">#</a></h1>
-<p>All URIs are relative to <em><a href="https://spectro-demo.hacarus.com">https://spectro-demo.hacarus.com</a></em></p>
+        <h1 id="hacarus.spectrosdk.itemsapi">Hacarus.SpectroSdk.ItemsApi <a class="heading-anchor-permalink" href="#hacarus.spectrosdk.itemsapi" aria-hidden="true">#</a></h1>
+<p>All URIs are relative to <em><a href="https://sdd-api-staging.hacarus.com">https://sdd-api-staging.hacarus.com</a></em></p>
 <table>
 <thead>
 <tr>
@@ -548,80 +552,100 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="ItemsApi.html#additem"><strong>AddItem</strong></a></td>
+<td><a href="ItemsApi.html#add_item"><strong>add_item</strong></a></td>
 <td><strong>POST</strong> /api/v1/items/</td>
 <td>Add Item</td>
 </tr>
 <tr>
-<td><a href="ItemsApi.html#annotate"><strong>Annotate</strong></a></td>
+<td><a href="ItemsApi.html#annotate"><strong>annotate</strong></a></td>
 <td><strong>PATCH</strong> /api/v1/items/{item_id}</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="ItemsApi.html#delitem"><strong>DelItem</strong></a></td>
+<td><a href="ItemsApi.html#del_item"><strong>del_item</strong></a></td>
 <td><strong>DELETE</strong> /api/v1/items/</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="ItemsApi.html#getitembyid"><strong>GetItemById</strong></a></td>
+<td><a href="ItemsApi.html#get_item_by_id"><strong>get_item_by_id</strong></a></td>
 <td><strong>GET</strong> /api/v1/items/{item_id}</td>
 <td>Get Item by Id</td>
 </tr>
 <tr>
-<td><a href="ItemsApi.html#getitemsbytype"><strong>GetItemsByType</strong></a></td>
+<td><a href="ItemsApi.html#get_items_by_type"><strong>get_items_by_type</strong></a></td>
 <td><strong>GET</strong> /api/v1/items/</td>
 <td>Get List of Items</td>
 </tr>
 </tbody>
 </table>
-<h2 id="additem" tabindex="-1">AddItem <a class="heading-anchor-permalink" href="#additem">#</a></h2>
+<h1 id="add_item"><strong>add_item</strong> <a class="heading-anchor-permalink" href="#add_item" aria-hidden="true">#</a></h1>
 <blockquote>
-<p>AddItemResponseWrapper AddItem (bool training, List&lt;System.IO.Stream&gt; files = null, bool? good = null, string modelId = null)</p>
+<p>AddItemResponseWrapper add_item(training)</p>
 </blockquote>
 <p>Add Item</p>
 <p>Add prediction or training item/s. This endpoint also gives you an option to tag an item as Good or Bad</p>
-<h3 id="example" tabindex="-1">Example <a class="heading-anchor-permalink" href="#example">#</a></h3>
-<pre><code class="language-csharp">using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
+<h3 id="example">Example <a class="heading-anchor-permalink" href="#example" aria-hidden="true">#</a></h3>
+<ul>
+<li>Bearer (JWT) Authentication (jwt):</li>
+<li>OAuth Authentication (oauth2):</li>
+</ul>
+<pre><code class="language-python">import time
+import Hacarus.SpectroSdk
+from Hacarus.SpectroSdk.api import items_api
+from Hacarus.SpectroSdk.model.add_item_response_wrapper import AddItemResponseWrapper
+from Hacarus.SpectroSdk.model.base_error import BaseError
+from pprint import pprint
+# Defining the host is optional and defaults to https://sdd-api-staging.hacarus.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = Hacarus.SpectroSdk.Configuration(
+    host = &quot;https://sdd-api-staging.hacarus.com&quot;
+)
 
-namespace Example
-{
-    public class AddItemExample
-    {
-        public static void Main()
-        {
-            Configuration.Default.BasePath = &quot;https://spectro-demo.hacarus.com&quot;;
-            // Configure HTTP bearer authorization: jwt
-            Configuration.Default.AccessToken = &quot;YOUR_ACCESS_TOKEN&quot;;
-            // Configure OAuth2 access token for authorization: oauth2
-            Configuration.Default.AccessToken = &quot;YOUR_ACCESS_TOKEN&quot;;
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-            var apiInstance = new ItemsApi(Configuration.Default);
-            var training = true;  // bool | 
-            var files = new List&lt;System.IO.Stream&gt;(); // List&lt;System.IO.Stream&gt; |  (optional) 
-            var good = true;  // bool? |  (optional) 
-            var modelId = modelId_example;  // string |  (optional) 
+# Configure Bearer authorization (JWT): jwt
+configuration = Hacarus.SpectroSdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
-            try
-            {
-                // Add Item
-                AddItemResponseWrapper result = apiInstance.AddItem(training, files, good, modelId);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException e)
-            {
-                Debug.Print(&quot;Exception when calling ItemsApi.AddItem: &quot; + e.Message );
-                Debug.Print(&quot;Status Code: &quot;+ e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
+# Configure OAuth2 access token for authorization: oauth2
+configuration = Hacarus.SpectroSdk.Configuration(
+    host = &quot;https://sdd-api-staging.hacarus.com&quot;
+)
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Enter a context with an instance of the API client
+with Hacarus.SpectroSdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = items_api.ItemsApi(api_client)
+    training = True # bool | 
+    files = [
+        open('/path/to/file', 'rb'),
+    ] # [file_type] |  (optional)
+    good = True # bool |  (optional)
+    model_id = &quot;model_id_example&quot; # str |  (optional)
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Add Item
+        api_response = api_instance.add_item(training)
+        pprint(api_response)
+    except Hacarus.SpectroSdk.ApiException as e:
+        print(&quot;Exception when calling ItemsApi-&gt;add_item: %s\n&quot; % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Add Item
+        api_response = api_instance.add_item(training, files=files, good=good, model_id=model_id)
+        pprint(api_response)
+    except Hacarus.SpectroSdk.ApiException as e:
+        print(&quot;Exception when calling ItemsApi-&gt;add_item: %s\n&quot; % e)
 </code></pre>
-<h3 id="parameters" tabindex="-1">Parameters <a class="heading-anchor-permalink" href="#parameters">#</a></h3>
+<h3 id="parameters">Parameters <a class="heading-anchor-permalink" href="#parameters" aria-hidden="true">#</a></h3>
 <table>
 <thead>
 <tr>
@@ -640,34 +664,34 @@ namespace Example
 </tr>
 <tr>
 <td><strong>files</strong></td>
-<td><a href="System.IO.Stream.html"><strong>List&lt;System.IO.Stream&gt;</strong></a></td>
+<td><strong>[file_type]</strong></td>
 <td></td>
 <td>[optional]</td>
 </tr>
 <tr>
 <td><strong>good</strong></td>
-<td><strong>bool?</strong></td>
+<td><strong>bool</strong></td>
 <td></td>
 <td>[optional]</td>
 </tr>
 <tr>
-<td><strong>modelId</strong></td>
-<td><strong>string</strong></td>
+<td><strong>model_id</strong></td>
+<td><strong>str</strong></td>
 <td></td>
 <td>[optional]</td>
 </tr>
 </tbody>
 </table>
-<h3 id="return-type" tabindex="-1">Return type <a class="heading-anchor-permalink" href="#return-type">#</a></h3>
+<h3 id="return-type">Return type <a class="heading-anchor-permalink" href="#return-type" aria-hidden="true">#</a></h3>
 <p><a href="AddItemResponseWrapper.html"><strong>AddItemResponseWrapper</strong></a></p>
-<h3 id="authorization" tabindex="-1">Authorization <a class="heading-anchor-permalink" href="#authorization">#</a></h3>
+<h3 id="authorization">Authorization <a class="heading-anchor-permalink" href="#authorization" aria-hidden="true">#</a></h3>
 <p><a href="../README.html#jwt">jwt</a>, <a href="../README.html#oauth2">oauth2</a></p>
-<h3 id="http-request-headers" tabindex="-1">HTTP request headers <a class="heading-anchor-permalink" href="#http-request-headers">#</a></h3>
+<h3 id="http-request-headers">HTTP request headers <a class="heading-anchor-permalink" href="#http-request-headers" aria-hidden="true">#</a></h3>
 <ul>
 <li><strong>Content-Type</strong>: multipart/form-data</li>
 <li><strong>Accept</strong>: application/json</li>
 </ul>
-<h3 id="http-response-details" tabindex="-1">HTTP response details <a class="heading-anchor-permalink" href="#http-response-details">#</a></h3>
+<h3 id="http-response-details">HTTP response details <a class="heading-anchor-permalink" href="#http-response-details" aria-hidden="true">#</a></h3>
 <table>
 <thead>
 <tr>
@@ -694,52 +718,69 @@ namespace Example
 </tr>
 </tbody>
 </table>
-<p><a href="#">[Back to top]</a>
-<a href="../README.html#documentation-for-api-endpoints">[Back to API list]</a>
-<a href="../README.html#documentation-for-models">[Back to Model list]</a>
-<a href="../README.html">[Back to README]</a></p>
-<h2 id="annotate" tabindex="-1">Annotate <a class="heading-anchor-permalink" href="#annotate">#</a></h2>
+<p><a href="#">[Back to top]</a> <a href="../README.html#documentation-for-api-endpoints">[Back to API list]</a> <a href="../README.html#documentation-for-models">[Back to Model list]</a> <a href="../README.html">[Back to README]</a></p>
+<h1 id="annotate"><strong>annotate</strong> <a class="heading-anchor-permalink" href="#annotate" aria-hidden="true">#</a></h1>
 <blockquote>
-<p>void Annotate (string itemId, AnnotateItemRequest annotateItemRequest)</p>
+<p>annotate(item_id, annotate_item_request)</p>
 </blockquote>
-<h3 id="example-1" tabindex="-1">Example <a class="heading-anchor-permalink" href="#example-1">#</a></h3>
-<pre><code class="language-csharp">using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
+<h3 id="example-2">Example <a class="heading-anchor-permalink" href="#example-2" aria-hidden="true">#</a></h3>
+<ul>
+<li>Bearer (JWT) Authentication (jwt):</li>
+<li>OAuth Authentication (oauth2):</li>
+</ul>
+<pre><code class="language-python">import time
+import Hacarus.SpectroSdk
+from Hacarus.SpectroSdk.api import items_api
+from Hacarus.SpectroSdk.model.annotate_item_request import AnnotateItemRequest
+from Hacarus.SpectroSdk.model.base_error import BaseError
+from pprint import pprint
+# Defining the host is optional and defaults to https://sdd-api-staging.hacarus.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = Hacarus.SpectroSdk.Configuration(
+    host = &quot;https://sdd-api-staging.hacarus.com&quot;
+)
 
-namespace Example
-{
-    public class AnnotateExample
-    {
-        public static void Main()
-        {
-            Configuration.Default.BasePath = &quot;https://spectro-demo.hacarus.com&quot;;
-            // Configure HTTP bearer authorization: jwt
-            Configuration.Default.AccessToken = &quot;YOUR_ACCESS_TOKEN&quot;;
-            // Configure OAuth2 access token for authorization: oauth2
-            Configuration.Default.AccessToken = &quot;YOUR_ACCESS_TOKEN&quot;;
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-            var apiInstance = new ItemsApi(Configuration.Default);
-            var itemId = itemId_example;  // string | 
-            var annotateItemRequest = new AnnotateItemRequest(); // AnnotateItemRequest | 
+# Configure Bearer authorization (JWT): jwt
+configuration = Hacarus.SpectroSdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
-            try
-            {
-                apiInstance.Annotate(itemId, annotateItemRequest);
-            }
-            catch (ApiException e)
-            {
-                Debug.Print(&quot;Exception when calling ItemsApi.Annotate: &quot; + e.Message );
-                Debug.Print(&quot;Status Code: &quot;+ e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
+# Configure OAuth2 access token for authorization: oauth2
+configuration = Hacarus.SpectroSdk.Configuration(
+    host = &quot;https://sdd-api-staging.hacarus.com&quot;
+)
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Enter a context with an instance of the API client
+with Hacarus.SpectroSdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = items_api.ItemsApi(api_client)
+    item_id = &quot;item_id_example&quot; # str | 
+    annotate_item_request = AnnotateItemRequest(
+        annotations=[
+            RequestAnnotation(
+                x_max=1,
+                x_min=1,
+                y_max=1,
+                y_min=1,
+                label=1,
+                notes=&quot;notes_example&quot;,
+            ),
+        ],
+    ) # AnnotateItemRequest | 
+
+    # example passing only required values which don't have defaults set
+    try:
+        api_instance.annotate(item_id, annotate_item_request)
+    except Hacarus.SpectroSdk.ApiException as e:
+        print(&quot;Exception when calling ItemsApi-&gt;annotate: %s\n&quot; % e)
 </code></pre>
-<h3 id="parameters-1" tabindex="-1">Parameters <a class="heading-anchor-permalink" href="#parameters-1">#</a></h3>
+<h3 id="parameters-2">Parameters <a class="heading-anchor-permalink" href="#parameters-2" aria-hidden="true">#</a></h3>
 <table>
 <thead>
 <tr>
@@ -751,29 +792,29 @@ namespace Example
 </thead>
 <tbody>
 <tr>
-<td><strong>itemId</strong></td>
-<td><strong>string</strong></td>
+<td><strong>item_id</strong></td>
+<td><strong>str</strong></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><strong>annotateItemRequest</strong></td>
+<td><strong>annotate_item_request</strong></td>
 <td><a href="AnnotateItemRequest.html"><strong>AnnotateItemRequest</strong></a></td>
 <td></td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<h3 id="return-type-1" tabindex="-1">Return type <a class="heading-anchor-permalink" href="#return-type-1">#</a></h3>
+<h3 id="return-type-2">Return type <a class="heading-anchor-permalink" href="#return-type-2" aria-hidden="true">#</a></h3>
 <p>void (empty response body)</p>
-<h3 id="authorization-1" tabindex="-1">Authorization <a class="heading-anchor-permalink" href="#authorization-1">#</a></h3>
+<h3 id="authorization-2">Authorization <a class="heading-anchor-permalink" href="#authorization-2" aria-hidden="true">#</a></h3>
 <p><a href="../README.html#jwt">jwt</a>, <a href="../README.html#oauth2">oauth2</a></p>
-<h3 id="http-request-headers-1" tabindex="-1">HTTP request headers <a class="heading-anchor-permalink" href="#http-request-headers-1">#</a></h3>
+<h3 id="http-request-headers-2">HTTP request headers <a class="heading-anchor-permalink" href="#http-request-headers-2" aria-hidden="true">#</a></h3>
 <ul>
 <li><strong>Content-Type</strong>: application/json</li>
 <li><strong>Accept</strong>: application/json</li>
 </ul>
-<h3 id="http-response-details-1" tabindex="-1">HTTP response details <a class="heading-anchor-permalink" href="#http-response-details-1">#</a></h3>
+<h3 id="http-response-details-2">HTTP response details <a class="heading-anchor-permalink" href="#http-response-details-2" aria-hidden="true">#</a></h3>
 <table>
 <thead>
 <tr>
@@ -800,51 +841,61 @@ namespace Example
 </tr>
 </tbody>
 </table>
-<p><a href="#">[Back to top]</a>
-<a href="../README.html#documentation-for-api-endpoints">[Back to API list]</a>
-<a href="../README.html#documentation-for-models">[Back to Model list]</a>
-<a href="../README.html">[Back to README]</a></p>
-<h2 id="delitem" tabindex="-1">DelItem <a class="heading-anchor-permalink" href="#delitem">#</a></h2>
+<p><a href="#">[Back to top]</a> <a href="../README.html#documentation-for-api-endpoints">[Back to API list]</a> <a href="../README.html#documentation-for-models">[Back to Model list]</a> <a href="../README.html">[Back to README]</a></p>
+<h1 id="del_item"><strong>del_item</strong> <a class="heading-anchor-permalink" href="#del_item" aria-hidden="true">#</a></h1>
 <blockquote>
-<p>void DelItem (DelItemRequest delItemRequest)</p>
+<p>del_item(del_item_request)</p>
 </blockquote>
-<h3 id="example-2" tabindex="-1">Example <a class="heading-anchor-permalink" href="#example-2">#</a></h3>
-<pre><code class="language-csharp">using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
+<h3 id="example-3">Example <a class="heading-anchor-permalink" href="#example-3" aria-hidden="true">#</a></h3>
+<ul>
+<li>Bearer (JWT) Authentication (jwt):</li>
+<li>OAuth Authentication (oauth2):</li>
+</ul>
+<pre><code class="language-python">import time
+import Hacarus.SpectroSdk
+from Hacarus.SpectroSdk.api import items_api
+from Hacarus.SpectroSdk.model.del_item_request import DelItemRequest
+from Hacarus.SpectroSdk.model.base_error import BaseError
+from pprint import pprint
+# Defining the host is optional and defaults to https://sdd-api-staging.hacarus.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = Hacarus.SpectroSdk.Configuration(
+    host = &quot;https://sdd-api-staging.hacarus.com&quot;
+)
 
-namespace Example
-{
-    public class DelItemExample
-    {
-        public static void Main()
-        {
-            Configuration.Default.BasePath = &quot;https://spectro-demo.hacarus.com&quot;;
-            // Configure HTTP bearer authorization: jwt
-            Configuration.Default.AccessToken = &quot;YOUR_ACCESS_TOKEN&quot;;
-            // Configure OAuth2 access token for authorization: oauth2
-            Configuration.Default.AccessToken = &quot;YOUR_ACCESS_TOKEN&quot;;
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-            var apiInstance = new ItemsApi(Configuration.Default);
-            var delItemRequest = new DelItemRequest(); // DelItemRequest | 
+# Configure Bearer authorization (JWT): jwt
+configuration = Hacarus.SpectroSdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
-            try
-            {
-                apiInstance.DelItem(delItemRequest);
-            }
-            catch (ApiException e)
-            {
-                Debug.Print(&quot;Exception when calling ItemsApi.DelItem: &quot; + e.Message );
-                Debug.Print(&quot;Status Code: &quot;+ e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
+# Configure OAuth2 access token for authorization: oauth2
+configuration = Hacarus.SpectroSdk.Configuration(
+    host = &quot;https://sdd-api-staging.hacarus.com&quot;
+)
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Enter a context with an instance of the API client
+with Hacarus.SpectroSdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = items_api.ItemsApi(api_client)
+    del_item_request = DelItemRequest(
+        item_ids=[
+            &quot;item_ids_example&quot;,
+        ],
+    ) # DelItemRequest | 
+
+    # example passing only required values which don't have defaults set
+    try:
+        api_instance.del_item(del_item_request)
+    except Hacarus.SpectroSdk.ApiException as e:
+        print(&quot;Exception when calling ItemsApi-&gt;del_item: %s\n&quot; % e)
 </code></pre>
-<h3 id="parameters-2" tabindex="-1">Parameters <a class="heading-anchor-permalink" href="#parameters-2">#</a></h3>
+<h3 id="parameters-3">Parameters <a class="heading-anchor-permalink" href="#parameters-3" aria-hidden="true">#</a></h3>
 <table>
 <thead>
 <tr>
@@ -856,23 +907,23 @@ namespace Example
 </thead>
 <tbody>
 <tr>
-<td><strong>delItemRequest</strong></td>
+<td><strong>del_item_request</strong></td>
 <td><a href="DelItemRequest.html"><strong>DelItemRequest</strong></a></td>
 <td></td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<h3 id="return-type-2" tabindex="-1">Return type <a class="heading-anchor-permalink" href="#return-type-2">#</a></h3>
+<h3 id="return-type-3">Return type <a class="heading-anchor-permalink" href="#return-type-3" aria-hidden="true">#</a></h3>
 <p>void (empty response body)</p>
-<h3 id="authorization-2" tabindex="-1">Authorization <a class="heading-anchor-permalink" href="#authorization-2">#</a></h3>
+<h3 id="authorization-3">Authorization <a class="heading-anchor-permalink" href="#authorization-3" aria-hidden="true">#</a></h3>
 <p><a href="../README.html#jwt">jwt</a>, <a href="../README.html#oauth2">oauth2</a></p>
-<h3 id="http-request-headers-2" tabindex="-1">HTTP request headers <a class="heading-anchor-permalink" href="#http-request-headers-2">#</a></h3>
+<h3 id="http-request-headers-3">HTTP request headers <a class="heading-anchor-permalink" href="#http-request-headers-3" aria-hidden="true">#</a></h3>
 <ul>
 <li><strong>Content-Type</strong>: application/json</li>
 <li><strong>Accept</strong>: application/json</li>
 </ul>
-<h3 id="http-response-details-2" tabindex="-1">HTTP response details <a class="heading-anchor-permalink" href="#http-response-details-2">#</a></h3>
+<h3 id="http-response-details-3">HTTP response details <a class="heading-anchor-permalink" href="#http-response-details-3" aria-hidden="true">#</a></h3>
 <table>
 <thead>
 <tr>
@@ -889,58 +940,73 @@ namespace Example
 </tr>
 </tbody>
 </table>
-<p><a href="#">[Back to top]</a>
-<a href="../README.html#documentation-for-api-endpoints">[Back to API list]</a>
-<a href="../README.html#documentation-for-models">[Back to Model list]</a>
-<a href="../README.html">[Back to README]</a></p>
-<h2 id="getitembyid" tabindex="-1">GetItemById <a class="heading-anchor-permalink" href="#getitembyid">#</a></h2>
+<p><a href="#">[Back to top]</a> <a href="../README.html#documentation-for-api-endpoints">[Back to API list]</a> <a href="../README.html#documentation-for-models">[Back to Model list]</a> <a href="../README.html">[Back to README]</a></p>
+<h1 id="get_item_by_id"><strong>get_item_by_id</strong> <a class="heading-anchor-permalink" href="#get_item_by_id" aria-hidden="true">#</a></h1>
 <blockquote>
-<p>ItemWrapper GetItemById (string itemId, bool? showAssessments = null, bool? showAnnotations = null, string modelId = null)</p>
+<p>ItemWrapper get_item_by_id(item_id)</p>
 </blockquote>
 <p>Get Item by Id</p>
 <p>Get specific item and annotations</p>
-<h3 id="example-3" tabindex="-1">Example <a class="heading-anchor-permalink" href="#example-3">#</a></h3>
-<pre><code class="language-csharp">using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
+<h3 id="example-4">Example <a class="heading-anchor-permalink" href="#example-4" aria-hidden="true">#</a></h3>
+<ul>
+<li>Bearer (JWT) Authentication (jwt):</li>
+<li>OAuth Authentication (oauth2):</li>
+</ul>
+<pre><code class="language-python">import time
+import Hacarus.SpectroSdk
+from Hacarus.SpectroSdk.api import items_api
+from Hacarus.SpectroSdk.model.item_wrapper import ItemWrapper
+from Hacarus.SpectroSdk.model.base_error import BaseError
+from pprint import pprint
+# Defining the host is optional and defaults to https://sdd-api-staging.hacarus.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = Hacarus.SpectroSdk.Configuration(
+    host = &quot;https://sdd-api-staging.hacarus.com&quot;
+)
 
-namespace Example
-{
-    public class GetItemByIdExample
-    {
-        public static void Main()
-        {
-            Configuration.Default.BasePath = &quot;https://spectro-demo.hacarus.com&quot;;
-            // Configure HTTP bearer authorization: jwt
-            Configuration.Default.AccessToken = &quot;YOUR_ACCESS_TOKEN&quot;;
-            // Configure OAuth2 access token for authorization: oauth2
-            Configuration.Default.AccessToken = &quot;YOUR_ACCESS_TOKEN&quot;;
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-            var apiInstance = new ItemsApi(Configuration.Default);
-            var itemId = itemId_example;  // string | 
-            var showAssessments = true;  // bool? |  (optional) 
-            var showAnnotations = true;  // bool? |  (optional) 
-            var modelId = modelId_example;  // string |  (optional) 
+# Configure Bearer authorization (JWT): jwt
+configuration = Hacarus.SpectroSdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
-            try
-            {
-                // Get Item by Id
-                ItemWrapper result = apiInstance.GetItemById(itemId, showAssessments, showAnnotations, modelId);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException e)
-            {
-                Debug.Print(&quot;Exception when calling ItemsApi.GetItemById: &quot; + e.Message );
-                Debug.Print(&quot;Status Code: &quot;+ e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
+# Configure OAuth2 access token for authorization: oauth2
+configuration = Hacarus.SpectroSdk.Configuration(
+    host = &quot;https://sdd-api-staging.hacarus.com&quot;
+)
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Enter a context with an instance of the API client
+with Hacarus.SpectroSdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = items_api.ItemsApi(api_client)
+    item_id = &quot;item_id_example&quot; # str | 
+    show_assessments = True # bool |  (optional)
+    show_annotations = True # bool |  (optional)
+    model_id = &quot;model_id_example&quot; # str |  (optional)
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Get Item by Id
+        api_response = api_instance.get_item_by_id(item_id)
+        pprint(api_response)
+    except Hacarus.SpectroSdk.ApiException as e:
+        print(&quot;Exception when calling ItemsApi-&gt;get_item_by_id: %s\n&quot; % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Get Item by Id
+        api_response = api_instance.get_item_by_id(item_id, show_assessments=show_assessments, show_annotations=show_annotations, model_id=model_id)
+        pprint(api_response)
+    except Hacarus.SpectroSdk.ApiException as e:
+        print(&quot;Exception when calling ItemsApi-&gt;get_item_by_id: %s\n&quot; % e)
 </code></pre>
-<h3 id="parameters-3" tabindex="-1">Parameters <a class="heading-anchor-permalink" href="#parameters-3">#</a></h3>
+<h3 id="parameters-4">Parameters <a class="heading-anchor-permalink" href="#parameters-4" aria-hidden="true">#</a></h3>
 <table>
 <thead>
 <tr>
@@ -952,41 +1018,41 @@ namespace Example
 </thead>
 <tbody>
 <tr>
-<td><strong>itemId</strong></td>
-<td><strong>string</strong></td>
+<td><strong>item_id</strong></td>
+<td><strong>str</strong></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><strong>showAssessments</strong></td>
-<td><strong>bool?</strong></td>
+<td><strong>show_assessments</strong></td>
+<td><strong>bool</strong></td>
 <td></td>
 <td>[optional]</td>
 </tr>
 <tr>
-<td><strong>showAnnotations</strong></td>
-<td><strong>bool?</strong></td>
+<td><strong>show_annotations</strong></td>
+<td><strong>bool</strong></td>
 <td></td>
 <td>[optional]</td>
 </tr>
 <tr>
-<td><strong>modelId</strong></td>
-<td><strong>string</strong></td>
+<td><strong>model_id</strong></td>
+<td><strong>str</strong></td>
 <td></td>
 <td>[optional]</td>
 </tr>
 </tbody>
 </table>
-<h3 id="return-type-3" tabindex="-1">Return type <a class="heading-anchor-permalink" href="#return-type-3">#</a></h3>
+<h3 id="return-type-4">Return type <a class="heading-anchor-permalink" href="#return-type-4" aria-hidden="true">#</a></h3>
 <p><a href="ItemWrapper.html"><strong>ItemWrapper</strong></a></p>
-<h3 id="authorization-3" tabindex="-1">Authorization <a class="heading-anchor-permalink" href="#authorization-3">#</a></h3>
+<h3 id="authorization-4">Authorization <a class="heading-anchor-permalink" href="#authorization-4" aria-hidden="true">#</a></h3>
 <p><a href="../README.html#jwt">jwt</a>, <a href="../README.html#oauth2">oauth2</a></p>
-<h3 id="http-request-headers-3" tabindex="-1">HTTP request headers <a class="heading-anchor-permalink" href="#http-request-headers-3">#</a></h3>
+<h3 id="http-request-headers-4">HTTP request headers <a class="heading-anchor-permalink" href="#http-request-headers-4" aria-hidden="true">#</a></h3>
 <ul>
 <li><strong>Content-Type</strong>: Not defined</li>
 <li><strong>Accept</strong>: application/json</li>
 </ul>
-<h3 id="http-response-details-3" tabindex="-1">HTTP response details <a class="heading-anchor-permalink" href="#http-response-details-3">#</a></h3>
+<h3 id="http-response-details-4">HTTP response details <a class="heading-anchor-permalink" href="#http-response-details-4" aria-hidden="true">#</a></h3>
 <table>
 <thead>
 <tr>
@@ -1006,65 +1072,75 @@ namespace Example
 <td>OK</td>
 <td>-</td>
 </tr>
-<tr>
-<td><strong>0</strong></td>
-<td>Default error response</td>
-<td>-</td>
-</tr>
 </tbody>
 </table>
-<p><a href="#">[Back to top]</a>
-<a href="../README.html#documentation-for-api-endpoints">[Back to API list]</a>
-<a href="../README.html#documentation-for-models">[Back to Model list]</a>
-<a href="../README.html">[Back to README]</a></p>
-<h2 id="getitemsbytype" tabindex="-1">GetItemsByType <a class="heading-anchor-permalink" href="#getitemsbytype">#</a></h2>
+<p><a href="#">[Back to top]</a> <a href="../README.html#documentation-for-api-endpoints">[Back to API list]</a> <a href="../README.html#documentation-for-models">[Back to Model list]</a> <a href="../README.html">[Back to README]</a></p>
+<h1 id="get_items_by_type"><strong>get_items_by_type</strong> <a class="heading-anchor-permalink" href="#get_items_by_type" aria-hidden="true">#</a></h1>
 <blockquote>
-<p>GetItemsResponseWrapper GetItemsByType (string itemType, int? count = null, int? page = null, string modelId = null)</p>
+<p>GetItemsResponseWrapper get_items_by_type(item_type)</p>
 </blockquote>
 <p>Get List of Items</p>
 <p>Returns items based on given <code>item_type</code> (prediction, training)</p>
-<h3 id="example-4" tabindex="-1">Example <a class="heading-anchor-permalink" href="#example-4">#</a></h3>
-<pre><code class="language-csharp">using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
+<h3 id="example-5">Example <a class="heading-anchor-permalink" href="#example-5" aria-hidden="true">#</a></h3>
+<ul>
+<li>Bearer (JWT) Authentication (jwt):</li>
+<li>OAuth Authentication (oauth2):</li>
+</ul>
+<pre><code class="language-python">import time
+import Hacarus.SpectroSdk
+from Hacarus.SpectroSdk.api import items_api
+from Hacarus.SpectroSdk.model.get_items_response_wrapper import GetItemsResponseWrapper
+from Hacarus.SpectroSdk.model.base_error import BaseError
+from pprint import pprint
+# Defining the host is optional and defaults to https://sdd-api-staging.hacarus.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = Hacarus.SpectroSdk.Configuration(
+    host = &quot;https://sdd-api-staging.hacarus.com&quot;
+)
 
-namespace Example
-{
-    public class GetItemsByTypeExample
-    {
-        public static void Main()
-        {
-            Configuration.Default.BasePath = &quot;https://spectro-demo.hacarus.com&quot;;
-            // Configure HTTP bearer authorization: jwt
-            Configuration.Default.AccessToken = &quot;YOUR_ACCESS_TOKEN&quot;;
-            // Configure OAuth2 access token for authorization: oauth2
-            Configuration.Default.AccessToken = &quot;YOUR_ACCESS_TOKEN&quot;;
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-            var apiInstance = new ItemsApi(Configuration.Default);
-            var itemType = itemType_example;  // string | 
-            var count = 56;  // int? |  (optional) 
-            var page = 56;  // int? |  (optional) 
-            var modelId = modelId_example;  // string |  (optional) 
+# Configure Bearer authorization (JWT): jwt
+configuration = Hacarus.SpectroSdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
-            try
-            {
-                // Get List of Items
-                GetItemsResponseWrapper result = apiInstance.GetItemsByType(itemType, count, page, modelId);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException e)
-            {
-                Debug.Print(&quot;Exception when calling ItemsApi.GetItemsByType: &quot; + e.Message );
-                Debug.Print(&quot;Status Code: &quot;+ e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
+# Configure OAuth2 access token for authorization: oauth2
+configuration = Hacarus.SpectroSdk.Configuration(
+    host = &quot;https://sdd-api-staging.hacarus.com&quot;
+)
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Enter a context with an instance of the API client
+with Hacarus.SpectroSdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = items_api.ItemsApi(api_client)
+    item_type = &quot;item_type_example&quot; # str | 
+    count = 1 # int |  (optional)
+    page = 1 # int |  (optional)
+    model_id = &quot;model_id_example&quot; # str |  (optional)
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Get List of Items
+        api_response = api_instance.get_items_by_type(item_type)
+        pprint(api_response)
+    except Hacarus.SpectroSdk.ApiException as e:
+        print(&quot;Exception when calling ItemsApi-&gt;get_items_by_type: %s\n&quot; % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Get List of Items
+        api_response = api_instance.get_items_by_type(item_type, count=count, page=page, model_id=model_id)
+        pprint(api_response)
+    except Hacarus.SpectroSdk.ApiException as e:
+        print(&quot;Exception when calling ItemsApi-&gt;get_items_by_type: %s\n&quot; % e)
 </code></pre>
-<h3 id="parameters-4" tabindex="-1">Parameters <a class="heading-anchor-permalink" href="#parameters-4">#</a></h3>
+<h3 id="parameters-5">Parameters <a class="heading-anchor-permalink" href="#parameters-5" aria-hidden="true">#</a></h3>
 <table>
 <thead>
 <tr>
@@ -1076,41 +1152,41 @@ namespace Example
 </thead>
 <tbody>
 <tr>
-<td><strong>itemType</strong></td>
-<td><strong>string</strong></td>
+<td><strong>item_type</strong></td>
+<td><strong>str</strong></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td><strong>count</strong></td>
-<td><strong>int?</strong></td>
+<td><strong>int</strong></td>
 <td></td>
 <td>[optional]</td>
 </tr>
 <tr>
 <td><strong>page</strong></td>
-<td><strong>int?</strong></td>
+<td><strong>int</strong></td>
 <td></td>
 <td>[optional]</td>
 </tr>
 <tr>
-<td><strong>modelId</strong></td>
-<td><strong>string</strong></td>
+<td><strong>model_id</strong></td>
+<td><strong>str</strong></td>
 <td></td>
 <td>[optional]</td>
 </tr>
 </tbody>
 </table>
-<h3 id="return-type-4" tabindex="-1">Return type <a class="heading-anchor-permalink" href="#return-type-4">#</a></h3>
+<h3 id="return-type-5">Return type <a class="heading-anchor-permalink" href="#return-type-5" aria-hidden="true">#</a></h3>
 <p><a href="GetItemsResponseWrapper.html"><strong>GetItemsResponseWrapper</strong></a></p>
-<h3 id="authorization-4" tabindex="-1">Authorization <a class="heading-anchor-permalink" href="#authorization-4">#</a></h3>
+<h3 id="authorization-5">Authorization <a class="heading-anchor-permalink" href="#authorization-5" aria-hidden="true">#</a></h3>
 <p><a href="../README.html#jwt">jwt</a>, <a href="../README.html#oauth2">oauth2</a></p>
-<h3 id="http-request-headers-4" tabindex="-1">HTTP request headers <a class="heading-anchor-permalink" href="#http-request-headers-4">#</a></h3>
+<h3 id="http-request-headers-5">HTTP request headers <a class="heading-anchor-permalink" href="#http-request-headers-5" aria-hidden="true">#</a></h3>
 <ul>
 <li><strong>Content-Type</strong>: Not defined</li>
 <li><strong>Accept</strong>: application/json</li>
 </ul>
-<h3 id="http-response-details-4" tabindex="-1">HTTP response details <a class="heading-anchor-permalink" href="#http-response-details-4">#</a></h3>
+<h3 id="http-response-details-5">HTTP response details <a class="heading-anchor-permalink" href="#http-response-details-5" aria-hidden="true">#</a></h3>
 <table>
 <thead>
 <tr>
@@ -1137,10 +1213,7 @@ namespace Example
 </tr>
 </tbody>
 </table>
-<p><a href="#">[Back to top]</a>
-<a href="../README.html#documentation-for-api-endpoints">[Back to API list]</a>
-<a href="../README.html#documentation-for-models">[Back to Model list]</a>
-<a href="../README.html">[Back to README]</a></p>
+<p><a href="#">[Back to top]</a> <a href="../README.html#documentation-for-api-endpoints">[Back to API list]</a> <a href="../README.html#documentation-for-models">[Back to Model list]</a> <a href="../README.html">[Back to README]</a></p>
 
       </article>
     </div>
