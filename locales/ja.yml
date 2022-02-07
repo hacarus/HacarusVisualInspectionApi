@@ -355,7 +355,7 @@ ja:
   algorithmOverview3: 'Pattern Matching'
   algorithmOverview3i: 'Classical pattern matching algorithm which compares an image against a golden image.'
   algorithmOverview4: 'Patch Sample Inspection (Beta)'
-  algorithmOverview4i: 'An unsupervised learning model that learns only from “OK” images (good samples, without defects, no annotation required).'
+  algorithmOverview4i: 'A new, generic inspection algorithm that can handle inspection objects with different placement or rotation. We have seen good inspection results and very high inspection accuracy even with difficult inspection targets across customer projects.'
   algorithmDetails: アルゴリズム詳細
   algo1i: "Reconstructor Inspection"
   algo1iText: 正常画像のみから学習するアノテーション不要の教師なし学習モデル。正常な入力画像に対して辞書学習を行う。推論時には新たな画像に対して、再構成誤差を計算し、その大小に基づいて異常検知を行う。これによって、画像の全体的なテクスチャに注目し、正常画像から逸脱しているかどうかを判定することができる。画像の位置合わせや、画像のサイズなどは特に気にしなくてもよい。
@@ -483,7 +483,7 @@ ja:
 </tbody></table>
 '
   algo4i: 'Pattern Sample Inspection (Beta)'
-  algo4iText: "An unsupervised learning model that learns only from “OK” images (good samples, without defects, no annotation required)."
+  algo4iText: "A new, generic inspection algorithm that can handle inspection objects with different placement or rotation. We have seen good inspection results and very high inspection accuracy even with difficult inspection targets across customer projects."
   algo4iTable: '
 <table class="hacarus-table">
 <thead>
