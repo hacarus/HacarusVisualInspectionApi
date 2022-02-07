@@ -983,9 +983,6 @@
               </ul>
           </li>
           <li>
-            <a href="#sdk-playground" class="toc-h1 toc-link" data-title="SDK Playground">SDK Playground</a>
-          </li>
-          <li>
             <a href="#c-sdk" class="toc-h1 toc-link" data-title="C# SDK">C# SDK</a>
           </li>
           <li>
@@ -6834,7 +6831,7 @@ jwt, oauth2
 <li>Patch Sample Inspection (Beta)
 
 <ul>
-<li>An unsupervised learning model that learns only from “OK” images (good samples, without defects, no annotation required).</li>
+<li>A new, generic inspection algorithm that can handle inspection objects with different placement or rotation. We have seen good inspection results and very high inspection accuracy even with difficult inspection targets across customer projects.</li>
 </ul></li>
 </ul>
 <h2 id='t-algorithmdetails'>アルゴリズム詳細</h2><h3 id='t-algo1i'>Reconstructor Inspection</h3>
@@ -6848,20 +6845,16 @@ jwt, oauth2
  <table class="hacarus-table"> <thead> <tr> <td><strong>Parameter</strong></td> <td><strong>Variable name</strong></td> <td><strong>Type: Range</strong></td> <td><strong>Default</strong></td> <td><strong>Impact on processing time</strong></td> <td><strong>Impact on accuracy</strong></td> <td><strong>Remarks</strong></td> </tr> </thead> <tbody> <tr> <td>Minimum inspection size	</td> <td>min_inspection_size</td> <td>(int, int) : 0~height, 0~width</td> <td>(16, 16)</td> <td>large -> large</td> <td>-</td> <td>(16, 16) or (32, 32) or (64, 64) are empirically good.</td> </tr> <tr> <td>Minimum inspection step size</td> <td>min_inspection_step</td> <td>int : [1, inf]</td> <td>4</td> <td>large -> small</td> <td></td> <td>Half or quarter of min_inspection_size is desirable.</td> </tr> <tr> <td>Threshold of anomaly</td> <td>threshold</td> <td>float : [0, inf]	0.1</td> <td>-</td> <td>large->more tolerant</td> <td></td> <td></td> </tr> <tr> <td>Width from the perimeter to be ignored</td> <td>ignore_outer</td> <td>(int, int) : 0~height, 0~width</td> <td>(0,0)</td> <td>-</td> <td>-</td> <td>The width of the ignored area from the perimeter. Use values up to the number of vertical and horizontal pixels in the image.</td> </tr> <tr> <td>Minimum detection size</td> <td>min_detected_area</td> <td>float : [1, inf]</td> <td>0</td> <td>-</td> <td>-</td> <td>Threshold of area of detected rectangle</td> </tr> <tr> <td>Anomaly range</td> <td>anomaly_range</td> <td>float : [0, 1]</td> <td>0</td> <td>-</td> <td>-</td> <td>Used to normalize heatmap colors across results.</td> </tr>
 </tbody></table> </p>
 <h3 id='t-algo4i'>Pattern Sample Inspection (Beta)</h3>
-<p>An unsupervised learning model that learns only from “OK” images (good samples, without defects, no annotation required).
+<p>A new, generic inspection algorithm that can handle inspection objects with different placement or rotation. We have seen good inspection results and very high inspection accuracy even with difficult inspection targets across customer projects.
  <table class="hacarus-table"> <thead> <tr> <td><strong>Parameter</strong></td> <td><strong>Variable name</strong></td> <td><strong>Type: Range</strong></td> <td><strong>Default</strong></td> <td><strong>Impact on processing time</strong></td> <td><strong>Impact on accuracy</strong></td> <td><strong>Remarks</strong></td> </tr> </thead> <tbody> <tr> <td>Model type</td> <td>model_type</td> <td>int : [0, 1]</td> <td>0</td> <td>small -> large</td> <td>-</td> <td>0 will use a small model. 1 will use a larger model.</td> </tr> <tr> <td>Number of Features</td> <td>num_features</td> <td>int : n</td> <td>100</td> <td>large -> large</td> <td>-</td> <td>100-n are empirically good.</td> </tr> <tr> <td>Threshold of anomaly</td> <td>threshold</td> <td>float : [0, inf]	0.1</td> <td>-</td> <td>large->more tolerant</td> <td></td> <td></td> </tr> <tr> <td>Width from the perimeter to be ignored</td> <td>ignore_outer</td> <td>(int, int) : 0~height, 0~width</td> <td>(0,0)</td> <td>-</td> <td>-</td> <td>The width of the ignored area from the perimeter. Use values up to the number of vertical and horizontal pixels in the image.</td> </tr> <tr> <td>Minimum detection size</td> <td>min_detected_area</td> <td>float : [1, inf]</td> <td>0</td> <td>-</td> <td>-</td> <td>Threshold area of detected rectangle</td> </tr> <tr> <td>Anomaly range</td> <td>anomaly_range</td> <td>float : [0, 1]</td> <td>0</td> <td>-</td> <td>-</td> <td>Used to normalize heatmap colors across results.</td> </tr>
 </tbody></table> </p>
-<h1 id='sdk-playground'>SDK Playground</h1>
-
-<p><a href="https://spectro-demo.hacarus.com/playground/" target="_blank">Open</a></p>
-
 <h1 id='c-sdk'>C# SDK</h1>
 
-<p><a href="/csharp/README.html" target="_blank">Open</a></p>
+<p><a href="HacarusVisualInspectionApi/csharp/README.html" target="_blank">Open</a></p>
 
 <h1 id='python-sdk'>Python SDK</h1>
 
-<p><a href="/python/README.html" target="_blank">Open</a></p>
+<p><a href="HacarusVisualInspectionApi/python/README.html" target="_blank">Open</a></p>
 
       </div>
       <div class="dark-box">
