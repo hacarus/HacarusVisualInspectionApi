@@ -287,9 +287,9 @@
 <p>A new, generic inspection algorithm that can handle inspection objects with different placement or rotation. We have seen good inspection results and very high inspection accuracy even with difficult inspection targets across customer projects.
  <table class="hacarus-table"> <thead> <tr> <td><strong>Parameter</strong></td> <td><strong>Variable name</strong></td> <td><strong>Type: Range</strong></td> <td><strong>Default</strong></td> <td><strong>Impact on processing time</strong></td> <td><strong>Impact on accuracy</strong></td> <td><strong>Remarks</strong></td> </tr> </thead> <tbody> <tr> <td>Model type</td> <td>model_type</td> <td>int : [0, 1]</td> <td>0</td> <td>small -> large</td> <td>-</td> <td>0 will use a small model. 1 will use a larger model.</td> </tr> <tr> <td>Number of Features</td> <td>num_features</td> <td>int : n</td> <td>100</td> <td>large -> large</td> <td>-</td> <td>100-n are empirically good.</td> </tr> <tr> <td>Threshold of anomaly</td> <td>threshold</td> <td>float : [0, inf]	0.1</td> <td>-</td> <td>large->more tolerant</td> <td></td> <td></td> </tr> <tr> <td>Width from the perimeter to be ignored</td> <td>ignore_outer</td> <td>(int, int) : 0~height, 0~width</td> <td>(0,0)</td> <td>-</td> <td>-</td> <td>The width of the ignored area from the perimeter. Use values up to the number of vertical and horizontal pixels in the image.</td> </tr> <tr> <td>Minimum detection size</td> <td>min_detected_area</td> <td>float : [1, inf]</td> <td>0</td> <td>-</td> <td>-</td> <td>Threshold area of detected rectangle</td> </tr> <tr> <td>Anomaly range</td> <td>anomaly_range</td> <td>(float, float) : 0 to 1, 0 to 1</td> <td>(0, 1)</td> <td>-</td> <td>-</td> <td>Range used to normalize the heatmap colors in heatmap images across results.</td> </tr> </tbody></table> </p>
 <h1 id='c-sdk'>C# SDK</h1>
-<p><a href="HacarusVisualInspectionApi/csharp/README.html" target="_blank">Open</a></p>
+<p><a href="csharp/README.html" target="_blank">Open</a></p>
 <h1 id='python-sdk'>Python SDK</h1>
-<p><a href="HacarusVisualInspectionApi/python/README.html" target="_blank">Open</a></p>
+<p><a href="python/README.html" target="_blank">Open</a></p>
 
       </div>
       <div class="dark-box">
